@@ -1,4 +1,8 @@
+'use client';
+
 import Link from 'next/link';
+import { blogPosts } from './blogData';
+import Image from 'next/image';
 
 export default function BlogPage() {
   return (
@@ -20,31 +24,38 @@ export default function BlogPage() {
         <h1 className="text-4xl font-bold mb-8">Blog</h1>
 
         <div className="space-y-8">
-
-          {/* Blog Post Card */}
-          <Link
-            href="/blog/how-to-download-tiktok-videos-without-watermark-2025"
-            className="block bg-white/10 hover:bg-white/20 p-4 rounded-lg transition"
-          >
-            <div className="flex items-center space-x-4">
-              <img
-                src="/images/main.png"
-                alt="Download TikTok videos"
-                className="w-20 h-20 rounded object-cover"
-              />
-              <div>
-                <h2 className="text-xl font-semibold text-white">
-                  How to Download TikTok Videos Without Watermark in 2025
-                </h2>
-                <p className="text-sm text-white/70 mt-1">
-                 
-                </p>
+          {blogPosts.map((post) => (
+            <Link
+              key={post.slug}
+              href={`/blog/${post.slug}`}
+              className="block bg-white/10 hover:bg-white/20 p-4 rounded-lg transition"
+            >
+              <div className="flex items-center space-x-4">
+                <div className="w-20 h-20 relative rounded overflow-hidden flex-shrink-0">
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    className="object-cover"
+                    sizes="80px"
+                    priority
+                  />
+                </div>
+                <div>
+                  <h2 className="text-xl font-semibold text-white">{post.title}</h2>
+                  <p className="text-sm text-white/70 mt-1">{post.description}</p>
+                  <p className="text-xs text-white/50 mt-1">
+                    Last updated:{' '}
+                    {new Date(post.lastModified).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric',
+                    })}
+                  </p>
+                </div>
               </div>
-            </div>
-          </Link>
-
-          {/* You can add more blog posts below using the same format */}
-
+            </Link>
+          ))}
         </div>
       </div>
     </div>

@@ -135,6 +135,10 @@ export default function BlogPostTikTokDownload2025() {
               <blockquote className="border-l-4 border-blue-400 pl-4 italic text-white/80">Copy ➝ Paste ➝ Download</blockquote>
               <p>🔗 Try it now: <a href="https://savefrominternet.com" target="_blank" className="text-blue-300 underline">https://savefrominternet.com</a></p>
             </div>
+            <p className="text-xs text-white/50">
+              Last updated: July 1, 2025
+            </p>
+
           </Link>
         </div>
       </div>

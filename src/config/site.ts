@@ -1,22 +1,19 @@
 export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
-  name: 'Mohamed Gado',
+  name: 'Save From Internet',
   description:
-    'Mohamed Gado is a software engineer who builds accessible, inclusive products and digital experiences for the web.',
+    '',
   mainNav: [
     {
       title: 'Home',
       href: '/',
     },
   ],
-  image:
-    'https://pbs.twimg.com/profile_images/1446549954231738370/IVkXC16N_400x400.jpg',
   ogImage: '/og.jpg',
   links: {
-    twitter: 'https://twitter.com/Sadge1996',
-    github: 'https://github.com/Vette1123',
-    websiteUrl: 'https://www.mohamedgado.com',
+    github: 'https://github.com/sandesh-personal/Save-From-Internet',
+    websiteUrl: 'https://www.savefrominternet.com',
   },
   openGraph: {
     locale: 'en_US',
