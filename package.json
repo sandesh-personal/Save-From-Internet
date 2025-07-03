@@ -2,6 +2,7 @@
   "name": "tiktok-downloader",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://savefrominternet.com",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",

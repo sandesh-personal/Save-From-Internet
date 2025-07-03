@@ -57,19 +57,20 @@ export async function GET(request: NextRequest) {
 
     // Generate filename with timestamp
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-')
-    const filename = `tiktok-video-${timestamp}.mp4`
+    const safeFilename = `tiktok-video_Downloaded_From_savefrominternet.com_${timestamp}.mp4`
 
-    return new NextResponse(videoBuffer, {
-      headers: {
-        'Content-Type': contentType,
-        'Content-Disposition': `attachment; filename="${filename}"`,
-        'Content-Length': videoBuffer.byteLength.toString(),
-        'Cache-Control': 'no-cache',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET',
-        'Access-Control-Allow-Headers': 'Content-Type',
-      },
-    })
+      return new NextResponse(videoBuffer, {
+    headers: {
+      'Content-Type': contentType,
+      'Content-Disposition': `attachment; filename="${safeFilename}"; filename*=UTF-8''${encodeURIComponent(safeFilename)}`,
+      'Content-Length': videoBuffer.byteLength.toString(),
+      'Cache-Control': 'no-cache',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Expose-Headers': 'Content-Disposition',
+    },
+  })
   } catch (error) {
     console.error('Video proxy error:', error)
     return NextResponse.json(

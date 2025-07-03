@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 
-/* Custom line clamp utilities */
+Custom line clamp utilities
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
