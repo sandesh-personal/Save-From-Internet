@@ -1,10 +1,8 @@
 'use client'
 
 import { useReducer, useRef } from 'react'
+import Image from 'next/image'
 import { appReducer, initialState } from '@/lib/appReducer'
-import Script from 'next/script'
-import { GA_TRACKING_ID } from '@/lib/ga' // adjust the path as needed
-
 import {
   TikTokIcon,
   SpinnerIcon,
@@ -465,7 +463,9 @@ export default function Home() {
                   <img
                     src={state.videoMetadata.thumbnail}
                     alt="Video thumbnail"
-                    className="w-20 h-20 rounded-lg object-cover flex-shrink-0"
+                    width={80}
+                    height={80}
+                    className="rounded-lg object-cover flex-shrink-0"
                     onError={(e) => {
                       e.currentTarget.style.display = 'none'
                     }}
@@ -577,7 +577,9 @@ export default function Home() {
                               <img
                                 src={image.thumbnail}
                                 alt={`TikTok image ${index + 1}`}
-                                className="w-full h-32 object-cover"
+                                width={200}
+                                height={128}
+                                className="object-cover"
                                 onError={(e) => {
                                   e.currentTarget.src =
                                     getImagePlaceholderBase64()
