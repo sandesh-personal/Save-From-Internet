@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
         success: true,
         images: imageUrls.map((url: string, index: number) => ({
           url,
-          filename: `tiktok-image-${index + 1}-${Date.now()}.jpg`,
+          filename: `savefrominternet.com-tiktok-image-${index + 1}-${Date.now()}.jpg`,
         })),
       })
     }
@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
         })
 
         const zip = new JSZip()
-        zip.file('tiktok-image-1.jpg', response.data)
+        zip.file('savefrominternet.com-tiktok-image-1.jpg', response.data)
         const zipBuffer = await zip.generateAsync({ type: 'arraybuffer' })
         const zipName = title
           ? `${title.replace(/[^a-zA-Z0-9]/g, '_')}_images.zip`

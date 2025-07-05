@@ -57,7 +57,7 @@ export async function GET(request: NextRequest) {
 
     // Generate filename with timestamp
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-')
-    const safeFilename = `tiktok-video_Downloaded_From_savefrominternet.com_${timestamp}.mp4`
+    const safeFilename = `savefrominternet.com-tiktok-video${timestamp}.mp4`
 
       return new NextResponse(videoBuffer, {
     headers: {

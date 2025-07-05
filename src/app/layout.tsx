@@ -1,8 +1,11 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
+
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 import Link from 'next/link'
 
+import { GA_TRACKING_ID } from '@/lib/ga' // your GA ID
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -14,7 +17,6 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 })
 
-// Get base URL from env or fallback to localhost
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
 
 export const metadata: Metadata = {
@@ -44,27 +46,46 @@ export const metadata: Metadata = {
     title: 'Save From Internet - Download Videos Without Watermarks',
     description:
       'Free TikTok video downloader. Download TikTok videos without watermarks in high quality. Fast, secure, and easy to use.',
-    site: '@savefrominternet', // optional, replace with your Twitter handle if you have one
-    images: [
-      'public/og.jpg',
-    ],
+    site: '@savefrominternet',
+    images: [`${baseUrl}/og.jpg`],
   },
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: '32x32' },
+    ],
+    apple: '/apple-touch-icon.svg',
+  },
+  manifest: '/manifest.json',
+}
+
+export const viewport = {
+  themeColor: '#ff0050',
 }
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="icon" href="/favicon.ico" sizes="32x32" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
-        <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#ff0050" />
-        <meta name="msapplication-TileColor" content="#ff0050" />
+        {/* Google Analytics scripts */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_TRACKING_ID}', {
+              page_path: window.location.pathname,
+            });
+          `}
+        </Script>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
@@ -73,7 +94,7 @@ export default function RootLayout({
           {children}
         </main>
 
-        <footer className="text-center py-6 text-white/100 text-base font-semibold bg-gradient-to-r from-purple-900 via-blue-900 to-indigo-900">
+        <footer className="text-center py-6 text-white text-base font-semibold bg-gradient-to-r from-purple-900 via-blue-900 to-indigo-900">
           <Link href="/" className="mx-2 hover:underline">
             Home
           </Link>
@@ -90,7 +111,6 @@ export default function RootLayout({
             Blog
           </Link>
         </footer>
-
       </body>
     </html>
   )

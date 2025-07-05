@@ -2,6 +2,9 @@
 
 import { useReducer, useRef } from 'react'
 import { appReducer, initialState } from '@/lib/appReducer'
+import Script from 'next/script'
+import { GA_TRACKING_ID } from '@/lib/ga' // adjust the path as needed
+
 import {
   TikTokIcon,
   SpinnerIcon,
@@ -203,7 +206,7 @@ export default function Home() {
 
         const link = document.createElement('a')
         link.href = blobUrl
-        link.download = `tiktok-images-${Date.now()}.zip`
+        link.download = `savefrominternet.com-tiktok-images-${Date.now()}.zip`
         document.body.appendChild(link)
         link.click()
         document.body.removeChild(link)

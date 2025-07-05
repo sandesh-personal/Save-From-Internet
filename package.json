@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://savefrominternet.com",
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
