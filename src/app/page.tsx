@@ -1,7 +1,7 @@
 'use client'
 
 import { useReducer, useRef } from 'react'
-import Image from 'next/image'
+// import Image from 'next/image'
 import { appReducer, initialState } from '@/lib/appReducer'
 import {
   TikTokIcon,
