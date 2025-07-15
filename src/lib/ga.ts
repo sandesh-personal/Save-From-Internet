@@ -1,4 +1,4 @@
-export const GA_TRACKING_ID = 'G-XXXXXXXXXX'; // <-- replace this
+export const GA_TRACKING_ID = 'G-Q55ST5RDB4'; // <-- replace this
 
 // Logs a pageview
 export const pageview = (url: string) => {

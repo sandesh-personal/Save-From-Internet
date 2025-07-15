@@ -8,7 +8,7 @@ export default function GoogleAnalytics() {
 
   useEffect(() => {
     if (!window.gtag) return;
-    window.gtag('config', 'G-XXXXXXXXXX', {
+    window.gtag('config', 'G-Q55ST5RDB4', {
       page_path: pathname,
     });
   }, [pathname]);
