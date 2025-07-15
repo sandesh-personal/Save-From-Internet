@@ -110,6 +110,9 @@ export default function RootLayout({
           <Link href="/blog" className="mx-2 hover:underline">
             Blog
           </Link>
+          <Link href="https://www.grabreels.com/" className="mx-2 hover:underline">
+            Instagram Reels Downloader
+          </Link>
         </footer>
       </body>
     </html>
