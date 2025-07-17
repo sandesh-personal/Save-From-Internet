@@ -300,18 +300,23 @@ export default function Home() {
 
   return (
     
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 ">
-    <div className="max-w-6xl mx-auto">
+<div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black">
+  <div className="max-w-6xl mx-auto py-8">
     {/* Existing Header */}
-        <div ref={containerRef} className="text-center mb-8">
-          <div className="flex justify-center mb-4"></div>
-          <h1 className="text-2xl md:text-2xl font-bold text-white mb-2">
-            Tiktok Video Downloader
-          </h1>
-          <p className="text-base text-white/100 mb-6">
-            Download TikTok videos without watermarks, extract MP3 audio, or save images.
-          </p>
-        </div>
+    <div ref={containerRef} className="text-center mb-8">
+      <h1 className="text-4xl md:text-4xl font-extrabold text-white mb-4">
+        <span className="bg-gradient-to-r from-[#25F4EE] via-pink-500 to-[#FE2C55] bg-clip-text text-transparent">
+          TikTok
+        </span>{" "}
+        Video Downloader
+      </h1>
+      <p className="text-lg text-gray-300 max-w-xl mx-auto">
+        Download TikTok videos without watermarks, extract MP3 audio, or save images.
+      </p>
+    </div>
+
+
+
 
        {/* Input Section */}
 <div className="mb-8">

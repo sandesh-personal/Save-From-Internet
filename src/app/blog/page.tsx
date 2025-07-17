@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 export default function BlogPage() {
   return (
-    <div className="flex flex-col flex-grow min-h-[calc(100vh-4rem)] p-8 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 text-white">
+    <div className="flex flex-col flex-grow min-h-[calc(100vh-4rem)] p-8 bg-gradient-to-br from-black via-gray-900 to-black text-white">
       <div className="max-w-4xl mx-auto flex flex-col">
 
 

@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="flex flex-col flex-grow min-h-[calc(100vh-4rem)] p-8 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 text-white">
+    <div className="flex flex-col flex-grow min-h-[calc(100vh-4rem)] p-8 bg-gradient-to-br from-black via-gray-900 to-black text-white">
       <div className="max-w-4xl mx-auto flex flex-col">
 
         <h1 className="text-4xl font-bold mb-6">Privacy Policy</h1>

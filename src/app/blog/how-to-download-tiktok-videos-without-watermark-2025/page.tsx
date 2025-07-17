@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 export default function BlogPostTikTokDownload2025() {
   return (
-    <div className="min-h-[calc(100vh-6rem)] px-4 py-10 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 text-white">
+    <div className="min-h-[calc(100vh-6rem)] px-4 py-10 bg-gradient-to-br from-black via-gray-900 to-black text-white">
       <div className="max-w-4xl mx-auto space-y-8 text-sm leading-relaxed">
 
 

@@ -92,25 +92,25 @@ export default function RootLayout({
       >
 
 {/* Global Header - visible on all pages */}
-<header className="w-full bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 py-3">
-  <div className="max-w-6xl mx-auto flex flex-col items-center text-white">
-    <Link href="/" className="flex items-center gap-3">
-      <img src="/logo.png" alt="Site Logo" className="h-8 w-8 object-contain" />
-      <h1 className="text-2xl md:text-3xl font-bold select-none">
-        SAVE FROM INTERNET
-      </h1>
+<header className="fixed top-0 left-0 w-full bg-gradient-to-br from-black via-gray-900 to-black py-4 z-50">
+  <div className="max-w-6xl mx-auto flex items-center justify-center select-none">
+    <Link href="/" className="flex items-center gap-3 uppercase font-black tracking-wide text-xl text-white">
+      <img src="/logo.png" alt="Site Logo" className="h-8 w-auto object-contain" draggable={false} />
+      <span>SAVE FROM INTERNET</span>
     </Link>
   </div>
 </header>
 
 
         {/* Main Content */}
-        <main className="flex-grow bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 text-white">
+        <div className="pt-16">
+          </div>
+        <main className="flex-grow bg-gradient-to-br from-black via-gray-900 to-black text-white">
           {children}
         </main>
 
         {/* Footer */}
-        <footer className="text-center py-6 text-white text-base font-semibold bg-gradient-to-r from-purple-900 via-blue-900 to-indigo-900">
+        <footer className="text-center py-6 text-white text-base font-semibold bg-gradient-to-br from-black via-gray-900 to-black">
           <Link href="/" className="mx-2 hover:underline">
             Home
           </Link>
