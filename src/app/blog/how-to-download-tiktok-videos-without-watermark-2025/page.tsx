@@ -9,17 +9,6 @@ export default function BlogPostTikTokDownload2025() {
     <div className="min-h-[calc(100vh-6rem)] px-4 py-10 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 text-white">
       <div className="max-w-4xl mx-auto space-y-8 text-sm leading-relaxed">
 
-        {/* Website Header (Clickable) */}
-        <div className="text-center mb-10">
-          <Link href="/">
-            <h1 className="text-3xl md:text-4xl font-bold text-white">
-              Save From Internet
-            </h1>
-          </Link>
-          <p className="text-white/70 mt-2">
-            Download TikTok videos without watermarks, extract MP3 audio, or save images.
-          </p>
-        </div>
 
         {/* Blog Content Starts */}
         <div className="space-y-8">

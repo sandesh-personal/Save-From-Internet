@@ -4,21 +4,8 @@ export default function AboutPage() {
   return (
     <div className="flex flex-col flex-grow min-h-[calc(100vh-4rem)] p-8 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 text-white">
       <div className="max-w-4xl mx-auto flex flex-col">
-        <div className="text-center mb-6 md:mb-8">
-          <Link href="/">
-            <div className="inline-block cursor-pointer">
-              <div className="flex justify-center mb-4" />
-              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2">
-                Save From Internet
-              </h1>
-            </div>
-          </Link>
-          <p className="text-sm md:text-base text-white/70 mb-4">
-            Download TikTok videos without watermarks, extract MP3 audio, or save images.
-          </p>
-        </div>
 
-        <h1 className="text-4xl font-bold mb-6">About Us</h1>
+        <h1 className="text-3xl font-bold mb-6">About Us</h1>
         <p className="text-white/80 leading-relaxed text-lg mb-6">
           <strong>Save From Internet</strong> is a free platform designed to let users download
           videos, audio, and images from social media platforms like TikTok. Our goal is to

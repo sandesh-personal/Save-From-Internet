@@ -1,7 +1,7 @@
 'use client'
 
 import { useReducer, useRef } from 'react'
-// import Image from 'next/image'
+import Image from 'next/image'
 import { appReducer, initialState } from '@/lib/appReducer'
 import {
   TikTokIcon,
@@ -166,7 +166,7 @@ export default function Home() {
     if (!state.videoMetadata?.images) return
 
     const selectedImages = state.videoMetadata.images.filter(
-      (img) => img.selected
+      (Image) => Image.selected
     )
 
     if (selectedImages.length === 0) {
@@ -180,7 +180,7 @@ export default function Home() {
     dispatch({ type: 'SET_DOWNLOADING_IMAGES', payload: true })
 
     try {
-      const imageUrls = selectedImages.map((img) => img.url)
+      const imageUrls = selectedImages.map((Image) => Image.url)
 
       // Only create ZIP if user explicitly chose it
       if (state.downloadImagesAsZip) {
@@ -266,7 +266,7 @@ export default function Home() {
         }
         dispatch({
           type: 'SET_MESSAGE',
-          payload: `${selectedImages.length} image(s) downloaded individually! 🖼️`,
+          payload: `${selectedImages.length} savefrominternet.com - image(s) downloaded individually! 🖼️`,
         })
         // Clear the input after successful download
         dispatch({ type: 'SET_URL', payload: '' })
@@ -299,32 +299,53 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 p-4">
-      <div ref={containerRef} className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <div className="flex justify-center mb-4">
-          </div>
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
-            Save From Internet
+    
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 ">
+    <div className="max-w-6xl mx-auto">
+    {/* Existing Header */}
+        <div ref={containerRef} className="text-center mb-8">
+          <div className="flex justify-center mb-4"></div>
+          <h1 className="text-2xl md:text-2xl font-bold text-white mb-2">
+            Tiktok Video Downloader
           </h1>
-          <p className="text-base text-white/70 mb-6">
+          <p className="text-base text-white/100 mb-6">
             Download TikTok videos without watermarks, extract MP3 audio, or save images.
           </p>
         </div>
 
-        {/* Input Section */}
-        <div className="mb-8">
-          <div className="max-w-2xl mx-auto">
-            <input
-              type="text"
-              placeholder="Paste TikTok URL here..."
-              value={state.url}
-              onChange={(e) =>
-                dispatch({ type: 'SET_URL', payload: e.target.value })
-              }
-              className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent text-base"
-            />
+       {/* Input Section */}
+<div className="mb-8">
+  <div className="max-w-2xl mx-auto">
+    <div className="flex gap-2">
+      {/* Input Field */}
+      <input
+        type="text"
+        placeholder="Paste TikTok URL here!! "
+        value={state.url}
+        onChange={(e) =>
+          dispatch({ type: 'SET_URL', payload: e.target.value })
+        }
+        className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent text-base"
+      />
+
+      {/* Paste Button */}
+      <button
+        onClick={async () => {
+          try {
+            const text = await navigator.clipboard.readText();
+            dispatch({ type: 'SET_URL', payload: text });
+          } catch (err) {
+            alert('Failed to paste from clipboard.');
+          }
+        }}
+        className="w-auto px-4 py-2 mt-1 bg-gradient-to-r from-pink-500 to-violet-500 text-white font-semibold rounded-xl hover:from-pink-600 hover:to-violet-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 text-sm"
+      >
+        Paste
+      </button>
+    </div>
+ 
+
+
             <button
               onClick={handleProcess}
               disabled={
@@ -453,14 +474,15 @@ export default function Home() {
                   <p>• Preview before download</p>
                 </div>
               </div>
-            </div>
+
+              </div>
           )}
 
           {state.videoMetadata && (
             <div className="max-w-2xl mx-auto p-4 bg-white/10 rounded-xl border border-white/20 space-y-4 mt-8">
               <div className="flex items-start space-x-3">
                 {state.videoMetadata.thumbnail && (
-                  <img
+                  <Image
                     src={state.videoMetadata.thumbnail}
                     alt="Video thumbnail"
                     width={80}
@@ -574,7 +596,7 @@ export default function Home() {
                               }`}
                               onClick={() => toggleImageSelection(image.id)}
                             >
-                              <img
+                              <Image
                                 src={image.thumbnail}
                                 alt={`TikTok image ${index + 1}`}
                                 width={200}
@@ -650,7 +672,7 @@ export default function Home() {
                           disabled={
                             state.downloadingImages ||
                             !state.videoMetadata?.images?.some(
-                              (img) => img.selected
+                              (Image) => Image.selected
                             )
                           }
                           className="w-full cursor-pointer py-3 px-4 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold rounded-lg transition-all duration-200 flex items-center justify-center text-base gap-2"
@@ -666,7 +688,7 @@ export default function Home() {
                               <span>
                                 Download Selected (
                                 {state.videoMetadata?.images?.filter(
-                                  (img) => img.selected
+                                  (Image) => Image.selected
                                 ).length || 0}
                                 )
                               </span>
@@ -737,53 +759,96 @@ export default function Home() {
           )}
         </div>
 
-        {/* Features Section */}
-        <div className="max-w-4xl mx-auto mt-12">
-          <h2 className="text-2xl font-bold text-white text-center mb-6">
-            Features
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-              <div className="w-10 h-10 bg-gradient-to-r from-pink-500/20 to-violet-500/20 rounded-full flex items-center justify-center mb-3 border border-pink-500/30">
-                <TikTokIcon className="w-5 h-5 text-pink-400" />
-              </div>
-              <h3 className="text-white font-semibold mb-2">Watermark-Free</h3>
-              <p className="text-white/70 text-sm">
-                Download TikTok videos without any watermarks or logos
-              </p>
-            </div>
-            <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-              <div className="w-10 h-10 bg-gradient-to-r from-green-500/20 to-blue-500/20 rounded-full flex items-center justify-center mb-3 border border-green-500/30">
-                <MusicIcon className="w-5 h-5 text-green-400" />
-              </div>
-              <h3 className="text-white font-semibold mb-2">MP3 Extraction</h3>
-              <p className="text-white/70 text-sm">
-                Extract high-quality MP3 audio from any TikTok video
-              </p>
-            </div>
-            <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-              <div className="w-10 h-10 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full flex items-center justify-center mb-3 border border-purple-500/30">
-                <DownloadIcon className="w-5 h-5 text-purple-400" />
-              </div>
-              <h3 className="text-white font-semibold mb-2">Image Gallery</h3>
-              <p className="text-white/70 text-sm">
-                Download multiple images from TikTok posts in one click
-              </p>
-            </div>
-            <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-              <div className="w-10 h-10 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rounded-full flex items-center justify-center mb-3 border border-yellow-500/30">
-                <CheckIcon className="w-5 h-5 text-yellow-400" />
-              </div>
-              <h3 className="text-white font-semibold mb-2">Easy to Use</h3>
-              <p className="text-white/70 text-sm">
-                Simple interface that works on all devices
-              </p>
-            </div>
-          </div>
-    
-        </div>
+ {/* Features Section */}
+<div className="max-w-4xl mx-auto mt-12">
+  <h2 className="text-2xl font-bold text-white text-center mb-6">
+    Features
+  </h2>
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+      <div className="w-10 h-10 bg-gradient-to-r from-pink-500/20 to-violet-500/20 rounded-full flex items-center justify-center mb-3 border border-pink-500/30">
+        <TikTokIcon className="w-5 h-5 text-pink-400" />
       </div>
+      <h3 className="text-white font-semibold mb-2">Watermark-Free</h3>
+      <p className="text-white/70 text-sm">
+        Download TikTok videos without any watermarks or logos
+      </p>
     </div>
+
+    <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+      <div className="w-10 h-10 bg-gradient-to-r from-green-500/20 to-blue-500/20 rounded-full flex items-center justify-center mb-3 border border-green-500/30">
+        <MusicIcon className="w-5 h-5 text-green-400" />
+      </div>
+      <h3 className="text-white font-semibold mb-2">MP3 Extraction</h3>
+      <p className="text-white/70 text-sm">
+        Extract high-quality MP3 audio from any TikTok video
+      </p>
+    </div>
+
+    <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+      <div className="w-10 h-10 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full flex items-center justify-center mb-3 border border-purple-500/30">
+        <DownloadIcon className="w-5 h-5 text-purple-400" />
+      </div>
+      <h3 className="text-white font-semibold mb-2">Image Gallery</h3>
+      <p className="text-white/70 text-sm">
+        Download multiple images from TikTok posts in one click
+      </p>
+    </div>
+
+    <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+      <div className="w-10 h-10 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rounded-full flex items-center justify-center mb-3 border border-yellow-500/30">
+        <CheckIcon className="w-5 h-5 text-yellow-400" />
+      </div>
+      <h3 className="text-white font-semibold mb-2">Easy to Use</h3>
+      <p className="text-white/70 text-sm">
+        Simple interface that works on all devices
+      </p>
+    </div>
+
+    {/* Instagram Reels Downloader Card */}
+    <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+      <div className="w-10 h-10 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rounded-full flex items-center justify-center mb-3 border border-yellow-500/30">
+        <a
+          href="https://grabreels.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="url(#instagramGradient)"
+            className="w-5 h-5"
+          >
+            <defs>
+              <linearGradient id="instagramGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#f50101ff" />
+                <stop offset="50%" stopColor="#ff0000ff" />
+                <stop offset="100%" stopColor="#ff0000ff" />
+              </linearGradient>
+            </defs>
+            <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zm8.5 3a1 1 0 110 2 1 1 0 010-2zm-4.25 1.75a5 5 0 110 10 5 5 0 010-10zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7z" />
+          </svg>
+        </a>
+      </div>
+      <h3 className="text-white font-semibold mb-2">
+        <a
+          href="https://grabreels.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline hover:text-yellow-300"
+        >
+          Instagram Reels Downloader
+        </a>
+      </h3>
+      <p className="text-white/70 text-sm">
+        Download Instagram reels quickly and easily.
+      </p>
+    </div>
+  </div>
+</div>
+</div>
+</div>
     
   )
 }
