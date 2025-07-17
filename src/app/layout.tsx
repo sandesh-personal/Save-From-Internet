@@ -105,9 +105,13 @@ export default function RootLayout({
         {/* Main Content */}
         <div className="pt-16">
           </div>
+          
         <main className="flex-grow bg-gradient-to-br from-black via-gray-900 to-black text-white">
           {children}
         </main>
+<div className="pb-16">
+  {/* your page content */}
+</div>
 
         {/* Footer */}
 <footer className="fixed bottom-0 left-0 w-full text-center py-6 text-white text-base font-semibold bg-gradient-to-br from-black via-gray-900 to-black z-50">
