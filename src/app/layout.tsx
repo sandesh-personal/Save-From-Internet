@@ -110,35 +110,36 @@ export default function RootLayout({
         </main>
 
         {/* Footer */}
-        <footer className="text-center py-6 text-white text-base font-semibold bg-gradient-to-br from-black via-gray-900 to-black">
-          <Link href="/" className="mx-2 hover:underline">
-            Home
-          </Link>
-          <span aria-hidden="true" className="mx-2 select-none">
-            |
-          </span>
-          <Link href="/about" className="mx-2 hover:underline">
-            About
-          </Link>
-          <span aria-hidden="true" className="mx-2 select-none">
-            |
-          </span>
-          <Link href="/privacy-policy" className="mx-2 hover:underline">
-            Privacy Policy
-          </Link>
-            <span aria-hidden="true" className="mx-2 select-none">
-            |
-          </span>
-          <Link href="/disclaimer" className="mx-2 hover:underline">
-            Disclaimer
-          </Link>
-          <span aria-hidden="true" className="mx-2 select-none">
-            |
-          </span>
-          <Link href="/blog" className="mx-2 hover:underline">
-            Blog
-          </Link>
-        </footer>
+<footer className="fixed bottom-0 left-0 w-full text-center py-6 text-white text-base font-semibold bg-gradient-to-br from-black via-gray-900 to-black z-50">
+  <Link href="/" className="mx-2 hover:underline">
+    Home
+  </Link>
+  <span aria-hidden="true" className="mx-2 select-none">
+    |
+  </span>
+  <Link href="/about" className="mx-2 hover:underline">
+    About
+  </Link>
+  <span aria-hidden="true" className="mx-2 select-none">
+    |
+  </span>
+  <Link href="/privacy-policy" className="mx-2 hover:underline">
+    Privacy Policy
+  </Link>
+  <span aria-hidden="true" className="mx-2 select-none">
+    |
+  </span>
+  <Link href="/disclaimer" className="mx-2 hover:underline">
+    Disclaimer
+  </Link>
+  <span aria-hidden="true" className="mx-2 select-none">
+    |
+  </span>
+  <Link href="/blog" className="mx-2 hover:underline">
+    Blog
+  </Link>
+</footer>
+
       </body>
     </html>
   )
