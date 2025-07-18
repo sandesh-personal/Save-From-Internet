@@ -311,7 +311,7 @@ export default function Home() {
         Video Downloader
       </h1>
       <p className="text-lg text-gray-300 max-w-xl mx-auto">
-        Download TikTok videos without watermarks, extract MP3 audio, or save images.
+        Download TikTok videos, extract MP3 audio, or save images without watermarks.
       </p>
     </div>
 
@@ -404,6 +404,7 @@ export default function Home() {
                     Paste any TikTok URL above to get started. We support all
                     TikTok link formats!
                   </p>
+
                 </div>
               </div>
 
@@ -764,6 +765,31 @@ export default function Home() {
           )}
         </div>
 
+{/* FAQs Section */}
+<div className="max-w-4xl mx-auto mt-12">
+  <h2 className="text-2xl font-bold text-white text-center mb-6">
+    Who We Are
+  </h2>
+
+  <div className="space-y-6">
+    {/* How to Use SaveFromInternet.com */}
+    <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+      <p className="text-white/70 text-justify text-sm">
+        Welcome to SaveFromInternet.com — the easiest way to download TikTok videos fast, free, and without watermarks. 
+        We built this tool to make saving content simple and hassle-free. 
+        No apps, no signups, just copy the link and hit download. 
+        Our team is made up of developers who care about clean design, strong privacy, and smooth performance. 
+        Everything runs directly in your browser, so there’s nothing to install and no risk to your device. 
+        It works well even on slower connections and supports unlimited downloads. 
+        Use it responsibly. 
+        Save content only if you have permission to do so. 
+      </p>
+        <p className="text-white/70 text-justify text-sm">
+        Contact: contact@savefrominternet.com
+      </p>
+
+    </div>
+
  {/* Features Section */}
 <div className="max-w-4xl mx-auto mt-12">
   <h2 className="text-2xl font-bold text-white text-center mb-6">
@@ -800,19 +826,30 @@ export default function Home() {
       </p>
     </div>
 
-    <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-      <div className="w-10 h-10 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rounded-full flex items-center justify-center mb-3 border border-yellow-500/30">
-        <CheckIcon className="w-5 h-5 text-yellow-400" />
-      </div>
-      <h3 className="text-white font-semibold mb-2">Easy to Use</h3>
-      <p className="text-white/70 text-sm">
-        Simple interface that works on all devices
-      </p>
-    </div>
+     <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+  <div className="w-10 h-10 bg-gradient-to-r from-blue-500/20 to-grey-500/20 rounded-full flex items-center justify-center mb-3 border border-blue-500/30 overflow-hidden">
+    <img src="/logo.png" alt="Logo" className="w-5 h-5 object-contain" />
+  </div>
+  <h3 className="text-white font-semibold mb-2">Unlimited Downloads</h3>
+  <p className="text-white/70 text-sm">
+    Download unlimited TikTok videos without any restrictions or limits.
+  </p>
+</div>
+  </div>
+</div>
+</div>
+
+
+ {/* Downloaders Section */}
+<div className="max-w-4xl mx-auto mt-12">
+  <h2 className="text-2xl font-bold text-white text-center mb-6">
+    Downloaders
+  </h2>
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
 
     {/* Instagram Reels Downloader Card */}
     <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-      <div className="w-10 h-10 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rounded-full flex items-center justify-center mb-3 border border-yellow-500/30">
+      <div className="w-10 h-10 bg-gradient-to-r from-red-500/20 to-pink-500/20 rounded-full flex items-center justify-center mb-3 border border-red-500/30">
         <a
           href="https://grabreels.com"
           target="_blank"
@@ -827,8 +864,8 @@ export default function Home() {
           >
             <defs>
               <linearGradient id="instagramGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#f50101ff" />
-                <stop offset="50%" stopColor="#ff0000ff" />
+                <stop offset="0%" stopColor="#ff0000ff" />
+                <stop offset="50%" stopColor="#ffffffff" />
                 <stop offset="100%" stopColor="#ff0000ff" />
               </linearGradient>
             </defs>
@@ -849,11 +886,212 @@ export default function Home() {
       <p className="text-white/70 text-sm">
         Download Instagram reels quickly and easily.
       </p>
+      
     </div>
+
+{/* Facebook Downloader Card */}
+<div className="bg-white/5 rounded-xl p-4 border border-white/10">
+  <div className="w-10 h-10 bg-gradient-to-r from-blue-500/20 to-blue-700/20 rounded-full flex items-center justify-center mb-3 border border-blue-500/30">
+    <span className="flex items-center justify-center">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 320 512"
+        fill="#1877F2"
+        className="w-5 h-5"
+      >
+        <path d="M279.14 288l14.22-92.66h-88.91V127.36c0-25.35 12.42-50.06 52.24-50.06H293V6.26S259.5 0 225.36 0C141.09 0 89.53 54.42 89.53 153.55V195.3H0v92.7h89.53V512h107.8V288z"/>
+      </svg>
+    </span>
+  </div>
+  <h3 className="text-white font-semibold mb-2">
+    <span className="underline text-white/90 cursor-default">Facebook Video Downloader</span>
+  </h3>
+  <p className="text-white/70 text-sm">
+    Coming Soon!!
+  </p>
+</div>
+
+{/* YouTube Downloader Card */}
+<div className="bg-white/5 rounded-xl p-4 border border-white/10">
+  <div className="w-10 h-10 bg-gradient-to-r from-red-600/20 to-red-800/20 rounded-full flex items-center justify-center mb-3 border border-red-600/30">
+    <span className="flex items-center justify-center">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 576 512"
+        fill="#FF0000"
+        className="w-5 h-5"
+      >
+        <path d="M549.7 124.1c-6.3-23.8-25-42.4-48.8-48.7C455.6 64 288 64 288 64S120.4 64 75.1 75.4C51.3 81.7 32.6 100.3 26.3 124.1 16 171.7 16 256 16 256s0 84.3 10.3 131.9c6.3 23.8 25 42.4 48.8 48.7C120.4 448 288 448 288 448s167.6 0 212.9-11.4c23.8-6.3 42.4-25 48.8-48.7C560 340.3 560 256 560 256s0-84.3-10.3-131.9zM232 334.1V177.9L358.4 256 232 334.1z"/>
+      </svg>
+    </span>
+  </div>
+  <h3 className="text-white font-semibold mb-2">
+    <span className="underline text-white/90 cursor-default">YouTube Video Downloader</span>
+  </h3>
+  <p className="text-white/70 text-sm">
+    Coming Soon!!
+  </p>
+</div>
+
+
+  </div>
+</div>
+
+
+
+
+
+
+{/* FAQs Section */}
+<div className="max-w-4xl mx-auto mt-12">
+  <h2 className="text-2xl font-bold text-white text-center mb-6">
+    Frequently Asked Questions
+  </h2>
+
+  <div className="space-y-6">
+    {/* How to Use SaveFromInternet.com */}
+    <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+      <h3 className="text-white font-semibold text-lg mb-2">
+        How to Use SaveFromInternet.com
+      </h3>
+      <p className="text-white/70 text-justify text-sm">
+        Using SaveFromInternet.com is simple. First, open TikTok and copy the link to the video you want to save. 
+        Then, come to our site and paste that link into the input box at the top. 
+        Click the download button, and you’ll instantly get the  video, fast, and without any watermark. 
+        You don’t need to install anything or sign up. It works on mobile, tablet, or desktop. That’s it. 
+        Copy, paste, download. Whether you're archiving content, editing clips, or just saving your favorites, 
+        it’s the fastest way to get TikTok videos without the clutter.
+      </p>
+    </div>
+
+    {/* Download High-Quality TikTok Videos */}
+    <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+      <h3 className="text-white font-semibold text-lg mb-2">
+        Download High-Quality TikTok Videos
+      </h3>
+      <p className="text-white/70 text-justify text-sm">
+        TikTok videos should look just as good saved as they do on the app and that’s what we deliver. 
+        When you use SaveFromInternet.com, you get high-quality video downloads every time. 
+        We don’t compress or downgrade anything. Your videos stay crisp and smooth, perfect for editing, 
+        reposting, or watching offline. Whether it's standard 720p, full HD 1080p, or better, 
+        we keep the original resolution intact. No grainy replays, no pixelated mess. 
+        Just clean, high-definition TikToks ready to go, with nothing lost in the process.
+      </p>
+    </div>
+
+    {/* How to Download Audio from TikTok */}
+    <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+      <h3 className="text-white font-semibold text-lg mb-2">
+        How to Download Audio from TikTok
+      </h3>
+      <p className="text-white/70 text-justify text-sm">
+        Once you paste a TikTok video link on SaveFromInternet.com, you’ll see two options: 
+        a button to download the video and another to extract audio. Just click the “Extract Audio” button, 
+        and we’ll process the video and give you the original sound in MP3 format. 
+        No extra tools or apps needed. 
+        Whether you’re looking to save music, voiceovers, or funny sounds from a clip, this option gets you clean audio, fast.
+        It works for public videos with sound and doesn’t affect quality. 
+        Perfect for ringtones, edits, or background tracks.
+      </p>
+    </div>
+
+    {/* How to Download Photos from TikTok */}
+    <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+      <h3 className="text-white font-semibold text-lg mb-2">
+        How to Download Photos from TikTok
+      </h3>
+      <p className="text-white/70 text-justify text-sm">
+        Copy the link of a TikTok photo post and paste it into SaveFromInternet.com. 
+        If the post contains images, we’ll instantly detect them and show download options. 
+        You can save each image individually, or download all of them together in a ZIP file. 
+        If you only want one photo from a multi-image post, simply click on the specific image and hit download. 
+        That’s it. It works smoothly on mobile and desktop, and there’s no watermark or compression added. 
+        Easy and efficient, whether you're grabbing one shot or the full set.
+      </p>
+    </div>
+
+        {/* What should I do if the TikTok video link isn’t working? */}
+    <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+      <h3 className="text-white font-semibold text-lg mb-2">
+        What should I do if the TikTok video link isn’t working?
+      </h3>
+      <p className="text-white/70 text-justify text-sm">
+        If a TikTok link isn’t working, first double-check that you copied the full URL, Some apps shorten or truncate links. 
+        Make sure the video is public and hasn’t been deleted by the user or TikTok. 
+        If the video still won’t load, try refreshing the page or using a different browser or device. 
+        Occasionally, TikTok may update its backend, which can affect how third-party tools like ours interact with their platform. 
+        If none of this works, wait a bit and try again. 
+        We’re constantly updating the site to stay compatible with TikTok’s system.
+      </p>
+</div>
+        {/* Is my privacy protected when using this site? */}
+    <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+      <h3 className="text-white font-semibold text-lg mb-2">
+        Is my privacy protected when using this site?
+      </h3>
+      <p className="text-white/70 text-justify text-sm">
+        Yes, your privacy is a priority. 
+        SaveFromInternet.com doesn’t collect personal information, track user activity, or store downloaded videos. 
+        Every download is processed in real time and never saved to our servers. 
+        We don’t ask for your name, email, or any login details. 
+        There are no background trackers monitoring what you do. 
+        Since you’re not required to register or install anything, your identity remains completely anonymous. 
+        We also use HTTPS to ensure a secure connection between your device and our server. 
+        You can use the site confidently knowing that your activity stays private and your data isn’t being harvested or shared.
+      </p>
+</div>
+
+        {/* Do I need to install software or create an account? */}
+    <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+      <h3 className="text-white font-semibold text-lg mb-2">
+        Do I need to install software or create an account?
+      </h3>
+      <p className="text-white/70 text-justify text-sm">
+        No, you don’t need to install anything or sign up to use SaveFromInternet.com. 
+        The entire process is browser-based—just paste the TikTok link, hit download, and you’re good to go. 
+        There’s no app, no extensions, and no registration forms. 
+        This means you can use the site instantly, on any device, without giving up personal information or cluttering your phone or computer with extra tools. 
+        Whether you’re on mobile, desktop, or tablet, the download process is simple and fast. 
+        We built this to be lightweight and user-friendly, so you can save videos without jumping through hoops.
+      </p>
+</div>
+
+        {/* Can I download videos from private TikTok accounts? */}
+    <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+      <h3 className="text-white font-semibold text-lg mb-2">
+        Can I download videos from private TikTok accounts?
+      </h3>
+      <p className="text-white/70 text-justify text-sm">
+        No, we can’t access or download content from private TikTok accounts. 
+        SaveFromInternet.com only works with publicly available videos. 
+        If a user has set their account or specific video to private, TikTok blocks third-party tools like ours from reaching that content and we respect that boundary. 
+        Even if you have the link, private videos require login authentication that our site doesn’t request or store. 
+        This protects users’ privacy and keeps everything above board. 
+        If you’re trying to download a private video, you’ll need to ask the original creator for access or for them to send you the content directly.
+      </p>
+</div>
+
+        {/* Is using SaveFromInternet.com legal? */}
+    <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+      <h3 className="text-white font-semibold text-lg mb-2">
+        Is using SaveFromInternet.com legal?
+      </h3>
+      <p className="text-white/70 text-justify text-sm">
+        Using SaveFromInternet.com to download TikTok videos is generally legal for personal use, like offline viewing or private archiving. 
+        However, it becomes a legal gray area if you reupload, redistribute, or monetize downloaded content without permission from the creator. 
+        TikTok’s terms of service also prohibit unauthorized downloading in some cases, so it’s important to respect the platform’s rules. 
+        We encourage users to use downloads responsibly, don’t repost someone’s content as your own or use it in ways that violate copyright laws. 
+        If you’re ever unsure, the safest approach is to ask for the creator’s permission before sharing or editing their video.
+      </p>
+</div>
+      <div className="pb-5">
+  {/* your page content */}
+  </div>
   </div>
 </div>
 </div>
 </div>
-    
+</div>
   )
 }
+
