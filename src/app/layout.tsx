@@ -104,10 +104,10 @@ export default function RootLayout({
 
 
         {/* Main Content */}
-        <div className="pt-16">
-          </div>
+        {/* <div className="pt-16">
+          </div> */}
           
-        <main className="flex-grow bg-gradient-to-br from-black via-gray-900 to-black text-white">
+        <main className="flex-grow bg-gradient-to-br from-black via-gray-900 to-black text-white pt-16 pb-24">
           {children}
         </main>
 
