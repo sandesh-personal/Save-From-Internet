@@ -301,18 +301,18 @@ export default function Home() {
   return (
     
 <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black">
-  <div className="max-w-6xl mx-auto py-8 px-4">
+  <div className="max-w-6xl mx-auto py-4 px-4">
     {/* Main Hero Section */}
-    <div ref={containerRef} className="text-center mb-8">
-      <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4">
+    <div ref={containerRef} className="text-center mb-4">
+      <h1 className="text-5xl md:text-5xl font-extrabold text-white mb-4">
         <span className="bg-gradient-to-r from-[#25F4EE] via-pink-500 to-[#FE2C55] bg-clip-text text-transparent">
           TikTok
         </span>{" "}
         Video Downloader
       </h1>
 
-      <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-4">
-        SaveFromInternet.com lets you download TikToks in HD, without watermarks, and completely free. 
+      <p className="text-lg justify text-gray-300 max-w-1xl mx-auto mb-4">
+        SaveFromInternet lets you download TikToks in HD without watermark. 
         Download as MP4, extract MP3 & Save Images from any public TikTok.
       </p>
 
@@ -321,7 +321,7 @@ export default function Home() {
 
     {/* Optional: Add a subheading for more SEO value */}
     <div className="text-center ">
-      <h2 className="text-2xl font-semibold text-white mb-5">
+      <h2 className="text-1xl font-semibold text-white mb-5">
         Download TikTok Videos in 3 Easy Steps
       </h2>
 
