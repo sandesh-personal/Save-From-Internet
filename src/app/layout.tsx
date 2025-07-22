@@ -61,7 +61,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport = {
-  themeColor: '#3d15abff',
+  themeColor: '#000000ff',
 }
 
 export default function RootLayout({
@@ -72,6 +72,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/*Adsense Code*/}
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8190424610367988"
+        crossOrigin="anonymous"></script>
         {/* Google Analytics */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
