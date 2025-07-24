@@ -4,17 +4,17 @@
   "description": "Download TikTok videos without watermarks in high quality",
   "icons": [
     {
-      "src": "/favicon.svg",
+      "src": "/favicon.svg?timestamp=20250724",
       "sizes": "any",
       "type": "image/svg+xml"
     },
     {
-      "src": "/apple-touch-icon.svg",
+      "src": "/apple-touch-icon.svg?timestamp=20250724",
       "sizes": "180x180",
       "type": "image/svg+xml"
     },
     {
-      "src": "/logo.png",
+      "src": "/logo.png?timestamp=20250724",
       "sizes": "512x512",
       "type": "image/png"
     }

@@ -843,7 +843,7 @@ export default function Home() {
 
      <div className="bg-white/5 rounded-xl p-4 border border-white/10">
   <div className="w-10 h-10 bg-gradient-to-r from-blue-500/20 to-grey-500/20 rounded-full flex items-center justify-center mb-3 border border-blue-500/30 overflow-hidden">
-    <img src="/logo.png" alt="Logo" className="w-5 h-5 object-contain" />
+    <img src="/logo.png?timestamp=20250724" alt="Logo" className="w-5 h-5 object-contain" />
   </div>
   <h3 className="text-white font-semibold mb-2">Unlimited Downloads</h3>
   <p className="text-white/70 text-sm">
