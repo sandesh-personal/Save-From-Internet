@@ -2,6 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   images: {
     remotePatterns: [
       {
@@ -24,12 +27,19 @@ const nextConfig: NextConfig = {
       ],
     },
   ],
+  redirects: async () => [
+    {
+      source: "/:path*",
+      has: [
+        {
+          type: "host",
+          value: "www.savefrominternet.com",
+        },
+      ],
+      destination: "https://savefrominternet.com/:path*",
+      permanent: true,
+    },
+  ],
 };
 
 export default nextConfig;
-// next.config.js
-module.exports = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-}
