@@ -90,6 +90,8 @@ export default function RootLayout({
             });
           `}
         </Script>
+          {/* Canonical URL */}
+  <link rel="canonical" href={baseUrl} />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}

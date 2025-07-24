@@ -27,19 +27,6 @@ const nextConfig: NextConfig = {
       ],
     },
   ],
-  redirects: async () => [
-    {
-      source: "/:path*",
-      has: [
-        {
-          type: "host",
-          value: "www.savefrominternet.com",
-        },
-      ],
-      destination: "https://savefrominternet.com/:path*",
-      permanent: true,
-    },
-  ],
 };
 
 export default nextConfig;
