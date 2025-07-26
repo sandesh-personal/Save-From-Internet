@@ -101,7 +101,7 @@ export default function RootLayout({
 <header className="fixed top-0 left-0 w-full bg-gradient-to-br from-black via-gray-900 to-black py-4 z-50">
   <div className="max-w-6xl mx-auto flex items-center justify-center select-none">
     <Link href="/" className="flex items-center gap-3 uppercase font-black tracking-wide text-xl text-white">
-      <img src="/logo.png?timestamp=20250724" alt="Site Logo" className="h-8 w-auto object-contain" draggable={false} />
+      <img src="/logo-final.png" alt="Site Logo" className="h-8 w-auto object-contain" draggable={false} />
       <span>SAVE FROM INTERNET</span>
     </Link>
   </div>
