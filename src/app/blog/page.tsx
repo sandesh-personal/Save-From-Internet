@@ -1,8 +1,11 @@
-'use client';
-
 import Link from 'next/link';
 import { blogPosts } from './blogData';
 import Image from 'next/image';
+
+export const metadata = {
+  title: 'Blog | SaveFromInternet',
+  description: 'Read the latest tips, guides, and updates on downloading TikTok videos, audio, and images with SaveFromInternet.',
+};
 
 export default function BlogPage() {
   return (
