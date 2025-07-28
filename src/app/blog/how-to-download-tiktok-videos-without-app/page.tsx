@@ -246,9 +246,23 @@ export default function BlogPostTikTokNoApp() {
             <h3 className="text-lg font-semibold mt-4">🔗 Related Tools</h3>
             <ul className="list-disc pl-6">
               <li><Link href="/blog/how-to-download-tiktok-videos-without-watermark-2025" className="text-blue-300 underline">Download TikTok videos without watermark</Link></li>
-              <li><Link href="/blog/tiktok-video-downloader-without-app-store" className="text-blue-300 underline">TikTok downloader without App Store</Link></li>
               <li><Link href="/blog/how-to-extract-audio-from-tiktok-videos-mp3-download" className="text-blue-300 underline">Extract audio from TikTok videos</Link></li>
+              <li><Link href="/blog/best-tiktok-video-downloaders-for-iphone-2025-guide" className="text-blue-300 underline">TikTok downloader for iPhone</Link></li>
             </ul>
+
+            {/* CTA Section */}
+            <div className="text-center bg-gradient-to-r from-pink-500/10 to-violet-500/10 rounded-xl p-8 border border-pink-500/20 mt-8">
+              <h2 className="text-2xl font-bold mb-4">Ready to Download TikTok Videos Without App?</h2>
+              <p className="text-white/70 mb-6">
+                Start downloading TikTok videos without any app right now. It's free, fast, and easy to use!
+              </p>
+              <Link 
+                href="/"
+                className="inline-block bg-gradient-to-r from-pink-500 to-violet-500 text-white font-semibold px-8 py-4 rounded-xl hover:from-pink-600 hover:to-violet-600 transition-all duration-200 text-lg"
+              >
+                Download TikTok Videos Now
+              </Link>
+            </div>
 
             <h3 className="text-lg font-semibold mt-4">✅ Final Thoughts</h3>
             <p>Downloading TikTok videos without apps is not only possible but often the best approach. SaveFromInternet.com provides a superior solution that's more secure, reliable, and convenient than traditional app-based downloaders.</p>

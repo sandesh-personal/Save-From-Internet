@@ -11,6 +11,7 @@ import {
   CheckIcon,
   getImagePlaceholderBase64,
 } from '@/components/icons'
+import Link from 'next/link'
 
 export default function Home() {
   const [state, dispatch] = useReducer(appReducer, initialState)
@@ -312,8 +313,7 @@ export default function Home() {
       </h1>
 
       <p className="text-lg justify text-gray-300 max-w-1xl mx-auto mb-4">
-        SaveFromInternet lets you download TikToks in HD without watermark. 
-        Download as MP4, extract MP3 & Save Images from any public TikTok.
+        
       </p>
 
 
@@ -322,7 +322,8 @@ export default function Home() {
     {/* Optional: Add a subheading for more SEO value */}
     <div className="text-center ">
       <h2 className="text-1xl font-semibold text-white mb-5">
-        Download TikTok Videos in 3 Easy Steps
+      SaveFromInternet lets you download TikToks in HD without watermark. 
+      Download as MP4, extract MP3 & Save Images from any public TikTok.
       </h2>
 
     </div>
@@ -405,6 +406,8 @@ export default function Home() {
           )}
 
           {!state.videoMetadata && !state.message && (
+            
+            
             <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
               {/* Getting Started Card */}
               <div className="bg-gradient-to-br from-white/5 to-white/10 rounded-xl p-6 border border-white/20">
@@ -779,6 +782,12 @@ export default function Home() {
             </div>
           )}
         </div>
+{/* Quick Links Section - above Who We Are */}
+<div className="max-w-4xl mx-auto mt-12 mb-8 flex flex-wrap justify-center gap-6">
+  <Link href="/how-to-download-tiktok-videos" className="bg-gradient-to-r from-pink-500 to-violet-500 text-white font-semibold px-6 py-3 rounded-xl shadow-lg hover:from-pink-600 hover:to-violet-600 transition-all duration-200 text-lg">How to Download</Link>
+  <Link href="/faq" className="bg-gradient-to-r from-green-500 to-blue-500 text-white font-semibold px-6 py-3 rounded-xl shadow-lg hover:from-green-600 hover:to-blue-600 transition-all duration-200 text-lg">FAQ</Link>
+  <Link href="/blog" className="bg-gradient-to-r from-yellow-500 to-pink-500 text-white font-semibold px-6 py-3 rounded-xl shadow-lg hover:from-yellow-600 hover:to-pink-600 transition-all duration-200 text-lg">Blog</Link>
+</div>
 
 {/* FAQs Section */}
 <div className="max-w-4xl mx-auto mt-12">
@@ -853,6 +862,7 @@ export default function Home() {
   </div>
 </div>
 </div>
+
 
 
  {/* Downloaders Section */}
@@ -1098,9 +1108,6 @@ export default function Home() {
         We encourage users to use downloads responsibly, don’t repost someone’s content as your own or use it in ways that violate copyright laws. 
         If you’re ever unsure, the safest approach is to ask for the creator’s permission before sharing or editing their video.
       </p>
-</div>
-      <div className="pb-5">
-  {/* your page content */}
   </div>
   </div>
 </div>

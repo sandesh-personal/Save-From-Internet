@@ -18,6 +18,32 @@ const nextConfig: NextConfig = {
   },
   headers: async () => [
     {
+      source: "/manifest.json",
+      headers: [
+        {
+          key: "Content-Type",
+          value: "application/manifest+json",
+        },
+        {
+          key: "Cache-Control",
+          value: "public, max-age=3600",
+        },
+      ],
+    },
+    {
+      source: "/favicon.ico",
+      headers: [
+        {
+          key: "Content-Type",
+          value: "image/x-icon",
+        },
+        {
+          key: "Cache-Control",
+          value: "public, max-age=86400",
+        },
+      ],
+    },
+    {
       source: "/(.*)",
       headers: [
         {

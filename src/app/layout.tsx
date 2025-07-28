@@ -22,13 +22,13 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
-  title: 'Save From Internet - Download TikTok Videos Instantly — No Watermark',
+  title: 'TikTok Downloader - Download TikTok Videos Without Watermark [2025]',
   description:
-    'Free TikTok video downloader. Download TikTok videos without watermarks in high quality. Fast, secure, and easy to use.',
+    'Download TikTok videos in HD and MP4 without watermark. Fast, free TikTok video downloader for PC, iPhone, Android. No app required. Save videos instantly!',
   openGraph: {
-    title: 'Save From Internet - Download Videos Without Watermarks',
+    title: 'TikTok Downloader - Download TikTok Videos Without Watermark [2025]',
     description:
-      'Free TikTok video downloader. Download TikTok videos without watermarks in high quality. Fast, secure, and easy to use.',
+      'Download TikTok videos in HD and MP4 without watermark. Fast, free TikTok video downloader for PC, iPhone, Android. No app required. Save videos instantly!',
     url: baseUrl,
     type: 'website',
     siteName: 'Save From Internet',
@@ -37,16 +37,16 @@ export const metadata: Metadata = {
         url: `${baseUrl}/og.jpg`,
         width: 1200,
         height: 675,
-        alt: 'Save From Internet TikTok Downloader',
+        alt: 'TikTok Downloader - Download TikTok Videos Without Watermark',
       },
     ],
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Save From Internet - Download Tiktok Videos Without Watermarks',
+    title: 'TikTok Downloader - Download TikTok Videos Without Watermark [2025]',
     description:
-      'Free TikTok video downloader. Download TikTok videos without watermarks in high quality. Fast, secure, and easy to use.',
+      'Download TikTok videos in HD and MP4 without watermark. Fast, free TikTok video downloader for PC, iPhone, Android. No app required. Save videos instantly!',
     site: '@savefrominternet',
     images: [`${baseUrl}/og.jpg`],
   },
@@ -99,9 +99,9 @@ export default function RootLayout({
 
 {/* Global Header - visible on all pages */}
 <header className="fixed top-0 left-0 w-full bg-gradient-to-br from-black via-gray-900 to-black py-4 z-50">
-  <div className="max-w-6xl mx-auto flex items-center justify-center select-none">
+  <div className="max-w-6xl mx-auto flex items-center justify-center select-none px-4">
     <Link href="/" className="flex items-center gap-3 uppercase font-black tracking-wide text-xl text-white">
-      <img src="/logo-final.png" alt="Site Logo" className="h-8 w-auto object-contain" draggable={false} />
+      <img src="/logo-final.png" alt="Site Logo" className="h-10 w-auto object-contain" draggable={false} />
       <span>SAVE FROM INTERNET</span>
     </Link>
   </div>

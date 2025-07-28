@@ -113,6 +113,20 @@ export default function BlogPostTikTokDownload2025() {
               <li><a href="https://tikmate.cc" target="_blank" className="text-blue-300 underline">tikmate.cc</a> – No photo download support</li>
             </ul>
 
+            {/* CTA Section */}
+            <div className="text-center bg-gradient-to-r from-pink-500/10 to-violet-500/10 rounded-xl p-8 border border-pink-500/20 mt-8">
+              <h2 className="text-2xl font-bold mb-4">Ready to Download TikTok Videos?</h2>
+              <p className="text-white/70 mb-6">
+                Start downloading TikTok videos without watermark right now. It's free, fast, and easy to use!
+              </p>
+              <Link 
+                href="/"
+                className="inline-block bg-gradient-to-r from-pink-500 to-violet-500 text-white font-semibold px-8 py-4 rounded-xl hover:from-pink-600 hover:to-violet-600 transition-all duration-200 text-lg"
+              >
+                Download TikTok Videos Now
+              </Link>
+            </div>
+
             <h3 className="text-lg font-semibold mt-4">✅ Final Thoughts</h3>
             <p>Whether you&apos;re a content creator or casual TikTok user, SaveFromInternet.com helps you get your videos, audio, and images back in the best possible quality.</p>
             <p>It&apos;s as simple as:</p>
