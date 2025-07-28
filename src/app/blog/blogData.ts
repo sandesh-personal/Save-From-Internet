@@ -104,4 +104,11 @@ export const blogPosts = [
     lastModified: '2025-07-01T08:00:00.000Z',
     description: 'A comprehensive guide to downloading Facebook videos in high quality.'
   },
+  {
+    slug: 'is-downloading-tiktok-videos-legal-2025-guide',
+    title: 'Is Downloading TikTok Videos Legal? What You Need to Know (2025 Guide)',
+    image: '/images/step1.jpg',
+    lastModified: '2025-07-01T08:00:00.000Z',
+    description: 'Understand the legalities of downloading TikTok videos. Learn what is allowed, what is not, and how to stay safe and compliant in 2025.'
+  },
 ];

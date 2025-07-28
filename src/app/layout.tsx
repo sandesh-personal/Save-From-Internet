@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Script from 'next/script'
+import { Analytics } from '@vercel/analytics/react'
 
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
@@ -90,8 +91,10 @@ export default function RootLayout({
             });
           `}
         </Script>
-          {/* Canonical URL */}
-  <link rel="canonical" href={baseUrl} />
+        {/* Google Search Console Verification */}
+        {/* <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE_HERE" /> */}
+        {/* Canonical URL */}
+        <link rel="canonical" href={baseUrl} />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
@@ -118,6 +121,8 @@ export default function RootLayout({
 
   {/* Footer */}
 <Footer />
+        {/* Vercel Analytics */}
+        <Analytics />
       </body>
     </html>
   )

@@ -4,8 +4,15 @@ import { blogPosts } from './blog/blogData';
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://savefrominternet.com/';
 
-const staticPaths = ['/', '/about', '/privacy-policy', '/disclaimer', '/blog']
-
+  const staticPaths = [
+    '/', 
+    '/about', 
+    '/privacy-policy', 
+    '/disclaimer', 
+    '/blog',
+    '/how-to-download-tiktok-videos',
+    '/faq'
+  ];
 
   const allRoutes = [
     ...staticPaths.map((path) => ({
