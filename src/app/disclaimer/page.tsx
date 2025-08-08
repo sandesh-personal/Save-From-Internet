@@ -1,9 +1,29 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
+
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
+
+export const metadata: Metadata = {
+  title: 'Disclaimer - TikTok Video Downloader | Save From Internet',
+  description: 'Legal disclaimer for Save From Internet TikTok video downloader. Learn about our terms of service, user responsibilities, and copyright information.',
+  openGraph: {
+    title: 'Disclaimer - TikTok Video Downloader | Save From Internet',
+    description: 'Legal disclaimer for Save From Internet TikTok video downloader. Learn about our terms of service, user responsibilities, and copyright information.',
+    url: `${baseUrl}/disclaimer`,
+    type: 'website',
+    siteName: 'Save From Internet',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Disclaimer - TikTok Video Downloader | Save From Internet',
+    description: 'Legal disclaimer for Save From Internet TikTok video downloader. Learn about our terms of service, user responsibilities, and copyright information.',
+  },
+}
 
 export default function DisclaimerPage() {
   return (
-    <div className="flex flex-col flex-grow min-h-[calc(100vh-4rem)] p-8"> {/* padding added inside */}
-      <div className="max-w-4xl mx-auto flex flex-col ">
+    <div className="flex flex-col flex-grow min-h-[calc(100vh-4rem)] p-8 bg-gradient-to-br from-black via-gray-900 to-black text-white">
+      <div className="max-w-4xl mx-auto flex flex-col">
 
         <h1 className="text-4xl font-bold mb-6">Disclaimer</h1>
         <p className="text-white/80 leading-relaxed text-lg">

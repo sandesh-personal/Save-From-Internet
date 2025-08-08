@@ -10,7 +10,7 @@ export const siteConfig = {
       href: '/',
     },
   ],
-  ogImage: '/og.jpg',
+  ogImage: '/og-final.jpg',
   links: {
     github: 'https://github.com/sandesh-personal/Save-From-Internet',
     websiteUrl: 'https://www.savefrominternet.com',

@@ -23,7 +23,7 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
-  title: 'TikTok Downloader - Download TikTok Videos Without Watermark [2025]',
+  title: 'Download TikTok Videos Without Watermark 2025',
   description:
     'Download TikTok videos in HD and MP4 without watermark. Fast, free TikTok video downloader for PC, iPhone, Android. No app required. Save videos instantly!',
   openGraph: {
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     siteName: 'Save From Internet',
     images: [
       {
-        url: `${baseUrl}/og.jpg`,
+        url: `${baseUrl}/og-final.jpg`,
         width: 1200,
         height: 675,
         alt: 'TikTok Downloader - Download TikTok Videos Without Watermark',
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     description:
       'Download TikTok videos in HD and MP4 without watermark. Fast, free TikTok video downloader for PC, iPhone, Android. No app required. Save videos instantly!',
     site: '@savefrominternet',
-    images: [`${baseUrl}/og.jpg`],
+    images: [`${baseUrl}/og-final.jpg`],
   },
   icons: {
     icon: [
