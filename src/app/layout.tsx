@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 })
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
+const baseUrl = 'https://savefrominternet.com'
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -73,9 +73,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/*Adsense Code*/}
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8190424610367988"
-        crossOrigin="anonymous"></script>
+        {/* Google AdSense - Using Next.js Script for better control */}
+        <Script
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8190424610367988"
+          strategy="afterInteractive"
+          crossOrigin="anonymous"
+        />
         {/* Google Analytics */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
@@ -92,7 +95,9 @@ export default function RootLayout({
           `}
         </Script>
         {/* Google Search Console Verification */}
-        {/* <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE_HERE" /> */}
+        {/* Get your verification code from: https://search.google.com/search-console */}
+        {/* Replace YOUR_VERIFICATION_CODE_HERE with your actual code */}
+        <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE_HERE" />
         {/* Canonical URL */}
         <link rel="canonical" href={baseUrl} />
       </head>

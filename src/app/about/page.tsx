@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import GoogleAdSense from '@/components/GoogleAdSense'
 
 export default function AboutPage() {
   return (
@@ -13,6 +14,16 @@ export default function AboutPage() {
           content offline without restrictions.
         </p>
 
+        {/* Middle Ad */}
+        <div className="my-8">
+          <GoogleAdSense
+            adSlot="3804648444"
+            adFormat="auto"
+            className="flex justify-center"
+            containerStyle="default"
+          />
+        </div>
+
         <h2 className="text-2xl font-semibold mb-4">Contact Information</h2>
         <p className="text-white/80 leading-relaxed text-lg mb-2">
           For technical issues or problems you encounter while using the website, please reach out to our support team at{' '}
@@ -26,6 +37,16 @@ export default function AboutPage() {
             contact@savefrominternet.com
           </a>. We welcome collaborations and want to ensure all your questions are answered.
         </p>
+
+        {/* Bottom Ad */}
+        <div className="mt-8">
+          <GoogleAdSense
+            adSlot="2491566773"
+            adFormat="auto"
+            className="flex justify-center"
+            containerStyle="default"
+          />
+        </div>
       </div>
     </div>
   )

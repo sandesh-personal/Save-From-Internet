@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import GoogleAdSense from '@/components/GoogleAdSense'
 
 export default function PrivacyPolicyPage() {
   return (
@@ -11,6 +12,16 @@ export default function PrivacyPolicyPage() {
           This Privacy Policy explains how we collect, use, and safeguard any data you provide when using our services.
           We do not collect personal data unless you voluntarily provide it via contact or support requests.
         </p>
+
+        {/* Top Ad */}
+        <div className="mb-8">
+          <GoogleAdSense
+            adSlot="5309301802"
+            adFormat="auto"
+            className="flex justify-center"
+            containerStyle="default"
+          />
+        </div>
 
         <h2 className="text-2xl font-semibold mb-4">Information We Collect</h2>
         <p className="text-white/80 leading-relaxed text-lg mb-4">
@@ -28,6 +39,16 @@ export default function PrivacyPolicyPage() {
           The data collected is used solely to maintain and improve the service, prevent fraudulent use,
           and respond to user inquiries. We do not share, sell, or rent your personal information to third parties.
         </p>
+
+        {/* Middle Ad */}
+        <div className="my-8">
+          <GoogleAdSense
+            adSlot="3804648444"
+            adFormat="auto"
+            className="flex justify-center"
+            containerStyle="default"
+          />
+        </div>
 
         <h2 className="text-2xl font-semibold mb-4">Third-Party Services</h2>
         <p className="text-white/80 leading-relaxed text-lg mb-6">
@@ -50,6 +71,16 @@ export default function PrivacyPolicyPage() {
             contact@savefrominternet.com
           </a>.
         </p>
+
+        {/* Bottom Ad */}
+        <div className="mt-8">
+          <GoogleAdSense
+            adSlot="2491566773"
+            adFormat="auto"
+            className="flex justify-center"
+            containerStyle="default"
+          />
+        </div>
       </div>
     </div>
   )

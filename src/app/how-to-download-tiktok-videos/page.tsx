@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Script from 'next/script';
 import Image from 'next/image';
+import GoogleAdSense from '@/components/GoogleAdSense';
 
 export const metadata = {
   title: 'How to Download TikTok Videos Without Watermark (2025 Guide)',
@@ -139,6 +140,16 @@ export default function HowToDownloadPage() {
             Learn how to download TikTok videos step by step using our free TikTok video downloader. Download videos without watermark, extract audio, and save images easily.
           </p>
 
+          {/* Top Ad */}
+          <div className="mb-8">
+            <GoogleAdSense
+              adSlot="5309301802"
+              adFormat="auto"
+              className="flex justify-center"
+              containerStyle="default"
+            />
+          </div>
+
           {/* Step by Step Guide */}
           <div className="mb-12">
             <h2 className="text-2xl font-bold mb-6">Step-by-Step Guide to Download TikTok Videos</h2>
@@ -169,6 +180,16 @@ export default function HowToDownloadPage() {
             </div>
           </div>
 
+          {/* Middle Ad */}
+          <div className="my-8">
+            <GoogleAdSense
+              adSlot="3804648444"
+              adFormat="auto"
+              className="flex justify-center"
+              containerStyle="default"
+            />
+          </div>
+
           {/* Features Section */}
           <div className="mb-12">
             <h2 className="text-2xl font-bold mb-6">Why Choose Our TikTok Video Downloader?</h2>
@@ -194,6 +215,16 @@ export default function HowToDownloadPage() {
             >
               Download TikTok Videos Now
             </Link>
+          </div>
+
+          {/* Bottom Ad */}
+          <div className="mt-8">
+            <GoogleAdSense
+              adSlot="2491566773"
+              adFormat="auto"
+              className="flex justify-center"
+              containerStyle="default"
+            />
           </div>
 
           {/* Additional Resources */}

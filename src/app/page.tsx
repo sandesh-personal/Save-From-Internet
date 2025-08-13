@@ -402,18 +402,16 @@ export default function Home() {
         {/* Results Section */}
         <div className="results-section">
           {/* Ad Display */}
-                              {showAd && (
-                      <div className="max-w-2xl mx-auto mb-6">
-                        <div className="bg-white/5 rounded-xl p-4 border border-white/20">
-                          <h3 className="text-white font-semibold text-center mb-3">Sponsored</h3>
-                                                     <GoogleAdSense
-                             adSlot="5309301802"
-                             adFormat="auto"
-                             className="flex justify-center"
-                           />
-                        </div>
-                      </div>
-                    )}
+          {showAd && (
+            <div className="max-w-2xl mx-auto mb-6">
+              <GoogleAdSense
+                adSlot="5309301802"
+                adFormat="auto"
+                className="flex justify-center"
+                containerStyle="default"
+              />
+            </div>
+          )}
 
           {state.message && (
             <div
@@ -529,14 +527,12 @@ export default function Home() {
           {state.videoMetadata && (
             <div className="max-w-2xl mx-auto space-y-4 mt-8">
                                       {/* Ad after successful processing */}
-                        <div className="bg-white/5 rounded-xl p-4 border border-white/20">
-                          <h3 className="text-white font-semibold text-center mb-3">Sponsored</h3>
-                                                     <GoogleAdSense
-                             adSlot="3804648444"
-                             adFormat="auto"
-                             className="flex justify-center"
-                           />
-                        </div>
+              <GoogleAdSense
+                adSlot="3804648444"
+                adFormat="auto"
+                className="flex justify-center"
+                containerStyle="default"
+              />
               
               {/* Video Results */}
               <div className="p-4 bg-white/10 rounded-xl border border-white/20 space-y-4">
@@ -821,14 +817,12 @@ export default function Home() {
         </div>
                     {/* Ad Section - before Quick Links */}
                     <div className="max-w-4xl mx-auto mt-12 mb-8">
-                      <div className="bg-white/5 rounded-xl p-4 border border-white/20">
-                        <h3 className="text-white font-semibold text-center mb-3">Sponsored</h3>
-                                                 <GoogleAdSense
-                           adSlot="2491566773"
-                           adFormat="auto"
-                           className="flex justify-center"
-                         />
-                      </div>
+                      <GoogleAdSense
+                        adSlot="2491566773"
+                        adFormat="auto"
+                        className="flex justify-center"
+                        containerStyle="default"
+                      />
                     </div>
 
 {/* Quick Links Section - above Who We Are */}

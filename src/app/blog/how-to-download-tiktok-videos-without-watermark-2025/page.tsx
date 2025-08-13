@@ -1,8 +1,19 @@
-// app/blog/how-to-download-tiktok-videos-2025/page.tsx
-'use client';
-
 import Link from 'next/link';
 import Image from 'next/image';
+import type { Metadata } from 'next';
+import GoogleAdSense from '@/components/GoogleAdSense';
+
+export const metadata: Metadata = {
+  title: 'How to Download TikTok Videos Without Watermark in 2025',
+  description: 'Learn how to download your own TikTok videos without watermark in high quality using SaveFromInternet.com. Step-by-step guide for 2025.',
+  openGraph: {
+    title: 'How to Download TikTok Videos Without Watermark in 2025',
+    description: 'Learn how to download your own TikTok videos without watermark in high quality using SaveFromInternet.com. Step-by-step guide for 2025.',
+    url: 'https://savefrominternet.com/blog/how-to-download-tiktok-videos-without-watermark-2025',
+    type: 'article',
+    images: ['/images/step1.jpg'],
+  },
+};
 
 export default function BlogPostTikTokDownload2025() {
   return (
@@ -11,6 +22,16 @@ export default function BlogPostTikTokDownload2025() {
 
         {/* Blog Content Starts */}
         <div className="space-y-8">
+          {/* Top Ad */}
+          <div className="mb-8">
+            <GoogleAdSense
+              adSlot="5309301802"
+              adFormat="auto"
+              className="flex justify-center"
+              containerStyle="default"
+            />
+          </div>
+
           <div className="flex items-center space-x-5">
             <h2 className="text-xl font-bold text-white">
               How to Download TikTok Videos Without Watermark in 2025
@@ -99,6 +120,16 @@ export default function BlogPostTikTokDownload2025() {
             <h3 className="text-lg font-semibold mt-4">🔐 Safe &amp; Private</h3>
             <p>We don&apos;t track, store, or analyze your content. No login is required. All processing is done in real-time and deleted instantly.</p>
 
+            {/* Middle Ad */}
+            <div className="my-8">
+              <GoogleAdSense
+                adSlot="3804648444"
+                adFormat="auto"
+                className="flex justify-center"
+                containerStyle="default"
+              />
+            </div>
+
             <h3 className="text-lg font-semibold mt-4">🔁 Internal Features</h3>
             <ul className="list-disc pl-6">
               <li><Link href="/#extract-audio" className="text-blue-300 underline">Extract only audio</Link></li>
@@ -125,6 +156,16 @@ export default function BlogPostTikTokDownload2025() {
               >
                 Download TikTok Videos Now
               </Link>
+            </div>
+
+            {/* Bottom Ad */}
+            <div className="mt-8">
+              <GoogleAdSense
+                adSlot="2491566773"
+                adFormat="auto"
+                className="flex justify-center"
+                containerStyle="default"
+              />
             </div>
 
             <h3 className="text-lg font-semibold mt-4">✅ Final Thoughts</h3>

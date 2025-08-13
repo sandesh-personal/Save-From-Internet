@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Script from 'next/script';
+import GoogleAdSense from '@/components/GoogleAdSense';
 
 export const metadata = {
   title: 'TikTok Downloader FAQ - Download TikTok Videos Without Watermark (2025)',
@@ -186,17 +187,51 @@ export default function FAQPage() {
             Get answers to frequently asked questions about downloading TikTok videos, extracting audio, and using our free TikTok video downloader.
           </p>
 
+          {/* Top Ad */}
+          <div className="mb-8">
+            <GoogleAdSense
+              adSlot="5309301802"
+              adFormat="auto"
+              className="flex justify-center"
+              containerStyle="default"
+            />
+          </div>
+
           <div className="space-y-6">
             {faqs.map((faq, index) => (
-              <div key={index} className="bg-white/5 rounded-xl p-6 border border-white/10">
-                <h3 className="text-white font-semibold text-lg mb-3">
-                  {faq.question}
-                </h3>
-                <p className="text-white/70 text-sm leading-relaxed">
-                  {faq.answer}
-                </p>
+              <div key={index}>
+                <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+                  <h3 className="text-white font-semibold text-lg mb-3">
+                    {faq.question}
+                  </h3>
+                  <p className="text-white/70 text-sm leading-relaxed">
+                    {faq.answer}
+                  </p>
+                </div>
+
+                {/* Show ad after every 4th FAQ */}
+                {(index + 1) % 4 === 0 && (
+                  <div className="mt-6">
+                    <GoogleAdSense
+                      adSlot="3804648444"
+                      adFormat="auto"
+                      className="flex justify-center"
+                      containerStyle="default"
+                    />
+                  </div>
+                )}
               </div>
             ))}
+          </div>
+
+          {/* Bottom Ad */}
+          <div className="mt-8">
+            <GoogleAdSense
+              adSlot="2491566773"
+              adFormat="auto"
+              className="flex justify-center"
+              containerStyle="default"
+            />
           </div>
 
           <div className="mt-12 text-center">
