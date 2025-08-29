@@ -10,7 +10,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/privacy-policy', 
     '/disclaimer', 
     '/blog',
+    '/tiktok-video-downloader',
     '/how-to-download-tiktok-videos',
+    '/tiktok-to-mp3',
+    '/tiktok-photo-downloader',
+    '/tiktok-video-downloader-iphone',
+    '/tiktok-video-downloader-android',
     '/faq'
   ];
 

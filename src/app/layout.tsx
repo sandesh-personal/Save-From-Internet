@@ -23,11 +23,19 @@ const baseUrl = 'https://savefrominternet.com'
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
-  title: 'Download TikTok Videos Without Watermark 2025',
+  title: 'TikTok Video Downloader - Download TikTok Videos Without Watermark 2025 - Save From Internet',
   description:
     'Download TikTok videos in HD and MP4 without watermark. Fast, free TikTok video downloader for PC, iPhone, Android. No app required. Save videos instantly!',
+  keywords: [
+    'TikTok Video Downloader',
+    'download tiktok videos without watermark 2025',
+    'tiktok video downloader',
+    'tiktok downloader 2025',
+    'download tiktok hd',
+    'save tiktok without watermark',
+  ],
   openGraph: {
-    title: 'TikTok Downloader - Download TikTok Videos Without Watermark [2025]',
+    title: 'TikTok Video Downloader - Download TikTok Videos Without Watermark 2025 - Save From Internet',
     description:
       'Download TikTok videos in HD and MP4 without watermark. Fast, free TikTok video downloader for PC, iPhone, Android. No app required. Save videos instantly!',
     url: baseUrl,
@@ -45,7 +53,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'TikTok Downloader - Download TikTok Videos Without Watermark [2025]',
+    title: 'TikTok Video Downloader - Download TikTok Videos Without Watermark 2025 - Save From Internet',
     description:
       'Download TikTok videos in HD and MP4 without watermark. Fast, free TikTok video downloader for PC, iPhone, Android. No app required. Save videos instantly!',
     site: '@savefrominternet',
@@ -95,9 +103,12 @@ export default function RootLayout({
           `}
         </Script>
         {/* Google Search Console Verification */}
-        {/* Get your verification code from: https://search.google.com/search-console */}
-        {/* Replace YOUR_VERIFICATION_CODE_HERE with your actual code */}
-        <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE_HERE" />
+        <meta name="google-site-verification" content="eKo5Uv_vQHwOIYPOM5qRSv0CPbQVWTwXJ4zYHXgcUjo" />
+        {/* Bing (also used by Yahoo) Verification */}
+        <meta name="msvalidate.01" content="3040BFA752B13D1315F7D0433AD753E1" />
+        {/* Naver Verification */}
+        {/* Replace YOUR_NAVER_VERIFICATION_CODE with your actual code from Naver Search Advisor */}
+        <meta name="naver-site-verification" content="YOUR_NAVER_VERIFICATION_CODE" />
         {/* Canonical URL */}
         <link rel="canonical" href={baseUrl} />
       </head>
@@ -109,7 +120,7 @@ export default function RootLayout({
 <header className="fixed top-0 left-0 w-full bg-gradient-to-br from-black via-gray-900 to-black py-4 z-50">
   <div className="max-w-6xl mx-auto flex items-center justify-center select-none px-4">
     <Link href="/" className="flex items-center gap-3 uppercase font-black tracking-wide text-xl text-white">
-      <img src="/logo-final.png" alt="Site Logo" className="h-10 w-auto object-contain" draggable={false} />
+      <img src="/logo-final.png" alt="TikTok Video Downloader - Save From Internet" className="h-10 w-auto object-contain" draggable={false} />
       <span>SAVE FROM INTERNET</span>
     </Link>
   </div>

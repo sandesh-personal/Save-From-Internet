@@ -314,15 +314,11 @@ export default function Home() {
     {/* Main Hero Section */}
     <div ref={containerRef} className="text-center mb-4">
       <h1 className="text-5xl md:text-5xl font-extrabold text-white mb-4">
-        <span className="bg-gradient-to-r from-[#25F4EE] via-pink-500 to-[#FE2C55] bg-clip-text text-transparent">
-          TikTok
-        </span>{" "}
+        <span className="bg-gradient-to-r from-[#25F4EE] via-pink-500 to-[#FE2C55] bg-clip-text text-transparent">TikTok</span>{" "}
         Video Downloader
       </h1>
 
-      <p className="text-lg justify text-gray-300 max-w-1xl mx-auto mb-4">
-        
-      </p>
+
 
 
     </div>
@@ -330,7 +326,7 @@ export default function Home() {
     {/* Optional: Add a subheading for more SEO value */}
     <div className="text-center ">
       <h2 className="text-1xl font-semibold text-white mb-5">
-      SaveFromInternet lets you download TikToks in HD without watermark. 
+      TikTok Video Downloader to download TikTok videos without watermark 2025 in HD. 
       Download as MP4, extract MP3 & Save Images from any public TikTok.
       </h2>
 
@@ -895,7 +891,7 @@ export default function Home() {
 
      <div className="bg-white/5 rounded-xl p-4 border border-white/10">
   <div className="w-10 h-10 bg-gradient-to-r from-blue-500/20 to-grey-500/20 rounded-full flex items-center justify-center mb-3 border border-blue-500/30 overflow-hidden">
-    <img src="/logo-final.png" alt="Logo" className="w-5 h-5 object-contain" />
+    <img src="/logo-final.png" alt="download tiktok videos without watermark 2025 logo" className="w-5 h-5 object-contain" />
   </div>
   <h3 className="text-white font-semibold mb-2">Unlimited Downloads</h3>
   <p className="text-white/70 text-sm">

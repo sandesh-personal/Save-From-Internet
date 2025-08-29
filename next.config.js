@@ -52,6 +52,15 @@ const nextConfig = {
       ],
     },
   ],
+  async redirects() {
+    return [
+      {
+        source: '/blog/how-to-download-tiktok-videos-without-watermark-2025',
+        destination: '/blog/download-tiktok-videos-without-watermark-2025',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
