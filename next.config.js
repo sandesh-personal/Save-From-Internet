@@ -54,24 +54,8 @@ const nextConfig = {
   ],
   async redirects() {
     return [
-      // Redirect non-www to www (excluding API routes)
-      {
-        source: '/((?!api|_next|favicon.ico|robots.txt|sitemap.xml|manifest.json).*)',
-        has: [
-          {
-            type: 'host',
-            value: 'savefrominternet.com',
-          },
-        ],
-        destination: 'https://www.savefrominternet.com/$1',
-        permanent: true,
-      },
-      // Blog redirect
-      {
-        source: '/blog/how-to-download-tiktok-videos-without-watermark-2025',
-        destination: '/blog/download-tiktok-videos-without-watermark-2025',
-        permanent: true,
-      },
+      // Temporarily disabled redirects to fix infinite loop
+      // TODO: Re-enable with proper configuration
     ];
   },
 };
