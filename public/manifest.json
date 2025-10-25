@@ -1,12 +1,13 @@
 {
-  "name": "Save From Internet",
+  "name": "Save From Internet - TikTok Video Downloader",
   "short_name": "TikTok Downloader",
-  "description": "Download TikTok videos without watermarks in high quality",
+  "description": "Download TikTok videos without watermarks in high quality. Fast, free TikTok video downloader for PC, iPhone, Android.",
   "icons": [
     {
       "src": "/favicon-final.svg",
       "sizes": "any",
-      "type": "image/svg+xml"
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
     },
     {
       "src": "/apple-touch-icon-final.svg",
@@ -14,14 +15,16 @@
       "type": "image/svg+xml"
     },
     {
-      "src": "/favicon-final.svg",
-      "sizes": "512x512",
-      "type": "image/png"
+      "src": "/favicon.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
     }
   ],
   "theme_color": "#ff0050",
   "background_color": "#000000",
   "display": "standalone",
-  "start_url": "/",
-  "orientation": "portrait"
+  "start_url": "https://www.savefrominternet.com/",
+  "orientation": "portrait",
+  "scope": "/",
+  "lang": "en"
 }

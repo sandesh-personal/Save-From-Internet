@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
-  const siteUrl = 'https://savefrominternet.com'
+  const siteUrl = 'https://www.savefrominternet.com'
 
   return {
     rules: [

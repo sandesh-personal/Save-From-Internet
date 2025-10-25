@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { blogPosts } from './blog/blogData';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://savefrominternet.com';
+  const baseUrl = 'https://www.savefrominternet.com';
 
   const staticPaths = [
     '', 

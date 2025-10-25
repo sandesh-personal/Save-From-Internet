@@ -17,7 +17,6 @@ import GoogleAdSense from '@/components/GoogleAdSense'
 export default function Home() {
   const [state, dispatch] = useReducer(appReducer, initialState)
   const containerRef = useRef<HTMLDivElement>(null)
-  const [showAd, setShowAd] = useState(false)
 
   const handleProcess = async () => {
     if (!state.url.trim()) {
@@ -25,8 +24,6 @@ export default function Home() {
       return
     }
 
-    // Show ad when user starts processing
-    setShowAd(true)
 
     dispatch({ type: 'SET_LOADING', payload: true })
     dispatch({ type: 'RESET_DOWNLOAD_STATE' })
@@ -58,8 +55,6 @@ export default function Home() {
         // Clear the input after successful processing
         dispatch({ type: 'SET_URL', payload: '' })
         
-        // Hide ad after successful processing to show results
-        setShowAd(false)
 
         // Scroll to results section after successful processing
         setTimeout(() => {
@@ -349,8 +344,6 @@ export default function Home() {
         value={state.url}
         onChange={(e) => {
           dispatch({ type: 'SET_URL', payload: e.target.value })
-          // Reset ad state when user starts typing a new URL
-          if (showAd) setShowAd(false)
         }}
         className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent text-base"
       />
@@ -397,17 +390,6 @@ export default function Home() {
 
         {/* Results Section */}
         <div className="results-section">
-          {/* Ad Display */}
-          {showAd && (
-            <div className="max-w-2xl mx-auto mb-6">
-              <GoogleAdSense
-                adSlot="5309301802"
-                adFormat="auto"
-                className="flex justify-center"
-                containerStyle="default"
-              />
-            </div>
-          )}
 
           {state.message && (
             <div
@@ -522,13 +504,6 @@ export default function Home() {
 
           {state.videoMetadata && (
             <div className="max-w-2xl mx-auto space-y-4 mt-8">
-                                      {/* Ad after successful processing */}
-              <GoogleAdSense
-                adSlot="3804648444"
-                adFormat="auto"
-                className="flex justify-center"
-                containerStyle="default"
-              />
               
               {/* Video Results */}
               <div className="p-4 bg-white/10 rounded-xl border border-white/20 space-y-4">
@@ -811,15 +786,7 @@ export default function Home() {
             </div>
           )}
         </div>
-                    {/* Ad Section - before Quick Links */}
-                    <div className="max-w-4xl mx-auto mt-12 mb-8">
-                      <GoogleAdSense
-                        adSlot="2491566773"
-                        adFormat="auto"
-                        className="flex justify-center"
-                        containerStyle="default"
-                      />
-                    </div>
+
 
 {/* Quick Links Section - above Who We Are */}
 <div className="max-w-4xl mx-auto mt-12 mb-8 flex flex-wrap justify-center gap-6">

@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 })
 
-const baseUrl = 'https://savefrominternet.com'
+const baseUrl = 'https://www.savefrominternet.com'
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -61,10 +61,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-final.svg', type: 'image/svg+xml' },
       { url: '/favicon.ico', sizes: '32x32' },
     ],
-    apple: '/apple-touch-icon.svg',
+    apple: '/apple-touch-icon-final.svg',
   },
   manifest: '/manifest.json',
 }

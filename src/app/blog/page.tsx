@@ -2,10 +2,28 @@ import Link from 'next/link';
 import { blogPosts } from './blogData';
 import Image from 'next/image';
 import GoogleAdSense from '@/components/GoogleAdSense';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Blog | SaveFromInternet',
-  description: 'Read the latest tips, guides, and updates on downloading TikTok videos, audio, and images with SaveFromInternet.',
+export const metadata: Metadata = {
+  title: 'Blog | SaveFromInternet - TikTok Video Downloader Guides & Tips',
+  description: 'Read the latest tips, guides, and updates on downloading TikTok videos, audio, and images with SaveFromInternet. Learn how to download TikTok videos without watermark in 2025.',
+  keywords: [
+    'TikTok blog',
+    'TikTok downloader guide',
+    'download TikTok videos',
+    'TikTok tips',
+    'TikTok tutorial',
+    'video downloader guide'
+  ],
+  openGraph: {
+    title: 'Blog | SaveFromInternet - TikTok Video Downloader Guides & Tips',
+    description: 'Read the latest tips, guides, and updates on downloading TikTok videos, audio, and images with SaveFromInternet.',
+    type: 'website',
+    url: 'https://www.savefrominternet.com/blog',
+  },
+  alternates: {
+    canonical: 'https://www.savefrominternet.com/blog',
+  },
 };
 
 export default function BlogPage() {

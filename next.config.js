@@ -54,6 +54,31 @@ const nextConfig = {
   ],
   async redirects() {
     return [
+      // Redirect non-www to www
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'savefrominternet.com',
+          },
+        ],
+        destination: 'https://www.savefrominternet.com/:path*',
+        permanent: true,
+      },
+      // Redirect HTTP to HTTPS
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'www.savefrominternet.com',
+          },
+        ],
+        destination: 'https://www.savefrominternet.com/:path*',
+        permanent: true,
+      },
+      // Blog redirect
       {
         source: '/blog/how-to-download-tiktok-videos-without-watermark-2025',
         destination: '/blog/download-tiktok-videos-without-watermark-2025',
