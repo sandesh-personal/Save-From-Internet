@@ -54,28 +54,28 @@ const nextConfig = {
   ],
   async redirects() {
     return [
-      // Redirect non-www to www
+      // Redirect non-www to www (excluding API routes)
       {
-        source: '/:path*',
+        source: '/((?!api|_next|favicon.ico|robots.txt|sitemap.xml|manifest.json).*)',
         has: [
           {
             type: 'host',
             value: 'savefrominternet.com',
           },
         ],
-        destination: 'https://www.savefrominternet.com/:path*',
+        destination: 'https://www.savefrominternet.com/$1',
         permanent: true,
       },
-      // Redirect HTTP to HTTPS
+      // Redirect HTTP to HTTPS (excluding API routes)
       {
-        source: '/:path*',
+        source: '/((?!api|_next|favicon.ico|robots.txt|sitemap.xml|manifest.json).*)',
         has: [
           {
             type: 'host',
             value: 'www.savefrominternet.com',
           },
         ],
-        destination: 'https://www.savefrominternet.com/:path*',
+        destination: 'https://www.savefrominternet.com/$1',
         permanent: true,
       },
       // Blog redirect
