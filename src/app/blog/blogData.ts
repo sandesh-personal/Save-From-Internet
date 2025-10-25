@@ -74,7 +74,7 @@ export const blogPosts = [
     title: 'TikTok Video Downloader Without App Store - Best Alternatives 2025',
     image: '/images/step1.jpg',
     lastModified: '2025-01-06T08:00:00.000Z',
-    description: 'Find the best TikTok downloaders that don't require App Store installation.'
+    description: 'Find the best TikTok downloaders that don\'t require App Store installation.'
   },
   {
     slug: 'how-to-download-instagram-reels-without-watermark',
