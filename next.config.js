@@ -66,18 +66,6 @@ const nextConfig = {
         destination: 'https://www.savefrominternet.com/$1',
         permanent: true,
       },
-      // Redirect HTTP to HTTPS (excluding API routes)
-      {
-        source: '/((?!api|_next|favicon.ico|robots.txt|sitemap.xml|manifest.json).*)',
-        has: [
-          {
-            type: 'host',
-            value: 'www.savefrominternet.com',
-          },
-        ],
-        destination: 'https://www.savefrominternet.com/$1',
-        permanent: true,
-      },
       // Blog redirect
       {
         source: '/blog/how-to-download-tiktok-videos-without-watermark-2025',
