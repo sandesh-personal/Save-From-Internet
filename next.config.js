@@ -54,8 +54,11 @@ const nextConfig = {
   ],
   async redirects() {
     return [
-      // Temporarily disabled redirects to fix infinite loop
-      // TODO: Re-enable with proper configuration
+      {
+        source: '/blog/how-to-download-tiktok-videos-without-watermark-2025',
+        destination: '/blog/download-tiktok-videos-without-watermark-2025',
+        permanent: true,
+      },
     ];
   },
 };
