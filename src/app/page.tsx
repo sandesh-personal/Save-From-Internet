@@ -17,6 +17,7 @@ import GoogleAdSense from '@/components/GoogleAdSense'
 export default function Home() {
   const [state, dispatch] = useReducer(appReducer, initialState)
   const containerRef = useRef<HTMLDivElement>(null)
+  const [showAdOverlay, setShowAdOverlay] = useState(false)
 
   const handleProcess = async () => {
     if (!state.url.trim()) {
@@ -25,6 +26,7 @@ export default function Home() {
     }
 
 
+    setShowAdOverlay(true)
     dispatch({ type: 'SET_LOADING', payload: true })
     dispatch({ type: 'RESET_DOWNLOAD_STATE' })
 
@@ -304,7 +306,45 @@ export default function Home() {
 
   return (
     
-<div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black">
+<div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black relative">
+  {showAdOverlay && (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+      <div className="relative w-full max-w-lg rounded-2xl border border-white/15 bg-gradient-to-br from-gray-900 to-black p-6 shadow-2xl">
+        <button
+          aria-label="Close Ad"
+          onClick={() => setShowAdOverlay(false)}
+          className="absolute right-4 top-4 text-white/60 transition hover:text-white"
+        >
+          ✕
+        </button>
+        <div className="text-center mb-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/40">
+            Sponsored
+          </p>
+          <h3 className="mt-2 text-xl font-bold text-white">
+            Thanks for supporting SaveFromInternet
+          </h3>
+          <p className="mt-1 text-sm text-white/60">
+            Close this ad to continue to your TikTok download results.
+          </p>
+        </div>
+        <div className="rounded-xl border border-white/10 bg-black/30 p-3">
+          <GoogleAdSense
+            adSlot="5309301802"
+            adFormat="auto"
+            className="flex justify-center"
+            containerStyle="default"
+          />
+        </div>
+        <button
+          onClick={() => setShowAdOverlay(false)}
+          className="mt-6 w-full rounded-xl bg-gradient-to-r from-pink-500 to-violet-500 py-3 text-sm font-semibold text-white transition hover:from-pink-600 hover:to-violet-600"
+        >
+          Close Ad & Continue
+        </button>
+      </div>
+    </div>
+  )}
   <div className="max-w-6xl mx-auto py-4 px-4">
     {/* Main Hero Section */}
     <div ref={containerRef} className="text-center mb-4">
