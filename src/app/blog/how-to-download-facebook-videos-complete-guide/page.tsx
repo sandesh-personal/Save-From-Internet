@@ -6,18 +6,18 @@ import Image from 'next/image';
 
 export default function BlogPostFacebookVideos() {
   return (
-    <div className="min-h-[calc(100vh-6rem)] px-4 py-3 bg-gradient-to-br from-black via-gray-900 to-black text-white">
+    <div className="min-h-[calc(100vh-6rem)] px-4 py-3 bg-white text-black">
       <div className="max-w-4xl mx-auto space-y-8 text-sm leading-relaxed">
 
         {/* Blog Content Starts */}
         <div className="space-y-8">
           <div className="flex items-center space-x-5">
-            <h2 className="text-xl font-bold text-white">
+            <h2 className="text-xl font-bold text-black">
               How to Download Facebook Videos (Complete Guide 2025)
             </h2>
           </div>
 
-          <div className="mt-6 text-white space-y-4">
+          <div className="mt-6 text-black space-y-4">
             <p>Facebook remains one of the largest social media platforms with billions of videos shared daily. Whether you're a content creator wanting to save your own Facebook videos, or you need to download videos for legitimate purposes, finding a reliable Facebook video downloader is essential.</p>
 
             <p>That's where <a href="https://savefrominternet.com" target="_blank" className="text-blue-300 underline">SaveFromInternet.com</a> comes in. Our platform supports Facebook video downloads, allowing you to save high-quality videos without any watermarks or quality loss. Perfect for content creators, marketers, educators, and anyone who needs to preserve Facebook video content.</p>
@@ -59,9 +59,9 @@ export default function BlogPostFacebookVideos() {
             </ol>
 
             <h3 className="text-lg font-semibold mt-4">📊 Facebook Video Quality Options</h3>
-            <table className="w-full text-white text-sm border border-white/20 mt-2">
+            <table className="w-full text-black text-sm border border-black/10 mt-2">
               <thead>
-                <tr className="bg-white/10">
+                <tr className="bg-black/5">
                   <th className="p-2 text-left">Quality</th>
                   <th className="p-2 text-center">Resolution</th>
                   <th className="p-2 text-center">File Size</th>
@@ -69,25 +69,25 @@ export default function BlogPostFacebookVideos() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">Standard</td>
                   <td className="p-2 text-center">480p</td>
                   <td className="p-2 text-center">Small</td>
                   <td className="p-2 text-center">Mobile viewing</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">High Quality</td>
                   <td className="p-2 text-center">720p</td>
                   <td className="p-2 text-center">Medium</td>
                   <td className="p-2 text-center">General use</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">HD</td>
                   <td className="p-2 text-center">1080p</td>
                   <td className="p-2 text-center">Large</td>
                   <td className="p-2 text-center">High quality</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">Ultra HD</td>
                   <td className="p-2 text-center">4K</td>
                   <td className="p-2 text-center">Very Large</td>
@@ -164,9 +164,9 @@ export default function BlogPostFacebookVideos() {
             </ul>
 
             <h3 className="text-lg font-semibold mt-4">📊 Comparison: Facebook Videos vs Other Platforms</h3>
-            <table className="w-full text-white text-sm border border-white/20 mt-2">
+            <table className="w-full text-black text-sm border border-black/10 mt-2">
               <thead>
-                <tr className="bg-white/10">
+                <tr className="bg-black/5">
                   <th className="p-2 text-left">Feature</th>
                   <th className="p-2 text-center">Facebook</th>
                   <th className="p-2 text-center">YouTube</th>
@@ -174,31 +174,31 @@ export default function BlogPostFacebookVideos() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">Maximum Duration</td>
                   <td className="p-2 text-center">240 minutes</td>
                   <td className="p-2 text-center">12 hours</td>
                   <td className="p-2 text-center">10 minutes</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">Maximum Quality</td>
                   <td className="p-2 text-center">4K</td>
                   <td className="p-2 text-center">8K</td>
                   <td className="p-2 text-center">1080p</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">Download Support</td>
                   <td className="p-2 text-center">Limited</td>
                   <td className="p-2 text-center">Premium Only</td>
                   <td className="p-2 text-center">Better</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">Privacy Controls</td>
                   <td className="p-2 text-center">Extensive</td>
                   <td className="p-2 text-center">Basic</td>
                   <td className="p-2 text-center">Limited</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">Global Reach</td>
                   <td className="p-2 text-center">Worldwide</td>
                   <td className="p-2 text-center">Worldwide</td>
@@ -240,7 +240,7 @@ export default function BlogPostFacebookVideos() {
             {/* CTA Section */}
             <div className="text-center bg-gradient-to-r from-pink-500/10 to-violet-500/10 rounded-xl p-8 border border-pink-500/20 mt-8">
               <h2 className="text-2xl font-bold mb-4">Ready to Download Facebook Videos?</h2>
-              <p className="text-white/70 mb-6">
+              <p className="text-black/70 mb-6">
                 Start downloading Facebook videos right now. It's free, fast, and easy to use!
               </p>
               <Link 

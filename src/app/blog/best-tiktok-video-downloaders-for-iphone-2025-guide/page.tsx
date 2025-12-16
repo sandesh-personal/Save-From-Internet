@@ -6,18 +6,18 @@ import Image from 'next/image';
 
 export default function BlogPostTikTokIPhone() {
   return (
-    <div className="min-h-[calc(100vh-6rem)] px-4 py-3 bg-gradient-to-br from-black via-gray-900 to-black text-white">
+    <div className="min-h-[calc(100vh-6rem)] px-4 py-3 bg-white text-black">
       <div className="max-w-4xl mx-auto space-y-8 text-sm leading-relaxed">
 
         {/* Blog Content Starts */}
         <div className="space-y-8">
           <div className="flex items-center space-x-5">
-            <h2 className="text-xl font-bold text-white">
+            <h2 className="text-xl font-bold text-black">
               Best TikTok Video Downloaders for iPhone (2025 Guide) - Top 10 Apps
             </h2>
           </div>
 
-          <div className="mt-6 text-white space-y-4">
+          <div className="mt-6 text-black space-y-4">
             <p>iPhone users face unique challenges when it comes to downloading TikTok videos. Apple's strict App Store policies and iOS security features make it difficult to find reliable TikTok downloaders that actually work. Many apps claim to download TikTok videos but end up being scams, ad-heavy, or simply don't work.</p>
 
             <p>That's why <a href="https://savefrominternet.com" target="_blank" className="text-blue-300 underline">SaveFromInternet.com</a> is the perfect solution for iPhone users. Our web-based TikTok downloader works seamlessly on Safari, Chrome, and all iOS browsers — no app installation required, no App Store restrictions, and no security concerns.</p>
@@ -56,9 +56,9 @@ export default function BlogPostTikTokIPhone() {
             </ol>
 
             <h3 className="text-lg font-semibold mt-4">📊 Top 10 TikTok Downloaders for iPhone (2025)</h3>
-            <table className="w-full text-white text-sm border border-white/20 mt-2">
+            <table className="w-full text-black text-sm border border-black/10 mt-2">
               <thead>
-                <tr className="bg-white/10">
+                <tr className="bg-black/5">
                   <th className="p-2 text-left">Tool</th>
                   <th className="p-2 text-center">Type</th>
                   <th className="p-2 text-center">No Ads</th>
@@ -67,35 +67,35 @@ export default function BlogPostTikTokIPhone() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left"><strong>SaveFromInternet.com</strong></td>
                   <td className="p-2 text-center">Web App</td>
                   <td className="p-2 text-center">✅</td>
                   <td className="p-2 text-center">✅</td>
                   <td className="p-2 text-center">⭐⭐⭐⭐⭐</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">SnapTik</td>
                   <td className="p-2 text-center">Web App</td>
                   <td className="p-2 text-center">❌</td>
                   <td className="p-2 text-center">✅</td>
                   <td className="p-2 text-center">⭐⭐⭐</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">SSSTikTok</td>
                   <td className="p-2 text-center">Web App</td>
                   <td className="p-2 text-center">❌</td>
                   <td className="p-2 text-center">✅</td>
                   <td className="p-2 text-center">⭐⭐⭐</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">TikMate</td>
                   <td className="p-2 text-center">Web App</td>
                   <td className="p-2 text-center">❌</td>
                   <td className="p-2 text-center">✅</td>
                   <td className="p-2 text-center">⭐⭐</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">TikTok Downloader</td>
                   <td className="p-2 text-center">Web App</td>
                   <td className="p-2 text-center">❌</td>
@@ -156,9 +156,9 @@ export default function BlogPostTikTokIPhone() {
 
             <h3 className="text-lg font-semibold mt-4">📊 Performance Comparison</h3>
             <p>How different methods perform on iPhone:</p>
-            <table className="w-full text-white text-sm border border-white/20 mt-2">
+            <table className="w-full text-black text-sm border border-black/10 mt-2">
               <thead>
-                <tr className="bg-white/10">
+                <tr className="bg-black/5">
                   <th className="p-2 text-left">Method</th>
                   <th className="p-2 text-center">Speed</th>
                   <th className="p-2 text-center">Quality</th>
@@ -167,21 +167,21 @@ export default function BlogPostTikTokIPhone() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">SaveFromInternet.com</td>
                   <td className="p-2 text-center">Fast</td>
                   <td className="p-2 text-center">High</td>
                   <td className="p-2 text-center">Excellent</td>
                   <td className="p-2 text-center">Very Easy</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">Screen Recording</td>
                   <td className="p-2 text-center">Slow</td>
                   <td className="p-2 text-center">Low</td>
                   <td className="p-2 text-center">Good</td>
                   <td className="p-2 text-center">Easy</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">Shortcuts</td>
                   <td className="p-2 text-center">Medium</td>
                   <td className="p-2 text-center">Medium</td>
@@ -199,9 +199,9 @@ export default function BlogPostTikTokIPhone() {
             </ul>
 
             {/* CTA Section */}
-            <div className="text-center bg-gradient-to-r from-pink-500/10 to-violet-500/10 rounded-xl p-8 border border-pink-500/20 mt-8">
+              <div className="text-center bg-gradient-to-r from-pink-500/10 to-violet-500/10 rounded-xl p-8 border border-pink-500/20 mt-8">
               <h2 className="text-2xl font-bold mb-4">Ready to Download TikTok Videos on iPhone?</h2>
-              <p className="text-white/70 mb-6">
+              <p className="text-black/70 mb-6">
                 Start downloading TikTok videos on your iPhone right now. It's free, fast, and easy to use!
               </p>
               <Link 
@@ -217,7 +217,7 @@ export default function BlogPostTikTokIPhone() {
             <p>Remember: <strong>Copy ➝ Paste ➝ Download</strong></p>
             <p>🔗 Start downloading TikTok videos on your iPhone: <a href="https://savefrominternet.com" target="_blank" className="text-blue-300 underline">https://savefrominternet.com</a></p>
           </div>
-          <p className="text-xs text-white/50">
+          <p className="text-xs text-black/50">
             Last updated: July 1, 2025
           </p>
         </div>

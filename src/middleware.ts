@@ -11,6 +11,12 @@ export function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
+  const isLocal = host.includes('localhost') || host.includes('127.0.0.1') || host.includes('0.0.0.0')
+
+  if (isLocal) {
+    return NextResponse.next()
+  }
+
   const url = request.nextUrl.clone()
 
   // Enforce HTTPS first

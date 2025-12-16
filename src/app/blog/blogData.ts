@@ -7,11 +7,11 @@ export const metadata = {
 
 export const blogPosts = [
   {
-    slug: 'download-tiktok-videos-without-watermark-2025',
-    title: 'How to Download TikTok Videos Without Watermark in 2025',
+    slug: 'tiktok-video-downloader-2025-complete-guide',
+    title: 'TikTok Video Downloader 2025 - Download TikTok Videos Without Watermark',
     image: '/images/main.png',
     lastModified: '2025-01-15T08:00:00.000Z',
-    description: 'Learn how to download your own TikTok videos without watermark in high quality using SaveFromInternet.com.'
+    description: 'Best TikTok video downloader 2025. Download TikTok videos without watermark, extract audio, save images. Free, fast, and secure TikTok video downloader.'
   },
   {
     slug: 'how-to-extract-audio-from-tiktok-videos-mp3-download',

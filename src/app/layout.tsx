@@ -117,9 +117,9 @@ export default function RootLayout({
       >
 
 {/* Global Header - visible on all pages */}
-<header className="fixed top-0 left-0 w-full bg-gradient-to-br from-black via-gray-900 to-black py-4 z-50">
+<header className="fixed top-0 left-0 w-full bg-white py-4 z-50 border-b border-gray-200">
   <div className="max-w-6xl mx-auto flex items-center justify-center select-none px-4">
-    <Link href="/" className="flex items-center gap-3 uppercase font-black tracking-wide text-xl text-white">
+    <Link href="/" className="flex items-center gap-3 uppercase font-black tracking-wide text-xl text-black">
       <img src="/logo-final.png" alt="TikTok Video Downloader - Save From Internet" className="h-10 w-auto object-contain" draggable={false} />
       <span>SAVE FROM INTERNET</span>
     </Link>
@@ -131,7 +131,7 @@ export default function RootLayout({
         {/* <div className="pt-16">
           </div> */}
           
-        <main className="flex-grow bg-gradient-to-br from-black via-gray-900 to-black text-white pt-16 pb-24">
+        <main className="flex-grow bg-white text-black pt-16 pb-24">
           {children}
         </main>
 

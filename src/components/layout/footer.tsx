@@ -8,8 +8,8 @@ export default function Footer() {
   const isHome = pathname === '/'
 
   const footerClass = isHome
-    ? 'mt-auto w-full text-center py-6 text-white text-base font-semibold bg-gradient-to-br from-black via-gray-900 to-black'
-    : 'fixed bottom-0 left-0 w-full text-center py-6 text-white text-base font-semibold bg-gradient-to-br from-black via-gray-900 to-black z-50'
+    ? 'mt-auto w-full text-center py-6 text-black text-base font-semibold bg-white border-t border-gray-200'
+    : 'fixed bottom-0 left-0 w-full text-center py-6 text-black text-base font-semibold bg-white border-t border-gray-200 z-50'
 
   return (
     <footer className={footerClass}>

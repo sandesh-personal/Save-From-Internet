@@ -6,21 +6,21 @@ import Image from 'next/image';
 
 export default function BlogPostYouTubeShorts() {
   return (
-    <div className="min-h-[calc(100vh-6rem)] px-4 py-3 bg-gradient-to-br from-black via-gray-900 to-black text-white">
+    <div className="min-h-[calc(100vh-6rem)] px-4 py-3 bg-white text-black">
       <div className="max-w-4xl mx-auto space-y-8 text-sm leading-relaxed">
 
         {/* Blog Content Starts */}
         <div className="space-y-8">
           <div className="flex items-center space-x-5">
-            <h2 className="text-xl font-bold text-white">
+            <h2 className="text-xl font-bold">
               YouTube Shorts Downloader - Save Videos Without Watermark (2025 Guide)
             </h2>
           </div>
 
-          <div className="mt-6 text-white space-y-4">
+          <div className="mt-6 space-y-4">
             <p>YouTube Shorts have revolutionized short-form video content, offering creators a powerful platform to reach millions of viewers with engaging, vertical videos. Whether you're a content creator wanting to save your own Shorts, or you need to download Shorts for legitimate purposes, finding a reliable YouTube Shorts downloader is essential.</p>
 
-            <p>That's where <a href="https://savefrominternet.com" target="_blank" className="text-blue-300 underline">SaveFromInternet.com</a> comes in. Our platform supports YouTube Shorts downloads, allowing you to save high-quality videos without any watermarks or quality loss. Perfect for content creators, marketers, educators, and anyone who needs to preserve YouTube Shorts content.</p>
+            <p>That's where <a href="https://savefrominternet.com" target="_blank" className="text-blue-600 underline">SaveFromInternet.com</a> comes in. Our platform supports YouTube Shorts downloads, allowing you to save high-quality videos without any watermarks or quality loss. Perfect for content creators, marketers, educators, and anyone who needs to preserve YouTube Shorts content.</p>
 
             <p><strong>⚠️ Disclaimer:</strong> This guide focuses on downloading your own YouTube Shorts or public content for personal use. Always respect copyright laws and creator rights.</p>
 
@@ -59,9 +59,9 @@ export default function BlogPostYouTubeShorts() {
             </ol>
 
             <h3 className="text-lg font-semibold mt-4">📊 YouTube Shorts Quality Options</h3>
-            <table className="w-full text-white text-sm border border-white/20 mt-2">
+            <table className="w-full text-sm border border-gray-200 mt-2">
               <thead>
-                <tr className="bg-white/10">
+                <tr className="bg-gray-100">
                   <th className="p-2 text-left">Quality</th>
                   <th className="p-2 text-center">Resolution</th>
                   <th className="p-2 text-center">File Size</th>
@@ -69,37 +69,37 @@ export default function BlogPostYouTubeShorts() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left">144p</td>
                   <td className="p-2 text-center">256x144</td>
                   <td className="p-2 text-center">Very Small</td>
                   <td className="p-2 text-center">Slow connections</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left">240p</td>
                   <td className="p-2 text-center">426x240</td>
                   <td className="p-2 text-center">Small</td>
                   <td className="p-2 text-center">Mobile viewing</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left">360p</td>
                   <td className="p-2 text-center">640x360</td>
                   <td className="p-2 text-center">Medium</td>
                   <td className="p-2 text-center">Standard viewing</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left">480p</td>
                   <td className="p-2 text-center">854x480</td>
                   <td className="p-2 text-center">Medium</td>
                   <td className="p-2 text-center">Good quality</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left">720p HD</td>
                   <td className="p-2 text-center">1280x720</td>
                   <td className="p-2 text-center">Large</td>
                   <td className="p-2 text-center">High quality</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left">1080p FHD</td>
                   <td className="p-2 text-center">1920x1080</td>
                   <td className="p-2 text-center">Very Large</td>
@@ -182,9 +182,9 @@ export default function BlogPostYouTubeShorts() {
             </ul>
 
             <h3 className="text-lg font-semibold mt-4">📊 Comparison: YouTube Shorts vs Other Platforms</h3>
-            <table className="w-full text-white text-sm border border-white/20 mt-2">
+            <table className="w-full text-sm border border-gray-200 mt-2">
               <thead>
-                <tr className="bg-white/10">
+                <tr className="bg-gray-100">
                   <th className="p-2 text-left">Feature</th>
                   <th className="p-2 text-center">YouTube Shorts</th>
                   <th className="p-2 text-center">TikTok</th>
@@ -192,31 +192,31 @@ export default function BlogPostYouTubeShorts() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left">Maximum Duration</td>
                   <td className="p-2 text-center">60 seconds</td>
                   <td className="p-2 text-center">10 minutes</td>
                   <td className="p-2 text-center">90 seconds</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left">Maximum Quality</td>
                   <td className="p-2 text-center">4K</td>
                   <td className="p-2 text-center">1080p</td>
                   <td className="p-2 text-center">1080p</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left">Music Library</td>
                   <td className="p-2 text-center">YouTube Music</td>
                   <td className="p-2 text-center">TikTok Sounds</td>
                   <td className="p-2 text-center">Instagram Music</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left">Monetization</td>
                   <td className="p-2 text-center">Yes</td>
                   <td className="p-2 text-center">Yes</td>
                   <td className="p-2 text-center">Limited</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left">Global Reach</td>
                   <td className="p-2 text-center">Worldwide</td>
                   <td className="p-2 text-center">Worldwide</td>
@@ -250,15 +250,15 @@ export default function BlogPostYouTubeShorts() {
 
             <h3 className="text-lg font-semibold mt-4">🔗 Related Tools</h3>
             <ul className="list-disc pl-6">
-              <li><Link href="/blog/how-to-download-tiktok-videos-without-watermark-2025" className="text-blue-300 underline">Download TikTok videos without watermark</Link></li>
-              <li><Link href="/blog/how-to-download-instagram-reels-without-watermark" className="text-blue-300 underline">Download Instagram Reels without watermark</Link></li>
-              <li><Link href="/blog/how-to-extract-audio-from-tiktok-videos-mp3-download" className="text-blue-300 underline">Extract audio from TikTok videos</Link></li>
+              <li><Link href="/blog/how-to-download-tiktok-videos-without-watermark-2025" className="text-blue-600 underline">Download TikTok videos without watermark</Link></li>
+              <li><Link href="/blog/how-to-download-instagram-reels-without-watermark" className="text-blue-600 underline">Download Instagram Reels without watermark</Link></li>
+              <li><Link href="/blog/how-to-extract-audio-from-tiktok-videos-mp3-download" className="text-blue-600 underline">Extract audio from TikTok videos</Link></li>
             </ul>
 
             {/* CTA Section */}
-            <div className="text-center bg-gradient-to-r from-pink-500/10 to-violet-500/10 rounded-xl p-8 border border-pink-500/20 mt-8">
+            <div className="text-center bg-gradient-to-r from-pink-500/10 to-violet-500/10 rounded-xl p-8 border border-pink-100 mt-8">
               <h2 className="text-2xl font-bold mb-4">Ready to Download YouTube Shorts?</h2>
-              <p className="text-white/70 mb-6">
+              <p className="text-black/70 mb-6">
                 Start downloading YouTube Shorts without watermark right now. It's free, fast, and easy to use!
               </p>
               <Link 
@@ -272,9 +272,9 @@ export default function BlogPostYouTubeShorts() {
             <h3 className="text-lg font-semibold mt-4">✅ Final Thoughts</h3>
             <p>Downloading YouTube Shorts without watermarks is now easier than ever with SaveFromInternet.com. Whether you're a content creator preserving your work or a user saving valuable content, our platform provides the perfect solution for high-quality YouTube Shorts downloads.</p>
             <p>Remember: <strong>Respect Rights ➝ Download Responsibly ➝ Preserve Quality</strong></p>
-            <p>🔗 Start downloading YouTube Shorts without watermark: <a href="https://savefrominternet.com" target="_blank" className="text-blue-300 underline">https://savefrominternet.com</a></p>
+            <p>🔗 Start downloading YouTube Shorts without watermark: <a href="https://savefrominternet.com" target="_blank" className="text-blue-600 underline">https://savefrominternet.com</a></p>
           </div>
-          <p className="text-xs text-white/50">
+          <p className="text-xs text-black/50">
             Last updated: July 1, 2025
           </p>
         </div>

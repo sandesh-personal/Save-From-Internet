@@ -6,18 +6,18 @@ import Image from 'next/image';
 
 export default function BlogPostTikTokPrivate() {
   return (
-    <div className="min-h-[calc(100vh-6rem)] px-4 py-3 bg-gradient-to-br from-black via-gray-900 to-black text-white">
+    <div className="min-h-[calc(100vh-6rem)] px-4 py-3 bg-white text-black">
       <div className="max-w-4xl mx-auto space-y-8 text-sm leading-relaxed">
 
         {/* Blog Content Starts */}
         <div className="space-y-8">
           <div className="flex items-center space-x-5">
-            <h2 className="text-xl font-bold text-white">
+            <h2 className="text-xl font-bold text-black">
               How to Download Private TikTok Videos (Legal Methods) - 2025 Guide
             </h2>
           </div>
 
-          <div className="mt-6 text-white space-y-4">
+          <div className="mt-6 text-black space-y-4">
             <p>Private TikTok videos present a unique challenge for content creators and users who need to access their own content. Whether you've accidentally made a video private, want to download your own content for backup, or need to access videos you've been granted permission to view, understanding the legal methods is crucial.</p>
 
             <p>That's where <a href="https://savefrominternet.com" target="_blank" className="text-blue-300 underline">SaveFromInternet.com</a> comes in. Our platform respects TikTok's privacy settings and only works with content you have legitimate access to. This guide focuses on legal, ethical methods for downloading private TikTok videos while respecting creator rights and platform policies.</p>
@@ -99,9 +99,9 @@ export default function BlogPostTikTokPrivate() {
 
             <h3 className="text-lg font-semibold mt-4">⚖️ Legal Framework and Rights</h3>
             <p>Understanding your rights and responsibilities:</p>
-            <table className="w-full text-white text-sm border border-white/20 mt-2">
+            <table className="w-full text-black text-sm border border-black/10 mt-2">
               <thead>
-                <tr className="bg-white/10">
+                <tr className="bg-black/5">
                   <th className="p-2 text-left">Scenario</th>
                   <th className="p-2 text-center">Legal Status</th>
                   <th className="p-2 text-center">Requirements</th>
@@ -109,25 +109,25 @@ export default function BlogPostTikTokPrivate() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">Your Own Private Videos</td>
                   <td className="p-2 text-center">✅ Legal</td>
                   <td className="p-2 text-center">Account Access</td>
                   <td className="p-2 text-center">Personal Use</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">Authorized Access</td>
                   <td className="p-2 text-center">✅ Legal</td>
                   <td className="p-2 text-center">Explicit Permission</td>
                   <td className="p-2 text-center">Respect Terms</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">Collaborative Content</td>
                   <td className="p-2 text-center">✅ Legal</td>
                   <td className="p-2 text-center">Creator Rights</td>
                   <td className="p-2 text-center">Agreement Terms</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">Unauthorized Access</td>
                   <td className="p-2 text-center">❌ Illegal</td>
                   <td className="p-2 text-center">None</td>
@@ -165,7 +165,7 @@ export default function BlogPostTikTokPrivate() {
             {/* CTA Section */}
             <div className="text-center bg-gradient-to-r from-pink-500/10 to-violet-500/10 rounded-xl p-8 border border-pink-500/20 mt-8">
               <h2 className="text-2xl font-bold mb-4">Ready to Download TikTok Videos?</h2>
-              <p className="text-white/70 mb-6">
+              <p className="text-black/70 mb-6">
                 Start downloading TikTok videos legally right now. It's free, fast, and easy to use!
               </p>
               <Link 

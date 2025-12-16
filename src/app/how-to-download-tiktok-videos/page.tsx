@@ -133,10 +133,10 @@ export default function HowToDownloadPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       
-      <div className="flex flex-col flex-grow min-h-[calc(100vh-4rem)] p-8 bg-gradient-to-br from-black via-gray-900 to-black text-white">
+      <div className="flex flex-col flex-grow min-h-[calc(100vh-4rem)] p-8 bg-white text-black">
         <div className="max-w-4xl mx-auto flex flex-col">
           <h1 className="text-4xl font-bold mb-4">How to Download TikTok Videos - Complete Guide (2025)</h1>
-          <p className="text-lg text-white/70 mb-8">
+          <p className="text-lg text-black/70 mb-8">
             Learn how to download TikTok videos step by step using our free TikTok video downloader. Download videos without watermark, extract audio, and save images easily.
           </p>
 
@@ -155,14 +155,14 @@ export default function HowToDownloadPage() {
             <h2 className="text-2xl font-bold mb-6">Step-by-Step Guide to Download TikTok Videos</h2>
             <div className="space-y-8">
               {steps.map((step, index) => (
-                <div key={index} className="bg-white/5 rounded-xl p-6 border border-white/10">
+                <div key={index} className="bg-gray-50 rounded-xl p-6 border border-gray-200">
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-gradient-to-r from-pink-500 to-violet-500 rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
                       {step.number}
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-white font-semibold text-xl mb-2">{step.title}</h3>
-                      <p className="text-white/70 text-sm leading-relaxed mb-4">{step.description}</p>
+                      <h3 className="text-black font-semibold text-xl mb-2">{step.title}</h3>
+                      <p className="text-black/70 text-sm leading-relaxed mb-4">{step.description}</p>
                       {step.image && (
                         <div className="relative w-full h-48 rounded-lg overflow-hidden">
                           <Image
@@ -195,18 +195,18 @@ export default function HowToDownloadPage() {
             <h2 className="text-2xl font-bold mb-6">Why Choose Our TikTok Video Downloader?</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {features.map((feature, index) => (
-                <div key={index} className="bg-white/5 rounded-xl p-4 border border-white/10">
-                  <h3 className="text-white font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-white/70 text-sm">{feature.description}</p>
+                <div key={index} className="bg-gray-50 rounded-xl p-4 border border-gray-200">
+                  <h3 className="text-black font-semibold mb-2">{feature.title}</h3>
+                  <p className="text-black/70 text-sm">{feature.description}</p>
                 </div>
               ))}
             </div>
           </div>
 
           {/* CTA Section */}
-          <div className="text-center bg-gradient-to-r from-pink-500/10 to-violet-500/10 rounded-xl p-8 border border-pink-500/20">
+          <div className="text-center bg-gradient-to-r from-pink-500/10 to-violet-500/10 rounded-xl p-8 border border-pink-100">
             <h2 className="text-2xl font-bold mb-4">Ready to Download TikTok Videos?</h2>
-            <p className="text-white/70 mb-6">
+            <p className="text-black/70 mb-6">
               Start downloading TikTok videos without watermark right now. It's free, fast, and easy to use!
             </p>
             <Link 
@@ -233,17 +233,17 @@ export default function HowToDownloadPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Link 
                 href="/faq"
-                className="bg-white/5 rounded-xl p-4 border border-white/10 hover:bg-white/10 transition-all duration-200"
+                className="bg-gray-50 rounded-xl p-4 border border-gray-200 hover:bg-gray-100 transition-all duration-200"
               >
-                <h3 className="text-white font-semibold mb-2">Frequently Asked Questions</h3>
-                <p className="text-white/70 text-sm">Get answers to common questions about TikTok video downloading</p>
+                <h3 className="text-black font-semibold mb-2">Frequently Asked Questions</h3>
+                <p className="text-black/70 text-sm">Get answers to common questions about TikTok video downloading</p>
               </Link>
               <Link 
                 href="/blog"
-                className="bg-white/5 rounded-xl p-4 border border-white/10 hover:bg-white/10 transition-all duration-200"
+                className="bg-gray-50 rounded-xl p-4 border border-gray-200 hover:bg-gray-100 transition-all duration-200"
               >
-                <h3 className="text-white font-semibold mb-2">TikTok Downloader Blog</h3>
-                <p className="text-white/70 text-sm">Read guides and tips for downloading TikTok content</p>
+                <h3 className="text-black font-semibold mb-2">TikTok Downloader Blog</h3>
+                <p className="text-black/70 text-sm">Read guides and tips for downloading TikTok content</p>
               </Link>
             </div>
           </div>

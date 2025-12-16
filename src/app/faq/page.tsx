@@ -180,10 +180,10 @@ export default function FAQPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       
-      <div className="flex flex-col flex-grow min-h-[calc(100vh-4rem)] p-8 bg-gradient-to-br from-black via-gray-900 to-black text-white">
+      <div className="flex flex-col flex-grow min-h-[calc(100vh-4rem)] p-8 bg-white text-black">
         <div className="max-w-4xl mx-auto flex flex-col">
           <h1 className="text-3xl font-bold mb-4">TikTok Video Downloader FAQ</h1>
-          <p className="text-lg text-white/70 mb-8">
+          <p className="text-lg text-black/70 mb-8">
             Get answers to frequently asked questions about downloading TikTok videos, extracting audio, and using our free TikTok video downloader.
           </p>
 
@@ -200,11 +200,11 @@ export default function FAQPage() {
           <div className="space-y-6">
             {faqs.map((faq, index) => (
               <div key={index}>
-                <div className="bg-white/5 rounded-xl p-6 border border-white/10">
-                  <h3 className="text-white font-semibold text-lg mb-3">
+                <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                  <h3 className="text-black font-semibold text-lg mb-3">
                     {faq.question}
                   </h3>
-                  <p className="text-white/70 text-sm leading-relaxed">
+                  <p className="text-black/70 text-sm leading-relaxed">
                     {faq.answer}
                   </p>
                 </div>

@@ -6,21 +6,21 @@ import Image from 'next/image';
 
 export default function BlogPostTikTokAudioExtract() {
   return (
-    <div className="min-h-[calc(100vh-6rem)] px-4 py-3 bg-gradient-to-br from-black via-gray-900 to-black text-white">
+    <div className="min-h-[calc(100vh-6rem)] px-4 py-3 bg-white text-black">
       <div className="max-w-4xl mx-auto space-y-8 text-sm leading-relaxed">
 
         {/* Blog Content Starts */}
         <div className="space-y-8">
           <div className="flex items-center space-x-5">
-            <h2 className="text-xl font-bold text-white">
+            <h2 className="text-xl font-bold">
               How to Extract Audio from TikTok Videos (MP3 Download) - 2025 Guide
             </h2>
           </div>
 
-          <div className="mt-6 text-white space-y-4">
+          <div className="mt-6 space-y-4">
             <p>Ever found yourself humming a catchy TikTok tune but can't find it anywhere else? Or maybe you want to use that perfect background music from a TikTok video in your own content? TikTok's audio library is a goldmine of trending sounds, original music, and viral audio clips that creators want to access.</p>
 
-            <p>That's where <a href="https://savefrominternet.com" target="_blank" className="text-blue-300 underline">SaveFromInternet.com</a> comes in. Our TikTok audio extractor lets you download the audio from any TikTok video as a high-quality MP3 file — perfect for content creators, music enthusiasts, or anyone who wants to save their favorite TikTok sounds.</p>
+            <p>That&apos;s where <a href="https://savefrominternet.com" target="_blank" className="text-blue-600 underline">SaveFromInternet.com</a> comes in. Our TikTok audio extractor lets you download the audio from any TikTok video as a high-quality MP3 file — perfect for content creators, music enthusiasts, or anyone who wants to save their favorite TikTok sounds.</p>
 
             <p><strong>⚠️ Disclaimer:</strong> This tool is designed for extracting audio from your own TikTok content or for fair use purposes. Always respect copyright laws and creator rights when using extracted audio.</p>
 
@@ -47,7 +47,7 @@ export default function BlogPostTikTokAudioExtract() {
 
             <h3 className="text-lg font-semibold mt-4">🌐 Step 3: Visit SaveFromInternet.com</h3>
             <Image src="/images/step3.jpg" alt="Visit SaveFromInternet for audio extraction" width={400} height={200} className="w-100 rounded-lg" />
-            <p>Open your web browser and go to <a href="https://savefrominternet.com" target="_blank" className="text-blue-300 underline">savefrominternet.com</a>. Our platform works on all devices — desktop, mobile, tablet — and supports all major browsers.</p>
+            <p>Open your web browser and go to <a href="https://savefrominternet.com" target="_blank" className="text-blue-600 underline">savefrominternet.com</a>. Our platform works on all devices — desktop, mobile, tablet — and supports all major browsers.</p>
 
             <h3 className="text-lg font-semibold mt-4">🎬 Step 4: Paste Link and Select Audio Option</h3>
             <Image src="/images/step4.jpg" alt="Select audio download option" width={400} height={200} className="w-100 rounded-lg" />
@@ -65,9 +65,9 @@ export default function BlogPostTikTokAudioExtract() {
 
             <h3 className="text-lg font-semibold mt-4">🎧 Audio Quality & Formats</h3>
             <p>SaveFromInternet extracts audio in the following formats:</p>
-            <table className="w-full text-white text-sm border border-white/20 mt-2">
+            <table className="w-full text-sm border border-gray-200 mt-2">
               <thead>
-                <tr className="bg-white/10">
+                <tr className="bg-gray-100">
                   <th className="p-2 text-left">Format</th>
                   <th className="p-2 text-center">Quality</th>
                   <th className="p-2 text-center">File Size</th>
@@ -75,13 +75,13 @@ export default function BlogPostTikTokAudioExtract() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left">MP3</td>
                   <td className="p-2 text-center">128-320 kbps</td>
                   <td className="p-2 text-center">Small</td>
                   <td className="p-2 text-center">Universal</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left">M4A</td>
                   <td className="p-2 text-center">AAC Quality</td>
                   <td className="p-2 text-center">Medium</td>
@@ -126,15 +126,15 @@ export default function BlogPostTikTokAudioExtract() {
 
             <h3 className="text-lg font-semibold mt-4">🔗 Related Tools</h3>
             <ul className="list-disc pl-6">
-              <li><Link href="/blog/how-to-download-tiktok-videos-without-watermark-2025" className="text-blue-300 underline">Download TikTok videos without watermark</Link></li>
-              <li><Link href="/blog/how-to-download-tiktok-photos-and-image-carousels" className="text-blue-300 underline">Download TikTok photos and images</Link></li>
-              <li><Link href="/blog/best-tiktok-video-downloaders-for-iphone-2025-guide" className="text-blue-300 underline">TikTok downloader for iPhone</Link></li>
+              <li><Link href="/blog/how-to-download-tiktok-videos-without-watermark-2025" className="text-blue-600 underline">Download TikTok videos without watermark</Link></li>
+              <li><Link href="/blog/how-to-download-tiktok-photos-and-image-carousels" className="text-blue-600 underline">Download TikTok photos and images</Link></li>
+              <li><Link href="/blog/best-tiktok-video-downloaders-for-iphone-2025-guide" className="text-blue-600 underline">TikTok downloader for iPhone</Link></li>
             </ul>
 
             {/* CTA Section */}
-            <div className="text-center bg-gradient-to-r from-pink-500/10 to-violet-500/10 rounded-xl p-8 border border-pink-500/20 mt-8">
+            <div className="text-center bg-gradient-to-r from-pink-500/10 to-violet-500/10 rounded-xl p-8 border border-pink-100 mt-8">
               <h2 className="text-2xl font-bold mb-4">Ready to Extract TikTok Audio?</h2>
-              <p className="text-white/70 mb-6">
+              <p className="text-black/70 mb-6">
                 Start extracting MP3 audio from TikTok videos right now. It's free, fast, and easy to use!
               </p>
               <Link 
@@ -148,9 +148,9 @@ export default function BlogPostTikTokAudioExtract() {
             <h3 className="text-lg font-semibold mt-4">✅ Final Thoughts</h3>
             <p>TikTok audio extraction opens up endless possibilities for content creators and music enthusiasts. With SaveFromInternet.com, you can easily extract high-quality MP3 files from any TikTok video in just a few clicks.</p>
             <p>Remember: <strong>Copy ➝ Paste ➝ Extract Audio</strong></p>
-            <p>🔗 Start extracting TikTok audio now: <a href="https://savefrominternet.com" target="_blank" className="text-blue-300 underline">https://savefrominternet.com</a></p>
+            <p>🔗 Start extracting TikTok audio now: <a href="https://savefrominternet.com" target="_blank" className="text-blue-600 underline">https://savefrominternet.com</a></p>
           </div>
-          <p className="text-xs text-white/50">
+          <p className="text-xs text-black/50">
             Last updated: July 1, 2025
           </p>
         </div>

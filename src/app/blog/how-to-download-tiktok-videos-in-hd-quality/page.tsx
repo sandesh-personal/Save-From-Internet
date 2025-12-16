@@ -6,18 +6,18 @@ import Image from 'next/image';
 
 export default function BlogPostTikTokHD() {
   return (
-    <div className="min-h-[calc(100vh-6rem)] px-4 py-3 bg-gradient-to-br from-black via-gray-900 to-black text-white">
+    <div className="min-h-[calc(100vh-6rem)] px-4 py-3 bg-white text-black">
       <div className="max-w-4xl mx-auto space-y-8 text-sm leading-relaxed">
 
         {/* Blog Content Starts */}
         <div className="space-y-8">
           <div className="flex items-center space-x-5">
-            <h2 className="text-xl font-bold text-white">
+            <h2 className="text-xl font-bold text-black">
               How to Download TikTok Videos in HD Quality - Complete Guide 2025
             </h2>
           </div>
 
-          <div className="mt-6 text-white space-y-4">
+          <div className="mt-6 text-black space-y-4">
             <p>High-definition TikTok videos offer stunning visual quality that makes your content look professional and engaging. Whether you're a content creator wanting to preserve your work in the best possible quality, or a viewer who appreciates crisp, clear videos, understanding how to download TikTok videos in HD is essential.</p>
 
             <p>That's where <a href="https://savefrominternet.com" target="_blank" className="text-blue-300 underline">SaveFromInternet.com</a> comes in. Our platform automatically detects and downloads TikTok videos in their highest available quality, ensuring you get the best possible resolution and clarity. From 720p to 4K, we preserve the original video quality without any compression or quality loss.</p>
@@ -34,9 +34,9 @@ export default function BlogPostTikTokHD() {
             </ul>
 
             <h3 className="text-lg font-semibold mt-4">📊 TikTok Video Quality Comparison</h3>
-            <table className="w-full text-white text-sm border border-white/20 mt-2">
+            <table className="w-full text-black text-sm border border-black/10 mt-2">
               <thead>
-                <tr className="bg-white/10">
+                <tr className="bg-black/5">
                   <th className="p-2 text-left">Quality</th>
                   <th className="p-2 text-center">Resolution</th>
                   <th className="p-2 text-center">File Size</th>
@@ -45,28 +45,28 @@ export default function BlogPostTikTokHD() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">SD (Standard)</td>
                   <td className="p-2 text-center">480p</td>
                   <td className="p-2 text-center">Small</td>
                   <td className="p-2 text-center">Mobile viewing</td>
                   <td className="p-2 text-center">All videos</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">HD (High Definition)</td>
                   <td className="p-2 text-center">720p</td>
                   <td className="p-2 text-center">Medium</td>
                   <td className="p-2 text-center">General use</td>
                   <td className="p-2 text-center">Most videos</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">FHD (Full HD)</td>
                   <td className="p-2 text-center">1080p</td>
                   <td className="p-2 text-center">Large</td>
                   <td className="p-2 text-center">Professional use</td>
                   <td className="p-2 text-center">Many videos</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">4K (Ultra HD)</td>
                   <td className="p-2 text-center">2160p</td>
                   <td className="p-2 text-center">Very Large</td>
@@ -112,36 +112,36 @@ export default function BlogPostTikTokHD() {
             </ul>
 
             <h3 className="text-lg font-semibold mt-4">📊 Quality Comparison: SaveFromInternet vs Others</h3>
-            <table className="w-full text-white text-sm border border-white/20 mt-2">
+            <table className="w-full text-black text-sm border border-black/10 mt-2">
               <thead>
-                <tr className="bg-white/10">
+                <tr className="bg-black/5">
                   <th className="p-2 text-left">Feature</th>
                   <th className="p-2 text-center">SaveFromInternet</th>
                   <th className="p-2 text-center">Other Tools</th>
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">Maximum Quality</td>
                   <td className="p-2 text-center">Original HD/4K</td>
                   <td className="p-2 text-center">Often Limited</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">Quality Loss</td>
                   <td className="p-2 text-center">None</td>
                   <td className="p-2 text-center">Common</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">Format Support</td>
                   <td className="p-2 text-center">All Formats</td>
                   <td className="p-2 text-center">Limited</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">Download Speed</td>
                   <td className="p-2 text-center">Fast</td>
                   <td className="p-2 text-center">Variable</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">Watermarks</td>
                   <td className="p-2 text-center">None</td>
                   <td className="p-2 text-center">Often Present</td>
@@ -218,7 +218,7 @@ export default function BlogPostTikTokHD() {
             {/* CTA Section */}
             <div className="text-center bg-gradient-to-r from-pink-500/10 to-violet-500/10 rounded-xl p-8 border border-pink-500/20 mt-8">
               <h2 className="text-2xl font-bold mb-4">Ready to Download TikTok Videos in HD?</h2>
-              <p className="text-white/70 mb-6">
+              <p className="text-black/70 mb-6">
                 Start downloading TikTok videos in HD quality right now. It's free, fast, and easy to use!
               </p>
               <Link 
@@ -234,7 +234,7 @@ export default function BlogPostTikTokHD() {
             <p>Remember: <strong>Quality Matters ➝ Choose HD ➝ Download Excellence</strong></p>
             <p>🔗 Start downloading TikTok videos in HD quality: <a href="https://savefrominternet.com" target="_blank" className="text-blue-300 underline">https://savefrominternet.com</a></p>
           </div>
-          <p className="text-xs text-white/50">
+          <p className="text-xs text-black/50">
             Last updated: July 1, 2025
           </p>
         </div>

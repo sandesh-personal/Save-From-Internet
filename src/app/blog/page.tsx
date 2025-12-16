@@ -28,10 +28,11 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   return (
-    <div className="flex flex-col flex-grow min-h-[calc(100vh-4rem)] p-8 bg-gradient-to-br from-black via-gray-900 to-black text-white">
+    <div className="flex flex-col flex-grow min-h-[calc(100vh-4rem)] p-8 bg-white text-black">
       <div className="max-w-4xl mx-auto flex flex-col">
 
-        <h1 className="text-3xl font-bold mb-8">Blog</h1>
+        <h1 className="text-3xl font-bold mb-2">TikTok Downloader Blog</h1>
+        <p className="text-gray-600 mb-8">Guides, tips, and tutorials for downloading TikTok videos, audio, and images</p>
 
         {/* Top Ad */}
         <div className="mb-8">
@@ -48,24 +49,28 @@ export default function BlogPage() {
             <div key={post.slug}>
               <Link
                 href={`/blog/${post.slug}`}
-                className="block bg-white/10 hover:bg-white/20 p-4 rounded-lg transition"
+                className="block bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg hover:border-gray-300 transition-all duration-200 group"
               >
-                <div className="flex items-center space-x-4">
-                  <div className="w-20 h-20 relative rounded overflow-hidden flex-shrink-0">
+                <div className="flex flex-col md:flex-row items-start space-y-4 md:space-y-0 md:space-x-6">
+                  <div className="w-full md:w-32 h-24 relative rounded-lg overflow-hidden flex-shrink-0 bg-gray-100">
                     <Image
                       src={post.image}
                       alt={post.title}
                       fill
-                      className="object-cover"
-                      sizes="80px"
-                      priority
+                      className="object-cover group-hover:scale-105 transition-transform duration-200"
+                      sizes="128px"
+                      priority={index < 3}
                     />
                   </div>
-                  <div>
-                    <h2 className="text-xl font-semibold text-white">{post.title}</h2>
-                    <p className="text-sm text-white/70 mt-1">{post.description}</p>
-                    <p className="text-xs text-white/50 mt-1">
-                      Last updated:{' '}
+                  <div className="flex-1 min-w-0">
+                    <h2 className="text-xl font-semibold text-gray-900 group-hover:text-pink-600 transition-colors duration-200 mb-2">
+                      {post.title}
+                    </h2>
+                    <p className="text-gray-600 mb-3">
+                      {post.description}
+                    </p>
+                    <p className="text-sm text-gray-500">
+                      Last updated: {' '}
                       {new Date(post.lastModified).toLocaleDateString('en-US', {
                         year: 'numeric',
                         month: 'short',

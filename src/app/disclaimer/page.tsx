@@ -23,11 +23,11 @@ export const metadata: Metadata = {
 
 export default function DisclaimerPage() {
   return (
-    <div className="flex flex-col flex-grow min-h-[calc(100vh-4rem)] p-8 bg-gradient-to-br from-black via-gray-900 to-black text-white">
+    <div className="flex flex-col flex-grow min-h-[calc(100vh-4rem)] p-8 bg-white text-black">
       <div className="max-w-4xl mx-auto flex flex-col">
 
         <h1 className="text-4xl font-bold mb-6">Disclaimer</h1>
-        <p className="text-white/80 leading-relaxed text-lg mb-6">
+        <p className="text-black/80 leading-relaxed text-lg mb-6">
           The content provided on <strong>Save From Internet</strong> is for general informational purposes only.
           We do not host or store any video, audio, or image files on our servers. All media remains the property
           of its respective owners. Users are solely responsible for how they use the downloaded content.

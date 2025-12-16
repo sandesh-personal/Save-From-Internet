@@ -6,18 +6,18 @@ import Image from 'next/image';
 
 export default function BlogPostTikTokPhotos() {
   return (
-    <div className="min-h-[calc(100vh-6rem)] px-4 py-3 bg-gradient-to-br from-black via-gray-900 to-black text-white">
+    <div className="min-h-[calc(100vh-6rem)] px-4 py-3 bg-white text-black">
       <div className="max-w-4xl mx-auto space-y-8 text-sm leading-relaxed">
 
         {/* Blog Content Starts */}
         <div className="space-y-8">
           <div className="flex items-center space-x-5">
-            <h2 className="text-xl font-bold text-white">
+            <h2 className="text-xl font-bold text-black">
               How to Download TikTok Photos and Image Carousels - Complete Guide 2025
             </h2>
           </div>
 
-          <div className="mt-6 text-white space-y-4">
+          <div className="mt-6 text-black space-y-4">
             <p>TikTok isn't just about videos anymore. The platform has evolved to include stunning photo carousels, high-quality images, and visual content that creators want to save and share. Whether it's a beautiful photography series, a meme collection, or important visual information, TikTok's image content is worth preserving.</p>
 
             <p>That's where <a href="https://savefrominternet.com" target="_blank" className="text-blue-300 underline">SaveFromInternet.com</a> comes in. Our TikTok image downloader lets you save photos and image carousels in their original quality — perfect for content creators, photographers, or anyone who wants to preserve TikTok's visual content.</p>
@@ -75,9 +75,9 @@ export default function BlogPostTikTokPhotos() {
 
             <h3 className="text-lg font-semibold mt-4">🖼️ Photo Quality & Formats</h3>
             <p>SaveFromInternet downloads photos in the following formats:</p>
-            <table className="w-full text-white text-sm border border-white/20 mt-2">
+            <table className="w-full text-black text-sm border border-black/10 mt-2">
               <thead>
-                <tr className="bg-white/10">
+                <tr className="bg-black/5">
                   <th className="p-2 text-left">Format</th>
                   <th className="p-2 text-center">Quality</th>
                   <th className="p-2 text-center">Resolution</th>
@@ -85,19 +85,19 @@ export default function BlogPostTikTokPhotos() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">JPEG</td>
                   <td className="p-2 text-center">Original</td>
                   <td className="p-2 text-center">Up to 4K</td>
                   <td className="p-2 text-center">Optimized</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">PNG</td>
                   <td className="p-2 text-center">Lossless</td>
                   <td className="p-2 text-center">Original</td>
                   <td className="p-2 text-center">Larger</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">ZIP</td>
                   <td className="p-2 text-center">Carousel</td>
                   <td className="p-2 text-center">All Photos</td>
@@ -162,7 +162,7 @@ export default function BlogPostTikTokPhotos() {
             {/* CTA Section */}
             <div className="text-center bg-gradient-to-r from-pink-500/10 to-violet-500/10 rounded-xl p-8 border border-pink-500/20 mt-8">
               <h2 className="text-2xl font-bold mb-4">Ready to Download TikTok Photos?</h2>
-              <p className="text-white/70 mb-6">
+              <p className="text-black/70 mb-6">
                 Start downloading TikTok photos and image carousels right now. It's free, fast, and easy to use!
               </p>
               <Link 

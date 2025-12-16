@@ -6,21 +6,21 @@ import Image from 'next/image';
 
 export default function BlogPostTikTokChromeExtension() {
   return (
-    <div className="min-h-[calc(100vh-6rem)] px-4 py-3 bg-gradient-to-br from-black via-gray-900 to-black text-white">
+    <div className="min-h-[calc(100vh-6rem)] px-4 py-3 bg-white text-black">
       <div className="max-w-4xl mx-auto space-y-8 text-sm leading-relaxed">
 
         {/* Blog Content Starts */}
         <div className="space-y-8">
           <div className="flex items-center space-x-5">
-            <h2 className="text-xl font-bold text-white">
+            <h2 className="text-xl font-bold">
               TikTok Video Downloader Chrome Extension Guide - 2025 Complete Tutorial
             </h2>
           </div>
 
-          <div className="mt-6 text-white space-y-4">
+          <div className="mt-6 space-y-4">
             <p>Chrome extensions offer a convenient way to download TikTok videos directly from your browser. While they can be useful, they also come with their own set of advantages and limitations. Understanding how to use them safely and effectively is crucial for getting the best results.</p>
 
-            <p>That's why <a href="https://savefrominternet.com" target="_blank" className="text-blue-300 underline">SaveFromInternet.com</a> remains the most reliable option. Our web-based solution works in any browser without requiring extensions, eliminating the need for additional software while providing superior functionality and security. However, if you prefer Chrome extensions, this guide will help you make informed decisions.</p>
+            <p>That's why <a href="https://savefrominternet.com" target="_blank" className="text-blue-600 underline">SaveFromInternet.com</a> remains the most reliable option. Our web-based solution works in any browser without requiring extensions, eliminating the need for additional software while providing superior functionality and security. However, if you prefer Chrome extensions, this guide will help you make informed decisions.</p>
 
             <p><strong>⚠️ Disclaimer:</strong> This guide focuses on legal methods for downloading your own TikTok content or public videos for personal use. Always respect copyright laws and creator rights.</p>
 
@@ -67,9 +67,9 @@ export default function BlogPostTikTokChromeExtension() {
             </ul>
 
             <h3 className="text-lg font-semibold mt-4">📊 Top 5 TikTok Chrome Extensions (2025)</h3>
-            <table className="w-full text-white text-sm border border-white/20 mt-2">
+            <table className="w-full text-sm border border-gray-200 mt-2">
               <thead>
-                <tr className="bg-white/10">
+                <tr className="bg-gray-100">
                   <th className="p-2 text-left">Extension</th>
                   <th className="p-2 text-center">Rating</th>
                   <th className="p-2 text-center">No Ads</th>
@@ -78,35 +78,35 @@ export default function BlogPostTikTokChromeExtension() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left">TikTok Downloader</td>
                   <td className="p-2 text-center">⭐⭐⭐</td>
                   <td className="p-2 text-center">❌</td>
                   <td className="p-2 text-center">✅</td>
                   <td className="p-2 text-center">⭐⭐⭐</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left">Video Downloader Pro</td>
                   <td className="p-2 text-center">⭐⭐</td>
                   <td className="p-2 text-center">❌</td>
                   <td className="p-2 text-center">❌</td>
                   <td className="p-2 text-center">⭐⭐</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left">TikTok Saver</td>
                   <td className="p-2 text-center">⭐⭐⭐</td>
                   <td className="p-2 text-center">❌</td>
                   <td className="p-2 text-center">✅</td>
                   <td className="p-2 text-center">⭐⭐⭐</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left">Social Media Downloader</td>
                   <td className="p-2 text-center">⭐⭐</td>
                   <td className="p-2 text-center">❌</td>
                   <td className="p-2 text-center">❌</td>
                   <td className="p-2 text-center">⭐⭐</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left">TikTok Video Download</td>
                   <td className="p-2 text-center">⭐⭐</td>
                   <td className="p-2 text-center">❌</td>
@@ -169,41 +169,41 @@ export default function BlogPostTikTokChromeExtension() {
             </ul>
 
             <h3 className="text-lg font-semibold mt-4">📊 Comparison: Extensions vs. SaveFromInternet.com</h3>
-            <table className="w-full text-white text-sm border border-white/20 mt-2">
+            <table className="w-full text-sm border border-gray-200 mt-2">
               <thead>
-                <tr className="bg-white/10">
+                <tr className="bg-gray-100">
                   <th className="p-2 text-left">Feature</th>
                   <th className="p-2 text-center">Chrome Extensions</th>
                   <th className="p-2 text-center">SaveFromInternet.com</th>
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left">Browser Compatibility</td>
                   <td className="p-2 text-center">Chrome Only</td>
                   <td className="p-2 text-center">All Browsers</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left">Installation Required</td>
                   <td className="p-2 text-center">Yes</td>
                   <td className="p-2 text-center">No</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left">Security Risk</td>
                   <td className="p-2 text-center">Medium</td>
                   <td className="p-2 text-center">Low</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left">Feature Set</td>
                   <td className="p-2 text-center">Limited</td>
                   <td className="p-2 text-center">Complete</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left">Reliability</td>
                   <td className="p-2 text-center">Variable</td>
                   <td className="p-2 text-center">High</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left">Privacy Protection</td>
                   <td className="p-2 text-center">Questionable</td>
                   <td className="p-2 text-center">Excellent</td>
@@ -213,15 +213,15 @@ export default function BlogPostTikTokChromeExtension() {
 
             <h3 className="text-lg font-semibold mt-4">🔗 Related Tools</h3>
             <ul className="list-disc pl-6">
-              <li><Link href="/blog/how-to-download-tiktok-videos-without-watermark-2025" className="text-blue-300 underline">Download TikTok videos without watermark</Link></li>
-              <li><Link href="/blog/how-to-extract-audio-from-tiktok-videos-mp3-download" className="text-blue-300 underline">Extract audio from TikTok videos</Link></li>
-              <li><Link href="/blog/best-tiktok-video-downloaders-for-iphone-2025-guide" className="text-blue-300 underline">TikTok downloader for iPhone</Link></li>
+              <li><Link href="/blog/how-to-download-tiktok-videos-without-watermark-2025" className="text-blue-600 underline">Download TikTok videos without watermark</Link></li>
+              <li><Link href="/blog/how-to-extract-audio-from-tiktok-videos-mp3-download" className="text-blue-600 underline">Extract audio from TikTok videos</Link></li>
+              <li><Link href="/blog/best-tiktok-video-downloaders-for-iphone-2025-guide" className="text-blue-600 underline">TikTok downloader for iPhone</Link></li>
             </ul>
 
             {/* CTA Section */}
-            <div className="text-center bg-gradient-to-r from-pink-500/10 to-violet-500/10 rounded-xl p-8 border border-pink-500/20 mt-8">
+            <div className="text-center bg-gradient-to-r from-pink-500/10 to-violet-500/10 rounded-xl p-8 border border-pink-100 mt-8">
               <h2 className="text-2xl font-bold mb-4">Ready to Download TikTok Videos?</h2>
-              <p className="text-white/70 mb-6">
+              <p className="text-black/70 mb-6">
                 Start downloading TikTok videos right now. It's free, fast, and easy to use!
               </p>
               <Link 
@@ -235,9 +235,9 @@ export default function BlogPostTikTokChromeExtension() {
             <h3 className="text-lg font-semibold mt-4">✅ Final Thoughts</h3>
             <p>While Chrome extensions can be convenient, they come with significant limitations and security risks. SaveFromInternet.com provides a superior alternative that's more secure, reliable, and feature-rich. No installation required, no browser restrictions, and no privacy concerns.</p>
             <p>Remember: <strong>Security First ➝ Choose Wisely ➝ Download Safely</strong></p>
-            <p>🔗 Try the better alternative: <a href="https://savefrominternet.com" target="_blank" className="text-blue-300 underline">https://savefrominternet.com</a></p>
+            <p>🔗 Try the better alternative: <a href="https://savefrominternet.com" target="_blank" className="text-blue-600 underline">https://savefrominternet.com</a></p>
           </div>
-          <p className="text-xs text-white/50">
+          <p className="text-xs text-black/50">
             Last updated: July 1, 2025
           </p>
         </div>

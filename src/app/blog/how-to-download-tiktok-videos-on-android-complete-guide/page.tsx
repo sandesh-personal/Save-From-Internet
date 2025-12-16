@@ -6,18 +6,18 @@ import Image from 'next/image';
 
 export default function BlogPostTikTokAndroid() {
   return (
-    <div className="min-h-[calc(100vh-6rem)] px-4 py-3 bg-gradient-to-br from-black via-gray-900 to-black text-white">
+    <div className="min-h-[calc(100vh-6rem)] px-4 py-3 bg-white text-black">
       <div className="max-w-4xl mx-auto space-y-8 text-sm leading-relaxed">
 
         {/* Blog Content Starts */}
         <div className="space-y-8">
           <div className="flex items-center space-x-5">
-            <h2 className="text-xl font-bold text-white">
+            <h2 className="text-xl font-bold text-black">
               How to Download TikTok Videos on Android (Complete Guide 2025)
             </h2>
           </div>
 
-          <div className="mt-6 text-white space-y-4">
+          <div className="mt-6 text-black space-y-4">
             <p>Android users have more options for downloading TikTok videos compared to iPhone users, but that doesn't mean it's always easy. While Android's open ecosystem allows for more flexibility, it also means navigating through countless apps, some of which are unreliable, ad-heavy, or potentially harmful.</p>
 
             <p>That's why <a href="https://savefrominternet.com" target="_blank" className="text-blue-300 underline">SaveFromInternet.com</a> is the perfect solution for Android users. Our web-based TikTok downloader works flawlessly on Chrome, Firefox, Samsung Internet, and all Android browsers — no app installation required, no permissions needed, and no security risks.</p>
@@ -58,9 +58,9 @@ export default function BlogPostTikTokAndroid() {
             </ol>
 
             <h3 className="text-lg font-semibold mt-4">📊 Top 10 TikTok Downloaders for Android (2025)</h3>
-            <table className="w-full text-white text-sm border border-white/20 mt-2">
+            <table className="w-full text-black text-sm border border-black/10 mt-2">
               <thead>
-                <tr className="bg-white/10">
+                <tr className="bg-black/5">
                   <th className="p-2 text-left">Tool</th>
                   <th className="p-2 text-center">Type</th>
                   <th className="p-2 text-center">No Ads</th>
@@ -69,35 +69,35 @@ export default function BlogPostTikTokAndroid() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left"><strong>SaveFromInternet.com</strong></td>
                   <td className="p-2 text-center">Web App</td>
                   <td className="p-2 text-center">✅</td>
                   <td className="p-2 text-center">✅</td>
                   <td className="p-2 text-center">⭐⭐⭐⭐⭐</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">SnapTik</td>
                   <td className="p-2 text-center">Web App</td>
                   <td className="p-2 text-center">❌</td>
                   <td className="p-2 text-center">✅</td>
                   <td className="p-2 text-center">⭐⭐⭐</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">SSSTikTok</td>
                   <td className="p-2 text-center">Web App</td>
                   <td className="p-2 text-center">❌</td>
                   <td className="p-2 text-center">✅</td>
                   <td className="p-2 text-center">⭐⭐⭐</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">TikTok Downloader</td>
                   <td className="p-2 text-center">Play Store App</td>
                   <td className="p-2 text-center">❌</td>
                   <td className="p-2 text-center">❌</td>
                   <td className="p-2 text-center">⭐⭐</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">Video Downloader</td>
                   <td className="p-2 text-center">Play Store App</td>
                   <td className="p-2 text-center">❌</td>
@@ -163,9 +163,9 @@ export default function BlogPostTikTokAndroid() {
 
             <h3 className="text-lg font-semibold mt-4">📊 Performance Comparison</h3>
             <p>How different methods perform on Android:</p>
-            <table className="w-full text-white text-sm border border-white/20 mt-2">
+            <table className="w-full text-black text-sm border border-black/10 mt-2">
               <thead>
-                <tr className="bg-white/10">
+                <tr className="bg-black/5">
                   <th className="p-2 text-left">Method</th>
                   <th className="p-2 text-center">Speed</th>
                   <th className="p-2 text-center">Quality</th>
@@ -174,28 +174,28 @@ export default function BlogPostTikTokAndroid() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">SaveFromInternet.com</td>
                   <td className="p-2 text-center">Fast</td>
                   <td className="p-2 text-center">High</td>
                   <td className="p-2 text-center">Excellent</td>
                   <td className="p-2 text-center">⭐⭐⭐⭐⭐</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">Play Store Apps</td>
                   <td className="p-2 text-center">Medium</td>
                   <td className="p-2 text-center">Medium</td>
                   <td className="p-2 text-center">Poor</td>
                   <td className="p-2 text-center">⭐⭐</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">APK Downloads</td>
                   <td className="p-2 text-center">Fast</td>
                   <td className="p-2 text-center">High</td>
                   <td className="p-2 text-center">Poor</td>
                   <td className="p-2 text-center">⭐</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">Screen Recording</td>
                   <td className="p-2 text-center">Slow</td>
                   <td className="p-2 text-center">Low</td>
@@ -225,7 +225,7 @@ export default function BlogPostTikTokAndroid() {
             {/* CTA Section */}
             <div className="text-center bg-gradient-to-r from-pink-500/10 to-violet-500/10 rounded-xl p-8 border border-pink-500/20 mt-8">
               <h2 className="text-2xl font-bold mb-4">Ready to Download TikTok Videos on Android?</h2>
-              <p className="text-white/70 mb-6">
+              <p className="text-black/70 mb-6">
                 Start downloading TikTok videos on your Android device right now. It's free, fast, and easy to use!
               </p>
               <Link 
@@ -241,7 +241,7 @@ export default function BlogPostTikTokAndroid() {
             <p>Remember: <strong>Copy ➝ Paste ➝ Download</strong></p>
             <p>🔗 Start downloading TikTok videos on your Android device: <a href="https://savefrominternet.com" target="_blank" className="text-blue-300 underline">https://savefrominternet.com</a></p>
           </div>
-          <p className="text-xs text-white/50">
+          <p className="text-xs text-black/50">
             Last updated: July 1, 2025
           </p>
         </div>

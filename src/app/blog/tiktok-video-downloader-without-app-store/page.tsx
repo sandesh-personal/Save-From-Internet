@@ -6,21 +6,21 @@ import Image from 'next/image';
 
 export default function BlogPostTikTokNoAppStore() {
   return (
-    <div className="min-h-[calc(100vh-6rem)] px-4 py-3 bg-gradient-to-br from-black via-gray-900 to-black text-white">
+    <div className="min-h-[calc(100vh-6rem)] px-4 py-3 bg-white text-black">
       <div className="max-w-4xl mx-auto space-y-8 text-sm leading-relaxed">
 
         {/* Blog Content Starts */}
         <div className="space-y-8">
           <div className="flex items-center space-x-5">
-            <h2 className="text-xl font-bold text-white">
+            <h2 className="text-xl font-bold">
               TikTok Video Downloader Without App Store - Best Alternatives 2025
             </h2>
           </div>
 
-          <div className="mt-6 text-white space-y-4">
+          <div className="mt-6 space-y-4">
             <p>App Store restrictions and limitations often prevent users from accessing the best TikTok downloader tools. Whether you're on iOS where Apple blocks most downloader apps, or you simply prefer not to install additional software, finding reliable alternatives that don't require App Store installation is crucial.</p>
 
-            <p>That's where <a href="https://savefrominternet.com" target="_blank" className="text-blue-300 underline">SaveFromInternet.com</a> comes in. Our web-based TikTok downloader works perfectly without any App Store installation, providing all the functionality you need directly in your browser. No downloads, no installations, no App Store restrictions — just pure, reliable TikTok downloading power.</p>
+            <p>That's where <a href="https://savefrominternet.com" target="_blank" className="text-blue-600 underline">SaveFromInternet.com</a> comes in. Our web-based TikTok downloader works perfectly without any App Store installation, providing all the functionality you need directly in your browser. No downloads, no installations, no App Store restrictions — just pure, reliable TikTok downloading power.</p>
 
             <p><strong>⚠️ Disclaimer:</strong> This guide focuses on legal methods for downloading your own TikTok content or public videos for personal use. Always respect copyright laws and creator rights.</p>
 
@@ -59,9 +59,9 @@ export default function BlogPostTikTokNoAppStore() {
             </ol>
 
             <h3 className="text-lg font-semibold mt-4">📊 Top 10 No-App-Store TikTok Downloaders (2025)</h3>
-            <table className="w-full text-white text-sm border border-white/20 mt-2">
+            <table className="w-full text-sm border border-gray-200 mt-2">
               <thead>
-                <tr className="bg-white/10">
+                <tr className="bg-gray-100">
                   <th className="p-2 text-left">Tool</th>
                   <th className="p-2 text-center">Type</th>
                   <th className="p-2 text-center">No Ads</th>
@@ -70,35 +70,35 @@ export default function BlogPostTikTokNoAppStore() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left"><strong>SaveFromInternet.com</strong></td>
                   <td className="p-2 text-center">Web App</td>
                   <td className="p-2 text-center">✅</td>
                   <td className="p-2 text-center">✅</td>
                   <td className="p-2 text-center">⭐⭐⭐⭐⭐</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left">SnapTik</td>
                   <td className="p-2 text-center">Web App</td>
                   <td className="p-2 text-center">❌</td>
                   <td className="p-2 text-center">✅</td>
                   <td className="p-2 text-center">⭐⭐⭐</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left">SSSTikTok</td>
                   <td className="p-2 text-center">Web App</td>
                   <td className="p-2 text-center">❌</td>
                   <td className="p-2 text-center">✅</td>
                   <td className="p-2 text-center">⭐⭐⭐</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left">TikMate</td>
                   <td className="p-2 text-center">Web App</td>
                   <td className="p-2 text-center">❌</td>
                   <td className="p-2 text-center">✅</td>
                   <td className="p-2 text-center">⭐⭐</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left">TikTok Downloader</td>
                   <td className="p-2 text-center">Web App</td>
                   <td className="p-2 text-center">❌</td>
@@ -179,41 +179,41 @@ export default function BlogPostTikTokNoAppStore() {
             </ul>
 
             <h3 className="text-lg font-semibold mt-4">📊 Comparison: App Store vs No-App-Store Solutions</h3>
-            <table className="w-full text-white text-sm border border-white/20 mt-2">
+            <table className="w-full text-sm border border-gray-200 mt-2">
               <thead>
-                <tr className="bg-white/10">
+                <tr className="bg-gray-100">
                   <th className="p-2 text-left">Feature</th>
                   <th className="p-2 text-center">App Store Apps</th>
                   <th className="p-2 text-center">Web-Based Tools</th>
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left">Installation Required</td>
                   <td className="p-2 text-center">Yes</td>
                   <td className="p-2 text-center">No</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left">Storage Space</td>
                   <td className="p-2 text-center">Uses Device Storage</td>
                   <td className="p-2 text-center">No Storage Used</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left">Platform Restrictions</td>
                   <td className="p-2 text-center">App Store Dependent</td>
                   <td className="p-2 text-center">Universal Access</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-center">Security Risk</td>
                   <td className="p-2 text-center">Medium</td>
                   <td className="p-2 text-center">Low</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left">Update Process</td>
                   <td className="p-2 text-center">Manual Updates</td>
                   <td className="p-2 text-center">Automatic</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-gray-200">
                   <td className="p-2 text-left">Removal</td>
                   <td className="p-2 text-center">Uninstall Required</td>
                   <td className="p-2 text-center">Close Tab</td>
@@ -244,15 +244,15 @@ export default function BlogPostTikTokNoAppStore() {
 
             <h3 className="text-lg font-semibold mt-4">🔗 Related Tools</h3>
             <ul className="list-disc pl-6">
-              <li><Link href="/blog/how-to-download-tiktok-videos-without-watermark-2025" className="text-blue-300 underline">Download TikTok videos without watermark</Link></li>
-              <li><Link href="/blog/how-to-extract-audio-from-tiktok-videos-mp3-download" className="text-blue-300 underline">Extract audio from TikTok videos</Link></li>
-              <li><Link href="/blog/best-tiktok-video-downloaders-for-iphone-2025-guide" className="text-blue-300 underline">TikTok downloader for iPhone</Link></li>
+              <li><Link href="/blog/how-to-download-tiktok-videos-without-watermark-2025" className="text-blue-600 underline">Download TikTok videos without watermark</Link></li>
+              <li><Link href="/blog/how-to-extract-audio-from-tiktok-videos-mp3-download" className="text-blue-600 underline">Extract audio from TikTok videos</Link></li>
+              <li><Link href="/blog/best-tiktok-video-downloaders-for-iphone-2025-guide" className="text-blue-600 underline">TikTok downloader for iPhone</Link></li>
             </ul>
 
             {/* CTA Section */}
-            <div className="text-center bg-gradient-to-r from-pink-500/10 to-violet-500/10 rounded-xl p-8 border border-pink-500/20 mt-8">
+            <div className="text-center bg-gradient-to-r from-pink-500/10 to-violet-500/10 rounded-xl p-8 border border-pink-100 mt-8">
               <h2 className="text-2xl font-bold mb-4">Ready to Download TikTok Videos?</h2>
-              <p className="text-white/70 mb-6">
+              <p className="text-black/70 mb-6">
                 Start downloading TikTok videos without App Store right now. It's free, fast, and easy to use!
               </p>
               <Link 
@@ -266,9 +266,9 @@ export default function BlogPostTikTokNoAppStore() {
             <h3 className="text-lg font-semibold mt-4">✅ Final Thoughts</h3>
             <p>No-App-Store solutions like SaveFromInternet.com offer the perfect balance of functionality, security, and convenience. No installations, no storage space used, no App Store restrictions — just pure TikTok downloading power directly in your browser.</p>
             <p>Remember: <strong>No App Store ➝ No Installation ➝ Pure Functionality</strong></p>
-            <p>🔗 Start downloading TikTok videos without App Store: <a href="https://savefrominternet.com" target="_blank" className="text-blue-300 underline">https://savefrominternet.com</a></p>
+            <p>🔗 Start downloading TikTok videos without App Store: <a href="https://savefrominternet.com" target="_blank" className="text-blue-600 underline">https://savefrominternet.com</a></p>
           </div>
-          <p className="text-xs text-white/50">
+          <p className="text-xs text-black/50">
             Last updated: July 1, 2025
           </p>
         </div>

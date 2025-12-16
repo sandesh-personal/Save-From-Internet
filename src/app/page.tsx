@@ -303,12 +303,12 @@ export default function Home() {
 
   return (
     
-<div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black relative">
+<div className="min-h-screen bg-white relative">
   <div className="max-w-6xl mx-auto py-4 px-4">
     {/* Main Hero Section */}
-    <div ref={containerRef} className="text-center mb-4">
-      <h1 className="text-5xl md:text-5xl font-extrabold text-white mb-4">
-        <span className="bg-gradient-to-r from-[#25F4EE] via-pink-500 to-[#FE2C55] bg-clip-text text-transparent">TikTok</span>{" "}
+    <div ref={containerRef} className="text-center mb-4 bg-white">
+      <h1 className="text-5xl md:text-5xl font-extrabold text-black mb-4">
+        <span className="text-black">TikTok</span>{" "}
         Video Downloader
       </h1>
 
@@ -318,12 +318,13 @@ export default function Home() {
     </div>
 
     {/* Optional: Add a subheading for more SEO value */}
-    <div className="text-center ">
-      <h2 className="text-1xl font-semibold text-white mb-5">
-      TikTok Video Downloader to download TikTok videos without watermark 2025 in HD. 
-      Download as MP4, extract MP3 & Save Images from any public TikTok.
+    <div className="text-center bg-white py-2 rounded-xl mb-6">
+      <h2 className="text-xl md:text-2xl font-semibold text-black mb-2">
+        TikTok Video Downloader to download TikTok videos without watermark in HD.
       </h2>
-
+      <p className="text-base md:text-lg text-black/80">
+        Download as MP4, extract MP3 &amp; Save Images from any public TikTok.
+      </p>
     </div>
 
 
@@ -344,7 +345,7 @@ export default function Home() {
         onChange={(e) => {
           dispatch({ type: 'SET_URL', payload: e.target.value })
         }}
-        className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent text-base"
+        className="w-full px-4 py-3 rounded-xl bg-white-50 border border-black-200 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent text-base"
       />
 
       {/* Paste Button */}
@@ -409,15 +410,15 @@ export default function Home() {
             
             <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
               {/* Getting Started Card */}
-              <div className="bg-gradient-to-br from-white/5 to-white/10 rounded-xl p-6 border border-white/20">
+              <div className="bg-gradient-to-br from-black/5 to-black/10 rounded-xl p-6 border border-whitblacke/20">
                 <div className="text-center">
                   <div className="w-16 h-16 bg-gradient-to-r from-pink-500/20 to-violet-500/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-pink-500/30">
                     <TikTokIcon className="w-8 h-8 text-pink-400" />
                   </div>
-                  <h3 className="text-white font-semibold text-lg mb-2">
+                  <h3 className="text-black font-semibold text-lg mb-2">
                     Ready to Download?
                   </h3>
-                  <p className="text-white/70 text-sm mb-4">
+                  <p className="text-black/70 text-sm mb-4">
                     Paste any TikTok URL above to get started. We support all
                     TikTok link formats!
                   </p>
@@ -426,47 +427,47 @@ export default function Home() {
               </div>
 
               {/* How it Works */}
-              <div className="bg-white/5 rounded-xl p-6 border border-white/10">
-                <h3 className="text-white font-semibold mb-4 flex items-center">
+              <div className="bg-black/5 rounded-xl p-6 border border-whitblacke/10">
+                <h3 className="text-black font-semibold mb-4 flex items-center">
                   🚀 How it Works
                   <div className="ml-2 w-8 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded"></div>
                 </h3>
                 <div className="space-y-3">
                   <div className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-pink-500 rounded-full flex items-center justify-center text-white text-xs font-bold mt-0.5">
+                    <div className="w-6 h-6 bg-pink-500 rounded-full flex items-center justify-center text-black text-xs font-bold mt-0.5">
                       1
                     </div>
                     <div>
-                      <p className="text-white text-sm font-medium">
+                      <p className="text-black text-sm font-medium">
                         Copy TikTok URL
                       </p>
-                      <p className="text-white/60 text-xs">
+                      <p className="text-black/60 text-xs">
                         From any TikTok video or image post
                       </p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-violet-500 rounded-full flex items-center justify-center text-white text-xs font-bold mt-0.5">
+                    <div className="w-6 h-6 bg-violet-500 rounded-full flex items-center justify-center text-black text-xs font-bold mt-0.5">
                       2
                     </div>
                     <div>
-                      <p className="text-white text-sm font-medium">
+                      <p className="text-black text-sm font-medium">
                         Paste & Process
                       </p>
-                      <p className="text-white/60 text-xs">
+                      <p className="text-black/60 text-xs">
                         Our servers analyze the content
                       </p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-bold mt-0.5">
+                    <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-black text-xs font-bold mt-0.5">
                       3
                     </div>
                     <div>
-                      <p className="text-white text-sm font-medium">
+                      <p className="text-black text-sm font-medium">
                         Download Content
                       </p>
-                      <p className="text-white/60 text-xs">
+                      <p className="text-black/60 text-xs">
                         Video, audio, or images - your choice!
                       </p>
                     </div>
@@ -475,22 +476,22 @@ export default function Home() {
               </div>
 
               {/* Supported Formats */}
-              <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-                <h4 className="text-white font-medium mb-3 flex items-center">
+              <div className="bg-black/5 rounded-xl p-4 border border-whitblacke/10">
+                <h4 className="text-black font-medium mb-3 flex items-center">
                   📱 Supported Links
                 </h4>
-                <div className="space-y-2 text-xs text-white/70">
+                <div className="space-y-2 text-xs text-black/70">
                   <p>• https://www.tiktok.com/@user/video/...</p>
                   <p>• https://vm.tiktok.com/...</p>
                   <p>• https://m.tiktok.com/...</p>
                   <p>• https://tiktok.com/...</p>
                 </div>
               </div>
-              <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-                <h4 className="text-white font-medium mb-3 flex items-center">
+              <div className="bg-black/5 rounded-xl p-4 border border-whitblacke/10">
+                <h4 className="text-black font-medium mb-3 flex items-center">
                   📊 Download Options
                 </h4>
-                <div className="space-y-2 text-xs text-white/70">
+                <div className="space-y-2 text-xs text-black/70">
                   <p>• HD Video (no watermark)</p>
                   <p>• MP3 Audio extraction</p>
                   <p>• Image galleries (ZIP/Individual)</p>
@@ -505,7 +506,7 @@ export default function Home() {
             <div className="max-w-2xl mx-auto space-y-4 mt-8">
               
               {/* Video Results */}
-              <div className="p-4 bg-white/10 rounded-xl border border-white/20 space-y-4">
+              <div className="p-4 bg-black/10 rounded-xl border border-black/20 space-y-4">
               <div className="flex items-start space-x-3">
                 {state.videoMetadata.thumbnail && (
                   <Image
@@ -520,14 +521,14 @@ export default function Home() {
                   />
                 )}
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-white font-medium text-base line-clamp-2">
+                  <h3 className="text-black font-medium text-base line-clamp-2">
                     {state.videoMetadata.title}
                   </h3>
-                  <p className="text-white/70 text-sm mt-1">
+                  <p className="text-black/70 text-sm mt-1">
                     by {state.videoMetadata.author}
                   </p>
                   {state.videoMetadata.duration > 0 && (
-                    <p className="text-white/50 text-xs mt-1">
+                    <p className="text-black/50 text-xs mt-1">
                       {Math.floor(state.videoMetadata.duration / 60)}:
                       {(state.videoMetadata.duration % 60)
                         .toString()
@@ -541,7 +542,7 @@ export default function Home() {
               {state.downloadUrl && (
                 <button
                   onClick={togglePreview}
-                  className="w-full py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg transition-colors duration-200 flex items-center justify-center text-base"
+                  className="w-full py-2 px-4 bg-blue-500 hover:bg-blue-600 text-black font-semibold rounded-lg transition-colors duration-200 flex items-center justify-center text-base"
                 >
                   {state.showPreview ? '👁️ Hide Preview' : '👀 Show Preview'}
                 </button>
@@ -568,7 +569,7 @@ export default function Home() {
                       Your browser does not support the video tag.
                     </video>
                   </div>
-                  <p className="text-white/50 text-xs text-center">
+                  <p className="text-black/50 text-xs text-center">
                     ⚡ Preview loaded - ready to download!
                   </p>
                 </div>
@@ -580,7 +581,7 @@ export default function Home() {
                   <div className="space-y-3">
                     <button
                       onClick={toggleImageGallery}
-                      className="w-full py-2 px-4 bg-purple-500 hover:bg-purple-600 text-white font-semibold rounded-lg transition-colors duration-200 flex items-center justify-center text-base"
+                      className="w-full py-2 px-4 bg-purple-500 hover:bg-purple-600 text-black font-semibold rounded-lg transition-colors duration-200 flex items-center justify-center text-base"
                     >
                       {state.showImageGallery
                         ? '🖼️ Hide Images'
@@ -590,20 +591,20 @@ export default function Home() {
                     {state.showImageGallery && (
                       <div className="space-y-3">
                         {/* Select All Controls */}
-                        <div className="flex items-center justify-between bg-white/5 rounded-lg p-3">
-                          <span className="text-white text-sm">
+                        <div className="flex items-center justify-between bg-black/5 rounded-lg p-3">
+                          <span className="text-black text-sm">
                             Select images to download:
                           </span>
                           <div className="flex space-x-2">
                             <button
                               onClick={() => selectAllImages(true)}
-                              className="px-3 py-1 bg-green-500 hover:bg-green-600 text-white text-xs rounded"
+                              className="px-3 py-1 bg-green-500 hover:bg-green-600 text-black text-xs rounded"
                             >
                               All
                             </button>
                             <button
                               onClick={() => selectAllImages(false)}
-                              className="px-3 py-1 bg-red-500 hover:bg-red-600 text-white text-xs rounded"
+                              className="px-3 py-1 bg-red-500 hover:bg-red-600 text-black text-xs rounded"
                             >
                               None
                             </button>
@@ -618,7 +619,7 @@ export default function Home() {
                               className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-200 ${
                                 image.selected
                                   ? 'ring-2 ring-pink-500'
-                                  : 'hover:ring-2 hover:ring-white/30'
+                                  : 'hover:ring-2 hover:ring-black/30'
                               }`}
                               onClick={() => toggleImageSelection(image.id)}
                             >
@@ -646,17 +647,17 @@ export default function Home() {
                                   className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-200 ${
                                     image.selected
                                       ? 'bg-pink-500 border-pink-500'
-                                      : 'border-white/50 hover:border-white'
+                                      : 'border-black/50 hover:border-black'
                                   }`}
                                 >
                                   {image.selected && (
-                                    <CheckIcon className="w-4 h-4 text-white" />
+                                    <CheckIcon className="w-4 h-4 text-black" />
                                   )}
                                 </div>
                               </div>
 
                               {/* Image Number */}
-                              <div className="absolute top-1 left-1 bg-black/50 text-white text-xs px-2 py-1 rounded">
+                              <div className="absolute top-1 left-1 bg-black/50 text-black text-xs px-2 py-1 rounded">
                                 {index + 1}
                               </div>
                             </div>
@@ -664,7 +665,7 @@ export default function Home() {
                         </div>
 
                         {/* Download Options */}
-                        <div className="bg-white/5 rounded-lg p-3 space-y-3">
+                        <div className="bg-black/5 rounded-lg p-3 space-y-3">
                           <div className="flex items-center space-x-3">
                             <input
                               type="checkbox"
@@ -676,7 +677,7 @@ export default function Home() {
                                   payload: e.target.checked,
                                 })
                               }
-                              className="w-4 h-4 text-pink-500 bg-white/10 border-white/30 rounded focus:ring-pink-500 focus:ring-2"
+                              className="w-4 h-4 text-pink-500 bg-black/10 border-black/30 rounded focus:ring-pink-500 focus:ring-2"
                             />
                             <label
                               htmlFor="downloadAsZip"
@@ -701,7 +702,7 @@ export default function Home() {
                               (Image) => Image.selected
                             )
                           }
-                          className="w-full cursor-pointer py-3 px-4 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold rounded-lg transition-all duration-200 flex items-center justify-center text-base gap-2"
+                          className="w-full cursor-pointer py-3 px-4 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 disabled:opacity-50 disabled:cursor-not-allowed text-black font-semibold rounded-lg transition-all duration-200 flex items-center justify-center text-base gap-2"
                         >
                           {state.downloadingImages ? (
                             <>
@@ -733,7 +734,7 @@ export default function Home() {
                     <button
                       onClick={handleVideoDownload}
                       disabled={state.downloading || state.downloadingImages}
-                      className="py-3 cursor-pointer px-4 bg-gradient-to-r from-pink-500 to-violet-500 hover:from-pink-600 hover:to-violet-600 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold rounded-lg transition-all duration-200 flex items-center justify-center text-base gap-2"
+                      className="py-3 cursor-pointer px-4 bg-gradient-to-r from-pink-500 to-violet-500 hover:from-pink-600 hover:to-violet-600 disabled:opacity-50 disabled:cursor-not-allowed text-black font-semibold rounded-lg transition-all duration-200 flex items-center justify-center text-base gap-2"
                     >
                       {state.downloading ? (
                         <>
@@ -755,7 +756,7 @@ export default function Home() {
                       disabled={
                         state.downloadingAudio || state.downloadingImages
                       }
-                      className="py-3 cursor-pointer px-4 bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold rounded-lg transition-all duration-200 flex items-center justify-center text-base gap-2"
+                      className="py-3 cursor-pointer px-4 bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 disabled:opacity-50 disabled:cursor-not-allowed text-black font-semibold rounded-lg transition-all duration-200 flex items-center justify-center text-base gap-2"
                     >
                       {state.downloadingAudio ? (
                         <>
@@ -773,7 +774,7 @@ export default function Home() {
                 </div>
               )}
               {(state.downloadUrl || state.audioUrl) && (
-                <p className="text-white/50 text-xs text-center">
+                <p className="text-black/50 text-xs text-center">
                   {state.downloading ||
                   state.downloadingAudio ||
                   state.downloadingImages
@@ -796,14 +797,14 @@ export default function Home() {
 
 {/* FAQs Section */}
 <div className="max-w-4xl mx-auto mt-12">
-  <h2 className="text-2xl font-bold text-white text-center mb-6">
+  <h2 className="text-2xl font-bold text-black text-center mb-6">
     Who We Are
   </h2>
 
   <div className="space-y-6">
     {/* How to Use SaveFromInternet.com */}
-    <div className="bg-white/5 rounded-xl p-6 border border-white/10">
-      <p className="text-white/70 text-justify text-sm">
+    <div className="bg-black/5 rounded-xl p-6 border border-whitblacke/10">
+      <p className="text-black/70 text-justify text-sm">
         Welcome to SaveFromInternet.com — the easiest way to download TikTok videos fast, free, and without watermarks. 
         We built this tool to make saving content simple and hassle-free. 
         No apps, no signups, just copy the link and hit download. 
@@ -813,7 +814,7 @@ export default function Home() {
         Use it responsibly. 
         Save content only if you have permission to do so. 
       </p>
-        <p className="text-white/70 text-justify text-sm">
+        <p className="text-black/70 text-justify text-sm">
         Contact: contact@savefrominternet.com
       </p>
 
@@ -821,46 +822,46 @@ export default function Home() {
 
  {/* Features Section */}
 <div className="max-w-4xl mx-auto mt-12">
-  <h2 className="text-2xl font-bold text-white text-center mb-6">
+  <h2 className="text-2xl font-bold text-black text-center mb-6">
     Features
   </h2>
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-    <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+    <div className="bg-black/5 rounded-xl p-4 border border-whitblacke/10">
       <div className="w-10 h-10 bg-gradient-to-r from-pink-500/20 to-violet-500/20 rounded-full flex items-center justify-center mb-3 border border-pink-500/30">
         <TikTokIcon className="w-5 h-5 text-pink-400" />
       </div>
-      <h3 className="text-white font-semibold mb-2">Watermark-Free</h3>
-      <p className="text-white/70 text-sm">
+      <h3 className="text-black font-semibold mb-2">Watermark-Free</h3>
+      <p className="text-black/70 text-sm">
         Download TikTok videos without any watermarks or logos
       </p>
     </div>
 
-    <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+    <div className="bg-black/5 rounded-xl p-4 border border-whitblacke/10">
       <div className="w-10 h-10 bg-gradient-to-r from-green-500/20 to-blue-500/20 rounded-full flex items-center justify-center mb-3 border border-green-500/30">
         <MusicIcon className="w-5 h-5 text-green-400" />
       </div>
-      <h3 className="text-white font-semibold mb-2">MP3 Extraction</h3>
-      <p className="text-white/70 text-sm">
+      <h3 className="text-black font-semibold mb-2">MP3 Extraction</h3>
+      <p className="text-black/70 text-sm">
         Extract high-quality MP3 audio from any TikTok video
       </p>
     </div>
 
-    <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+    <div className="bg-black/5 rounded-xl p-4 border border-whitblacke/10">
       <div className="w-10 h-10 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full flex items-center justify-center mb-3 border border-purple-500/30">
         <DownloadIcon className="w-5 h-5 text-purple-400" />
       </div>
-      <h3 className="text-white font-semibold mb-2">Image Gallery</h3>
-      <p className="text-white/70 text-sm">
+      <h3 className="text-black font-semibold mb-2">Image Gallery</h3>
+      <p className="text-black/70 text-sm">
         Download multiple images from TikTok posts in one click
       </p>
     </div>
 
-     <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+     <div className="bg-black/5 rounded-xl p-4 border border-whitblacke/10">
   <div className="w-10 h-10 bg-gradient-to-r from-blue-500/20 to-grey-500/20 rounded-full flex items-center justify-center mb-3 border border-blue-500/30 overflow-hidden">
     <img src="/logo-final.png" alt="download tiktok videos without watermark 2025 logo" className="w-5 h-5 object-contain" />
   </div>
-  <h3 className="text-white font-semibold mb-2">Unlimited Downloads</h3>
-  <p className="text-white/70 text-sm">
+  <h3 className="text-black font-semibold mb-2">Unlimited Downloads</h3>
+  <p className="text-black/70 text-sm">
     Download unlimited TikTok videos without any restrictions or limits.
   </p>
 </div>
@@ -872,13 +873,13 @@ export default function Home() {
 
  {/* Downloaders Section */}
 <div className="max-w-4xl mx-auto mt-12">
-  <h2 className="text-2xl font-bold text-white text-center mb-6">
+  <h2 className="text-2xl font-bold text-black text-center mb-6">
     Downloaders
   </h2>
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
 
     {/* Instagram Reels Downloader Card */}
-    <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+    <div className="bg-black/5 rounded-xl p-4 border border-whitblacke/10">
       <div className="w-10 h-10 bg-gradient-to-r from-red-500/20 to-pink-500/20 rounded-full flex items-center justify-center mb-3 border border-red-500/30">
         <a
           href="https://grabreels.com"
@@ -903,24 +904,24 @@ export default function Home() {
           </svg>
         </a>
       </div>
-      <h3 className="text-white font-semibold mb-2">
+      <h3 className="text-black font-semibold mb-2">
         <a
           href="https://grabreels.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="underline hover:text-yellow-300"
+          className="underline hover:text-green-300"
         >
           Instagram Reels Downloader
         </a>
       </h3>
-      <p className="text-white/70 text-sm">
+      <p className="text-black/70 text-sm">
         Download Instagram reels quickly and easily.
       </p>
       
     </div>
 
 {/* Facebook Downloader Card */}
-<div className="bg-white/5 rounded-xl p-4 border border-white/10">
+<div className="bg-black/5 rounded-xl p-4 border border-whitblacke/10">
   <div className="w-10 h-10 bg-gradient-to-r from-blue-500/20 to-blue-700/20 rounded-full flex items-center justify-center mb-3 border border-blue-500/30">
     <span className="flex items-center justify-center">
       <svg
@@ -933,16 +934,16 @@ export default function Home() {
       </svg>
     </span>
   </div>
-  <h3 className="text-white font-semibold mb-2">
-    <span className="underline text-white/90 cursor-default">Facebook Video Downloader</span>
+  <h3 className="text-black font-semibold mb-2">
+    <span className="underline text-black/90 cursor-default">Facebook Video Downloader</span>
   </h3>
-  <p className="text-white/70 text-sm">
+  <p className="text-black/70 text-sm">
     Coming Soon!!
   </p>
 </div>
 
 {/* YouTube Downloader Card */}
-<div className="bg-white/5 rounded-xl p-4 border border-white/10">
+<div className="bg-black/5 rounded-xl p-4 border border-whitblacke/10">
   <div className="w-10 h-10 bg-gradient-to-r from-red-600/20 to-red-800/20 rounded-full flex items-center justify-center mb-3 border border-red-600/30">
     <span className="flex items-center justify-center">
       <svg
@@ -955,10 +956,10 @@ export default function Home() {
       </svg>
     </span>
   </div>
-  <h3 className="text-white font-semibold mb-2">
-    <span className="underline text-white/90 cursor-default">YouTube Video Downloader</span>
+  <h3 className="text-black font-semibold mb-2">
+    <span className="underline text-black/90 cursor-default">YouTube Video Downloader</span>
   </h3>
-  <p className="text-white/70 text-sm">
+  <p className="text-black/70 text-sm">
     Coming Soon!!
   </p>
 </div>
@@ -974,17 +975,17 @@ export default function Home() {
 
 {/* FAQs Section */}
 <div className="max-w-4xl mx-auto mt-12">
-  <h2 className="text-2xl font-bold text-white text-center mb-6">
+  <h2 className="text-2xl font-bold text-black text-center mb-6">
     Frequently Asked Questions
   </h2>
 
   <div className="space-y-6">
     {/* How to Use SaveFromInternet.com */}
-    <div className="bg-white/5 rounded-xl p-6 border border-white/10">
-      <h3 className="text-white font-semibold text-lg mb-2">
+    <div className="bg-black/5 rounded-xl p-6 border border-whitblacke/10">
+      <h3 className="text-black font-semibold text-lg mb-2">
         How to Use SaveFromInternet.com
       </h3>
-      <p className="text-white/70 text-justify text-sm">
+      <p className="text-black/70 text-justify text-sm">
         Using SaveFromInternet.com is simple. First, open TikTok and copy the link to the video you want to save. 
         Then, come to our site and paste that link into the input box at the top. 
         Click the download button, and you’ll instantly get the  video, fast, and without any watermark. 
@@ -995,11 +996,11 @@ export default function Home() {
     </div>
 
     {/* Download High-Quality TikTok Videos */}
-    <div className="bg-white/5 rounded-xl p-6 border border-white/10">
-      <h3 className="text-white font-semibold text-lg mb-2">
+    <div className="bg-black/5 rounded-xl p-6 border border-whitblacke/10">
+      <h3 className="text-black font-semibold text-lg mb-2">
         Download High-Quality TikTok Videos
       </h3>
-      <p className="text-white/70 text-justify text-sm">
+      <p className="text-black/70 text-justify text-sm">
         TikTok videos should look just as good saved as they do on the app and that’s what we deliver. 
         When you use SaveFromInternet.com, you get high-quality video downloads every time. 
         We don’t compress or downgrade anything. Your videos stay crisp and smooth, perfect for editing, 
@@ -1010,11 +1011,11 @@ export default function Home() {
     </div>
 
     {/* How to Download Audio from TikTok */}
-    <div className="bg-white/5 rounded-xl p-6 border border-white/10">
-      <h3 className="text-white font-semibold text-lg mb-2">
+    <div className="bg-black/5 rounded-xl p-6 border border-whitblacke/10">
+      <h3 className="text-black font-semibold text-lg mb-2">
         How to Download Audio from TikTok
       </h3>
-      <p className="text-white/70 text-justify text-sm">
+      <p className="text-black/70 text-justify text-sm">
         Once you paste a TikTok video link on SaveFromInternet.com, you’ll see two options: 
         a button to download the video and another to extract audio. Just click the “Extract Audio” button, 
         and we’ll process the video and give you the original sound in MP3 format. 
@@ -1026,11 +1027,11 @@ export default function Home() {
     </div>
 
     {/* How to Download Photos from TikTok */}
-    <div className="bg-white/5 rounded-xl p-6 border border-white/10">
-      <h3 className="text-white font-semibold text-lg mb-2">
+    <div className="bg-black/5 rounded-xl p-6 border border-whitblacke/10">
+      <h3 className="text-black font-semibold text-lg mb-2">
         How to Download Photos from TikTok
       </h3>
-      <p className="text-white/70 text-justify text-sm">
+      <p className="text-black/70 text-justify text-sm">
         Copy the link of a TikTok photo post and paste it into SaveFromInternet.com. 
         If the post contains images, we’ll instantly detect them and show download options. 
         You can save each image individually, or download all of them together in a ZIP file. 
@@ -1041,11 +1042,11 @@ export default function Home() {
     </div>
 
         {/* What should I do if the TikTok video link isn’t working? */}
-    <div className="bg-white/5 rounded-xl p-6 border border-white/10">
-      <h3 className="text-white font-semibold text-lg mb-2">
+    <div className="bg-black/5 rounded-xl p-6 border border-whitblacke/10">
+      <h3 className="text-black font-semibold text-lg mb-2">
         What should I do if the TikTok video link isn’t working?
       </h3>
-      <p className="text-white/70 text-justify text-sm">
+      <p className="text-black/70 text-justify text-sm">
         If a TikTok link isn’t working, first double-check that you copied the full URL, Some apps shorten or truncate links. 
         Make sure the video is public and hasn’t been deleted by the user or TikTok. 
         If the video still won’t load, try refreshing the page or using a different browser or device. 
@@ -1055,11 +1056,11 @@ export default function Home() {
       </p>
 </div>
         {/* Is my privacy protected when using this site? */}
-    <div className="bg-white/5 rounded-xl p-6 border border-white/10">
-      <h3 className="text-white font-semibold text-lg mb-2">
+    <div className="bg-black/5 rounded-xl p-6 border border-whitblacke/10">
+      <h3 className="text-black font-semibold text-lg mb-2">
         Is my privacy protected when using this site?
       </h3>
-      <p className="text-white/70 text-justify text-sm">
+      <p className="text-black/70 text-justify text-sm">
         Yes, your privacy is a priority. 
         SaveFromInternet.com doesn’t collect personal information, track user activity, or store downloaded videos. 
         Every download is processed in real time and never saved to our servers. 
@@ -1072,11 +1073,11 @@ export default function Home() {
 </div>
 
         {/* Do I need to install software or create an account? */}
-    <div className="bg-white/5 rounded-xl p-6 border border-white/10">
-      <h3 className="text-white font-semibold text-lg mb-2">
+    <div className="bg-black/5 rounded-xl p-6 border border-whitblacke/10">
+      <h3 className="text-black font-semibold text-lg mb-2">
         Do I need to install software or create an account?
       </h3>
-      <p className="text-white/70 text-justify text-sm">
+      <p className="text-black/70 text-justify text-sm">
         No, you don’t need to install anything or sign up to use SaveFromInternet.com. 
         The entire process is browser-based—just paste the TikTok link, hit download, and you’re good to go. 
         There’s no app, no extensions, and no registration forms. 
@@ -1087,11 +1088,11 @@ export default function Home() {
 </div>
 
         {/* Can I download videos from private TikTok accounts? */}
-    <div className="bg-white/5 rounded-xl p-6 border border-white/10">
-      <h3 className="text-white font-semibold text-lg mb-2">
+    <div className="bg-black/5 rounded-xl p-6 border border-whitblacke/10">
+      <h3 className="text-black font-semibold text-lg mb-2">
         Can I download videos from private TikTok accounts?
       </h3>
-      <p className="text-white/70 text-justify text-sm">
+      <p className="text-black/70 text-justify text-sm">
         No, we can’t access or download content from private TikTok accounts. 
         SaveFromInternet.com only works with publicly available videos. 
         If a user has set their account or specific video to private, TikTok blocks third-party tools like ours from reaching that content and we respect that boundary. 
@@ -1102,11 +1103,11 @@ export default function Home() {
 </div>
 
         {/* Is using SaveFromInternet.com legal? */}
-    <div className="bg-white/5 rounded-xl p-6 border border-white/10">
-      <h3 className="text-white font-semibold text-lg mb-2">
+    <div className="bg-black/5 rounded-xl p-6 border border-whitblacke/10">
+      <h3 className="text-black font-semibold text-lg mb-2">
         Is using SaveFromInternet.com legal?
       </h3>
-      <p className="text-white/70 text-justify text-sm">
+      <p className="text-black/70 text-justify text-sm">
         Using SaveFromInternet.com to download TikTok videos is generally legal for personal use, like offline viewing or private archiving. 
         However, it becomes a legal gray area if you reupload, redistribute, or monetize downloaded content without permission from the creator. 
         TikTok’s terms of service also prohibit unauthorized downloading in some cases, so it’s important to respect the platform’s rules. 

@@ -21,28 +21,20 @@ export const metadata: Metadata = {
 
 export default function BlogPostTikTokDownload2025() {
   return (
-    <div className="min-h-[calc(100vh-6rem)] px-4 py-3 bg-gradient-to-br from-black via-gray-900 to-black text-white">
+    <div className="min-h-[calc(100vh-6rem)] px-4 py-3 bg-white text-black">
       <div className="max-w-4xl mx-auto space-y-8 text-sm leading-relaxed">
 
         {/* Blog Content Starts */}
         <div className="space-y-8">
-          {/* Top Ad */}
-          <div className="mb-8">
-            <GoogleAdSense
-              adSlot="5309301802"
-              adFormat="auto"
-              className="flex justify-center"
-              containerStyle="default"
-            />
-          </div>
+
 
           <div className="flex items-center space-x-5">
-            <h2 className="text-xl font-bold text-white">
-              download tiktok videos without watermark 2025
-            </h2>
+            <h1 className="text-xl font-bold text-black">
+              Download tiktok videos without watermark 2025
+            </h1>
           </div>
 
-          <div className="mt-6 text-white space-y-4">
+          <div className="mt-6 text-black space-y-4">
             <p>In 2025, short-form content is still booming — and TikTok continues to dominate the scene. From trending dances to quick skits and educational clips, millions of creators upload content every day. But what if you've lost access to one of your own videos and it's no longer on your device?</p>
 
             <p>That's where <a href="https://savefrominternet.com" target="_blank" className="text-blue-300 underline">SaveFromInternet.com</a> comes in. This tool is designed specifically for TikTok creators who want to download their own content in high quality — with no watermark, no ads, and no complicated steps. Whether you're switching devices, building a content archive, or simply reposting old content to other platforms, our tool makes it easy.</p>
@@ -84,9 +76,9 @@ export default function BlogPostTikTokDownload2025() {
 
             <h3 className="text-lg font-semibold mt-4">🧠 Why SaveFromInternet?</h3>
             <p>Here's how SaveFromInternet compares to other tools:</p>
-            <table className="w-full text-white text-sm border border-white/20 mt-2">
+            <table className="w-full text-black text-sm border border-black/10 mt-2">
               <thead>
-                <tr className="bg-white/10">
+                <tr className="bg-black/5">
                   <th className="p-2 text-left">Feature</th>
                   <th className="p-2 text-center">SaveFromInternet</th>
                   <th className="p-2 text-center">ssstik.io</th>
@@ -94,25 +86,25 @@ export default function BlogPostTikTokDownload2025() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">No Ads</td>
                   <td className="p-2 text-center">✅</td>
                   <td className="p-2 text-center">❌</td>
                   <td className="p-2 text-center">❌</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">No Watermark</td>
                   <td className="p-2 text-center">✅</td>
                   <td className="p-2 text-center">✅</td>
                   <td className="p-2 text-center">✅</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">Supports Image Posts</td>
                   <td className="p-2 text-center">✅</td>
                   <td className="p-2 text-center">❌</td>
                   <td className="p-2 text-center">❌</td>
                 </tr>
-                <tr className="border-t border-white/20">
+                <tr className="border-t border-black/10">
                   <td className="p-2 text-left">MP3 Extraction</td>
                   <td className="p-2 text-center">✅</td>
                   <td className="p-2 text-center">✅</td>
@@ -151,7 +143,7 @@ export default function BlogPostTikTokDownload2025() {
             {/* CTA Section */}
             <div className="text-center bg-gradient-to-r from-pink-500/10 to-violet-500/10 rounded-xl p-8 border border-pink-500/20 mt-8">
               <h2 className="text-2xl font-bold mb-4">Ready to Download TikTok Videos?</h2>
-              <p className="text-white/70 mb-6">
+              <p className="text-black/70 mb-6">
                 Start downloading TikTok videos without watermark right now. It's free, fast, and easy to use!
               </p>
               <Link 
@@ -175,10 +167,10 @@ export default function BlogPostTikTokDownload2025() {
             <h3 className="text-lg font-semibold mt-4">✅ Final Thoughts</h3>
             <p>Whether you're a content creator or casual TikTok user, SaveFromInternet.com helps you get your videos, audio, and images back in the best possible quality.</p>
             <p>It's as simple as:</p>
-            <blockquote className="border-l-4 border-blue-400 pl-4 italic text-white/80">Copy ➝ Paste ➝ Download</blockquote>
+            <blockquote className="border-l-4 border-blue-400 pl-4 italic text-black/80">Copy ➝ Paste ➝ Download</blockquote>
             <p>🔗 Try it now: <a href="https://savefrominternet.com" target="_blank" className="text-blue-300 underline">https://savefrominternet.com</a></p>
           </div>
-          <p className="text-xs text-white/50">
+          <p className="text-xs text-black/50">
             Last updated: July 1, 2025
           </p>
         </div>

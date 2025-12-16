@@ -68,7 +68,7 @@ export default function BlogPostTikTokLegal() {
       />
       <div className="max-w-3xl mx-auto p-6">
         <h1 className="text-3xl md:text-4xl font-bold mb-4">Is Downloading TikTok Videos Legal? What You Need to Know (2025 Guide)</h1>
-        <p className="text-lg text-gray-700 mb-6">
+        <p className="text-lg text-black mb-6">
           Downloading TikTok videos is a common practice, but is it legal? In this guide, we’ll explain the legalities, what’s allowed, and how to stay safe and compliant when using TikTok video downloaders in 2025.
         </p>
         <h2 className="text-2xl font-semibold mt-8 mb-4">Understanding TikTok’s Terms of Service</h2>
@@ -109,7 +109,7 @@ export default function BlogPostTikTokLegal() {
             <p>Yes, as long as you use reputable tools like <Link href="/">SaveFromInternet</Link> and avoid suspicious sites.</p>
           </div>
         </div>
-        <div className="bg-gradient-to-r from-pink-500/10 to-violet-500/10 rounded-xl p-6 border border-pink-500/20 text-center mb-8">
+        <div className="bg-gradient-to-r from-pink-500/10 to-violet-500/10 rounded-xl p-6 border border-pink-100 text-center mb-8">
           <h3 className="text-xl font-bold mb-2">Want to Download TikTok Videos Safely?</h3>
           <p className="mb-4">Use our <Link href="/">free TikTok downloader</Link> for personal use. It’s fast, secure, and watermark-free!</p>
           <Link href="/how-to-download-tiktok-videos" className="inline-block bg-gradient-to-r from-pink-500 to-violet-500 text-white font-semibold px-6 py-3 rounded-xl hover:from-pink-600 hover:to-violet-600 transition-all duration-200 text-lg">How to Download TikTok Videos</Link>
