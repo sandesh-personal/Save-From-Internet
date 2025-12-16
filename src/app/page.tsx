@@ -317,21 +317,6 @@ export default function Home() {
 
     </div>
 
-    {/* Optional: Add a subheading for more SEO value
-    <div className="text-center bg-white py-2 rounded-xl mb-6">
-      <h2 className="text-xl md:text-2xl font-semibold text-black mb-2">
-        TikTok Video Downloader to download TikTok videos without watermark in HD.
-      </h2>
-      <p className="text-base md:text-lg text-black/80">
-        Download as MP4, extract MP3 &amp; Save Images from any public TikTok.
-      </p>
-    </div> */}
-
-
-
-
-
-
 
        {/* Input Section */}
 <div className="mb-8">
