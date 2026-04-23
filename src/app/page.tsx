@@ -1,1110 +1,210 @@
-'use client'
-
-import { useReducer, useRef } from 'react'
-import Image from 'next/image'
-import { appReducer, initialState } from '@/lib/appReducer'
-import {
-  TikTokIcon,
-  SpinnerIcon,
-  DownloadIcon,
-  MusicIcon,
-  CheckIcon,
-  getImagePlaceholderBase64,
-} from '@/components/icons'
 import Link from 'next/link'
-
-export default function Home() {
-  const [state, dispatch] = useReducer(appReducer, initialState)
-  const containerRef = useRef<HTMLDivElement>(null)
-
-  const handleProcess = async () => {
-    if (!state.url.trim()) {
-      dispatch({ type: 'SET_MESSAGE', payload: 'Please enter a TikTok URL' })
-      return
-    }
-
-
-    dispatch({ type: 'SET_LOADING', payload: true })
-    dispatch({ type: 'RESET_DOWNLOAD_STATE' })
-
-    try {
-      const response = await fetch('/api/download', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          url: state.url,
-          type: state.downloadType,
-        }),
-      })
-
-      const data = await response.json()
-
-      if (data.success) {
-        dispatch({
-          type: 'SET_DOWNLOAD_SUCCESS',
-          payload: {
-            downloadUrl: data.downloadUrl,
-            audioUrl: data.audioUrl,
-            metadata: data.metadata,
-          },
-        })
-
-        // Clear the input after successful processing
-        dispatch({ type: 'SET_URL', payload: '' })
-        
-
-        // Scroll to results section after successful processing
-        setTimeout(() => {
-          if (containerRef.current) {
-            const resultsSection =
-              containerRef.current.querySelector('.results-section')
-            if (resultsSection) {
-              resultsSection.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start',
-              })
-            }
-          }
-        }, 500)
-      } else {
-        dispatch({
-          type: 'SET_MESSAGE',
-          payload: data.error || 'Failed to process video',
-        })
-      }
-    } catch (err) {
-      console.error('Processing error:', err)
-      dispatch({
-        type: 'SET_MESSAGE',
-        payload: 'An error occurred while processing the video',
-      })
-    } finally {
-      dispatch({ type: 'SET_LOADING', payload: false })
-    }
-  }
-
-  const handleVideoDownload = async () => {
-    if (!state.downloadUrl) return
-
-    dispatch({ type: 'SET_DOWNLOADING', payload: true })
-
-    try {
-      const response = await fetch(state.downloadUrl)
-
-      if (!response.ok) {
-        throw new Error('Failed to download video')
-      }
-      const blob = await response.blob()
-      const blobUrl = URL.createObjectURL(blob)
-
-      const link = document.createElement('a')
-      link.href = blobUrl
-      link.download = `savefrominternet.com-tiktok-video-${Date.now()}.mp4`
-      document.body.appendChild(link)
-      link.click()
-      document.body.removeChild(link)
-
-      URL.revokeObjectURL(blobUrl)
-
-      dispatch({
-        type: 'SET_MESSAGE',
-        payload: 'Video downloaded successfully! 🎉',
-      })
-      // Clear the input after successful download
-      dispatch({ type: 'SET_URL', payload: '' })
-    } catch (error) {
-      console.error('Download failed:', error)
-      dispatch({
-        type: 'SET_MESSAGE',
-        payload: 'Failed to download video file',
-      })
-    } finally {
-      dispatch({ type: 'SET_DOWNLOADING', payload: false })
-    }
-  }
-
-  const handleAudioDownload = async () => {
-    if (!state.audioUrl) return
-
-    dispatch({ type: 'SET_DOWNLOADING_AUDIO', payload: true })
-
-    try {
-      const response = await fetch(state.audioUrl)
-
-      if (!response.ok) {
-        throw new Error('Failed to download audio')
-      }
-      const blob = await response.blob()
-      const blobUrl = URL.createObjectURL(blob)
-
-      const link = document.createElement('a')
-      link.href = blobUrl
-      link.download = `savefrominternet.com-tiktok-audio-${Date.now()}.mp3`
-      document.body.appendChild(link)
-      link.click()
-      document.body.removeChild(link)
-
-      URL.revokeObjectURL(blobUrl)
-
-      dispatch({
-        type: 'SET_MESSAGE',
-        payload: 'Audio downloaded successfully! 🎵',
-      })
-      // Clear the input after successful download
-      dispatch({ type: 'SET_URL', payload: '' })
-    } catch (error) {
-      console.error('Audio download failed:', error)
-      dispatch({
-        type: 'SET_MESSAGE',
-        payload: 'Failed to download audio file',
-      })
-    } finally {
-      dispatch({ type: 'SET_DOWNLOADING_AUDIO', payload: false })
-    }
-  }
-
-  const handleImageDownload = async () => {
-    if (!state.videoMetadata?.images) return
-
-    const selectedImages = state.videoMetadata.images.filter(
-      (Image) => Image.selected
-    )
-
-    if (selectedImages.length === 0) {
-      dispatch({
-        type: 'SET_MESSAGE',
-        payload: 'Please select at least one image to download',
-      })
-      return
-    }
-
-    dispatch({ type: 'SET_DOWNLOADING_IMAGES', payload: true })
-
-    try {
-      const imageUrls = selectedImages.map((Image) => Image.url)
-
-      // Only create ZIP if user explicitly chose it
-      if (state.downloadImagesAsZip) {
-        const response = await fetch('/api/images', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            imageUrls,
-            title: state.videoMetadata.title,
-            asZip: true,
-          }),
-        })
-
-        if (!response.ok) {
-          throw new Error('Failed to download images as ZIP')
-        }
-        const blob = await response.blob()
-        const blobUrl = URL.createObjectURL(blob)
-
-        const link = document.createElement('a')
-        link.href = blobUrl
-        link.download = `savefrominternet.com-tiktok-images-${Date.now()}.zip`
-        document.body.appendChild(link)
-        link.click()
-        document.body.removeChild(link)
-
-        URL.revokeObjectURL(blobUrl)
-
-        dispatch({
-          type: 'SET_MESSAGE',
-          payload: `${selectedImages.length} image(s) downloaded as ZIP! 🗜️`,
-        })
-        // Clear the input after successful download
-        dispatch({ type: 'SET_URL', payload: '' })
-      } else {
-        // Always download images individually (regardless of count)
-        const response = await fetch('/api/images', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            imageUrls,
-            asZip: false,
-          }),
-        })
-
-        if (!response.ok) {
-          throw new Error('Failed to get image download URLs')
-        }
-
-        const data = await response.json()
-
-        if (!data.success || !data.images) {
-          throw new Error('Invalid response from server')
-        }
-
-        // Download each image individually
-        for (const imageData of data.images) {
-          try {
-            const imageResponse = await fetch(imageData.url)
-            if (!imageResponse.ok) continue
-
-            const blob = await imageResponse.blob()
-            const blobUrl = URL.createObjectURL(blob)
-
-            const link = document.createElement('a')
-            link.href = blobUrl
-            link.download = imageData.filename
-            document.body.appendChild(link)
-            link.click()
-            document.body.removeChild(link)
-
-            URL.revokeObjectURL(blobUrl)
-
-            // Small delay between downloads
-            await new Promise((resolve) => setTimeout(resolve, 500))
-          } catch (error) {
-            console.error('Failed to download individual image:', error)
-          }
-        }
-        dispatch({
-          type: 'SET_MESSAGE',
-          payload: `${selectedImages.length} savefrominternet.com - image(s) downloaded individually! 🖼️`,
-        })
-        // Clear the input after successful download
-        dispatch({ type: 'SET_URL', payload: '' })
-      }
-    } catch (error) {
-      console.error('Image download failed:', error)
-      dispatch({
-        type: 'SET_MESSAGE',
-        payload: 'Failed to download images',
-      })
-    } finally {
-      dispatch({ type: 'SET_DOWNLOADING_IMAGES', payload: false })
-    }
-  }
-
-  const toggleImageGallery = () => {
-    dispatch({ type: 'TOGGLE_IMAGE_GALLERY' })
-  }
-
-  const toggleImageSelection = (imageId: string) => {
-    dispatch({ type: 'TOGGLE_IMAGE_SELECTION', payload: imageId })
-  }
-
-  const selectAllImages = (selected: boolean) => {
-    dispatch({ type: 'SELECT_ALL_IMAGES', payload: selected })
-  }
-
-  const togglePreview = () => {
-    dispatch({ type: 'TOGGLE_PREVIEW' })
-  }
-
-  return (
-    
-<div className="min-h-screen bg-white relative">
-  <div className="max-w-6xl mx-auto py-4 px-4">
-    {/* Main Hero Section */}
-    <div ref={containerRef} className="text-center mb-4 bg-white">
-      <h1 className="text-5xl md:text-5xl font-extrabold text-black mb-4">
-        <span className="text-black">TikTok</span>{" "}
-        Video Downloader
-      </h1>
-
-
-
-
-    </div>
-
-
-       {/* Input Section */}
-<div className="mb-8">
-  <div className="max-w-2xl mx-auto">
-    <div className="flex gap-2">
-      {/* Input Field */}
-      <input
-        type="text"
-        placeholder="Paste TikTok URL here!! "
-        value={state.url}
-        onChange={(e) => {
-          dispatch({ type: 'SET_URL', payload: e.target.value })
-        }}
-        className="w-full px-4 py-3 rounded-xl bg-white-50 border border-black-200 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent text-base"
-      />
-
-      {/* Paste Button */}
-      <button
-        onClick={async () => {
-          try {
-            const text = await navigator.clipboard.readText();
-            dispatch({ type: 'SET_URL', payload: text });
-          } catch (err) {
-            alert('Failed to paste from clipboard.');
-          }
-        }}
-        className="w-auto px-4 py-2 mt-1 bg-gradient-to-r from-pink-500 to-violet-500 text-white font-semibold rounded-xl hover:from-pink-600 hover:to-violet-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 text-sm"
-      >
-        Paste
-      </button>
-    </div>
- 
-
-
-            <button
-              onClick={handleProcess}
-              disabled={
-                state.loading ||
-                state.downloading ||
-                state.downloadingAudio ||
-                state.downloadingImages
-              }
-              className="w-full mt-4 cursor-pointer py-3 px-4 bg-gradient-to-r from-pink-500 to-violet-500 text-white font-semibold rounded-xl hover:from-pink-600 hover:to-violet-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center text-base"
-            >
-              {state.loading ? (
-                <>
-                  <SpinnerIcon className="-ml-1 mr-3 h-5 w-5 text-white" />
-                  Processing...
-                </>
-              ) : (
-                'Process TikTok URL'
-              )}
-            </button>
-          </div>
-        </div>
-
-        {/* Results Section */}
-        <div className="results-section">
-
-          {state.message && (
-            <div
-              className={`max-w-2xl mx-auto p-3 rounded-xl text-center transition-all duration-300 text-base ${
-                state.message.includes('success') ||
-                state.message.includes('🎉') ||
-                state.message.includes('🎵')
-                  ? 'bg-green-500/20 text-green-300 border border-green-500/30'
-                  : 'bg-red-500/20 text-red-300 border border-red-500/30'
-              }`}
-            >
-              {state.message}
-            </div>
-          )}
-
-          {!state.videoMetadata && !state.message && (
-            
-            
-            <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-              {/* Getting Started Card */}
-              <div className="bg-gradient-to-br from-black/5 to-black/10 rounded-xl p-6 border border-whitblacke/20">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-r from-pink-500/20 to-violet-500/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-pink-500/30">
-                    <TikTokIcon className="w-8 h-8 text-pink-400" />
-                  </div>
-                  <h3 className="text-black font-semibold text-lg mb-2">
-                    Ready to Download?
-                  </h3>
-                  <p className="text-black/70 text-sm mb-4">
-                    Paste any TikTok URL above to get started. We support all
-                    TikTok link formats!
-                  </p>
-
-                </div>
-              </div>
-
-              {/* How it Works */}
-              <div className="bg-black/5 rounded-xl p-6 border border-whitblacke/10">
-                <h3 className="text-black font-semibold mb-4 flex items-center">
-                  🚀 How it Works
-                  <div className="ml-2 w-8 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded"></div>
-                </h3>
-                <div className="space-y-3">
-                  <div className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-pink-500 rounded-full flex items-center justify-center text-black text-xs font-bold mt-0.5">
-                      1
-                    </div>
-                    <div>
-                      <p className="text-black text-sm font-medium">
-                        Copy TikTok URL
-                      </p>
-                      <p className="text-black/60 text-xs">
-                        From any TikTok video or image post
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-violet-500 rounded-full flex items-center justify-center text-black text-xs font-bold mt-0.5">
-                      2
-                    </div>
-                    <div>
-                      <p className="text-black text-sm font-medium">
-                        Paste & Process
-                      </p>
-                      <p className="text-black/60 text-xs">
-                        Our servers analyze the content
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-black text-xs font-bold mt-0.5">
-                      3
-                    </div>
-                    <div>
-                      <p className="text-black text-sm font-medium">
-                        Download Content
-                      </p>
-                      <p className="text-black/60 text-xs">
-                        Video, audio, or images - your choice!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Supported Formats */}
-              <div className="bg-black/5 rounded-xl p-4 border border-whitblacke/10">
-                <h4 className="text-black font-medium mb-3 flex items-center">
-                  📱 Supported Links
-                </h4>
-                <div className="space-y-2 text-xs text-black/70">
-                  <p>• https://www.tiktok.com/@user/video/...</p>
-                  <p>• https://vm.tiktok.com/...</p>
-                  <p>• https://m.tiktok.com/...</p>
-                  <p>• https://tiktok.com/...</p>
-                </div>
-              </div>
-              <div className="bg-black/5 rounded-xl p-4 border border-whitblacke/10">
-                <h4 className="text-black font-medium mb-3 flex items-center">
-                  📊 Download Options
-                </h4>
-                <div className="space-y-2 text-xs text-black/70">
-                  <p>• HD Video (no watermark)</p>
-                  <p>• MP3 Audio extraction</p>
-                  <p>• Image galleries (ZIP/Individual)</p>
-                  <p>• Preview before download</p>
-                </div>
-              </div>
-
-              </div>
-          )}
-
-          {state.videoMetadata && (
-            <div className="max-w-2xl mx-auto space-y-4 mt-8">
-              
-              {/* Video Results */}
-              <div className="p-4 bg-black/10 rounded-xl border border-black/20 space-y-4">
-              <div className="flex items-start space-x-3">
-                {state.videoMetadata.thumbnail && (
-                  <Image
-                    src={state.videoMetadata.thumbnail}
-                    alt="Video thumbnail"
-                    width={80}
-                    height={80}
-                    className="rounded-lg object-cover flex-shrink-0"
-                    onError={(e) => {
-                      e.currentTarget.style.display = 'none'
-                    }}
-                  />
-                )}
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-black font-medium text-base line-clamp-2">
-                    {state.videoMetadata.title}
-                  </h3>
-                  <p className="text-black/70 text-sm mt-1">
-                    by {state.videoMetadata.author}
-                  </p>
-                  {state.videoMetadata.duration > 0 && (
-                    <p className="text-black/50 text-xs mt-1">
-                      {Math.floor(state.videoMetadata.duration / 60)}:
-                      {(state.videoMetadata.duration % 60)
-                        .toString()
-                        .padStart(2, '0')}
-                    </p>
-                  )}
-                </div>
-              </div>
-              
-              {/* Preview Toggle */}
-              {state.downloadUrl && (
-                <button
-                  onClick={togglePreview}
-                  className="w-full py-2 px-4 bg-blue-500 hover:bg-blue-600 text-black font-semibold rounded-lg transition-colors duration-200 flex items-center justify-center text-base"
-                >
-                  {state.showPreview ? '👁️ Hide Preview' : '👀 Show Preview'}
-                </button>
-              )}
-              
-              {/* Video Preview */}
-              {state.showPreview && state.downloadUrl && (
-                <div className="space-y-3">
-                  <div className="bg-black/50 rounded-lg overflow-hidden">
-                    <video
-                      src={state.downloadUrl}
-                      controls
-                      className="w-full h-auto max-h-64 object-contain"
-                      preload="metadata"
-                      onError={(e) => {
-                        console.error('Video preview error:', e)
-                        dispatch({
-                          type: 'SET_MESSAGE',
-                          payload:
-                            'Preview unavailable, but download should work',
-                        })
-                      }}
-                    >
-                      Your browser does not support the video tag.
-                    </video>
-                  </div>
-                  <p className="text-black/50 text-xs text-center">
-                    ⚡ Preview loaded - ready to download!
-                  </p>
-                </div>
-              )}
-              
-              {/* Image Gallery */}
-              {state.videoMetadata?.images &&
-                state.videoMetadata.images.length > 0 && (
-                  <div className="space-y-3">
-                    <button
-                      onClick={toggleImageGallery}
-                      className="w-full py-2 px-4 bg-purple-500 hover:bg-purple-600 text-black font-semibold rounded-lg transition-colors duration-200 flex items-center justify-center text-base"
-                    >
-                      {state.showImageGallery
-                        ? '🖼️ Hide Images'
-                        : `🖼️ Show Images (${state.videoMetadata.images.length})`}
-                    </button>
-
-                    {state.showImageGallery && (
-                      <div className="space-y-3">
-                        {/* Select All Controls */}
-                        <div className="flex items-center justify-between bg-black/5 rounded-lg p-3">
-                          <span className="text-black text-sm">
-                            Select images to download:
-                          </span>
-                          <div className="flex space-x-2">
-                            <button
-                              onClick={() => selectAllImages(true)}
-                              className="px-3 py-1 bg-green-500 hover:bg-green-600 text-black text-xs rounded"
-                            >
-                              All
-                            </button>
-                            <button
-                              onClick={() => selectAllImages(false)}
-                              className="px-3 py-1 bg-red-500 hover:bg-red-600 text-black text-xs rounded"
-                            >
-                              None
-                            </button>
-                          </div>
-                        </div>
-
-                        {/* Image Grid */}
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                          {state.videoMetadata.images.map((image, index) => (
-                            <div
-                              key={image.id}
-                              className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-200 ${
-                                image.selected
-                                  ? 'ring-2 ring-pink-500'
-                                  : 'hover:ring-2 hover:ring-black/30'
-                              }`}
-                              onClick={() => toggleImageSelection(image.id)}
-                            >
-                              <Image
-                                src={image.thumbnail}
-                                alt={`TikTok image ${index + 1}`}
-                                width={200}
-                                height={128}
-                                className="object-cover"
-                                onError={(e) => {
-                                  e.currentTarget.src =
-                                    getImagePlaceholderBase64()
-                                }}
-                              />
-
-                              {/* Selection Overlay */}
-                              <div
-                                className={`absolute inset-0 flex items-center justify-center transition-opacity duration-200 ${
-                                  image.selected
-                                    ? 'bg-pink-500/20'
-                                    : 'bg-black/0 hover:bg-black/20'
-                                }`}
-                              >
-                                <div
-                                  className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-200 ${
-                                    image.selected
-                                      ? 'bg-pink-500 border-pink-500'
-                                      : 'border-black/50 hover:border-black'
-                                  }`}
-                                >
-                                  {image.selected && (
-                                    <CheckIcon className="w-4 h-4 text-black" />
-                                  )}
-                                </div>
-                              </div>
-
-                              {/* Image Number */}
-                              <div className="absolute top-1 left-1 bg-black/50 text-black text-xs px-2 py-1 rounded">
-                                {index + 1}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-
-                        {/* Download Options */}
-                        <div className="bg-black/5 rounded-lg p-3 space-y-3">
-                          <div className="flex items-center space-x-3">
-                            <input
-                              type="checkbox"
-                              id="downloadAsZip"
-                              checked={state.downloadImagesAsZip}
-                              onChange={(e) =>
-                                dispatch({
-                                  type: 'SET_DOWNLOAD_IMAGES_AS_ZIP',
-                                  payload: e.target.checked,
-                                })
-                              }
-                              className="w-4 h-4 text-pink-500 bg-black/10 border-black/30 rounded focus:ring-pink-500 focus:ring-2"
-                            />
-                            <label
-                              htmlFor="downloadAsZip"
-                              className="text-white text-sm cursor-pointer"
-                            >
-                              Download as ZIP file
-                            </label>
-                          </div>
-                          <p className="text-white/60 text-xs">
-                            {state.downloadImagesAsZip
-                              ? '🗜️ Images will be packaged into a single ZIP file'
-                              : '📸 Images will be downloaded individually'}
-                          </p>
-                        </div>
-
-                        {/* Download Selected Images Button */}
-                        <button
-                          onClick={handleImageDownload}
-                          disabled={
-                            state.downloadingImages ||
-                            !state.videoMetadata?.images?.some(
-                              (Image) => Image.selected
-                            )
-                          }
-                          className="w-full cursor-pointer py-3 px-4 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 disabled:opacity-50 disabled:cursor-not-allowed text-black font-semibold rounded-lg transition-all duration-200 flex items-center justify-center text-base gap-2"
-                        >
-                          {state.downloadingImages ? (
-                            <>
-                              <SpinnerIcon className="flex-shrink-0 h-4 w-4 text-white" />
-                              <span>Downloading...</span>
-                            </>
-                          ) : (
-                            <>
-                              <DownloadIcon className="flex-shrink-0 h-5 w-5 text-white" />
-                              <span>
-                                Download Selected (
-                                {state.videoMetadata?.images?.filter(
-                                  (Image) => Image.selected
-                                ).length || 0}
-                                )
-                              </span>
-                            </>
-                          )}
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                )}
-              
-              {/* Download Buttons */}
-              {(state.downloadUrl || state.audioUrl) && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {state.downloadUrl && (
-                    <button
-                      onClick={handleVideoDownload}
-                      disabled={state.downloading || state.downloadingImages}
-                      className="py-3 cursor-pointer px-4 bg-gradient-to-r from-pink-500 to-violet-500 hover:from-pink-600 hover:to-violet-600 disabled:opacity-50 disabled:cursor-not-allowed text-black font-semibold rounded-lg transition-all duration-200 flex items-center justify-center text-base gap-2"
-                    >
-                      {state.downloading ? (
-                        <>
-                          <SpinnerIcon className="flex-shrink-0 h-4 w-4 text-white" />
-                          <span>Downloading...</span>
-                        </>
-                      ) : (
-                        <>
-                          <DownloadIcon className="flex-shrink-0 h-5 w-5 text-white" />
-                          <span>Video</span>
-                        </>
-                      )}
-                    </button>
-                  )}
-
-                  {state.audioUrl && (
-                    <button
-                      onClick={handleAudioDownload}
-                      disabled={
-                        state.downloadingAudio || state.downloadingImages
-                      }
-                      className="py-3 cursor-pointer px-4 bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 disabled:opacity-50 disabled:cursor-not-allowed text-black font-semibold rounded-lg transition-all duration-200 flex items-center justify-center text-base gap-2"
-                    >
-                      {state.downloadingAudio ? (
-                        <>
-                          <SpinnerIcon className="flex-shrink-0 h-4 w-4 text-white" />
-                          <span>Extracting...</span>
-                        </>
-                      ) : (
-                        <>
-                          <MusicIcon className="flex-shrink-0 h-5 w-5 text-white" />
-                          <span>Extract Audio</span>
-                        </>
-                      )}
-                    </button>
-                  )}
-                </div>
-              )}
-              {(state.downloadUrl || state.audioUrl) && (
-                <p className="text-black/50 text-xs text-center">
-                  {state.downloading ||
-                  state.downloadingAudio ||
-                  state.downloadingImages
-                    ? 'Please wait while we prepare your download...'
-                    : 'Click to download your content'}
-                </p>
-              )}
-              </div>
-            </div>
-          )}
-        </div>
-
-
-{/* Quick Links Section - above Who We Are */}
-<div className="max-w-4xl mx-auto mt-12 mb-8 flex flex-wrap justify-center gap-6">
-  <Link href="/how-to-download-tiktok-videos" className="bg-gradient-to-r from-pink-500 to-violet-500 text-white font-semibold px-6 py-3 rounded-xl shadow-lg hover:from-pink-600 hover:to-violet-600 transition-all duration-200 text-lg">How to Download</Link>
-  <Link href="/faq" className="bg-gradient-to-r from-green-500 to-blue-500 text-white font-semibold px-6 py-3 rounded-xl shadow-lg hover:from-green-600 hover:to-blue-600 transition-all duration-200 text-lg">FAQ</Link>
-  <Link href="/blog" className="bg-gradient-to-r from-yellow-500 to-pink-500 text-white font-semibold px-6 py-3 rounded-xl shadow-lg hover:from-yellow-600 hover:to-pink-600 transition-all duration-200 text-lg">Blog</Link>
-</div>
-
-{/* FAQs Section */}
-<div className="max-w-4xl mx-auto mt-12">
-  <h2 className="text-2xl font-bold text-black text-center mb-6">
-    Who We Are
-  </h2>
-
-  <div className="space-y-6">
-    {/* How to Use SaveFromInternet.com */}
-    <div className="bg-black/5 rounded-xl p-6 border border-whitblacke/10">
-      <p className="text-black/70 text-justify text-sm">
-        Welcome to SaveFromInternet.com — the easiest way to download TikTok videos fast, free, and without watermarks. 
-        We built this tool to make saving content simple and hassle-free. 
-        No apps, no signups, just copy the link and hit download. 
-        Our team is made up of developers who care about clean design, strong privacy, and smooth performance. 
-        Everything runs directly in your browser, so there’s nothing to install and no risk to your device. 
-        It works well even on slower connections and supports unlimited downloads. 
-        Use it responsibly. 
-        Save content only if you have permission to do so. 
-      </p>
-        <p className="text-black/70 text-justify text-sm">
-        Contact: contact@savefrominternet.com
-      </p>
-
-    </div>
-
- {/* Features Section */}
-<div className="max-w-4xl mx-auto mt-12">
-  <h2 className="text-2xl font-bold text-black text-center mb-6">
-    Features
-  </h2>
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-    <div className="bg-black/5 rounded-xl p-4 border border-whitblacke/10">
-      <div className="w-10 h-10 bg-gradient-to-r from-pink-500/20 to-violet-500/20 rounded-full flex items-center justify-center mb-3 border border-pink-500/30">
-        <TikTokIcon className="w-5 h-5 text-pink-400" />
-      </div>
-      <h3 className="text-black font-semibold mb-2">Watermark-Free</h3>
-      <p className="text-black/70 text-sm">
-        Download TikTok videos without any watermarks or logos
-      </p>
-    </div>
-
-    <div className="bg-black/5 rounded-xl p-4 border border-whitblacke/10">
-      <div className="w-10 h-10 bg-gradient-to-r from-green-500/20 to-blue-500/20 rounded-full flex items-center justify-center mb-3 border border-green-500/30">
-        <MusicIcon className="w-5 h-5 text-green-400" />
-      </div>
-      <h3 className="text-black font-semibold mb-2">MP3 Extraction</h3>
-      <p className="text-black/70 text-sm">
-        Extract high-quality MP3 audio from any TikTok video
-      </p>
-    </div>
-
-    <div className="bg-black/5 rounded-xl p-4 border border-whitblacke/10">
-      <div className="w-10 h-10 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full flex items-center justify-center mb-3 border border-purple-500/30">
-        <DownloadIcon className="w-5 h-5 text-purple-400" />
-      </div>
-      <h3 className="text-black font-semibold mb-2">Image Gallery</h3>
-      <p className="text-black/70 text-sm">
-        Download multiple images from TikTok posts in one click
-      </p>
-    </div>
-
-     <div className="bg-black/5 rounded-xl p-4 border border-whitblacke/10">
-  <div className="w-10 h-10 bg-gradient-to-r from-blue-500/20 to-grey-500/20 rounded-full flex items-center justify-center mb-3 border border-blue-500/30 overflow-hidden">
-    <img src="/logo-final.png" alt="download tiktok videos without watermark 2025 logo" className="w-5 h-5 object-contain" />
-  </div>
-  <h3 className="text-black font-semibold mb-2">Unlimited Downloads</h3>
-  <p className="text-black/70 text-sm">
-    Download unlimited TikTok videos without any restrictions or limits.
-  </p>
-</div>
-  </div>
-</div>
-</div>
-
-
-
- {/* Downloaders Section */}
-<div className="max-w-4xl mx-auto mt-12">
-  <h2 className="text-2xl font-bold text-black text-center mb-6">
-    Downloaders
-  </h2>
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-
-    {/* Instagram Reels Downloader Card */}
-    <div className="bg-black/5 rounded-xl p-4 border border-whitblacke/10">
-      <div className="w-10 h-10 bg-gradient-to-r from-red-500/20 to-pink-500/20 rounded-full flex items-center justify-center mb-3 border border-red-500/30">
-        <a
-          href="https://grabreels.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="url(#instagramGradient)"
-            className="w-5 h-5"
-          >
-            <defs>
-              <linearGradient id="instagramGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#ff0000ff" />
-                <stop offset="50%" stopColor="#ffffffff" />
-                <stop offset="100%" stopColor="#ff0000ff" />
-              </linearGradient>
-            </defs>
-            <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zm8.5 3a1 1 0 110 2 1 1 0 010-2zm-4.25 1.75a5 5 0 110 10 5 5 0 010-10zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7z" />
-          </svg>
-        </a>
-      </div>
-      <h3 className="text-black font-semibold mb-2">
-        <a
-          href="https://grabreels.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline hover:text-green-300"
-        >
-          Instagram Reels Downloader
-        </a>
-      </h3>
-      <p className="text-black/70 text-sm">
-        Download Instagram reels quickly and easily.
-      </p>
-      
-    </div>
-
-{/* Facebook Downloader Card */}
-<div className="bg-black/5 rounded-xl p-4 border border-whitblacke/10">
-  <div className="w-10 h-10 bg-gradient-to-r from-blue-500/20 to-blue-700/20 rounded-full flex items-center justify-center mb-3 border border-blue-500/30">
-    <span className="flex items-center justify-center">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 320 512"
-        fill="#1877F2"
-        className="w-5 h-5"
-      >
-        <path d="M279.14 288l14.22-92.66h-88.91V127.36c0-25.35 12.42-50.06 52.24-50.06H293V6.26S259.5 0 225.36 0C141.09 0 89.53 54.42 89.53 153.55V195.3H0v92.7h89.53V512h107.8V288z"/>
-      </svg>
-    </span>
-  </div>
-  <h3 className="text-black font-semibold mb-2">
-    <span className="underline text-black/90 cursor-default">Facebook Video Downloader</span>
-  </h3>
-  <p className="text-black/70 text-sm">
-    Coming Soon!!
-  </p>
-</div>
-
-{/* YouTube Downloader Card */}
-<div className="bg-black/5 rounded-xl p-4 border border-whitblacke/10">
-  <div className="w-10 h-10 bg-gradient-to-r from-red-600/20 to-red-800/20 rounded-full flex items-center justify-center mb-3 border border-red-600/30">
-    <span className="flex items-center justify-center">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 576 512"
-        fill="#FF0000"
-        className="w-5 h-5"
-      >
-        <path d="M549.7 124.1c-6.3-23.8-25-42.4-48.8-48.7C455.6 64 288 64 288 64S120.4 64 75.1 75.4C51.3 81.7 32.6 100.3 26.3 124.1 16 171.7 16 256 16 256s0 84.3 10.3 131.9c6.3 23.8 25 42.4 48.8 48.7C120.4 448 288 448 288 448s167.6 0 212.9-11.4c23.8-6.3 42.4-25 48.8-48.7C560 340.3 560 256 560 256s0-84.3-10.3-131.9zM232 334.1V177.9L358.4 256 232 334.1z"/>
-      </svg>
-    </span>
-  </div>
-  <h3 className="text-black font-semibold mb-2">
-    <span className="underline text-black/90 cursor-default">YouTube Video Downloader</span>
-  </h3>
-  <p className="text-black/70 text-sm">
-    Coming Soon!!
-  </p>
-</div>
-
-
-  </div>
-</div>
-
-
-
-
-
-
-{/* FAQs Section */}
-<div className="max-w-4xl mx-auto mt-12">
-  <h2 className="text-2xl font-bold text-black text-center mb-6">
-    Frequently Asked Questions
-  </h2>
-
-  <div className="space-y-6">
-    {/* How to Use SaveFromInternet.com */}
-    <div className="bg-black/5 rounded-xl p-6 border border-whitblacke/10">
-      <h3 className="text-black font-semibold text-lg mb-2">
-        How to Use SaveFromInternet.com
-      </h3>
-      <p className="text-black/70 text-justify text-sm">
-        Using SaveFromInternet.com is simple. First, open TikTok and copy the link to the video you want to save. 
-        Then, come to our site and paste that link into the input box at the top. 
-        Click the download button, and you’ll instantly get the  video, fast, and without any watermark. 
-        You don’t need to install anything or sign up. It works on mobile, tablet, or desktop. That’s it. 
-        Copy, paste, download. Whether you're archiving content, editing clips, or just saving your favorites, 
-        it’s the fastest way to get TikTok videos without the clutter.
-      </p>
-    </div>
-
-    {/* Download High-Quality TikTok Videos */}
-    <div className="bg-black/5 rounded-xl p-6 border border-whitblacke/10">
-      <h3 className="text-black font-semibold text-lg mb-2">
-        Download High-Quality TikTok Videos
-      </h3>
-      <p className="text-black/70 text-justify text-sm">
-        TikTok videos should look just as good saved as they do on the app and that’s what we deliver. 
-        When you use SaveFromInternet.com, you get high-quality video downloads every time. 
-        We don’t compress or downgrade anything. Your videos stay crisp and smooth, perfect for editing, 
-        reposting, or watching offline. Whether it's standard 720p, full HD 1080p, or better, 
-        we keep the original resolution intact. No grainy replays, no pixelated mess. 
-        Just clean, high-definition TikToks ready to go, with nothing lost in the process.
-      </p>
-    </div>
-
-    {/* How to Download Audio from TikTok */}
-    <div className="bg-black/5 rounded-xl p-6 border border-whitblacke/10">
-      <h3 className="text-black font-semibold text-lg mb-2">
-        How to Download Audio from TikTok
-      </h3>
-      <p className="text-black/70 text-justify text-sm">
-        Once you paste a TikTok video link on SaveFromInternet.com, you’ll see two options: 
-        a button to download the video and another to extract audio. Just click the “Extract Audio” button, 
-        and we’ll process the video and give you the original sound in MP3 format. 
-        No extra tools or apps needed. 
-        Whether you’re looking to save music, voiceovers, or funny sounds from a clip, this option gets you clean audio, fast.
-        It works for public videos with sound and doesn’t affect quality. 
-        Perfect for ringtones, edits, or background tracks.
-      </p>
-    </div>
-
-    {/* How to Download Photos from TikTok */}
-    <div className="bg-black/5 rounded-xl p-6 border border-whitblacke/10">
-      <h3 className="text-black font-semibold text-lg mb-2">
-        How to Download Photos from TikTok
-      </h3>
-      <p className="text-black/70 text-justify text-sm">
-        Copy the link of a TikTok photo post and paste it into SaveFromInternet.com. 
-        If the post contains images, we’ll instantly detect them and show download options. 
-        You can save each image individually, or download all of them together in a ZIP file. 
-        If you only want one photo from a multi-image post, simply click on the specific image and hit download. 
-        That’s it. It works smoothly on mobile and desktop, and there’s no watermark or compression added. 
-        Easy and efficient, whether you're grabbing one shot or the full set.
-      </p>
-    </div>
-
-        {/* What should I do if the TikTok video link isn’t working? */}
-    <div className="bg-black/5 rounded-xl p-6 border border-whitblacke/10">
-      <h3 className="text-black font-semibold text-lg mb-2">
-        What should I do if the TikTok video link isn’t working?
-      </h3>
-      <p className="text-black/70 text-justify text-sm">
-        If a TikTok link isn’t working, first double-check that you copied the full URL, Some apps shorten or truncate links. 
-        Make sure the video is public and hasn’t been deleted by the user or TikTok. 
-        If the video still won’t load, try refreshing the page or using a different browser or device. 
-        Occasionally, TikTok may update its backend, which can affect how third-party tools like ours interact with their platform. 
-        If none of this works, wait a bit and try again. 
-        We’re constantly updating the site to stay compatible with TikTok’s system.
-      </p>
-</div>
-        {/* Is my privacy protected when using this site? */}
-    <div className="bg-black/5 rounded-xl p-6 border border-whitblacke/10">
-      <h3 className="text-black font-semibold text-lg mb-2">
-        Is my privacy protected when using this site?
-      </h3>
-      <p className="text-black/70 text-justify text-sm">
-        Yes, your privacy is a priority. 
-        SaveFromInternet.com doesn’t collect personal information, track user activity, or store downloaded videos. 
-        Every download is processed in real time and never saved to our servers. 
-        We don’t ask for your name, email, or any login details. 
-        There are no background trackers monitoring what you do. 
-        Since you’re not required to register or install anything, your identity remains completely anonymous. 
-        We also use HTTPS to ensure a secure connection between your device and our server. 
-        You can use the site confidently knowing that your activity stays private and your data isn’t being harvested or shared.
-      </p>
-</div>
-
-        {/* Do I need to install software or create an account? */}
-    <div className="bg-black/5 rounded-xl p-6 border border-whitblacke/10">
-      <h3 className="text-black font-semibold text-lg mb-2">
-        Do I need to install software or create an account?
-      </h3>
-      <p className="text-black/70 text-justify text-sm">
-        No, you don’t need to install anything or sign up to use SaveFromInternet.com. 
-        The entire process is browser-based—just paste the TikTok link, hit download, and you’re good to go. 
-        There’s no app, no extensions, and no registration forms. 
-        This means you can use the site instantly, on any device, without giving up personal information or cluttering your phone or computer with extra tools. 
-        Whether you’re on mobile, desktop, or tablet, the download process is simple and fast. 
-        We built this to be lightweight and user-friendly, so you can save videos without jumping through hoops.
-      </p>
-</div>
-
-        {/* Can I download videos from private TikTok accounts? */}
-    <div className="bg-black/5 rounded-xl p-6 border border-whitblacke/10">
-      <h3 className="text-black font-semibold text-lg mb-2">
-        Can I download videos from private TikTok accounts?
-      </h3>
-      <p className="text-black/70 text-justify text-sm">
-        No, we can’t access or download content from private TikTok accounts. 
-        SaveFromInternet.com only works with publicly available videos. 
-        If a user has set their account or specific video to private, TikTok blocks third-party tools like ours from reaching that content and we respect that boundary. 
-        Even if you have the link, private videos require login authentication that our site doesn’t request or store. 
-        This protects users’ privacy and keeps everything above board. 
-        If you’re trying to download a private video, you’ll need to ask the original creator for access or for them to send you the content directly.
-      </p>
-</div>
-
-        {/* Is using SaveFromInternet.com legal? */}
-    <div className="bg-black/5 rounded-xl p-6 border border-whitblacke/10">
-      <h3 className="text-black font-semibold text-lg mb-2">
-        Is using SaveFromInternet.com legal?
-      </h3>
-      <p className="text-black/70 text-justify text-sm">
-        Using SaveFromInternet.com to download TikTok videos is generally legal for personal use, like offline viewing or private archiving. 
-        However, it becomes a legal gray area if you reupload, redistribute, or monetize downloaded content without permission from the creator. 
-        TikTok’s terms of service also prohibit unauthorized downloading in some cases, so it’s important to respect the platform’s rules. 
-        We encourage users to use downloads responsibly, don’t repost someone’s content as your own or use it in ways that violate copyright laws. 
-        If you’re ever unsure, the safest approach is to ask for the creator’s permission before sharing or editing their video.
-      </p>
-  </div>
-  </div>
-</div>
-</div>
-</div>
-</div>
-  )
+import DownloaderTool from '@/components/DownloaderTool'
+
+/* ── Structured Data ───────────────────────────────────────────────── */
+const webAppSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'TikTok Video Downloader - Save From Internet',
+  url: 'https://www.savefrominternet.com',
+  applicationCategory: 'MultimediaApplication',
+  operatingSystem: 'Windows, macOS, iOS, Android',
+  browserRequirements: 'Requires JavaScript',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  description: 'Free TikTok video downloader. Download TikTok videos without watermark in HD MP4, extract MP3 audio, and save image galleries. No app required.',
+  featureList: ['Download TikTok videos without watermark', 'HD MP4 video download', 'MP3 audio extraction', 'Image gallery download', 'No registration required', 'Unlimited downloads'],
 }
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'How do I download TikTok videos without watermark?', acceptedAnswer: { '@type': 'Answer', text: 'Copy the TikTok video URL, paste it into savefrominternet.com, click "Download TikTok Video", and download the MP4. The file has no watermark.' } },
+    { '@type': 'Question', name: 'Is SaveFromInternet.com free to use?', acceptedAnswer: { '@type': 'Answer', text: 'Yes, completely free. No subscription, no hidden fees, no download limits.' } },
+    { '@type': 'Question', name: 'Do I need to install an app?', acceptedAnswer: { '@type': 'Answer', text: 'No. It works entirely in your web browser on any device — iPhone, Android, PC, or Mac.' } },
+    { '@type': 'Question', name: 'Can I download TikTok audio as MP3?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. After processing a TikTok URL, click "Extract MP3" to save the audio track from any TikTok video.' } },
+    { '@type': 'Question', name: 'Why does SaveFromInternet.com download without watermark?', acceptedAnswer: { '@type': 'Answer', text: "We fetch the original video file directly from TikTok's servers before any watermark is applied, so your download is clean." } },
+    { '@type': 'Question', name: 'Is downloading TikTok videos legal?', acceptedAnswer: { '@type': 'Answer', text: 'Downloading for personal offline use is generally accepted. Do not redistribute or monetize downloaded content without the creator\'s permission.' } },
+  ],
+}
+
+/* ── Feature data ──────────────────────────────────────────────────── */
+const features = [
+  { icon: '🚫', title: 'No Watermark', desc: 'Get the original clean video — no TikTok logo, no username overlay.' },
+  { icon: '🎬', title: 'HD Quality', desc: 'Download at the original resolution — 720p, 1080p, or higher.' },
+  { icon: '🎵', title: 'MP3 Extraction', desc: 'Pull the audio track from any TikTok video as a high-quality MP3.' },
+  { icon: '🖼️', title: 'Image Galleries', desc: 'Save TikTok photo carousels — individual files or a single ZIP.' },
+  { icon: '⚡', title: 'Instant & Fast', desc: 'No waiting, no queues. Processing takes just a few seconds.' },
+  { icon: '🔒', title: 'Private & Secure', desc: 'We never store your videos. Downloads are processed in real time.' },
+  { icon: '📱', title: 'All Devices', desc: 'Works on iPhone, Android, Windows PC, Mac — any browser.' },
+  { icon: '♾️', title: 'Unlimited', desc: 'No daily caps. Download as many TikTok videos as you need.' },
+]
+
+const faqs = [
+  { q: 'How do I download TikTok videos without watermark?', a: 'Open TikTok, tap Share → Copy Link. Paste the URL on savefrominternet.com, click "Download TikTok Video", and save the MP4. The downloaded file has no TikTok watermark.' },
+  { q: 'Does it work on iPhone and Android?', a: 'Yes. On iPhone, open Safari, go to savefrominternet.com, paste the link and download. After the video opens in Safari, tap and hold the video and select "Save Video" to save to your Camera Roll. On Android, the file downloads directly to your Downloads folder.' },
+  { q: 'Can I download TikTok audio as MP3?', a: 'Yes. After processing any TikTok URL, click "Extract MP3" to download the audio track as an MP3 file. Perfect for music, voiceovers, and sound effects.' },
+  { q: 'How do I download TikTok photos?', a: 'Paste the URL of a TikTok photo carousel into savefrominternet.com. We detect images automatically. You can select individual photos or download all as a ZIP file.' },
+  { q: 'Is my privacy protected?', a: 'Yes. We do not store your downloaded files, track your activity, or require any account. Everything is processed in real time and discarded immediately.' },
+  { q: 'Can I download private TikTok videos?', a: 'No. The tool only works with publicly available TikTok videos. Private or followers-only content cannot be accessed by third-party tools.' },
+  { q: 'Why download without watermark?', a: "TikTok's built-in save feature burns a watermark into the video. SaveFromInternet.com fetches the original video file before the watermark is applied, giving you a clean version." },
+  { q: 'Is it legal to download TikTok videos?', a: 'Downloading for personal use (offline viewing, private archiving) is generally accepted. Redistribution or monetization of downloaded content without permission may violate copyright law.' },
+]
+
+/* ── Page ──────────────────────────────────────────────────────────── */
+export default function Home() {
+  return (
+    <div className="bg-white">
+
+      {/* Interactive Downloader */}
+      <DownloaderTool />
+
+      {/* ── How It Works ── */}
+      <section className="bg-slate-50 py-16 px-4 border-t border-slate-100">
+        <div className="max-w-5xl mx-auto">
+          <p className="text-center text-xs font-bold uppercase tracking-widest text-rose-500 mb-3">Simple 3-Step Process</p>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 text-center mb-12">How to Download TikTok Videos</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { n: '01', icon: '📋', title: 'Copy TikTok URL', desc: 'Open TikTok, tap the Share button on any video, then tap "Copy Link" to copy the URL.' },
+              { n: '02', icon: '⚙️', title: 'Paste & Process', desc: 'Paste the URL on savefrominternet.com, hit the Download button, and wait a few seconds.' },
+              { n: '03', icon: '⬇️', title: 'Save to Device', desc: 'Download the HD video without watermark, extract MP3 audio, or save photo galleries.' },
+            ].map(({ n, icon, title, desc }) => (
+              <div key={n} className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-3xl">{icon}</span>
+                  <span className="text-5xl font-black text-slate-100 leading-none select-none">{n}</span>
+                </div>
+                <h3 className="text-slate-900 font-bold text-lg mb-2">{title}</h3>
+                <p className="text-slate-500 text-sm leading-relaxed">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Features ── */}
+      <section className="bg-white py-16 px-4">
+        <div className="max-w-5xl mx-auto">
+          <p className="text-center text-xs font-bold uppercase tracking-widest text-violet-500 mb-3">Why Users Choose Us</p>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 text-center mb-12">Everything You Need to Save TikTok Content</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {features.map(({ icon, title, desc }) => (
+              <div key={title} className="bg-slate-50 rounded-2xl p-5 border border-slate-100 hover:border-rose-200 hover:bg-rose-50/30 transition-all group">
+                <div className="text-3xl mb-3">{icon}</div>
+                <h3 className="text-slate-900 font-bold mb-1.5 group-hover:text-rose-600 transition-colors">{title}</h3>
+                <p className="text-slate-500 text-sm leading-relaxed">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Download Types ── */}
+      <section className="bg-slate-50 py-16 px-4 border-t border-slate-100">
+        <div className="max-w-5xl mx-auto">
+          <p className="text-center text-xs font-bold uppercase tracking-widest text-emerald-500 mb-3">Multiple Format Support</p>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 text-center mb-12">What Can You Download?</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm text-center">
+              <div className="w-14 h-14 bg-rose-100 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">🎬</div>
+              <h3 className="text-slate-900 font-bold text-xl mb-2">TikTok Video</h3>
+              <p className="text-slate-500 text-sm leading-relaxed mb-4">Download in HD without watermark as MP4. Plays on any device or video player.</p>
+              <Link href="/tiktok-downloader-without-watermark" className="text-rose-500 text-sm font-semibold hover:underline">Download without watermark →</Link>
+            </div>
+            <div className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm text-center">
+              <div className="w-14 h-14 bg-emerald-100 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">🎵</div>
+              <h3 className="text-slate-900 font-bold text-xl mb-2">TikTok Audio (MP3)</h3>
+              <p className="text-slate-500 text-sm leading-relaxed mb-4">Extract music, sounds, and voiceovers as high-quality MP3. Great for ringtones and edits.</p>
+              <Link href="/tiktok-to-mp3" className="text-emerald-600 text-sm font-semibold hover:underline">TikTok to MP3 →</Link>
+            </div>
+            <div className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm text-center">
+              <div className="w-14 h-14 bg-violet-100 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">🖼️</div>
+              <h3 className="text-slate-900 font-bold text-xl mb-2">TikTok Photos</h3>
+              <p className="text-slate-500 text-sm leading-relaxed mb-4">Save images from TikTok photo carousels. Download individually or as a ZIP archive.</p>
+              <Link href="/tiktok-photo-downloader" className="text-violet-600 text-sm font-semibold hover:underline">Photo downloader →</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Device Links ── */}
+      <section className="bg-white py-14 px-4 border-t border-slate-100">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 text-center mb-8">Works on Every Device</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {[
+              { icon: '🍎', label: 'iPhone & iPad', href: '/tiktok-video-downloader-iphone' },
+              { icon: '🤖', label: 'Android', href: '/tiktok-video-downloader-android' },
+              { icon: '🖥️', label: 'Windows / Mac', href: '/tiktok-video-downloader-pc' },
+              { icon: '🌐', label: 'Any Browser', href: '/tiktok-video-downloader' },
+            ].map(({ icon, label, href }) => (
+              <Link key={label} href={href} className="flex flex-col items-center gap-2 bg-slate-50 hover:bg-rose-50 border border-slate-100 hover:border-rose-200 rounded-2xl py-5 px-3 transition-all group">
+                <span className="text-3xl">{icon}</span>
+                <span className="text-sm font-semibold text-slate-700 group-hover:text-rose-600 text-center transition-colors">{label}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── About ── */}
+      <section className="bg-slate-50 py-14 px-4 border-t border-slate-100">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-4">About SaveFromInternet.com</h2>
+          <p className="text-slate-500 leading-relaxed text-base">
+            SaveFromInternet.com is a free, browser-based TikTok video downloader. No installs, no accounts, no watermarks.
+            Just paste a link and download your content instantly. We support videos, audio, and image galleries from any
+            public TikTok. Built for privacy — your downloads are never stored on our servers.
+          </p>
+          <p className="text-slate-400 text-sm mt-3">Contact: contact@savefrominternet.com</p>
+        </div>
+      </section>
+
+      {/* ── FAQ ── */}
+      <section className="bg-white py-16 px-4 border-t border-slate-100">
+        <div className="max-w-3xl mx-auto">
+          <p className="text-center text-xs font-bold uppercase tracking-widest text-rose-500 mb-3">Got Questions?</p>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 text-center mb-12">Frequently Asked Questions</h2>
+          <div className="space-y-4">
+            {faqs.map(({ q, a }) => (
+              <div key={q} className="bg-slate-50 rounded-2xl p-5 border border-slate-100">
+                <h3 className="text-slate-900 font-bold mb-2">{q}</h3>
+                <p className="text-slate-500 text-sm leading-relaxed">{a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Related Tools ── */}
+      <section className="bg-slate-50 py-12 px-4 border-t border-slate-100">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-xl font-bold text-slate-900 text-center mb-6">More TikTok Downloader Tools</h2>
+          <div className="flex flex-wrap justify-center gap-3">
+            {[
+              { label: 'TikTok to MP3', href: '/tiktok-to-mp3' },
+              { label: 'Photo Downloader', href: '/tiktok-photo-downloader' },
+              { label: 'iPhone Guide', href: '/tiktok-video-downloader-iphone' },
+              { label: 'Android Guide', href: '/tiktok-video-downloader-android' },
+              { label: 'PC / Mac Guide', href: '/tiktok-video-downloader-pc' },
+              { label: 'No Watermark', href: '/tiktok-downloader-without-watermark' },
+              { label: 'Save TikTok Video', href: '/save-tiktok-video' },
+              { label: 'How to Download', href: '/how-to-download-tiktok-videos' },
+              { label: 'FAQ', href: '/faq' },
+              { label: 'Blog', href: '/blog' },
+            ].map(({ label, href }) => (
+              <Link key={href} href={href} className="px-4 py-2 bg-white text-slate-600 hover:text-rose-600 border border-slate-200 hover:border-rose-200 rounded-full text-sm font-medium transition-all hover:shadow-sm">
+                {label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Structured Data */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+    </div>
+  )
+}

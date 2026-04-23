@@ -4,6 +4,11 @@ import { NextResponse } from 'next/server'
 const WWW_HOST = 'www.savefrominternet.com'
 
 export function middleware(request: NextRequest) {
+  // 🔒 Do NOTHING in development
+  if (process.env.NODE_ENV !== 'production') {
+    return NextResponse.next()
+  }
+
   const host = request.headers.get('host')
   const protocol = request.headers.get('x-forwarded-proto') ?? 'https'
 
@@ -19,13 +24,13 @@ export function middleware(request: NextRequest) {
 
   const url = request.nextUrl.clone()
 
-  // Enforce HTTPS first
+  // Enforce HTTPS
   if (protocol !== 'https') {
     url.protocol = 'https'
     return NextResponse.redirect(url, 301)
   }
 
-  // Enforce www host
+  // Enforce www
   if (host !== WWW_HOST) {
     url.hostname = WWW_HOST
     return NextResponse.redirect(url, 301)
@@ -39,4 +44,3 @@ export const config = {
     '/((?!api|_next/static|_next/image|favicon\\.ico|robots\\.txt|sitemap\\.xml|manifest\\.json).*)',
   ],
 }
-
