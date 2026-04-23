@@ -1,5 +1,13 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import GoogleAdSense from '@/components/GoogleAdSense'
+
+export const metadata: Metadata = {
+  title: 'About SaveFromInternet — Free TikTok Video Downloader',
+  description: 'About SaveFromInternet.com — a free platform to download TikTok videos, audio, and images without watermark.',
+  alternates: { canonical: 'https://www.savefrominternet.com/about' },
+  openGraph: { title: 'About SaveFromInternet', url: 'https://www.savefrominternet.com/about' },
+}
 
 export default function AboutPage() {
   return (

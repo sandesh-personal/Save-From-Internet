@@ -1,5 +1,13 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import GoogleAdSense from '@/components/GoogleAdSense'
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy | SaveFromInternet',
+  description: 'Privacy Policy for SaveFromInternet.com — how we collect, use, and protect your data.',
+  alternates: { canonical: 'https://www.savefrominternet.com/privacy-policy' },
+  openGraph: { title: 'Privacy Policy | SaveFromInternet', url: 'https://www.savefrominternet.com/privacy-policy' },
+}
 
 export default function PrivacyPolicyPage() {
   return (
