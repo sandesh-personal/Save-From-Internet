@@ -1,114 +1,549 @@
-// app/blog/blogData.ts
+export type BlogCategory =
+  | 'how-to'
+  | 'no-watermark'
+  | 'device'
+  | 'audio'
+  | 'photos'
+  | 'troubleshooting'
+  | 'comparison'
+  | 'other-platforms'
+  | 'legal'
 
-export const metadata = {
-  title: 'Blog | SaveFromInternet',
-  description: 'Read the latest tips, guides, and updates on downloading TikTok videos, audio, and images with SaveFromInternet.',
-};
+export interface BlogPost {
+  slug: string
+  title: string
+  image: string
+  lastModified: string
+  description: string
+  category: BlogCategory
+}
 
-export const blogPosts = [
+export const categoryMeta: Record<BlogCategory, { label: string; icon: string }> = {
+  'how-to':          { label: 'How-To Guides',       icon: '📖' },
+  'no-watermark':    { label: 'No Watermark',         icon: '🚫💧' },
+  device:            { label: 'Device Guides',         icon: '📱' },
+  audio:             { label: 'Audio & MP3',           icon: '🎵' },
+  photos:            { label: 'Photos & Carousels',    icon: '🖼️' },
+  troubleshooting:   { label: 'Troubleshooting',       icon: '🔧' },
+  comparison:        { label: 'Tool Comparisons',      icon: '⚖️' },
+  'other-platforms': { label: 'Other Platforms',       icon: '🌐' },
+  legal:             { label: 'Legal & Privacy',       icon: '⚖️' },
+}
+
+export const blogPosts: BlogPost[] = [
+  // ── EXISTING POSTS ────────────────────────────────────────────────────────
   {
-    slug: 'tiktok-video-downloader-2025-complete-guide',
-    title: 'TikTok Video Downloader 2025 - Download TikTok Videos Without Watermark',
+    slug: 'download-tiktok-videos-without-watermark-2025',
+    title: 'How to Download TikTok Videos Without Watermark in 2026',
     image: '/images/main.png',
-    lastModified: '2025-01-15T08:00:00.000Z',
-    description: 'Best TikTok video downloader 2025. Download TikTok videos without watermark, extract audio, save images. Free, fast, and secure TikTok video downloader.'
+    lastModified: '2026-04-01T08:00:00.000Z',
+    description: 'Step-by-step guide to downloading TikTok videos without the watermark in HD quality using SaveFromInternet.com.',
+    category: 'no-watermark',
   },
   {
     slug: 'how-to-extract-audio-from-tiktok-videos-mp3-download',
-    title: 'How to Extract Audio from TikTok Videos (MP3 Download) - 2025 Guide',
+    title: 'How to Extract Audio from TikTok Videos (MP3 Download) — 2026 Guide',
     image: '/images/step4.jpg',
-    lastModified: '2025-01-14T08:00:00.000Z',
-    description: 'Extract high-quality MP3 audio from your TikTok videos for music, podcasts, and more.'
+    lastModified: '2026-04-01T08:00:00.000Z',
+    description: 'Extract high-quality MP3 audio from TikTok videos for music, podcasts, and more. Free, no app.',
+    category: 'audio',
   },
   {
     slug: 'how-to-download-tiktok-photos-and-image-carousels',
-    title: 'How to Download TikTok Photos and Image Carousels - Complete Guide 2025',
+    title: 'How to Download TikTok Photos and Image Carousels — Complete Guide 2026',
     image: '/images/step5.jpg',
-    lastModified: '2025-01-13T08:00:00.000Z',
-    description: 'Save TikTok photos and image carousels in original quality to your device.'
-  },
-  {
-    slug: 'best-tiktok-video-downloaders-for-iphone-2025-guide',
-    title: 'Best TikTok Video Downloaders for iPhone (2025 Guide) - Top 10 Apps',
-    image: '/images/step2.jpg',
-    lastModified: '2025-01-12T08:00:00.000Z',
-    description: 'Discover the top TikTok video downloaders for iPhone and how to use them safely.'
+    lastModified: '2026-04-01T08:00:00.000Z',
+    description: 'Save TikTok photos and image carousels in original quality to your device. Individual or ZIP download.',
+    category: 'photos',
   },
   {
     slug: 'how-to-download-tiktok-videos-on-android-complete-guide',
-    title: 'How to Download TikTok Videos on Android (Complete Guide 2025)',
+    title: 'How to Download TikTok Videos on Android (Complete Guide 2026)',
     image: '/images/step2.jpg',
-    lastModified: '2025-01-11T08:00:00.000Z',
-    description: 'Step-by-step guide to downloading TikTok videos on any Android device.'
+    lastModified: '2026-04-01T08:00:00.000Z',
+    description: 'The definitive guide to downloading TikTok videos on any Android device — no watermark, no app needed.',
+    category: 'device',
   },
   {
     slug: 'tiktok-video-downloader-for-pc-windows-mac',
-    title: 'TikTok Video Downloader for PC - Windows & Mac (Complete Guide 2025)',
+    title: 'TikTok Video Downloader for PC — Windows & Mac Complete Guide 2026',
     image: '/images/step1.jpg',
-    lastModified: '2025-01-10T08:00:00.000Z',
-    description: 'Download TikTok videos on your Windows or Mac computer with ease.'
+    lastModified: '2026-04-01T08:00:00.000Z',
+    description: 'Download TikTok videos on Windows or Mac in any browser. No software, no watermark.',
+    category: 'device',
   },
   {
     slug: 'how-to-download-private-tiktok-videos-legal-methods',
-    title: 'How to Download Private TikTok Videos (Legal Methods) - 2025 Guide',
+    title: 'How to Download Private TikTok Videos — Legal Methods Only (2026)',
     image: '/images/step1.jpg',
-    lastModified: '2025-01-09T08:00:00.000Z',
-    description: 'Learn the legal ways to download your own or permitted private TikTok videos.'
+    lastModified: '2026-04-01T08:00:00.000Z',
+    description: 'Learn the legal ways to download your own or authorized private TikTok videos in 2026.',
+    category: 'legal',
   },
   {
     slug: 'tiktok-video-downloader-chrome-extension-guide',
-    title: 'TikTok Video Downloader Chrome Extension Guide - 2025 Complete Tutorial',
+    title: 'TikTok Video Downloader Chrome Extension — 2026 Complete Tutorial',
     image: '/images/step1.jpg',
-    lastModified: '2025-01-08T08:00:00.000Z',
-    description: 'A complete guide to using Chrome extensions for downloading TikTok videos.'
+    lastModified: '2026-04-01T08:00:00.000Z',
+    description: 'A complete guide to Chrome extensions vs web tools for downloading TikTok videos in 2026.',
+    category: 'comparison',
   },
   {
     slug: 'how-to-download-tiktok-videos-in-hd-quality',
-    title: 'How to Download TikTok Videos in HD Quality - Complete Guide 2025',
+    title: 'How to Download TikTok Videos in HD Quality — Complete Guide 2026',
     image: '/images/step3.jpg',
-    lastModified: '2025-01-07T08:00:00.000Z',
-    description: 'Download TikTok videos in HD and 4K quality without losing clarity.'
+    lastModified: '2026-04-01T08:00:00.000Z',
+    description: 'Get TikTok videos in true HD quality — 720p, 1080p, no compression, no watermark.',
+    category: 'how-to',
   },
   {
     slug: 'tiktok-video-downloader-without-app-store',
-    title: 'TikTok Video Downloader Without App Store - Best Alternatives 2025',
+    title: 'TikTok Video Downloader Without App Store — Best Alternatives 2026',
     image: '/images/step1.jpg',
-    lastModified: '2025-01-06T08:00:00.000Z',
-    description: 'Find the best TikTok downloaders that don\'t require App Store installation.'
+    lastModified: '2026-04-01T08:00:00.000Z',
+    description: 'Skip the App Store entirely. The best TikTok downloaders that work directly in your browser.',
+    category: 'how-to',
   },
   {
     slug: 'how-to-download-instagram-reels-without-watermark',
-    title: 'How to Download Instagram Reels Without Watermark - Complete Guide 2025',
+    title: 'How to Download Instagram Reels Without Watermark — Complete Guide 2026',
     image: '/images/step1.jpg',
-    lastModified: '2025-01-05T08:00:00.000Z',
-    description: 'Save Instagram Reels without watermark in high quality for personal use.'
+    lastModified: '2026-04-01T08:00:00.000Z',
+    description: 'Save Instagram Reels without watermark in original HD quality for personal use.',
+    category: 'other-platforms',
   },
   {
     slug: 'youtube-shorts-downloader-save-videos-without-watermark',
-    title: 'YouTube Shorts Downloader - Save Videos Without Watermark (2025 Guide)',
+    title: 'YouTube Shorts Downloader — Save Videos Without Watermark (2026 Guide)',
     image: '/images/step1.jpg',
-    lastModified: '2025-01-04T08:00:00.000Z',
-    description: 'Download YouTube Shorts videos without watermark in various resolutions.'
+    lastModified: '2026-04-01T08:00:00.000Z',
+    description: 'Download YouTube Shorts videos without watermark in high resolution. Free online tool.',
+    category: 'other-platforms',
   },
   {
     slug: 'how-to-download-tiktok-videos-without-app',
-    title: 'How to Download TikTok Videos Without App - Complete Guide 2025',
+    title: 'How to Download TikTok Videos Without Any App — Complete Guide 2026',
     image: '/images/step2.jpg',
-    lastModified: '2025-01-03T08:00:00.000Z',
-    description: 'Learn how to download TikTok videos directly from your browser without any app.'
+    lastModified: '2026-04-01T08:00:00.000Z',
+    description: 'Download TikTok videos directly from your browser with zero apps, zero installs.',
+    category: 'how-to',
   },
   {
     slug: 'how-to-download-facebook-videos-complete-guide',
-    title: 'How to Download Facebook Videos (Complete Guide 2025)',
+    title: 'How to Download Facebook Videos — Complete Guide 2026',
     image: '/images/step1.jpg',
-    lastModified: '2025-01-02T08:00:00.000Z',
-    description: 'A comprehensive guide to downloading Facebook videos in high quality.'
+    lastModified: '2026-04-01T08:00:00.000Z',
+    description: 'A comprehensive guide to downloading Facebook videos in HD. Free online tool, no app.',
+    category: 'other-platforms',
   },
   {
     slug: 'is-downloading-tiktok-videos-legal-2025-guide',
-    title: 'Is Downloading TikTok Videos Legal? What You Need to Know (2025 Guide)',
+    title: 'Is Downloading TikTok Videos Legal? What You Need to Know (2026)',
     image: '/images/step1.jpg',
-    lastModified: '2025-01-01T08:00:00.000Z',
-    description: 'Understand the legalities of downloading TikTok videos. Learn what is allowed, what is not, and how to stay safe and compliant in 2025.'
+    lastModified: '2026-04-01T08:00:00.000Z',
+    description: 'Understand the legalities of downloading TikTok videos — what is allowed, what is not, and how to stay safe.',
+    category: 'legal',
   },
-];
+
+  // ── NEW POSTS — HOW-TO ────────────────────────────────────────────────────
+  {
+    slug: 'how-to-download-tiktok-videos-2026',
+    title: 'How to Download TikTok Videos in 2026 — The Ultimate Beginner Guide',
+    image: '/images/main.png',
+    lastModified: '2026-04-15T08:00:00.000Z',
+    description: 'New to TikTok downloading? This beginner-friendly guide shows you exactly how to save any TikTok video in under 30 seconds.',
+    category: 'how-to',
+  },
+  {
+    slug: 'tiktok-video-downloader-best-tools-2026',
+    title: '7 Best TikTok Video Downloaders in 2026 — Tested & Ranked Honestly',
+    image: '/images/step1.jpg',
+    lastModified: '2026-04-14T08:00:00.000Z',
+    description: 'We tested every popular TikTok downloader so you do not have to. Here are the 7 best tools ranked by speed, quality, and safety.',
+    category: 'how-to',
+  },
+  {
+    slug: 'download-tiktok-videos-online-no-software',
+    title: 'Download TikTok Videos Online With Zero Software — Works on Any Device (2026)',
+    image: '/images/step2.jpg',
+    lastModified: '2026-04-13T08:00:00.000Z',
+    description: 'The easiest way to download TikTok videos — entirely in your browser, no downloads, no installs, no accounts.',
+    category: 'how-to',
+  },
+  {
+    slug: 'how-to-save-tiktok-videos-to-camera-roll',
+    title: 'How to Save TikTok Videos to Camera Roll (iPhone & Android) — 2026',
+    image: '/images/step3.jpg',
+    lastModified: '2026-04-12T08:00:00.000Z',
+    description: 'Step-by-step guide to saving TikTok videos directly to your Camera Roll or Gallery — without watermark.',
+    category: 'how-to',
+  },
+  {
+    slug: 'how-to-download-tiktok-favorites-offline',
+    title: 'How to Save Your TikTok Favorite Videos for Offline Viewing (2026)',
+    image: '/images/step1.jpg',
+    lastModified: '2026-04-11T08:00:00.000Z',
+    description: 'TikTok favorites disappear when the creator deletes them. Here is how to save your favorites offline before they are gone.',
+    category: 'how-to',
+  },
+
+  // ── NEW POSTS — NO WATERMARK ──────────────────────────────────────────────
+  {
+    slug: 'remove-tiktok-watermark-free',
+    title: 'How to Remove the TikTok Watermark for FREE — 3 Methods That Actually Work',
+    image: '/images/step1.jpg',
+    lastModified: '2026-04-15T08:00:00.000Z',
+    description: 'Tired of that TikTok logo ruining your clips? Here are 3 free, working methods to download TikTok videos without the watermark in 2026.',
+    category: 'no-watermark',
+  },
+  {
+    slug: 'download-tiktok-no-watermark-iphone',
+    title: 'Download TikTok Without Watermark on iPhone — Safari Guide 2026',
+    image: '/images/step2.jpg',
+    lastModified: '2026-04-14T08:00:00.000Z',
+    description: 'The exact Safari steps to download any TikTok video without the watermark on iPhone. Works on iOS 15, 16, 17, 18.',
+    category: 'no-watermark',
+  },
+  {
+    slug: 'download-tiktok-no-watermark-android',
+    title: 'Download TikTok Without Watermark on Android — Free in 2026',
+    image: '/images/step3.jpg',
+    lastModified: '2026-04-13T08:00:00.000Z',
+    description: 'Get clean, watermark-free TikTok videos on your Android device using Chrome. No app required.',
+    category: 'no-watermark',
+  },
+  {
+    slug: 'why-tiktok-adds-watermark',
+    title: 'Why Does TikTok Add a Watermark to Downloaded Videos? (And How to Avoid It)',
+    image: '/images/step1.jpg',
+    lastModified: '2026-04-12T08:00:00.000Z',
+    description: 'TikTok burns a watermark onto every saved video — but there is a way around it. Here is the full explanation and the fix.',
+    category: 'no-watermark',
+  },
+  {
+    slug: 'tiktok-watermark-remover-alternatives',
+    title: 'TikTok Watermark Remover Apps vs Online Tools — What Actually Works in 2026',
+    image: '/images/step1.jpg',
+    lastModified: '2026-04-11T08:00:00.000Z',
+    description: 'We compared every watermark removal method. Here is which ones really work and which ones waste your time.',
+    category: 'no-watermark',
+  },
+
+  // ── NEW POSTS — DEVICE ────────────────────────────────────────────────────
+  {
+    slug: 'download-tiktok-ipad',
+    title: 'How to Download TikTok Videos on iPad — Easy Guide 2026',
+    image: '/images/step2.jpg',
+    lastModified: '2026-04-15T08:00:00.000Z',
+    description: 'Downloading TikTok on iPad is simple when you know how. This guide covers Safari and Chrome on all iPad models.',
+    category: 'device',
+  },
+  {
+    slug: 'download-tiktok-samsung',
+    title: 'How to Download TikTok Videos on Samsung Galaxy — 2026 Guide',
+    image: '/images/step1.jpg',
+    lastModified: '2026-04-14T08:00:00.000Z',
+    description: 'Step-by-step instructions for downloading TikTok videos on any Samsung Galaxy phone or tablet — no watermark.',
+    category: 'device',
+  },
+  {
+    slug: 'download-tiktok-chromebook',
+    title: 'How to Download TikTok Videos on a Chromebook — Step-by-Step 2026',
+    image: '/images/step1.jpg',
+    lastModified: '2026-04-13T08:00:00.000Z',
+    description: 'Yes, you can download TikTok videos on a Chromebook — here is exactly how to do it in Chrome.',
+    category: 'device',
+  },
+  {
+    slug: 'tiktok-downloader-safari-ios',
+    title: 'Best TikTok Downloader for Safari on iPhone — No App Required (2026)',
+    image: '/images/step2.jpg',
+    lastModified: '2026-04-12T08:00:00.000Z',
+    description: 'How to use Safari on iPhone to download TikTok videos directly to your Camera Roll — the right way.',
+    category: 'device',
+  },
+  {
+    slug: 'download-tiktok-mac-safari',
+    title: 'How to Download TikTok Videos on Mac — Safari & Chrome Guide (2026)',
+    image: '/images/step1.jpg',
+    lastModified: '2026-04-11T08:00:00.000Z',
+    description: 'Download TikTok videos on your MacBook or iMac using Safari or Chrome. No software, HD quality.',
+    category: 'device',
+  },
+
+  // ── NEW POSTS — AUDIO ─────────────────────────────────────────────────────
+  {
+    slug: 'tiktok-to-mp3-iphone',
+    title: 'How to Convert TikTok to MP3 on iPhone — Free, No App (2026)',
+    image: '/images/step4.jpg',
+    lastModified: '2026-04-15T08:00:00.000Z',
+    description: 'The simplest way to save TikTok audio as MP3 on your iPhone. Open Safari, paste, done — no app needed.',
+    category: 'audio',
+  },
+  {
+    slug: 'tiktok-to-mp3-android',
+    title: 'How to Convert TikTok to MP3 on Android — Free 2026 Guide',
+    image: '/images/step4.jpg',
+    lastModified: '2026-04-14T08:00:00.000Z',
+    description: 'Extract and download TikTok audio as MP3 on any Android phone. Works in Chrome, no account, totally free.',
+    category: 'audio',
+  },
+  {
+    slug: 'save-tiktok-sound-as-ringtone',
+    title: 'How to Save a TikTok Sound as a Ringtone on iPhone & Android (2026)',
+    image: '/images/step4.jpg',
+    lastModified: '2026-04-13T08:00:00.000Z',
+    description: 'Turn your favorite TikTok audio into a custom ringtone. This guide walks you through every step for iOS and Android.',
+    category: 'audio',
+  },
+  {
+    slug: 'tiktok-audio-downloader-free',
+    title: '5 Best Free TikTok Audio Downloaders in 2026 — No App Needed',
+    image: '/images/step4.jpg',
+    lastModified: '2026-04-12T08:00:00.000Z',
+    description: 'Want TikTok audio as MP3 but do not know which tool to use? We tested 5 free options — here is the winner.',
+    category: 'audio',
+  },
+  {
+    slug: 'tiktok-mp3-quality-guide',
+    title: 'TikTok MP3 Quality Explained — Best Bitrate & Download Settings (2026)',
+    image: '/images/step4.jpg',
+    lastModified: '2026-04-11T08:00:00.000Z',
+    description: 'Not all TikTok MP3 downloads sound the same. This guide explains audio quality, bitrate, and how to get the best results.',
+    category: 'audio',
+  },
+
+  // ── NEW POSTS — PHOTOS ────────────────────────────────────────────────────
+  {
+    slug: 'download-tiktok-carousel-all-images',
+    title: 'How to Download ALL Images From a TikTok Carousel at Once (2026)',
+    image: '/images/step5.jpg',
+    lastModified: '2026-04-15T08:00:00.000Z',
+    description: 'Downloading every image from a TikTok photo carousel does not have to be tedious. Here is the fast way to get them all at once.',
+    category: 'photos',
+  },
+  {
+    slug: 'save-tiktok-slideshow',
+    title: 'How to Save a TikTok Slideshow as Images or Video — Free (2026)',
+    image: '/images/step5.jpg',
+    lastModified: '2026-04-14T08:00:00.000Z',
+    description: 'TikTok slideshows are just image carousels. Here is how to save them as individual images or turn them into a video clip.',
+    category: 'photos',
+  },
+  {
+    slug: 'tiktok-image-carousel-zip',
+    title: 'Download TikTok Image Carousel as a ZIP File — Step-by-Step (2026)',
+    image: '/images/step5.jpg',
+    lastModified: '2026-04-13T08:00:00.000Z',
+    description: 'Get every image from a TikTok carousel in a single ZIP file. Fast, free, original quality.',
+    category: 'photos',
+  },
+  {
+    slug: 'best-tiktok-photo-downloader',
+    title: '5 Best TikTok Photo Downloaders That Actually Work in 2026',
+    image: '/images/step5.jpg',
+    lastModified: '2026-04-12T08:00:00.000Z',
+    description: 'We tested every TikTok photo downloader available. Here are the 5 that actually deliver original-quality images.',
+    category: 'photos',
+  },
+  {
+    slug: 'tiktok-photo-vs-video-download',
+    title: 'Downloading TikTok Photos vs Videos — Key Differences You Need to Know',
+    image: '/images/step5.jpg',
+    lastModified: '2026-04-11T08:00:00.000Z',
+    description: 'TikTok photo posts and video posts download differently. This guide explains the difference and shows you the right method for each.',
+    category: 'photos',
+  },
+
+  // ── NEW POSTS — TROUBLESHOOTING ───────────────────────────────────────────
+  {
+    slug: 'tiktok-download-not-working-fix',
+    title: 'TikTok Download Not Working? Here Are 7 Fixes That Actually Work (2026)',
+    image: '/images/step1.jpg',
+    lastModified: '2026-04-15T08:00:00.000Z',
+    description: 'Download button doing nothing? Video not loading? These 7 proven fixes will get your TikTok downloads working again in minutes.',
+    category: 'troubleshooting',
+  },
+  {
+    slug: 'tiktok-video-says-restricted',
+    title: '"TikTok Video Restricted" — Can You Still Download It? (2026 Answer)',
+    image: '/images/step1.jpg',
+    lastModified: '2026-04-14T08:00:00.000Z',
+    description: 'Your TikTok video shows "restricted content" — here is what that actually means and whether you can still download it.',
+    category: 'troubleshooting',
+  },
+  {
+    slug: 'why-tiktok-video-quality-bad-after-download',
+    title: 'Why Is My TikTok Video Blurry After Download? (Fix It in 2 Minutes)',
+    image: '/images/step3.jpg',
+    lastModified: '2026-04-13T08:00:00.000Z',
+    description: 'Downloaded TikTok video looks pixelated or blurry? Here is exactly why it happens and the simple fix for HD quality.',
+    category: 'troubleshooting',
+  },
+  {
+    slug: 'tiktok-link-not-working-downloader',
+    title: 'TikTok Link Not Working in Downloader? 5 Fixes That Work (2026)',
+    image: '/images/step1.jpg',
+    lastModified: '2026-04-12T08:00:00.000Z',
+    description: 'Pasting the TikTok URL but getting errors? These 5 fixes solve 99% of TikTok link problems in online downloaders.',
+    category: 'troubleshooting',
+  },
+  {
+    slug: 'tiktok-video-not-available-fix',
+    title: '"TikTok Video Not Available" — What It Means & How to Fix It (2026)',
+    image: '/images/step1.jpg',
+    lastModified: '2026-04-11T08:00:00.000Z',
+    description: 'Seeing "video not available" when trying to download? This guide explains every cause and how to work around each one.',
+    category: 'troubleshooting',
+  },
+
+  // ── NEW POSTS — COMPARISON ────────────────────────────────────────────────
+  {
+    slug: 'savefrominternet-vs-ssstik',
+    title: 'SaveFromInternet vs SSSTik — Which TikTok Downloader Wins in 2026?',
+    image: '/images/step1.jpg',
+    lastModified: '2026-04-15T08:00:00.000Z',
+    description: 'An honest head-to-head comparison between SaveFromInternet and SSSTik. Speed, quality, ads, safety — we tested everything.',
+    category: 'comparison',
+  },
+  {
+    slug: 'savefrominternet-vs-snaptik',
+    title: 'SaveFromInternet vs SnapTik — Honest Comparison 2026',
+    image: '/images/step1.jpg',
+    lastModified: '2026-04-14T08:00:00.000Z',
+    description: 'SaveFromInternet or SnapTik — which one should you use? We compared both on 6 key criteria so you can decide in 30 seconds.',
+    category: 'comparison',
+  },
+  {
+    slug: 'best-tiktok-downloader-no-ads',
+    title: 'Best TikTok Downloader With Zero Ads in 2026 — Tested & Verified',
+    image: '/images/step1.jpg',
+    lastModified: '2026-04-13T08:00:00.000Z',
+    description: 'Most TikTok downloaders are buried in pop-ups and ads. We found the ones that are completely ad-free — here is the ranked list.',
+    category: 'comparison',
+  },
+  {
+    slug: 'tiktok-downloader-chrome-extension-vs-website',
+    title: 'Chrome Extension vs Website for TikTok Download — Which Wins? (2026)',
+    image: '/images/step1.jpg',
+    lastModified: '2026-04-12T08:00:00.000Z',
+    description: 'Should you use a Chrome extension or a web tool to download TikTok videos? We break down the pros, cons, and security risks of each.',
+    category: 'comparison',
+  },
+  {
+    slug: 'free-tiktok-downloader-comparison-2026',
+    title: '5 Free TikTok Downloaders Compared — Which One Actually Works?',
+    image: '/images/step1.jpg',
+    lastModified: '2026-04-11T08:00:00.000Z',
+    description: 'We put 5 of the most popular free TikTok downloaders through the same test. Only 2 passed every check — find out which.',
+    category: 'comparison',
+  },
+
+  // ── NEW POSTS — OTHER PLATFORMS ───────────────────────────────────────────
+  {
+    slug: 'download-tiktok-live-videos',
+    title: 'Can You Download TikTok LIVE Videos? What Works in 2026',
+    image: '/images/step1.jpg',
+    lastModified: '2026-04-15T08:00:00.000Z',
+    description: 'TikTok LIVE videos are different from regular posts. Here is what you can and cannot download, and the methods that work.',
+    category: 'other-platforms',
+  },
+  {
+    slug: 'save-tiktok-duet-stitch-videos',
+    title: 'How to Download TikTok Duet and Stitch Videos — Without Watermark (2026)',
+    image: '/images/step2.jpg',
+    lastModified: '2026-04-14T08:00:00.000Z',
+    description: 'Duets and Stitches are split-screen videos — downloading them has some unique quirks. This guide explains every step.',
+    category: 'other-platforms',
+  },
+  {
+    slug: 'download-tiktok-story',
+    title: 'How to Download TikTok Stories Before They Disappear — 2026 Guide',
+    image: '/images/step1.jpg',
+    lastModified: '2026-04-13T08:00:00.000Z',
+    description: 'TikTok Stories vanish after 24 hours. Here is how to save them before they disappear permanently.',
+    category: 'other-platforms',
+  },
+  {
+    slug: 'instagram-reel-downloader-2026',
+    title: 'Instagram Reel Downloader — Save Reels Without Watermark Free (2026)',
+    image: '/images/step1.jpg',
+    lastModified: '2026-04-12T08:00:00.000Z',
+    description: 'Download any Instagram Reel in HD without the Instagram watermark. Free browser tool, no account needed.',
+    category: 'other-platforms',
+  },
+  {
+    slug: 'youtube-shorts-to-mp3-free',
+    title: 'Convert YouTube Shorts to MP3 — Free & Easy Guide (2026)',
+    image: '/images/step4.jpg',
+    lastModified: '2026-04-11T08:00:00.000Z',
+    description: 'Extract audio from YouTube Shorts as MP3. Free, browser-based, works on iPhone, Android, and PC.',
+    category: 'other-platforms',
+  },
+  {
+    slug: 'facebook-video-downloader-hd-2026',
+    title: 'Download Facebook Videos in HD — Free Online Tool (2026 Guide)',
+    image: '/images/step1.jpg',
+    lastModified: '2026-04-10T08:00:00.000Z',
+    description: 'Save any public Facebook video in HD quality. No app, no login — works directly in your browser.',
+    category: 'other-platforms',
+  },
+  {
+    slug: 'download-twitter-x-videos-2026',
+    title: 'How to Download Twitter/X Videos for Free — Works in 2026',
+    image: '/images/step1.jpg',
+    lastModified: '2026-04-09T08:00:00.000Z',
+    description: 'Twitter/X does not have a built-in download button. Here are the methods that work right now to save any tweet video.',
+    category: 'other-platforms',
+  },
+  {
+    slug: 'download-pinterest-videos-2026',
+    title: 'How to Download Pinterest Videos — Free & Without App (2026)',
+    image: '/images/step1.jpg',
+    lastModified: '2026-04-08T08:00:00.000Z',
+    description: 'Pinterest hides its video download option. Here is the easy way to save any Pinterest video in original quality.',
+    category: 'other-platforms',
+  },
+
+  // ── NEW POSTS — LEGAL ─────────────────────────────────────────────────────
+  {
+    slug: 'does-tiktok-notify-when-you-download',
+    title: 'Does TikTok Notify Creators When You Download Their Video? (2026 Answer)',
+    image: '/images/step1.jpg',
+    lastModified: '2026-04-15T08:00:00.000Z',
+    description: 'Worried about TikTok sending a notification when you save a video? Here is the real answer — and what creators actually see.',
+    category: 'legal',
+  },
+  {
+    slug: 'tiktok-download-for-personal-use-legal',
+    title: 'Downloading TikTok Videos for Personal Use — Is It Legal in 2026?',
+    image: '/images/step1.jpg',
+    lastModified: '2026-04-14T08:00:00.000Z',
+    description: 'Is it actually legal to download TikTok videos? We break down copyright law, TikTok\'s terms of service, and what personal use really means.',
+    category: 'legal',
+  },
+  {
+    slug: 'is-savefrominternet-safe-2026',
+    title: 'Is SaveFromInternet Safe to Use? Full Security & Privacy Review (2026)',
+    image: '/images/main.png',
+    lastModified: '2026-04-13T08:00:00.000Z',
+    description: 'Worried about using a third-party TikTok downloader? This full review covers SaveFromInternet\'s security, privacy practices, and AdSense approval.',
+    category: 'legal',
+  },
+  {
+    slug: 'tiktok-creator-rights-download',
+    title: 'TikTok Creator Rights — Who Actually Owns a Downloaded TikTok Video?',
+    image: '/images/step1.jpg',
+    lastModified: '2026-04-12T08:00:00.000Z',
+    description: 'When you download a TikTok video, who owns it? This guide explains creator rights, platform rights, and fair use in plain English.',
+    category: 'legal',
+  },
+  {
+    slug: 'tiktok-dmca-copyright-download-guide',
+    title: 'TikTok DMCA & Copyright — What You Can Safely Download in 2026',
+    image: '/images/step1.jpg',
+    lastModified: '2026-04-11T08:00:00.000Z',
+    description: 'Not all TikTok downloads carry the same legal risk. This guide explains DMCA rules so you know exactly what is safe to save.',
+    category: 'legal',
+  },
+]

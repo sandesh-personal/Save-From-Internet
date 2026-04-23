@@ -5,10 +5,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.savefrominternet.com';
 
   const staticPaths = [
-    '', 
-    '/about', 
-    '/privacy-policy', 
-    '/disclaimer', 
+    '',
+    '/about',
+    '/privacy-policy',
+    '/disclaimer',
     '/blog',
     '/tiktok-video-downloader',
     '/how-to-download-tiktok-videos',
@@ -16,7 +16,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/tiktok-photo-downloader',
     '/tiktok-video-downloader-iphone',
     '/tiktok-video-downloader-android',
-    '/faq'
+    '/faq',
+    '/tiktok-downloader-without-watermark',
+    '/tiktok-video-downloader-pc',
+    '/save-tiktok-video',
   ];
 
   const allRoutes = [
