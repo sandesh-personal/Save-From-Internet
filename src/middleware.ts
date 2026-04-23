@@ -2,6 +2,7 @@ import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 
 const WWW_HOST = 'www.savefrominternet.com'
+const BASE_DOMAIN = 'savefrominternet.com'
 
 export function middleware(request: NextRequest) {
   // 🔒 Do NOTHING in development
@@ -9,7 +10,7 @@ export function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
-  const host = request.headers.get('host')
+  const host = request.headers.get('host') ?? ''
   const protocol = request.headers.get('x-forwarded-proto') ?? 'https'
 
   if (!host) {
@@ -20,6 +21,11 @@ export function middleware(request: NextRequest) {
 
   if (isLocal) {
     return NextResponse.next()
+  }
+
+  // Redirect any subdomain (e.g. insta.savefrominternet.com) to www
+  if (host.endsWith(BASE_DOMAIN) && host !== WWW_HOST && host !== BASE_DOMAIN) {
+    return NextResponse.redirect(`https://${WWW_HOST}/`, 301)
   }
 
   const url = request.nextUrl.clone()
