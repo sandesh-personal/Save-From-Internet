@@ -30,12 +30,20 @@ export default function BlogPostLayout({ title, description, date, category, chi
     <div className="bg-white" id="top">
       {/* Sticky back-to-blog breadcrumb */}
       <div className="bg-white border-b border-slate-100 px-4 py-3 sticky top-16 z-40 shadow-sm">
-        <div className="max-w-3xl mx-auto flex items-center gap-2 text-sm">
-          <Link href="/blog" className="text-rose-500 hover:underline font-semibold flex items-center gap-1">
-            ← Blog
+        <div className="max-w-3xl mx-auto flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2 text-sm">
+            <Link href="/blog" className="text-rose-500 hover:underline font-semibold flex items-center gap-1">
+              ← Blog
+            </Link>
+            <span className="text-slate-300">/</span>
+            <span className="text-slate-400 truncate max-w-[140px] sm:max-w-none">{label}</span>
+          </div>
+          <Link
+            href="/"
+            className="inline-flex items-center gap-1.5 bg-rose-500 hover:bg-rose-600 text-white font-bold px-4 py-1.5 rounded-full text-xs shadow-sm hover:scale-105 transition-all whitespace-nowrap"
+          >
+            ⬇ Download Now
           </Link>
-          <span className="text-slate-300">/</span>
-          <span className="text-slate-400 truncate max-w-[200px] sm:max-w-none">{label}</span>
         </div>
       </div>
 
@@ -66,6 +74,20 @@ export default function BlogPostLayout({ title, description, date, category, chi
           </div>
         </header>
 
+        {/* Download Now CTA Banner — top of article */}
+        <div className="bg-gradient-to-r from-rose-50 to-violet-50 border border-rose-100 rounded-2xl p-4 sm:p-5 mb-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="text-center sm:text-left">
+            <p className="font-extrabold text-slate-800 text-sm sm:text-base">Ready to download? It&apos;s 100% free!</p>
+            <p className="text-xs text-slate-500 mt-0.5">TikTok · Instagram · YouTube · Facebook · Twitter/X · No watermark · No app</p>
+          </div>
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-rose-500 to-violet-600 hover:from-rose-600 hover:to-violet-700 text-white font-extrabold px-6 py-3 rounded-xl text-sm shadow-lg hover:scale-105 transition-all whitespace-nowrap"
+          >
+            ⬇ Download Now — Free
+          </Link>
+        </div>
+
         {/* Top Ad */}
         <div className="mb-8">
           <GoogleAdSense
@@ -92,16 +114,19 @@ export default function BlogPostLayout({ title, description, date, category, chi
         {/* Bottom CTA */}
         <div className="bg-gradient-to-r from-rose-500 to-violet-600 rounded-2xl p-8 text-center mt-10">
           <h2 className="text-2xl font-extrabold text-white mb-3">
-            Download TikTok Without Watermark — Free
+            Download Videos Without Watermark — Free
           </h2>
-          <p className="text-rose-100 mb-6">
-            Paste any TikTok link and get an HD video, MP3, or photo ZIP in seconds. No app, no sign-up.
+          <p className="text-rose-100 mb-2">
+            TikTok · Instagram Reels · YouTube Shorts · Facebook · Twitter/X
+          </p>
+          <p className="text-rose-100 mb-6 text-sm">
+            Paste any link and get an HD video, MP3, or photo ZIP in seconds. No app, no sign-up.
           </p>
           <Link
             href="/"
             className="inline-block bg-white text-rose-600 font-bold px-8 py-4 rounded-xl text-lg shadow-xl hover:scale-105 transition-all"
           >
-            ⬇ Try TikTok Downloader Now
+            ⬇ Download Now — It&apos;s Free
           </Link>
         </div>
 

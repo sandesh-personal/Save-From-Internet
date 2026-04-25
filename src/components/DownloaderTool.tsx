@@ -1,6 +1,6 @@
 'use client'
 
-import { useReducer, useRef } from 'react'
+import { useReducer, useRef, useState, useCallback } from 'react'
 import Image from 'next/image'
 import { appReducer, initialState } from '@/lib/appReducer'
 import {
@@ -10,10 +10,44 @@ import {
   CheckIcon,
   getImagePlaceholderBase64,
 } from '@/components/icons'
+import ProcessingAdModal from '@/components/ProcessingAdModal'
+import GoogleAdSense from '@/components/GoogleAdSense'
+import type { VideoMetadata } from '@/lib/appReducer'
+
+interface ApiResponse {
+  success: boolean
+  downloadUrl?: string
+  audioUrl?: string
+  metadata?: VideoMetadata
+  error?: string
+}
 
 export default function DownloaderTool() {
   const [state, dispatch] = useReducer(appReducer, initialState)
   const containerRef = useRef<HTMLDivElement>(null)
+
+  const [showAdPopup, setShowAdPopup] = useState(false)
+  const [popupReady, setPopupReady] = useState(false)
+  const [pendingApiData, setPendingApiData] = useState<ApiResponse | null>(null)
+
+  const handlePopupClose = useCallback(() => {
+    setShowAdPopup(false)
+    if (pendingApiData) {
+      if (pendingApiData.success && pendingApiData.downloadUrl && pendingApiData.metadata) {
+        dispatch({ type: 'SET_DOWNLOAD_SUCCESS', payload: { downloadUrl: pendingApiData.downloadUrl, audioUrl: pendingApiData.audioUrl, metadata: pendingApiData.metadata } })
+        dispatch({ type: 'SET_URL', payload: '' })
+        setTimeout(() => {
+          if (containerRef.current) {
+            const r = containerRef.current.querySelector('.results-section')
+            if (r) r.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          }
+        }, 400)
+      } else if (!pendingApiData.success) {
+        dispatch({ type: 'SET_MESSAGE', payload: pendingApiData.error || 'Failed to process video' })
+      }
+      setPendingApiData(null)
+    }
+  }, [pendingApiData])
 
   const handleProcess = async () => {
     if (!state.url.trim()) {
@@ -22,27 +56,23 @@ export default function DownloaderTool() {
     }
     dispatch({ type: 'SET_LOADING', payload: true })
     dispatch({ type: 'RESET_DOWNLOAD_STATE' })
+    setPendingApiData(null)
+    setPopupReady(false)
+    setShowAdPopup(true)
     try {
-      const response = await fetch('/api/download', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url: state.url, type: state.downloadType }),
-      })
-      const data = await response.json()
-      if (data.success) {
-        dispatch({ type: 'SET_DOWNLOAD_SUCCESS', payload: { downloadUrl: data.downloadUrl, audioUrl: data.audioUrl, metadata: data.metadata } })
-        dispatch({ type: 'SET_URL', payload: '' })
-        setTimeout(() => {
-          if (containerRef.current) {
-            const r = containerRef.current.querySelector('.results-section')
-            if (r) r.scrollIntoView({ behavior: 'smooth', block: 'start' })
-          }
-        }, 400)
-      } else {
-        dispatch({ type: 'SET_MESSAGE', payload: data.error || 'Failed to process video' })
-      }
+      const [data] = await Promise.all([
+        fetch('/api/download', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url: state.url, type: state.downloadType }),
+        }).then((r) => r.json() as Promise<ApiResponse>),
+        new Promise<void>((resolve) => setTimeout(resolve, 5000)),
+      ])
+      setPendingApiData(data)
+      setPopupReady(true)
     } catch {
-      dispatch({ type: 'SET_MESSAGE', payload: 'An error occurred while processing the video' })
+      setPendingApiData({ success: false, error: 'An error occurred while processing the video' })
+      setPopupReady(true)
     } finally {
       dispatch({ type: 'SET_LOADING', payload: false })
     }
@@ -243,6 +273,16 @@ export default function DownloaderTool() {
             Supports all TikTok URL formats · Video · Audio · Images
           </p>
         </div>
+
+        {/* Ad below input card */}
+        <div className="mt-4 flex justify-center">
+          <GoogleAdSense
+            adSlot="5309301802"
+            adFormat="auto"
+            className="flex justify-center w-full"
+            containerStyle="default"
+          />
+        </div>
       </div>
 
       {/* ── Results / Empty State ── */}
@@ -413,6 +453,13 @@ export default function DownloaderTool() {
           </div>
         )}
       </div>
+
+      <ProcessingAdModal
+        isOpen={showAdPopup}
+        isReady={popupReady}
+        hasError={pendingApiData?.success === false}
+        onClose={handlePopupClose}
+      />
     </div>
   )
 }
