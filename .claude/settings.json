@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(git commit -m ' *)",
+      "Bash(ls src/app/privacy-policy/)",
+      "Bash(ls src/app/about/)",
+      "Bash(ls src/app/tiktok-video-downloader-android/)"
     ]
   }
 }
