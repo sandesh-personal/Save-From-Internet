@@ -3,6 +3,9 @@ import * as cheerio from 'cheerio'
 import { VideoData, ImageData } from './types'
 import { parseVideoId } from './validator'
 
+const RAPIDAPI_KEY = 'REDACTED-REVOKED-API-KEY'
+const RAPIDAPI_HOST = 'tiktok-video-downloader-api.p.rapidapi.com'
+
 export class Downloader {
   private readonly userAgent =
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
@@ -15,9 +18,10 @@ export class Downloader {
 
     // Try multiple working methods
     const methods = [
+      () => this.tryRapidApiMethod(url),
+      () => this.tryTikwmMethod(url),
       () => this.trySnaptikMethod(url),
       () => this.trySSSMethod(url),
-      () => this.tryTikwmMethod(url),
       () => this.tryDirectTikTokScraping(url),
     ]
 
@@ -37,6 +41,45 @@ export class Downloader {
     throw new Error(
       'All download methods failed. TikTok might be blocking requests or the video is private.'
     )
+  }
+
+  private async tryRapidApiMethod(url: string): Promise<VideoData | null> {
+    // Strip tracking params — only keep the clean video URL
+    const cleanUrl = url.split('?')[0]
+
+    try {
+      const response = await axios.get(
+        `https://${RAPIDAPI_HOST}/media`,
+        {
+          params: { videoUrl: cleanUrl },
+          headers: {
+            'x-rapidapi-host': RAPIDAPI_HOST,
+            'x-rapidapi-key': RAPIDAPI_KEY,
+          },
+          timeout: 20000,
+        }
+      )
+
+      const data = response.data
+      console.log('RapidAPI response:', JSON.stringify(data).slice(0, 300))
+      if (!data || !data.downloadUrl) return null
+
+      const videoId = data.id || parseVideoId(url) || 'unknown'
+      return {
+        id: videoId,
+        title: data.description || 'TikTok Video',
+        url,
+        thumbnail: data.cover || '',
+        duration: 0,
+        author: data.author?.nickname || data.author?.username || 'Unknown',
+        description: data.description || '',
+        downloadUrl: data.downloadUrl,
+      }
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err)
+      console.error('RapidAPI method error:', msg)
+      throw new Error(`RapidAPI method failed: ${msg}`)
+    }
   }
 
   private async trySnaptikMethod(url: string): Promise<VideoData | null> {
@@ -176,19 +219,24 @@ export class Downloader {
           }))
         }
 
-        // Get the video URL and make it absolute if it's relative
-        let downloadUrl = data.hdplay || data.play || data.wmplay
+        // Prefer H.264 (play) over H.265 (hdplay) — H.265 causes no-video on many Android devices
+        let downloadUrl = data.play || data.hdplay || data.wmplay
 
         // If the URL is relative, make it absolute
         if (downloadUrl && downloadUrl.startsWith('/')) {
           downloadUrl = 'https://www.tikwm.com' + downloadUrl
         }
 
+        let cover = data.cover || ''
+        if (cover && cover.startsWith('/')) {
+          cover = 'https://www.tikwm.com' + cover
+        }
+
         return {
           id: videoId,
           title: data.title || 'TikTok Video (Tikwm)',
           url: url,
-          thumbnail: data.cover || '',
+          thumbnail: cover,
           duration: data.duration || 0,
           author: data.author?.nickname || 'Unknown',
           description: data.title || 'Downloaded via Tikwm',

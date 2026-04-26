@@ -30,6 +30,16 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      // tikwm thumbnails
+      { protocol: "https", hostname: "www.tikwm.com", pathname: "/**" },
+      // TikTok CDN domains (thumbnails from RapidAPI and tikwm)
+      { protocol: "https", hostname: "*.tiktokcdn-eu.com", pathname: "/**" },
+      { protocol: "https", hostname: "*.tiktokcdn-us.com", pathname: "/**" },
+      { protocol: "https", hostname: "*.tiktokv.com", pathname: "/**" },
+      { protocol: "https", hostname: "*.tiktok.com", pathname: "/**" },
+      { protocol: "https", hostname: "p16-common-sign.tiktokcdn-eu.com", pathname: "/**" },
+      { protocol: "https", hostname: "p19-common-sign.tiktokcdn-us.com", pathname: "/**" },
+      { protocol: "https", hostname: "p16-common-sign.tiktokcdn-us.com", pathname: "/**" },
     ],
     formats: ["image/avif", "image/webp"],
   },

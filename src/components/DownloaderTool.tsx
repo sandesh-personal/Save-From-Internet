@@ -239,7 +239,7 @@ export default function DownloaderTool() {
               value={state.url}
               onChange={(e) => dispatch({ type: 'SET_URL', payload: e.target.value })}
               onKeyDown={(e) => e.key === 'Enter' && !isBusy && handleProcess()}
-              className="flex-1 min-w-0 px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-400 focus:border-transparent text-sm sm:text-base transition-all"
+              className="flex-1 min-w-0 px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-400 focus:border-transparent text-base transition-all"
             />
             <button
               onClick={async () => {
@@ -321,7 +321,8 @@ export default function DownloaderTool() {
             {/* Metadata row */}
             <div className="flex items-start gap-3">
               {state.videoMetadata.thumbnail && (
-                <Image
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
                   src={state.videoMetadata.thumbnail}
                   alt="TikTok video thumbnail"
                   width={72}
