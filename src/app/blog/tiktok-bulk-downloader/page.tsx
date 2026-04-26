@@ -44,6 +44,7 @@ export default function Page() {
         alt="TikTok app showing multiple video options for bulk downloading"
         width={800}
         height={450}
+        unoptimized
         className="rounded-xl my-6"
       />
 

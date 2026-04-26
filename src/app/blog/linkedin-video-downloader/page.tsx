@@ -41,6 +41,7 @@ export default function Page() {
         alt="LinkedIn profile on a laptop with video content"
         width={800}
         height={450}
+        unoptimized
         className="rounded-xl my-6"
       />
 

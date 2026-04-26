@@ -40,6 +40,7 @@ export default function Page() {
         alt="TikTok watermark removal tools comparison 2026"
         width={800}
         height={450}
+        unoptimized
         className="rounded-xl my-6"
       />
 

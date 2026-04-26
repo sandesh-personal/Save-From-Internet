@@ -40,6 +40,7 @@ export default function Page() {
         alt="Instagram Reels interface on a phone showing save options"
         width={800}
         height={450}
+        unoptimized
         className="rounded-xl my-6"
       />
 

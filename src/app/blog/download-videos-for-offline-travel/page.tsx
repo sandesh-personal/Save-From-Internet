@@ -41,6 +41,7 @@ export default function Page() {
         alt="Smartphone with downloaded videos ready for offline viewing during travel"
         width={800}
         height={450}
+        unoptimized
         className="rounded-xl my-6"
       />
 

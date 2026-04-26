@@ -40,6 +40,7 @@ export default function Page() {
         alt="Telegram messaging app showing video content on a phone"
         width={800}
         height={450}
+        unoptimized
         className="rounded-xl my-6"
       />
 

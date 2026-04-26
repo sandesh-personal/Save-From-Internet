@@ -41,6 +41,7 @@ export default function Page() {
         alt="Speed test comparison chart for TikTok video downloaders"
         width={800}
         height={450}
+        unoptimized
         className="rounded-xl my-6"
       />
 

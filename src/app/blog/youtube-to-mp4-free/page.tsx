@@ -40,6 +40,7 @@ export default function Page() {
         alt="YouTube video ready to convert to MP4 format"
         width={800}
         height={450}
+        unoptimized
         className="rounded-xl my-6"
       />
 

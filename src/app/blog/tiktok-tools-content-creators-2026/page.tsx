@@ -32,6 +32,7 @@ export default function Page() {
         alt="TikTok content creator using professional tools and apps in 2026"
         width={800}
         height={450}
+        unoptimized
         className="rounded-xl my-6"
       />
 

@@ -40,6 +40,7 @@ export default function Page() {
         alt="Snapchat app open on a smartphone"
         width={800}
         height={450}
+        unoptimized
         className="rounded-xl my-6"
       />
 

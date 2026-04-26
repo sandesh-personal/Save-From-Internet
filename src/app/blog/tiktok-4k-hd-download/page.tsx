@@ -43,6 +43,7 @@ export default function Page() {
         alt="High quality 4K video streaming comparison on a display"
         width={800}
         height={450}
+        unoptimized
         className="rounded-xl my-6"
       />
 

@@ -50,6 +50,7 @@ export default function Page() {
         alt="TikTok and Instagram apps side by side comparing video quality"
         width={800}
         height={450}
+        unoptimized
         className="rounded-xl my-6"
       />
 

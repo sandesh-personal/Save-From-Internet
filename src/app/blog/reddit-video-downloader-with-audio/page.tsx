@@ -41,6 +41,7 @@ export default function Page() {
         alt="Reddit app on a phone showing a video post"
         width={800}
         height={450}
+        unoptimized
         className="rounded-xl my-6"
       />
 

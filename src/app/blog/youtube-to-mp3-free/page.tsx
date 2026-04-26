@@ -41,6 +41,7 @@ export default function Page() {
         alt="Headphones next to a smartphone for listening to converted YouTube MP3"
         width={800}
         height={450}
+        unoptimized
         className="rounded-xl my-6"
       />
 

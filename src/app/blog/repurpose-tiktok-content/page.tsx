@@ -42,6 +42,7 @@ export default function Page() {
         alt="Content creator repurposing TikTok content across multiple social media platforms"
         width={800}
         height={450}
+        unoptimized
         className="rounded-xl my-6"
       />
 

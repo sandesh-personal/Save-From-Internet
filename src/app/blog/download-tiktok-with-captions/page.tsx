@@ -40,6 +40,7 @@ export default function Page() {
         alt="TikTok video showing captions and subtitles overlay"
         width={800}
         height={450}
+        unoptimized
         className="rounded-xl my-6"
       />
 

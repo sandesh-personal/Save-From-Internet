@@ -40,6 +40,7 @@ export default function Page() {
         alt="Instagram photo post on a smartphone screen"
         width={800}
         height={450}
+        unoptimized
         className="rounded-xl my-6"
       />
 

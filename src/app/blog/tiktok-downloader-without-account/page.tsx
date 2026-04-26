@@ -41,6 +41,7 @@ export default function Page() {
         alt="Privacy and anonymous browsing concept for TikTok downloading"
         width={800}
         height={450}
+        unoptimized
         className="rounded-xl my-6"
       />
 

@@ -41,6 +41,7 @@ export default function Page() {
         alt="Watermark-free video downloader supporting all major social media platforms"
         width={800}
         height={450}
+        unoptimized
         className="rounded-xl my-6"
       />
 

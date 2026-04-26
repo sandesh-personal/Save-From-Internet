@@ -41,6 +41,7 @@ export default function Page() {
         alt="YouTube videos displayed on a laptop screen"
         width={800}
         height={450}
+        unoptimized
         className="rounded-xl my-6"
       />
 

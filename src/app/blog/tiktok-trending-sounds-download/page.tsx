@@ -42,6 +42,7 @@ export default function Page() {
         alt="Headphones next to a phone showing TikTok trending sounds"
         width={800}
         height={450}
+        unoptimized
         className="rounded-xl my-6"
       />
 

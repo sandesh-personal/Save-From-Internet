@@ -40,6 +40,7 @@ export default function Page() {
         alt="iPhone with iOS 18 showing TikTok download process in Safari"
         width={800}
         height={450}
+        unoptimized
         className="rounded-xl my-6"
       />
 

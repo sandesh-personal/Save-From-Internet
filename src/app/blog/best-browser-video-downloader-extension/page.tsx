@@ -42,6 +42,7 @@ export default function Page() {
         alt="Chrome browser extensions for video downloading on a laptop"
         width={800}
         height={450}
+        unoptimized
         className="rounded-xl my-6"
       />
 

@@ -101,6 +101,7 @@ export default function BlogPage() {
                         className="object-cover"
                         sizes="80px"
                         priority={index < 6}
+                        unoptimized={post.image.startsWith('http')}
                       />
                     </div>
                     <div className="flex-1 min-w-0">

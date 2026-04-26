@@ -41,6 +41,7 @@ export default function Page() {
         alt="Convert TikTok video to animated GIF for sharing"
         width={800}
         height={450}
+        unoptimized
         className="rounded-xl my-6"
       />
 

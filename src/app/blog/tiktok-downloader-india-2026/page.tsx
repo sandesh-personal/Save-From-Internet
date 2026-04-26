@@ -41,6 +41,7 @@ export default function Page() {
         alt="TikTok videos downloading on a smartphone in India"
         width={800}
         height={450}
+        unoptimized
         className="rounded-xl my-6"
       />
 

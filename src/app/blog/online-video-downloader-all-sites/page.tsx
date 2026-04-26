@@ -46,6 +46,7 @@ export default function Page() {
         alt="All social media platforms covered by universal video downloader"
         width={800}
         height={450}
+        unoptimized
         className="rounded-xl my-6"
       />
 

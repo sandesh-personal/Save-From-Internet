@@ -40,6 +40,7 @@ export default function Page() {
         alt="Twitch streaming gameplay on a monitor setup"
         width={800}
         height={450}
+        unoptimized
         className="rounded-xl my-6"
       />
 

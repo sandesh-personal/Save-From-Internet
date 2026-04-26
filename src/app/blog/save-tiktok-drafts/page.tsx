@@ -41,6 +41,7 @@ export default function Page() {
         alt="TikTok app showing drafts storage on a phone"
         width={800}
         height={450}
+        unoptimized
         className="rounded-xl my-6"
       />
 

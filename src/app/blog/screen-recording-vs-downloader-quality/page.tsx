@@ -80,6 +80,7 @@ export default function Page() {
         alt="Video quality comparison between screen recording and direct download"
         width={800}
         height={450}
+        unoptimized
         className="rounded-xl my-6"
       />
 
