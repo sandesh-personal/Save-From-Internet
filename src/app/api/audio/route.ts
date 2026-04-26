@@ -1,44 +1,66 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+function isAllowedVideoHost(url: string): boolean {
+  try {
+    const { hostname } = new URL(url)
+    if (['www.tikwm.com', 'tikwm.com', 'robotilab.online'].includes(hostname)) return true
+    return (
+      hostname.endsWith('.tiktok.com') ||
+      hostname.endsWith('.tiktokv.com') ||
+      hostname.endsWith('.tiktokcdn.com') ||
+      hostname.endsWith('.tiktokcdn-eu.com') ||
+      hostname.endsWith('.tiktokcdn-us.com') ||
+      hostname.endsWith('.muscdn.com')
+    )
+  } catch {
+    return false
+  }
+}
+
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
     const videoUrl = searchParams.get('url')
 
     if (!videoUrl) {
-      return NextResponse.json(
-        { success: false, error: 'Video URL is required' },
-        { status: 400 }
-      )
+      return NextResponse.json({ success: false, error: 'Video URL is required' }, { status: 400 })
     }
 
-    console.log('Extracting audio from video URL:', videoUrl)
+    if (!isAllowedVideoHost(videoUrl)) {
+      return NextResponse.json({ success: false, error: 'Video source not allowed' }, { status: 403 })
+    }
 
-    // For now, we'll simulate audio extraction by fetching the video
-    // In production, you would use ffmpeg to extract actual audio
-    const response = await fetch(videoUrl)
+    const controller = new AbortController()
+    const timeout = setTimeout(() => controller.abort(), 30000)
+
+    let response: Response
+    try {
+      response = await fetch(videoUrl, {
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+          Referer: 'https://www.tiktok.com/',
+        },
+        signal: controller.signal,
+      })
+    } finally {
+      clearTimeout(timeout)
+    }
 
     if (!response.ok) {
-      throw new Error(`Failed to fetch video: ${response.statusText}`)
+      return NextResponse.json({ success: false, error: 'Failed to fetch audio' }, { status: 500 })
     }
 
     const videoBuffer = await response.arrayBuffer()
 
-    // In production, you would process this with ffmpeg here
-    // For demo purposes, we'll return the video data with audio headers
-
     return new NextResponse(videoBuffer, {
       headers: {
         'Content-Type': 'audio/mpeg',
-        'Content-Disposition': 'attachment; filename="Downloaded From savefrominternet.com tiktok-audio.mp3"',
+        'Content-Disposition': 'attachment; filename="savefrominternet.com-tiktok-audio.mp3"',
         'Cache-Control': 'no-cache',
       },
     })
   } catch (error) {
-    console.error('Audio extraction error:', error)
-    return NextResponse.json(
-      { success: false, error: 'Failed to extract audio' },
-      { status: 500 }
-    )
+    console.error('Audio extraction error:', error instanceof Error ? error.message : 'Unknown')
+    return NextResponse.json({ success: false, error: 'Failed to extract audio' }, { status: 500 })
   }
 }

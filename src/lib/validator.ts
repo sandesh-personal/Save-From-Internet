@@ -3,14 +3,14 @@ export function validateUrl(url: string): boolean {
     return false
   }
 
-  // Support various TikTok URL formats
+  // Support various TikTok URL formats — require explicit https://
   const tiktokUrlPatterns = [
-    /^(https?:\/\/)?(www\.)?tiktok\.com\/@[\w.-]+\/video\/\d+/,
-    /^(https?:\/\/)?(www\.)?tiktok\.com\/[\w.-]+\/video\/\d+/,
-    /^(https?:\/\/)?vm\.tiktok\.com\/[\w\d]+/,
-    /^(https?:\/\/)?vt\.tiktok\.com\/[\w\d]+/,
-    /^(https?:\/\/)?m\.tiktok\.com\/v\/\d+/,
-    /^(https?:\/\/)?(www\.)?tiktok\.com\/t\/[\w\d]+/,
+    /^https:\/\/(www\.)?tiktok\.com\/@[\w.-]+\/video\/\d+/,
+    /^https:\/\/(www\.)?tiktok\.com\/[\w.-]+\/video\/\d+/,
+    /^https:\/\/vm\.tiktok\.com\/[\w\d]+/,
+    /^https:\/\/vt\.tiktok\.com\/[\w\d]+/,
+    /^https:\/\/m\.tiktok\.com\/v\/\d+/,
+    /^https:\/\/(www\.)?tiktok\.com\/t\/[\w\d]+/,
   ]
 
   return tiktokUrlPatterns.some((pattern) => pattern.test(url.trim()))

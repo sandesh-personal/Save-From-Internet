@@ -3,8 +3,25 @@ import * as cheerio from 'cheerio'
 import { VideoData, ImageData } from './types'
 import { parseVideoId } from './validator'
 
-const RAPIDAPI_KEY = 'REDACTED-REVOKED-API-KEY'
+const RAPIDAPI_KEY = process.env.RAPIDAPI_KEY ?? ''
 const RAPIDAPI_HOST = 'tiktok-video-downloader-api.p.rapidapi.com'
+
+function isKnownVideoHost(url: string): boolean {
+  try {
+    const { hostname } = new URL(url)
+    if (['www.tikwm.com', 'tikwm.com', 'robotilab.online'].includes(hostname)) return true
+    return (
+      hostname.endsWith('.tiktok.com') ||
+      hostname.endsWith('.tiktokv.com') ||
+      hostname.endsWith('.tiktokcdn.com') ||
+      hostname.endsWith('.tiktokcdn-eu.com') ||
+      hostname.endsWith('.tiktokcdn-us.com') ||
+      hostname.endsWith('.muscdn.com')
+    )
+  } catch {
+    return false
+  }
+}
 
 export class Downloader {
   private readonly userAgent =
@@ -44,6 +61,8 @@ export class Downloader {
   }
 
   private async tryRapidApiMethod(url: string): Promise<VideoData | null> {
+    if (!RAPIDAPI_KEY) throw new Error('RapidAPI key not configured')
+
     // Strip tracking params — only keep the clean video URL
     const cleanUrl = url.split('?')[0]
 
@@ -61,8 +80,11 @@ export class Downloader {
       )
 
       const data = response.data
-      console.log('RapidAPI response:', JSON.stringify(data).slice(0, 300))
       if (!data || !data.downloadUrl) return null
+      if (!isKnownVideoHost(data.downloadUrl)) {
+        console.warn('RapidAPI returned unexpected download host, skipping')
+        return null
+      }
 
       const videoId = data.id || parseVideoId(url) || 'unknown'
       return {
