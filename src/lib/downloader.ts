@@ -35,8 +35,8 @@ export class Downloader {
 
     // Try multiple working methods
     const methods = [
-      () => this.tryTikwmMethod(url),
       () => this.tryRapidApiMethod(url),
+      () => this.tryTikwmMethod(url),
       () => this.trySnaptikMethod(url),
       () => this.trySSSMethod(url),
       () => this.tryDirectTikTokScraping(url),
