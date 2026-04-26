@@ -551,7 +551,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'how-to-download-instagram-stories',
     title: 'How to Download Instagram Stories Before They Disappear (2026 Guide)',
-    image: 'https://images.unsplash.com/photo-1611605698335-8441a9e95d84?w=400&h=300&fit=crop&auto=format',
+    image: '/images/step1.jpg',
     lastModified: '2026-04-20T08:00:00.000Z',
     description: 'Instagram Stories vanish in 24 hours. This guide shows you how to save any Story — yours or someone else\'s — before it\'s gone forever.',
     category: 'other-platforms',
@@ -559,7 +559,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'instagram-photo-downloader',
     title: 'How to Download Instagram Photos & Carousels Without Any App (2026)',
-    image: 'https://images.unsplash.com/photo-1611605698335-8441a9e95d84?w=400&h=300&fit=crop&auto=format',
+    image: '/images/step1.jpg',
     lastModified: '2026-04-20T08:00:00.000Z',
     description: 'Save any Instagram photo post or carousel to your device in original quality — no app, no login, works on iPhone and Android.',
     category: 'other-platforms',
@@ -567,7 +567,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'instagram-video-downloader-without-app',
     title: 'How to Download Any Instagram Video Without Any App (2026)',
-    image: 'https://images.unsplash.com/photo-1611605698335-8441a9e95d84?w=400&h=300&fit=crop&auto=format',
+    image: '/images/step1.jpg',
     lastModified: '2026-04-19T08:00:00.000Z',
     description: 'Download Instagram videos — regular posts, Reels, IGTVs — without installing anything. 100% browser-based, free.',
     category: 'other-platforms',
@@ -575,7 +575,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'save-instagram-reels-camera-roll',
     title: 'How to Save Instagram Reels to Camera Roll — No Watermark 2026',
-    image: 'https://images.unsplash.com/photo-1611605698335-8441a9e95d84?w=400&h=300&fit=crop&auto=format',
+    image: '/images/step1.jpg',
     lastModified: '2026-04-19T08:00:00.000Z',
     description: 'Save Instagram Reels directly to your Camera Roll or Gallery in HD quality without the Instagram watermark.',
     category: 'other-platforms',
@@ -585,7 +585,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'youtube-video-downloader-free',
     title: 'YouTube Video Downloader Free Online — No Software Needed (2026)',
-    image: 'https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=400&h=300&fit=crop&auto=format',
+    image: '/images/step1.jpg',
     lastModified: '2026-04-20T08:00:00.000Z',
     description: 'Download any YouTube video for free directly in your browser — no software, no account, no watermark. Works on any device.',
     category: 'other-platforms',
@@ -593,7 +593,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'youtube-to-mp4-free',
     title: 'YouTube to MP4 Converter Free — Best Online Tools 2026',
-    image: 'https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=400&h=300&fit=crop&auto=format',
+    image: '/images/step1.jpg',
     lastModified: '2026-04-20T08:00:00.000Z',
     description: 'Convert YouTube videos to MP4 online for free. No software, no limit — we tested the best tools of 2026 so you don\'t have to.',
     category: 'other-platforms',
@@ -601,7 +601,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'youtube-to-mp3-free',
     title: 'YouTube to MP3 Converter Free — Extract Audio Online 2026',
-    image: 'https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=400&h=300&fit=crop&auto=format',
+    image: '/images/step1.jpg',
     lastModified: '2026-04-19T08:00:00.000Z',
     description: 'Convert any YouTube video to MP3 for free online. High quality audio, no software needed, works on iPhone, Android, and PC.',
     category: 'audio',
@@ -611,7 +611,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'reddit-video-downloader-with-audio',
     title: 'Reddit Video Downloader — Save Reddit Videos With Audio Free (2026)',
-    image: 'https://images.unsplash.com/photo-1519056080079-61d8888a1b16?w=400&h=300&fit=crop&auto=format',
+    image: '/images/step2.jpg',
     lastModified: '2026-04-20T08:00:00.000Z',
     description: 'Reddit separates video and audio — most downloaders get it wrong. This guide shows you how to save Reddit videos with the audio intact.',
     category: 'other-platforms',
@@ -619,7 +619,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'snapchat-video-downloader',
     title: 'How to Download Snapchat Videos & Spotlight — Free Guide 2026',
-    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=300&fit=crop&auto=format',
+    image: '/images/step2.jpg',
     lastModified: '2026-04-18T08:00:00.000Z',
     description: 'Save Snapchat videos, Snaps, and Spotlight clips before they disappear. Step-by-step guide for iPhone and Android.',
     category: 'other-platforms',
@@ -627,7 +627,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'linkedin-video-downloader',
     title: 'LinkedIn Video Downloader — Save LinkedIn Videos Free 2026',
-    image: 'https://images.unsplash.com/photo-1560472355-536de3962603?w=400&h=300&fit=crop&auto=format',
+    image: '/images/step1.jpg',
     lastModified: '2026-04-18T08:00:00.000Z',
     description: 'LinkedIn doesn\'t offer a video download button. Here\'s how to save LinkedIn videos for free in 2026 — no software needed.',
     category: 'other-platforms',
@@ -635,7 +635,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'twitch-clips-downloader',
     title: 'How to Download Twitch Clips & VODs — Free Online Guide 2026',
-    image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400&h=300&fit=crop&auto=format',
+    image: '/images/step1.jpg',
     lastModified: '2026-04-17T08:00:00.000Z',
     description: 'Save any Twitch clip or VOD for offline viewing. Free, browser-based guide that works without any Twitch account.',
     category: 'other-platforms',
@@ -643,7 +643,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'telegram-video-downloader',
     title: 'How to Download Telegram Videos to Your Phone (2026 Guide)',
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=300&fit=crop&auto=format',
+    image: '/images/step1.jpg',
     lastModified: '2026-04-17T08:00:00.000Z',
     description: 'Save Telegram videos and media files directly to your phone\'s gallery — iPhone and Android guide for 2026.',
     category: 'other-platforms',
@@ -653,7 +653,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'tiktok-bulk-downloader',
     title: 'How to Bulk Download TikTok Videos — Multiple Videos at Once (2026)',
-    image: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=400&h=300&fit=crop&auto=format',
+    image: '/images/main.png',
     lastModified: '2026-04-20T08:00:00.000Z',
     description: 'Need to download many TikTok videos at once? This guide covers every bulk download method that works in 2026.',
     category: 'how-to',
@@ -661,7 +661,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'save-tiktok-drafts',
     title: 'How to Save TikTok Draft Videos Before Losing Them (2026)',
-    image: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=400&h=300&fit=crop&auto=format',
+    image: '/images/main.png',
     lastModified: '2026-04-19T08:00:00.000Z',
     description: 'TikTok drafts can disappear after app updates or account issues. Here\'s how to back them up and save them safely.',
     category: 'how-to',
@@ -669,7 +669,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'tiktok-trending-sounds-download',
     title: 'How to Download Trending TikTok Sounds & Music Clips (2026)',
-    image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop&auto=format',
+    image: '/images/step4.jpg',
     lastModified: '2026-04-19T08:00:00.000Z',
     description: 'Grab trending TikTok audio clips and sounds as MP3 files in 2026. Perfect for ringtones, remixes, and content creation.',
     category: 'audio',
@@ -677,7 +677,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'tiktok-downloader-without-account',
     title: 'TikTok Downloader Without Login or Account — 100% Anonymous 2026',
-    image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=300&fit=crop&auto=format',
+    image: '/images/step1.jpg',
     lastModified: '2026-04-18T08:00:00.000Z',
     description: 'Download TikTok videos completely anonymously — no account, no login, no email. Stay private in 2026.',
     category: 'legal',
@@ -685,7 +685,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'download-tiktok-with-captions',
     title: 'How to Download TikTok Videos WITH Captions & Subtitles (2026)',
-    image: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=400&h=300&fit=crop&auto=format',
+    image: '/images/main.png',
     lastModified: '2026-04-18T08:00:00.000Z',
     description: 'Want the subtitles baked into your saved TikTok video? This 2026 guide covers every method to download TikToks with captions.',
     category: 'how-to',
@@ -693,7 +693,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'tiktok-4k-hd-download',
     title: 'How to Download TikTok in 4K / HD Quality — Best Methods 2026',
-    image: 'https://images.unsplash.com/photo-1536240478700-b869ad10e2ab?w=400&h=300&fit=crop&auto=format',
+    image: '/images/step3.jpg',
     lastModified: '2026-04-17T08:00:00.000Z',
     description: 'Get TikTok videos in the highest possible quality — HD and 4K where available. No compression, no watermark.',
     category: 'how-to',
@@ -703,7 +703,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'fastest-tiktok-downloader-speed-test',
     title: 'Fastest TikTok Downloader 2026 — Speed Test of 7 Tools',
-    image: 'https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=400&h=300&fit=crop&auto=format',
+    image: '/images/step1.jpg',
     lastModified: '2026-04-20T08:00:00.000Z',
     description: 'We timed 7 TikTok downloaders processing the same 60-second video. Here are the real speed results — no bias.',
     category: 'comparison',
@@ -711,7 +711,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'screen-recording-vs-downloader-quality',
     title: 'Screen Recording vs TikTok Downloader — Which Gives Better Quality? (2026)',
-    image: 'https://images.unsplash.com/photo-1536240478700-b869ad10e2ab?w=400&h=300&fit=crop&auto=format',
+    image: '/images/step3.jpg',
     lastModified: '2026-04-19T08:00:00.000Z',
     description: 'Screen record vs proper download — we compared both methods side by side. The quality difference will surprise you.',
     category: 'comparison',
@@ -719,7 +719,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'best-browser-video-downloader-extension',
     title: 'Best Video Downloader Chrome Extensions 2026 — Tested & Ranked',
-    image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&h=300&fit=crop&auto=format',
+    image: '/images/step1.jpg',
     lastModified: '2026-04-18T08:00:00.000Z',
     description: 'We installed and tested 8 video downloader Chrome extensions. Here are the safest and most reliable ones in 2026.',
     category: 'comparison',
@@ -727,7 +727,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'online-video-downloader-all-sites',
     title: 'Best Online Video Downloader That Works on ALL Sites (2026)',
-    image: 'https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=400&h=300&fit=crop&auto=format',
+    image: '/images/step1.jpg',
     lastModified: '2026-04-17T08:00:00.000Z',
     description: 'One tool, every platform — TikTok, Instagram, YouTube, Twitter, Reddit, Facebook. The best all-in-one video downloader for 2026.',
     category: 'comparison',
@@ -735,7 +735,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'tiktok-vs-instagram-download-comparison',
     title: 'TikTok vs Instagram Reels Download Quality — Which Is Better? (2026)',
-    image: 'https://images.unsplash.com/photo-1611605698335-8441a9e95d84?w=400&h=300&fit=crop&auto=format',
+    image: '/images/step1.jpg',
     lastModified: '2026-04-16T08:00:00.000Z',
     description: 'TikTok and Instagram compress videos differently. We compared download quality from both platforms — pixel by pixel.',
     category: 'comparison',
@@ -745,7 +745,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'convert-tiktok-to-gif',
     title: 'How to Convert TikTok Videos to GIF for Free (2026 Guide)',
-    image: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=400&h=300&fit=crop&auto=format',
+    image: '/images/main.png',
     lastModified: '2026-04-20T08:00:00.000Z',
     description: 'Turn any TikTok clip into a shareable GIF in seconds. Step-by-step free method — no Photoshop, no app required.',
     category: 'how-to',
@@ -753,7 +753,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'repurpose-tiktok-content',
     title: 'How to Repurpose TikTok Content for Instagram, YouTube & More (2026)',
-    image: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=400&h=300&fit=crop&auto=format',
+    image: '/images/main.png',
     lastModified: '2026-04-19T08:00:00.000Z',
     description: 'Turn one TikTok into 5 pieces of content. The creator\'s guide to repurposing short-form video across all platforms in 2026.',
     category: 'how-to',
@@ -761,7 +761,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'download-videos-for-offline-travel',
     title: 'How to Download Social Media Videos for Offline Viewing While Traveling (2026)',
-    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=300&fit=crop&auto=format',
+    image: '/images/step2.jpg',
     lastModified: '2026-04-18T08:00:00.000Z',
     description: 'Flying or heading to a no-wifi zone? Here\'s how to bulk download TikTok, Instagram, and YouTube videos before you leave.',
     category: 'how-to',
@@ -769,7 +769,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'tiktok-tools-content-creators-2026',
     title: '10 Essential TikTok Tools Every Creator Needs in 2026',
-    image: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=400&h=300&fit=crop&auto=format',
+    image: '/images/main.png',
     lastModified: '2026-04-17T08:00:00.000Z',
     description: 'From downloading your own content to analytics — the 10 TikTok creator tools that are worth your time in 2026.',
     category: 'how-to',
@@ -777,7 +777,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'save-tiktok-to-google-drive',
     title: 'How to Save TikTok Videos Directly to Google Drive (2026)',
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=300&fit=crop&auto=format',
+    image: '/images/step1.jpg',
     lastModified: '2026-04-16T08:00:00.000Z',
     description: 'Automatically save downloaded TikTok videos to Google Drive for cloud backup. Works on iPhone, Android, and PC.',
     category: 'how-to',
@@ -787,7 +787,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'tiktok-downloader-india-2026',
     title: 'Best TikTok Downloader in India — Fast & Free 2026 Guide',
-    image: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=400&h=300&fit=crop&auto=format',
+    image: '/images/main.png',
     lastModified: '2026-04-20T08:00:00.000Z',
     description: 'The best TikTok video downloader available in India — no VPN needed, works in all regions, completely free.',
     category: 'how-to',
@@ -795,7 +795,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'video-downloader-without-watermark-all-platforms',
     title: 'Best Video Downloader Without Watermark — All Platforms 2026',
-    image: 'https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=400&h=300&fit=crop&auto=format',
+    image: '/images/step1.jpg',
     lastModified: '2026-04-20T08:00:00.000Z',
     description: 'Remove watermarks when downloading from TikTok, Instagram, Facebook, YouTube, and more. The best tools of 2026 compared.',
     category: 'no-watermark',
@@ -803,7 +803,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'download-tiktok-ios18-iphone',
     title: 'How to Download TikTok on iPhone iOS 18 — Updated 2026 Guide',
-    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=300&fit=crop&auto=format',
+    image: '/images/step2.jpg',
     lastModified: '2026-04-20T08:00:00.000Z',
     description: 'iOS 18 changed how Safari handles downloads. This updated guide covers the exact steps to save TikTok videos on iPhone in 2026.',
     category: 'device',
@@ -811,7 +811,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'tiktok-watermark-remover-online-2026',
     title: 'Best Free TikTok Watermark Remover Tools — Tested in 2026',
-    image: 'https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=400&h=300&fit=crop&auto=format',
+    image: '/images/step1.jpg',
     lastModified: '2026-04-20T08:00:00.000Z',
     description: 'We tested every free TikTok watermark remover available in 2026. Only a few actually work — here are the ones that do.',
     category: 'no-watermark',
