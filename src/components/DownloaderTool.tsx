@@ -13,6 +13,7 @@ import {
 import ProcessingAdModal from '@/components/ProcessingAdModal'
 import GoogleAdSense from '@/components/GoogleAdSense'
 import type { VideoMetadata } from '@/lib/appReducer'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 interface ApiResponse {
   success: boolean
@@ -25,6 +26,7 @@ interface ApiResponse {
 export default function DownloaderTool() {
   const [state, dispatch] = useReducer(appReducer, initialState)
   const containerRef = useRef<HTMLDivElement>(null)
+  const { t } = useLanguage()
 
   const [showAdPopup, setShowAdPopup] = useState(false)
   const [popupReady, setPopupReady] = useState(false)
@@ -43,15 +45,15 @@ export default function DownloaderTool() {
           }
         }, 400)
       } else if (!pendingApiData.success) {
-        dispatch({ type: 'SET_MESSAGE', payload: pendingApiData.error || 'Failed to process video' })
+        dispatch({ type: 'SET_MESSAGE', payload: pendingApiData.error || t('msgError') })
       }
       setPendingApiData(null)
     }
-  }, [pendingApiData])
+  }, [pendingApiData, t])
 
   const handleProcess = async () => {
     if (!state.url.trim()) {
-      dispatch({ type: 'SET_MESSAGE', payload: 'Please enter a TikTok URL' })
+      dispatch({ type: 'SET_MESSAGE', payload: t('msgEnterUrl') })
       return
     }
     dispatch({ type: 'SET_LOADING', payload: true })
@@ -71,7 +73,7 @@ export default function DownloaderTool() {
       setPendingApiData(data)
       setPopupReady(true)
     } catch {
-      setPendingApiData({ success: false, error: 'An error occurred while processing the video' })
+      setPendingApiData({ success: false, error: t('msgError') })
       setPopupReady(true)
     } finally {
       dispatch({ type: 'SET_LOADING', payload: false })
@@ -93,10 +95,10 @@ export default function DownloaderTool() {
       link.click()
       document.body.removeChild(link)
       URL.revokeObjectURL(blobUrl)
-      dispatch({ type: 'SET_MESSAGE', payload: 'Video downloaded successfully! 🎉' })
+      dispatch({ type: 'SET_MESSAGE', payload: t('msgSuccess') })
       dispatch({ type: 'SET_URL', payload: '' })
     } catch {
-      dispatch({ type: 'SET_MESSAGE', payload: 'Failed to download video file' })
+      dispatch({ type: 'SET_MESSAGE', payload: t('msgError') })
     } finally {
       dispatch({ type: 'SET_DOWNLOADING', payload: false })
     }
@@ -117,10 +119,10 @@ export default function DownloaderTool() {
       link.click()
       document.body.removeChild(link)
       URL.revokeObjectURL(blobUrl)
-      dispatch({ type: 'SET_MESSAGE', payload: 'Audio downloaded successfully! 🎵' })
+      dispatch({ type: 'SET_MESSAGE', payload: t('msgAudioSuccess') })
       dispatch({ type: 'SET_URL', payload: '' })
     } catch {
-      dispatch({ type: 'SET_MESSAGE', payload: 'Failed to download audio file' })
+      dispatch({ type: 'SET_MESSAGE', payload: t('msgError') })
     } finally {
       dispatch({ type: 'SET_DOWNLOADING_AUDIO', payload: false })
     }
@@ -130,7 +132,7 @@ export default function DownloaderTool() {
     if (!state.videoMetadata?.images) return
     const selectedImages = state.videoMetadata.images.filter((img) => img.selected)
     if (selectedImages.length === 0) {
-      dispatch({ type: 'SET_MESSAGE', payload: 'Please select at least one image to download' })
+      dispatch({ type: 'SET_MESSAGE', payload: t('labelSelectImages') })
       return
     }
     dispatch({ type: 'SET_DOWNLOADING_IMAGES', payload: true })
@@ -183,7 +185,7 @@ export default function DownloaderTool() {
         dispatch({ type: 'SET_URL', payload: '' })
       }
     } catch {
-      dispatch({ type: 'SET_MESSAGE', payload: 'Failed to download images' })
+      dispatch({ type: 'SET_MESSAGE', payload: t('msgError') })
     } finally {
       dispatch({ type: 'SET_DOWNLOADING_IMAGES', payload: false })
     }
@@ -199,25 +201,31 @@ export default function DownloaderTool() {
   return (
     <div ref={containerRef}>
       {/* ── Hero ── */}
-      <section className="bg-gradient-to-b from-rose-50/60 via-white to-white text-center pt-14 pb-8 px-4">
-        <div className="inline-flex items-center gap-2 bg-white text-rose-500 text-xs font-bold px-4 py-1.5 rounded-full mb-5 border border-rose-100 shadow-sm">
-          <span>✨</span> 100% Free · No Watermark · No Sign-up
+      <section className="bg-gradient-to-b from-rose-50/60 dark:from-rose-950/20 via-white dark:via-slate-900 to-white dark:to-slate-900 text-center pt-14 pb-8 px-4">
+        <div className="inline-flex items-center gap-2 bg-white dark:bg-slate-800 text-rose-500 text-xs font-bold px-4 py-1.5 rounded-full mb-5 border border-rose-100 dark:border-rose-900/50 shadow-sm">
+          <span>✨</span> {t('heroBadge')}
         </div>
 
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-4 leading-tight tracking-tight">
-          TikTok{' '}
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight tracking-tight">
+          {t('heroTitle1')}{' '}
           <span className="bg-gradient-to-r from-rose-500 to-violet-600 bg-clip-text text-transparent">
-            Video Downloader
+            {t('heroTitle2')}
           </span>
         </h1>
 
-        <h2 className="text-base sm:text-lg text-slate-500 max-w-xl mx-auto mb-7 font-normal leading-relaxed">
-          Download TikTok videos without watermark 2026 in HD. Extract MP3 audio &amp; save image galleries. Works on all devices.
+        <h2 className="text-base sm:text-lg text-slate-500 dark:text-slate-400 max-w-xl mx-auto mb-7 font-normal leading-relaxed">
+          {t('heroSubtitle')}
         </h2>
 
         {/* Trust badges */}
-        <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-slate-500">
-          {['No Watermark', 'HD Quality', '100% Free', 'No App Needed', 'Unlimited Downloads'].map((badge) => (
+        <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-slate-500 dark:text-slate-400">
+          {([
+            t('badgeNoWatermark'),
+            t('badgeHD'),
+            t('badgeFree'),
+            t('badgeNoApp'),
+            t('badgeUnlimited'),
+          ]).map((badge) => (
             <span key={badge} className="flex items-center gap-1.5">
               <svg className="w-4 h-4 text-emerald-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
@@ -230,16 +238,16 @@ export default function DownloaderTool() {
 
       {/* ── Input Card ── */}
       <div className="max-w-2xl mx-auto px-4 -mt-2 mb-8">
-        <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/60 border border-slate-100 p-5">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl shadow-slate-200/60 dark:shadow-slate-900/60 border border-slate-100 dark:border-slate-700 p-5">
           {/* URL row */}
           <div className="flex gap-2 mb-3">
             <input
               type="text"
-              placeholder="Paste TikTok link here... (tiktok.com, vm.tiktok.com)"
+              placeholder={t('inputPlaceholder')}
               value={state.url}
               onChange={(e) => dispatch({ type: 'SET_URL', payload: e.target.value })}
               onKeyDown={(e) => e.key === 'Enter' && !isBusy && handleProcess()}
-              className="flex-1 min-w-0 px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-400 focus:border-transparent text-base transition-all"
+              className="flex-1 min-w-0 px-4 py-3.5 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-rose-400 focus:border-transparent text-base transition-all"
             />
             <button
               onClick={async () => {
@@ -250,9 +258,9 @@ export default function DownloaderTool() {
                   alert('Failed to paste. Please paste manually.')
                 }
               }}
-              className="shrink-0 px-4 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl transition-all text-sm border border-slate-200 active:scale-95"
+              className="shrink-0 px-4 py-3 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-300 font-semibold rounded-xl transition-all text-sm border border-slate-200 dark:border-slate-600 active:scale-95"
             >
-              Paste
+              {t('btnPaste')}
             </button>
           </div>
 
@@ -263,14 +271,14 @@ export default function DownloaderTool() {
             className="w-full py-4 bg-gradient-to-r from-rose-500 to-violet-600 hover:from-rose-600 hover:to-violet-700 text-white font-bold rounded-xl transition-all duration-200 text-base sm:text-lg shadow-lg shadow-rose-500/25 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2 active:scale-[0.99]"
           >
             {state.loading ? (
-              <><SpinnerIcon className="h-5 w-5" /> Processing...</>
+              <><SpinnerIcon className="h-5 w-5" /> {t('btnProcessing')}</>
             ) : (
-              <><DownloadIcon className="h-5 w-5" /> Download TikTok Video</>
+              <><DownloadIcon className="h-5 w-5" /> {t('btnDownload')}</>
             )}
           </button>
 
-          <p className="text-center text-xs text-slate-400 mt-3">
-            Supports all TikTok URL formats · Video · Audio · Images
+          <p className="text-center text-xs text-slate-400 dark:text-slate-500 mt-3">
+            {t('inputNote')}
           </p>
         </div>
 
@@ -291,8 +299,8 @@ export default function DownloaderTool() {
         {state.message && (
           <div className={`p-4 rounded-xl text-center text-sm mb-4 font-medium ${
             state.message.includes('success') || state.message.includes('🎉') || state.message.includes('🎵')
-              ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
-              : 'bg-red-50 text-red-600 border border-red-200'
+              ? 'bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800'
+              : 'bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 border border-red-200 dark:border-red-800'
           }`}>
             {state.message}
           </div>
@@ -302,14 +310,14 @@ export default function DownloaderTool() {
         {!state.videoMetadata && !state.message && (
           <div className="grid grid-cols-3 gap-2 mt-2 mb-6">
             {[
-              { icon: '📋', step: '1. Copy URL', hint: 'From TikTok app' },
-              { icon: '⚙️', step: '2. Paste & Process', hint: 'Click Download button' },
-              { icon: '⬇️', step: '3. Save File', hint: 'Video, MP3 or Images' },
+              { icon: '📋', step: t('step1'), hint: t('step1hint') },
+              { icon: '⚙️', step: t('step2'), hint: t('step2hint') },
+              { icon: '⬇️', step: t('step3'), hint: t('step3hint') },
             ].map(({ icon, step, hint }) => (
-              <div key={step} className="text-center p-3 bg-slate-50 rounded-xl border border-slate-100">
+              <div key={step} className="text-center p-3 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700">
                 <div className="text-2xl mb-1">{icon}</div>
-                <p className="text-xs font-semibold text-slate-700">{step}</p>
-                <p className="text-xs text-slate-400 mt-0.5 hidden sm:block">{hint}</p>
+                <p className="text-xs font-semibold text-slate-700 dark:text-slate-200">{step}</p>
+                <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5 hidden sm:block">{hint}</p>
               </div>
             ))}
           </div>
@@ -317,7 +325,7 @@ export default function DownloaderTool() {
 
         {/* Video metadata + download */}
         {state.videoMetadata && (
-          <div className="bg-white rounded-2xl border border-slate-100 shadow-md p-5 space-y-4">
+          <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-md p-5 space-y-4">
             {/* Metadata row */}
             <div className="flex items-start gap-3">
               {state.videoMetadata.thumbnail && (
@@ -327,15 +335,15 @@ export default function DownloaderTool() {
                   alt="TikTok video thumbnail"
                   width={72}
                   height={72}
-                  className="rounded-xl object-cover flex-shrink-0 border border-slate-100"
+                  className="rounded-xl object-cover flex-shrink-0 border border-slate-100 dark:border-slate-700"
                   onError={(e) => { e.currentTarget.style.display = 'none' }}
                 />
               )}
               <div className="flex-1 min-w-0">
-                <p className="text-slate-900 font-semibold text-sm line-clamp-2 leading-snug">{state.videoMetadata.title}</p>
-                <p className="text-slate-500 text-xs mt-1">@{state.videoMetadata.author}</p>
+                <p className="text-slate-900 dark:text-slate-100 font-semibold text-sm line-clamp-2 leading-snug">{state.videoMetadata.title}</p>
+                <p className="text-slate-500 dark:text-slate-400 text-xs mt-1">@{state.videoMetadata.author}</p>
                 {state.videoMetadata.duration > 0 && (
-                  <p className="text-slate-400 text-xs mt-0.5">
+                  <p className="text-slate-400 dark:text-slate-500 text-xs mt-0.5">
                     {Math.floor(state.videoMetadata.duration / 60)}:{(state.videoMetadata.duration % 60).toString().padStart(2, '0')}
                   </p>
                 )}
@@ -344,14 +352,14 @@ export default function DownloaderTool() {
 
             {/* Preview toggle */}
             {state.downloadUrl && (
-              <button onClick={togglePreview} className="w-full py-2.5 px-4 bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium rounded-xl transition-all text-sm border border-slate-200">
-                {state.showPreview ? '▲ Hide Preview' : '▼ Show Preview'}
+              <button onClick={togglePreview} className="w-full py-2.5 px-4 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-300 font-medium rounded-xl transition-all text-sm border border-slate-200 dark:border-slate-600">
+                {state.showPreview ? t('btnHidePreview') : t('btnShowPreview')}
               </button>
             )}
 
             {/* Video player */}
             {state.showPreview && state.downloadUrl && (
-              <div className="rounded-xl overflow-hidden bg-slate-900 border border-slate-200">
+              <div className="rounded-xl overflow-hidden bg-slate-900 border border-slate-200 dark:border-slate-700">
                 <video
                   src={state.downloadUrl}
                   controls
@@ -367,16 +375,16 @@ export default function DownloaderTool() {
             {/* Image gallery */}
             {state.videoMetadata?.images && state.videoMetadata.images.length > 0 && (
               <div className="space-y-3">
-                <button onClick={toggleImageGallery} className="w-full py-2.5 px-4 bg-violet-50 hover:bg-violet-100 text-violet-700 font-semibold rounded-xl transition-all text-sm border border-violet-200">
-                  {state.showImageGallery ? '🖼️ Hide Images' : `🖼️ Show ${state.videoMetadata.images.length} Images`}
+                <button onClick={toggleImageGallery} className="w-full py-2.5 px-4 bg-violet-50 dark:bg-violet-900/20 hover:bg-violet-100 dark:hover:bg-violet-900/30 text-violet-700 dark:text-violet-400 font-semibold rounded-xl transition-all text-sm border border-violet-200 dark:border-violet-800">
+                  {state.showImageGallery ? `🖼️ ${t('btnHideImages')}` : `🖼️ ${t('btnShowImages')} (${state.videoMetadata.images.length})`}
                 </button>
                 {state.showImageGallery && (
                   <div className="space-y-3">
-                    <div className="flex items-center justify-between bg-slate-50 rounded-xl p-3 border border-slate-100">
-                      <span className="text-slate-700 text-sm font-medium">Select images:</span>
+                    <div className="flex items-center justify-between bg-slate-50 dark:bg-slate-700/50 rounded-xl p-3 border border-slate-100 dark:border-slate-600">
+                      <span className="text-slate-700 dark:text-slate-300 text-sm font-medium">{t('labelSelectImages')}</span>
                       <div className="flex gap-2">
-                        <button onClick={() => selectAllImages(true)} className="px-3 py-1.5 bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-semibold rounded-lg">All</button>
-                        <button onClick={() => selectAllImages(false)} className="px-3 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-semibold rounded-lg">None</button>
+                        <button onClick={() => selectAllImages(true)} className="px-3 py-1.5 bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-semibold rounded-lg">{t('btnAll')}</button>
+                        <button onClick={() => selectAllImages(false)} className="px-3 py-1.5 bg-slate-200 dark:bg-slate-600 hover:bg-slate-300 dark:hover:bg-slate-500 text-slate-700 dark:text-slate-300 text-xs font-semibold rounded-lg">{t('btnNone')}</button>
                       </div>
                     </div>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -396,7 +404,7 @@ export default function DownloaderTool() {
                         </div>
                       ))}
                     </div>
-                    <div className="flex items-center gap-3 bg-slate-50 rounded-xl p-3 border border-slate-100">
+                    <div className="flex items-center gap-3 bg-slate-50 dark:bg-slate-700/50 rounded-xl p-3 border border-slate-100 dark:border-slate-600">
                       <input
                         type="checkbox"
                         id="downloadAsZip"
@@ -404,8 +412,8 @@ export default function DownloaderTool() {
                         onChange={(e) => dispatch({ type: 'SET_DOWNLOAD_IMAGES_AS_ZIP', payload: e.target.checked })}
                         className="w-4 h-4 accent-rose-500 rounded"
                       />
-                      <label htmlFor="downloadAsZip" className="text-slate-700 text-sm cursor-pointer">
-                        Download as ZIP file
+                      <label htmlFor="downloadAsZip" className="text-slate-700 dark:text-slate-300 text-sm cursor-pointer">
+                        {t('labelDownloadZip')}
                       </label>
                     </div>
                     <button
@@ -414,9 +422,9 @@ export default function DownloaderTool() {
                       className="w-full py-3 px-4 bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {state.downloadingImages ? (
-                        <><SpinnerIcon className="h-4 w-4" /> Downloading...</>
+                        <><SpinnerIcon className="h-4 w-4" /> {t('btnDownloadingImages')}</>
                       ) : (
-                        <><DownloadIcon className="h-4 w-4" /> Download {state.videoMetadata?.images?.filter((img) => img.selected).length || 0} Image(s)</>
+                        <><DownloadIcon className="h-4 w-4" /> {t('btnDownloadImages')} {state.videoMetadata?.images?.filter((img) => img.selected).length || 0} Image(s)</>
                       )}
                     </button>
                   </div>
@@ -433,7 +441,7 @@ export default function DownloaderTool() {
                     disabled={state.downloading || state.downloadingImages}
                     className="py-3.5 px-4 bg-gradient-to-r from-rose-500 to-violet-600 hover:from-rose-600 hover:to-violet-700 text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg shadow-rose-500/20 disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.99]"
                   >
-                    {state.downloading ? <><SpinnerIcon className="h-4 w-4" /> Downloading...</> : <><DownloadIcon className="h-4 w-4" /> Download MP4</>}
+                    {state.downloading ? <><SpinnerIcon className="h-4 w-4" /> {t('btnDownloading')}</> : <><DownloadIcon className="h-4 w-4" /> {t('btnDownloadMP4')}</>}
                   </button>
                 )}
                 {state.audioUrl && (
@@ -442,14 +450,14 @@ export default function DownloaderTool() {
                     disabled={state.downloadingAudio || state.downloadingImages}
                     className="py-3.5 px-4 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.99]"
                   >
-                    {state.downloadingAudio ? <><SpinnerIcon className="h-4 w-4" /> Extracting...</> : <><MusicIcon className="h-4 w-4" /> Extract MP3</>}
+                    {state.downloadingAudio ? <><SpinnerIcon className="h-4 w-4" /> {t('btnExtracting')}</> : <><MusicIcon className="h-4 w-4" /> {t('btnExtractMP3')}</>}
                   </button>
                 )}
               </div>
             )}
 
             {isBusy && (
-              <p className="text-center text-xs text-slate-400">Preparing your download, please wait...</p>
+              <p className="text-center text-xs text-slate-400 dark:text-slate-500">{t('msgPreparing')}</p>
             )}
           </div>
         )}

@@ -5,7 +5,19 @@
       "Bash(git commit -m ' *)",
       "Bash(ls src/app/privacy-policy/)",
       "Bash(ls src/app/about/)",
-      "Bash(ls src/app/tiktok-video-downloader-android/)"
+      "Bash(ls src/app/tiktok-video-downloader-android/)",
+      "Bash(curl -s -X GET 'https://instagram-downloader-download-instagram-videos-stories1.p.rapidapi.com/?url=https://www.instagram.com/reel/C0test123/&type=mp4' -H 'x-rapidapi-host: instagram-downloader-download-instagram-videos-stories1.p.rapidapi.com' -H 'x-rapidapi-key: REDACTED-REVOKED-API-KEY' --max-time 10)",
+      "Bash(curl -s -v -X GET 'https://instagram-downloader-download-instagram-videos-stories1.p.rapidapi.com/?url=https://vm.tiktok.com/ZMktest/' -H 'x-rapidapi-host: instagram-downloader-download-instagram-videos-stories1.p.rapidapi.com' -H 'x-rapidapi-key: REDACTED-REVOKED-API-KEY' --max-time 10)",
+      "Bash(curl -s -X OPTIONS https://instagram-downloader-download-instagram-videos-stories1.p.rapidapi.com/ -H 'x-rapidapi-host: instagram-downloader-download-instagram-videos-stories1.p.rapidapi.com' -H 'x-rapidapi-key: REDACTED-REVOKED-API-KEY' --max-time 10)",
+      "Bash(curl -s -X GET 'https://instagram-downloader-download-instagram-videos-stories1.p.rapidapi.com/?url=https%3A%2F%2Fwww.instagram.com%2Freel%2FDDHRMXOxRKt%2F' -H 'x-rapidapi-host: instagram-downloader-download-instagram-videos-stories1.p.rapidapi.com' -H 'x-rapidapi-key: REDACTED-REVOKED-API-KEY' --max-time 15)",
+      "WebFetch(domain:rapidapi.com)",
+      "Bash(curl -s 'https://www.tikwm.com/api/?url=https://www.tiktok.com/@tiktok/video/7607695658434202901&hd=1' -H 'Referer: https://www.tikwm.com/' --max-time 15)",
+      "Bash(curl -s -v -X GET 'https://instagram-downloader-download-instagram-videos-stories1.p.rapidapi.com/get-info-rapidapi?url=https://www.instagram.com/reel/C0Xtest123/' -H 'x-rapidapi-host: instagram-downloader-download-instagram-videos-stories1.p.rapidapi.com' -H 'x-rapidapi-key: REDACTED-REVOKED-API-KEY' --max-time 20)",
+      "Bash(curl -s -X GET 'https://tiktok-video-downloader-api.p.rapidapi.com/media?videoUrl=https://www.tiktok.com/@tiktok/video/7607695658434202901' -H 'x-rapidapi-host: tiktok-video-downloader-api.p.rapidapi.com' -H 'x-rapidapi-key: REDACTED-REVOKED-API-KEY' --max-time 20)",
+      "Bash(curl -s -I 'https://robotilab.online/download-api/tiktok/download?videoUrl=https://www.tiktok.com/@tiktok/video/7607695658434202901' --max-time 20)",
+      "Bash(curl -s -r 0-100 'https://robotilab.online/download-api/tiktok/download?videoUrl=https://www.tiktok.com/@tiktok/video/7607695658434202901' --max-time 20)",
+      "Bash(pnpm build *)",
+      "Bash(npm install *)"
     ]
   }
 }

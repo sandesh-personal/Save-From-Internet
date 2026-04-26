@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import DownloaderTool from '@/components/DownloaderTool'
 
-/* ── Structured Data ───────────────────────────────────────────────── */
 const webAppSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
@@ -28,7 +27,6 @@ const faqSchema = {
   ],
 }
 
-/* ── Feature data ──────────────────────────────────────────────────── */
 const features = [
   { icon: '🚫', title: 'No Watermark', desc: 'Get the original clean video — no TikTok logo, no username overlay.' },
   { icon: '🎬', title: 'HD Quality', desc: 'Download at the original resolution — 720p, 1080p, or higher.' },
@@ -51,32 +49,31 @@ const faqs = [
   { q: 'Is it legal to download TikTok videos?', a: 'Downloading for personal use (offline viewing, private archiving) is generally accepted. Redistribution or monetization of downloaded content without permission may violate copyright law.' },
 ]
 
-/* ── Page ──────────────────────────────────────────────────────────── */
 export default function Home() {
   return (
-    <div className="bg-white">
+    <div className="bg-white dark:bg-slate-900">
 
       {/* Interactive Downloader */}
       <DownloaderTool />
 
       {/* ── How It Works ── */}
-      <section className="bg-slate-50 py-16 px-4 border-t border-slate-100">
+      <section className="bg-slate-50 dark:bg-slate-800/50 py-16 px-4 border-t border-slate-100 dark:border-slate-700/50">
         <div className="max-w-5xl mx-auto">
           <p className="text-center text-xs font-bold uppercase tracking-widest text-rose-500 mb-3">Simple 3-Step Process</p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 text-center mb-12">How to Download TikTok Videos</h2>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white text-center mb-12">How to Download TikTok Videos</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               { n: '01', icon: '📋', title: 'Copy TikTok URL', desc: 'Open TikTok, tap the Share button on any video, then tap "Copy Link" to copy the URL.' },
               { n: '02', icon: '⚙️', title: 'Paste & Process', desc: 'Paste the URL on savefrominternet.com, hit the Download button, and wait a few seconds.' },
               { n: '03', icon: '⬇️', title: 'Save to Device', desc: 'Download the HD video without watermark, extract MP3 audio, or save photo galleries.' },
             ].map(({ n, icon, title, desc }) => (
-              <div key={n} className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+              <div key={n} className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-3xl">{icon}</span>
-                  <span className="text-5xl font-black text-slate-100 leading-none select-none">{n}</span>
+                  <span className="text-5xl font-black text-slate-100 dark:text-slate-700 leading-none select-none">{n}</span>
                 </div>
-                <h3 className="text-slate-900 font-bold text-lg mb-2">{title}</h3>
-                <p className="text-slate-500 text-sm leading-relaxed">{desc}</p>
+                <h3 className="text-slate-900 dark:text-white font-bold text-lg mb-2">{title}</h3>
+                <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
@@ -84,16 +81,16 @@ export default function Home() {
       </section>
 
       {/* ── Features ── */}
-      <section className="bg-white py-16 px-4">
+      <section className="bg-white dark:bg-slate-900 py-16 px-4">
         <div className="max-w-5xl mx-auto">
           <p className="text-center text-xs font-bold uppercase tracking-widest text-violet-500 mb-3">Why Users Choose Us</p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 text-center mb-12">Everything You Need to Save TikTok Content</h2>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white text-center mb-12">Everything You Need to Save TikTok Content</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {features.map(({ icon, title, desc }) => (
-              <div key={title} className="bg-slate-50 rounded-2xl p-5 border border-slate-100 hover:border-rose-200 hover:bg-rose-50/30 transition-all group">
+              <div key={title} className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-5 border border-slate-100 dark:border-slate-700 hover:border-rose-200 dark:hover:border-rose-800 hover:bg-rose-50/30 dark:hover:bg-rose-900/10 transition-all group">
                 <div className="text-3xl mb-3">{icon}</div>
-                <h3 className="text-slate-900 font-bold mb-1.5 group-hover:text-rose-600 transition-colors">{title}</h3>
-                <p className="text-slate-500 text-sm leading-relaxed">{desc}</p>
+                <h3 className="text-slate-900 dark:text-white font-bold mb-1.5 group-hover:text-rose-600 dark:group-hover:text-rose-400 transition-colors">{title}</h3>
+                <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
@@ -101,27 +98,27 @@ export default function Home() {
       </section>
 
       {/* ── Download Types ── */}
-      <section className="bg-slate-50 py-16 px-4 border-t border-slate-100">
+      <section className="bg-slate-50 dark:bg-slate-800/50 py-16 px-4 border-t border-slate-100 dark:border-slate-700/50">
         <div className="max-w-5xl mx-auto">
           <p className="text-center text-xs font-bold uppercase tracking-widest text-emerald-500 mb-3">Multiple Format Support</p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 text-center mb-12">What Can You Download?</h2>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white text-center mb-12">What Can You Download?</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm text-center">
-              <div className="w-14 h-14 bg-rose-100 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">🎬</div>
-              <h3 className="text-slate-900 font-bold text-xl mb-2">TikTok Video</h3>
-              <p className="text-slate-500 text-sm leading-relaxed mb-4">Download in HD without watermark as MP4. Plays on any device or video player.</p>
+            <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-100 dark:border-slate-700 shadow-sm text-center">
+              <div className="w-14 h-14 bg-rose-100 dark:bg-rose-900/30 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">🎬</div>
+              <h3 className="text-slate-900 dark:text-white font-bold text-xl mb-2">TikTok Video</h3>
+              <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4">Download in HD without watermark as MP4. Plays on any device or video player.</p>
               <Link href="/tiktok-downloader-without-watermark" className="text-rose-500 text-sm font-semibold hover:underline">Download without watermark →</Link>
             </div>
-            <div className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm text-center">
-              <div className="w-14 h-14 bg-emerald-100 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">🎵</div>
-              <h3 className="text-slate-900 font-bold text-xl mb-2">TikTok Audio (MP3)</h3>
-              <p className="text-slate-500 text-sm leading-relaxed mb-4">Extract music, sounds, and voiceovers as high-quality MP3. Great for ringtones and edits.</p>
+            <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-100 dark:border-slate-700 shadow-sm text-center">
+              <div className="w-14 h-14 bg-emerald-100 dark:bg-emerald-900/30 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">🎵</div>
+              <h3 className="text-slate-900 dark:text-white font-bold text-xl mb-2">TikTok Audio (MP3)</h3>
+              <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4">Extract music, sounds, and voiceovers as high-quality MP3. Great for ringtones and edits.</p>
               <Link href="/tiktok-to-mp3" className="text-emerald-600 text-sm font-semibold hover:underline">TikTok to MP3 →</Link>
             </div>
-            <div className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm text-center">
-              <div className="w-14 h-14 bg-violet-100 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">🖼️</div>
-              <h3 className="text-slate-900 font-bold text-xl mb-2">TikTok Photos</h3>
-              <p className="text-slate-500 text-sm leading-relaxed mb-4">Save images from TikTok photo carousels. Download individually or as a ZIP archive.</p>
+            <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-100 dark:border-slate-700 shadow-sm text-center">
+              <div className="w-14 h-14 bg-violet-100 dark:bg-violet-900/30 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">🖼️</div>
+              <h3 className="text-slate-900 dark:text-white font-bold text-xl mb-2">TikTok Photos</h3>
+              <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4">Save images from TikTok photo carousels. Download individually or as a ZIP archive.</p>
               <Link href="/tiktok-photo-downloader" className="text-violet-600 text-sm font-semibold hover:underline">Photo downloader →</Link>
             </div>
           </div>
@@ -129,9 +126,9 @@ export default function Home() {
       </section>
 
       {/* ── Device Links ── */}
-      <section className="bg-white py-14 px-4 border-t border-slate-100">
+      <section className="bg-white dark:bg-slate-900 py-14 px-4 border-t border-slate-100 dark:border-slate-700/50">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 text-center mb-8">Works on Every Device</h2>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white text-center mb-8">Works on Every Device</h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
               { icon: '🍎', label: 'iPhone & iPad', href: '/tiktok-video-downloader-iphone' },
@@ -139,9 +136,9 @@ export default function Home() {
               { icon: '🖥️', label: 'Windows / Mac', href: '/tiktok-video-downloader-pc' },
               { icon: '🌐', label: 'Any Browser', href: '/tiktok-video-downloader' },
             ].map(({ icon, label, href }) => (
-              <Link key={label} href={href} className="flex flex-col items-center gap-2 bg-slate-50 hover:bg-rose-50 border border-slate-100 hover:border-rose-200 rounded-2xl py-5 px-3 transition-all group">
+              <Link key={label} href={href} className="flex flex-col items-center gap-2 bg-slate-50 dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-rose-900/20 border border-slate-100 dark:border-slate-700 hover:border-rose-200 dark:hover:border-rose-800 rounded-2xl py-5 px-3 transition-all group">
                 <span className="text-3xl">{icon}</span>
-                <span className="text-sm font-semibold text-slate-700 group-hover:text-rose-600 text-center transition-colors">{label}</span>
+                <span className="text-sm font-semibold text-slate-700 dark:text-slate-300 group-hover:text-rose-600 dark:group-hover:text-rose-400 text-center transition-colors">{label}</span>
               </Link>
             ))}
           </div>
@@ -149,28 +146,28 @@ export default function Home() {
       </section>
 
       {/* ── About ── */}
-      <section className="bg-slate-50 py-14 px-4 border-t border-slate-100">
+      <section className="bg-slate-50 dark:bg-slate-800/50 py-14 px-4 border-t border-slate-100 dark:border-slate-700/50">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-4">About SaveFromInternet.com</h2>
-          <p className="text-slate-500 leading-relaxed text-base">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-4">About SaveFromInternet.com</h2>
+          <p className="text-slate-500 dark:text-slate-400 leading-relaxed text-base">
             SaveFromInternet.com is a free, browser-based TikTok video downloader. No installs, no accounts, no watermarks.
             Just paste a link and download your content instantly. We support videos, audio, and image galleries from any
             public TikTok. Built for privacy — your downloads are never stored on our servers.
           </p>
-          <p className="text-slate-400 text-sm mt-3">Contact: contact@savefrominternet.com</p>
+          <p className="text-slate-400 dark:text-slate-500 text-sm mt-3">Contact: contact@savefrominternet.com</p>
         </div>
       </section>
 
       {/* ── FAQ ── */}
-      <section className="bg-white py-16 px-4 border-t border-slate-100">
+      <section className="bg-white dark:bg-slate-900 py-16 px-4 border-t border-slate-100 dark:border-slate-700/50">
         <div className="max-w-3xl mx-auto">
           <p className="text-center text-xs font-bold uppercase tracking-widest text-rose-500 mb-3">Got Questions?</p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 text-center mb-12">Frequently Asked Questions</h2>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white text-center mb-12">Frequently Asked Questions</h2>
           <div className="space-y-4">
             {faqs.map(({ q, a }) => (
-              <div key={q} className="bg-slate-50 rounded-2xl p-5 border border-slate-100">
-                <h3 className="text-slate-900 font-bold mb-2">{q}</h3>
-                <p className="text-slate-500 text-sm leading-relaxed">{a}</p>
+              <div key={q} className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-5 border border-slate-100 dark:border-slate-700">
+                <h3 className="text-slate-900 dark:text-white font-bold mb-2">{q}</h3>
+                <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{a}</p>
               </div>
             ))}
           </div>
@@ -178,9 +175,9 @@ export default function Home() {
       </section>
 
       {/* ── Related Tools ── */}
-      <section className="bg-slate-50 py-12 px-4 border-t border-slate-100">
+      <section className="bg-slate-50 dark:bg-slate-800/50 py-12 px-4 border-t border-slate-100 dark:border-slate-700/50">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-xl font-bold text-slate-900 text-center mb-6">More TikTok Downloader Tools</h2>
+          <h2 className="text-xl font-bold text-slate-900 dark:text-white text-center mb-6">More TikTok Downloader Tools</h2>
           <div className="flex flex-wrap justify-center gap-3">
             {[
               { label: 'TikTok to MP3', href: '/tiktok-to-mp3' },
@@ -194,7 +191,7 @@ export default function Home() {
               { label: 'FAQ', href: '/faq' },
               { label: 'Blog', href: '/blog' },
             ].map(({ label, href }) => (
-              <Link key={href} href={href} className="px-4 py-2 bg-white text-slate-600 hover:text-rose-600 border border-slate-200 hover:border-rose-200 rounded-full text-sm font-medium transition-all hover:shadow-sm">
+              <Link key={href} href={href} className="px-4 py-2 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-rose-600 dark:hover:text-rose-400 border border-slate-200 dark:border-slate-700 hover:border-rose-200 dark:hover:border-rose-800 rounded-full text-sm font-medium transition-all hover:shadow-sm">
                 {label}
               </Link>
             ))}
@@ -202,7 +199,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Structured Data */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
     </div>
