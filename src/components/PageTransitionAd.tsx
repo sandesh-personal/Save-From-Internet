@@ -78,7 +78,6 @@ export default function PageTransitionAd({
               adSlot={adSlot}
               adFormat="auto"
               containerStyle="none"
-              showLabel={false}
             />
           </div>
 

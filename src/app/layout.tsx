@@ -61,7 +61,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={geistSans.variable}>
+    <html lang="en" className={geistSans.variable} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
@@ -81,7 +81,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="google-site-verification" content="eKo5Uv_vQHwOIYPOM5qRSv0CPbQVWTwXJ4zYHXgcUjo" />
         <meta name="msvalidate.01" content="3040BFA752B13D1315F7D0433AD753E1" />
       </head>
-      <body className="antialiased flex flex-col min-h-screen bg-white text-slate-900 font-sans">
+      <body className="antialiased flex flex-col min-h-screen bg-white text-slate-900 font-sans" suppressHydrationWarning>
 
         {/* Header */}
         <header className="fixed top-0 left-0 w-full bg-white/95 backdrop-blur-sm border-b border-slate-100 z-50">
