@@ -14,27 +14,27 @@ export default function BlogPage() {
       : blogPosts.filter((p) => p.category === activeCategory)
 
   return (
-    <div className="bg-white">
+    <div className="bg-white dark:bg-slate-900">
       {/* Hero */}
-      <section className="bg-gradient-to-b from-slate-50 to-white py-14 px-4 text-center border-b border-slate-100">
+      <section className="bg-gradient-to-b from-slate-50 dark:from-slate-800 to-white dark:to-slate-900 py-14 px-4 text-center border-b border-slate-100 dark:border-slate-700/50">
         <div className="max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-white text-rose-500 text-xs font-bold px-4 py-1.5 rounded-full mb-5 border border-rose-100 shadow-sm">
+          <div className="inline-flex items-center gap-2 bg-white dark:bg-slate-800 text-rose-500 text-xs font-bold px-4 py-1.5 rounded-full mb-5 border border-rose-100 dark:border-rose-800/40 shadow-sm">
             📖 Guides & Tips
           </div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-4 leading-tight">
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight">
             TikTok Downloader{' '}
             <span className="bg-gradient-to-r from-rose-500 to-violet-600 bg-clip-text text-transparent">
               Blog
             </span>
           </h1>
-          <p className="text-lg text-slate-500 max-w-xl mx-auto">
+          <p className="text-lg text-slate-500 dark:text-slate-400 max-w-xl mx-auto">
             {blogPosts.length} guides on downloading TikTok videos, audio, and photos — no watermark, no app.
           </p>
         </div>
       </section>
 
       {/* Top Ad */}
-      <div className="flex justify-center py-6 px-4 border-b border-slate-100">
+      <div className="flex justify-center py-6 px-4 border-b border-slate-100 dark:border-slate-700/50">
         <GoogleAdSense
           adSlot="5309301802"
           adFormat="auto"
@@ -44,7 +44,7 @@ export default function BlogPage() {
       </div>
 
       {/* Category filter tabs */}
-      <section className="bg-white px-4 pt-8 pb-2 border-b border-slate-100 sticky top-16 z-40 shadow-sm">
+      <section className="bg-white dark:bg-slate-900 px-4 pt-8 pb-2 border-b border-slate-100 dark:border-slate-700/50 sticky top-16 z-40 shadow-sm">
         <div className="max-w-5xl mx-auto">
           <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
             <button
@@ -52,7 +52,7 @@ export default function BlogPage() {
               className={`flex-shrink-0 text-xs font-bold px-4 py-2 rounded-full border transition-all ${
                 activeCategory === 'all'
                   ? 'bg-rose-500 text-white border-rose-500'
-                  : 'bg-white text-slate-600 border-slate-200 hover:border-rose-300 hover:text-rose-500'
+                  : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-rose-300 hover:text-rose-500'
               }`}
             >
               All ({blogPosts.length})
@@ -68,7 +68,7 @@ export default function BlogPage() {
                     className={`flex-shrink-0 text-xs font-bold px-4 py-2 rounded-full border transition-all whitespace-nowrap ${
                       activeCategory === key
                         ? 'bg-rose-500 text-white border-rose-500'
-                        : 'bg-white text-slate-600 border-slate-200 hover:border-rose-300 hover:text-rose-500'
+                        : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-rose-300 hover:text-rose-500'
                     }`}
                   >
                     {icon} {label} ({count})
@@ -81,19 +81,19 @@ export default function BlogPage() {
       </section>
 
       {/* Posts grid */}
-      <section className="bg-white py-8 px-4">
+      <section className="bg-white dark:bg-slate-900 py-8 px-4">
         <div className="max-w-5xl mx-auto">
           {filtered.length === 0 ? (
-            <p className="text-slate-400 text-center py-12">No posts in this category yet.</p>
+            <p className="text-slate-400 dark:text-slate-500 text-center py-12">No posts in this category yet.</p>
           ) : (
             <div className="space-y-3">
               {filtered.map((post, index) => (
                 <div key={post.slug}>
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="flex items-center gap-4 bg-white hover:bg-slate-50 border border-slate-100 rounded-2xl p-4 shadow-sm transition-all group"
+                    className="flex items-center gap-4 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-100 dark:border-slate-700/50 rounded-2xl p-4 shadow-sm transition-all group"
                   >
-                    <div className="w-20 h-20 relative rounded-xl overflow-hidden flex-shrink-0 border border-slate-100">
+                    <div className="w-20 h-20 relative rounded-xl overflow-hidden flex-shrink-0 border border-slate-100 dark:border-slate-700/50">
                       <Image
                         src={post.image}
                         alt={post.title}
@@ -105,17 +105,17 @@ export default function BlogPage() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="text-xs font-bold text-rose-400 bg-rose-50 px-2 py-0.5 rounded-full">
+                        <span className="text-xs font-bold text-rose-400 bg-rose-50 dark:bg-rose-900/30 px-2 py-0.5 rounded-full">
                           {categoryMeta[post.category]?.icon} {categoryMeta[post.category]?.label}
                         </span>
                       </div>
-                      <h2 className="text-slate-900 font-bold text-sm sm:text-base leading-snug group-hover:text-rose-500 transition-colors line-clamp-2">
+                      <h2 className="text-slate-900 dark:text-white font-bold text-sm sm:text-base leading-snug group-hover:text-rose-500 transition-colors line-clamp-2">
                         {post.title}
                       </h2>
-                      <p className="text-slate-500 text-xs mt-1 line-clamp-1 leading-relaxed hidden sm:block">
+                      <p className="text-slate-500 dark:text-slate-400 text-xs mt-1 line-clamp-1 leading-relaxed hidden sm:block">
                         {post.description}
                       </p>
-                      <p className="text-xs text-slate-400 mt-1">
+                      <p className="text-xs text-slate-400 dark:text-slate-500 mt-1">
                         {new Date(post.lastModified).toLocaleDateString('en-US', {
                           year: 'numeric',
                           month: 'short',
@@ -147,7 +147,7 @@ export default function BlogPage() {
       </section>
 
       {/* Bottom Ad */}
-      <div className="flex justify-center py-8 px-4 border-t border-slate-100">
+      <div className="flex justify-center py-8 px-4 border-t border-slate-100 dark:border-slate-700/50">
         <GoogleAdSense
           adSlot="2491566773"
           adFormat="auto"

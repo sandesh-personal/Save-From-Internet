@@ -74,21 +74,21 @@ const howToSchema = {
 
 export default function TikTokPhotoDownloaderPage() {
   return (
-    <div className="bg-white">
+    <div className="bg-white dark:bg-slate-900">
 
       {/* Hero */}
-      <section className="bg-gradient-to-b from-violet-50/60 to-white py-14 px-4 text-center border-b border-slate-100">
+      <section className="bg-gradient-to-b from-violet-50/60 dark:from-slate-800 to-white dark:to-slate-900 py-14 px-4 text-center border-b border-slate-100 dark:border-slate-700/50">
         <div className="max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-white text-violet-600 text-xs font-bold px-4 py-1.5 rounded-full mb-5 border border-violet-100 shadow-sm">
+          <div className="inline-flex items-center gap-2 bg-white dark:bg-slate-800 text-violet-600 dark:text-violet-400 text-xs font-bold px-4 py-1.5 rounded-full mb-5 border border-violet-100 dark:border-violet-800/40 shadow-sm">
             🖼️ Photo &amp; Carousel Downloader · Free
           </div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-4 leading-tight">
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight">
             TikTok{' '}
             <span className="bg-gradient-to-r from-violet-500 to-pink-500 bg-clip-text text-transparent">
               Photo Downloader
             </span>
           </h1>
-          <p className="text-lg text-slate-500 mb-8 max-w-xl mx-auto">
+          <p className="text-lg text-slate-500 dark:text-slate-400 mb-8 max-w-xl mx-auto">
             Download TikTok photos and image carousels in original quality. Save individual images or download all as a ZIP. Free, no app needed.
           </p>
           <Link
@@ -101,9 +101,9 @@ export default function TikTokPhotoDownloaderPage() {
       </section>
 
       {/* How it works */}
-      <section className="bg-slate-50 py-14 px-4 border-b border-slate-100">
+      <section className="bg-slate-50 dark:bg-slate-800/50 py-14 px-4 border-b border-slate-100 dark:border-slate-700/50">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-extrabold text-slate-900 text-center mb-10">
+          <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white text-center mb-10">
             How to Download TikTok Photos
           </h2>
           <div className="space-y-4">
@@ -129,13 +129,13 @@ export default function TikTokPhotoDownloaderPage() {
                 desc: 'Tap "All" to select every image, then click Download. Choose to save them individually or as a single ZIP archive.',
               },
             ].map(({ n, title, desc }) => (
-              <div key={n} className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm flex items-start gap-4">
+              <div key={n} className="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-100 dark:border-slate-700/50 shadow-sm flex items-start gap-4">
                 <div className="w-11 h-11 bg-gradient-to-r from-violet-500 to-pink-500 rounded-full flex items-center justify-center text-white font-extrabold text-lg flex-shrink-0">
                   {n}
                 </div>
                 <div>
-                  <h3 className="text-slate-900 font-bold text-lg mb-1">{title}</h3>
-                  <p className="text-slate-500 text-sm leading-relaxed">{desc}</p>
+                  <h3 className="text-slate-900 dark:text-white font-bold text-lg mb-1">{title}</h3>
+                  <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{desc}</p>
                 </div>
               </div>
             ))}
@@ -144,11 +144,11 @@ export default function TikTokPhotoDownloaderPage() {
       </section>
 
       {/* Features */}
-      <section className="bg-white py-14 px-4 border-b border-slate-100">
+      <section className="bg-white dark:bg-slate-900 py-14 px-4 border-b border-slate-100 dark:border-slate-700/50">
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100">
-            <h3 className="text-xl font-bold text-slate-900 mb-5">✨ Key Features</h3>
-            <ul className="space-y-3 text-sm text-slate-600">
+          <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 border border-slate-100 dark:border-slate-700/50">
+            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-5">✨ Key Features</h3>
+            <ul className="space-y-3 text-sm text-slate-600 dark:text-slate-300">
               {[
                 'Download all images from TikTok carousels',
                 'Save photos in original quality — no compression',
@@ -165,16 +165,16 @@ export default function TikTokPhotoDownloaderPage() {
             </ul>
           </div>
 
-          <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100">
-            <h3 className="text-xl font-bold text-slate-900 mb-5">📦 Download Options</h3>
+          <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 border border-slate-100 dark:border-slate-700/50">
+            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-5">📦 Download Options</h3>
             <div className="space-y-4">
-              <div className="bg-white rounded-xl p-4 border border-slate-100">
-                <h4 className="text-slate-900 font-semibold mb-1">📸 Individual Images</h4>
-                <p className="text-slate-500 text-sm">Select specific photos from the carousel and download them one by one.</p>
+              <div className="bg-white dark:bg-slate-900 rounded-xl p-4 border border-slate-100 dark:border-slate-700/50">
+                <h4 className="text-slate-900 dark:text-white font-semibold mb-1">📸 Individual Images</h4>
+                <p className="text-slate-500 dark:text-slate-400 text-sm">Select specific photos from the carousel and download them one by one.</p>
               </div>
-              <div className="bg-white rounded-xl p-4 border border-slate-100">
-                <h4 className="text-slate-900 font-semibold mb-1">🗜️ ZIP Archive</h4>
-                <p className="text-slate-500 text-sm">Select all images and download everything as a single ZIP file — perfect for carousels.</p>
+              <div className="bg-white dark:bg-slate-900 rounded-xl p-4 border border-slate-100 dark:border-slate-700/50">
+                <h4 className="text-slate-900 dark:text-white font-semibold mb-1">🗜️ ZIP Archive</h4>
+                <p className="text-slate-500 dark:text-slate-400 text-sm">Select all images and download everything as a single ZIP file — perfect for carousels.</p>
               </div>
             </div>
           </div>
@@ -182,9 +182,9 @@ export default function TikTokPhotoDownloaderPage() {
       </section>
 
       {/* Also supports */}
-      <section className="bg-slate-50 py-14 px-4 border-b border-slate-100">
+      <section className="bg-slate-50 dark:bg-slate-800/50 py-14 px-4 border-b border-slate-100 dark:border-slate-700/50">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-extrabold text-slate-900 text-center mb-10">
+          <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white text-center mb-10">
             Also Download TikTok Videos &amp; Audio
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -211,10 +211,10 @@ export default function TikTokPhotoDownloaderPage() {
                 linkText: 'Current page',
               },
             ].map(({ icon, title, desc, href, linkText }) => (
-              <div key={title} className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm text-center">
+              <div key={title} className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-100 dark:border-slate-700/50 shadow-sm text-center">
                 <div className="text-4xl mb-4">{icon}</div>
-                <h3 className="text-slate-900 font-bold text-lg mb-2">{title}</h3>
-                <p className="text-slate-500 text-sm mb-4 leading-relaxed">{desc}</p>
+                <h3 className="text-slate-900 dark:text-white font-bold text-lg mb-2">{title}</h3>
+                <p className="text-slate-500 dark:text-slate-400 text-sm mb-4 leading-relaxed">{desc}</p>
                 <Link href={href} className="text-rose-500 text-sm font-semibold hover:underline">
                   {linkText}
                 </Link>
@@ -225,9 +225,9 @@ export default function TikTokPhotoDownloaderPage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-white py-14 px-4 border-b border-slate-100">
+      <section className="bg-white dark:bg-slate-900 py-14 px-4 border-b border-slate-100 dark:border-slate-700/50">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-extrabold text-slate-900 text-center mb-10">
+          <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white text-center mb-10">
             Frequently Asked Questions
           </h2>
           <div className="space-y-4">
@@ -253,9 +253,9 @@ export default function TikTokPhotoDownloaderPage() {
                 a: 'Yes, completely free. No account, no app, no download limits.',
               },
             ].map(({ q, a }) => (
-              <div key={q} className="bg-slate-50 rounded-2xl p-5 border border-slate-100">
-                <h3 className="text-slate-900 font-bold mb-2">{q}</h3>
-                <p className="text-slate-500 text-sm leading-relaxed">{a}</p>
+              <div key={q} className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-5 border border-slate-100 dark:border-slate-700/50">
+                <h3 className="text-slate-900 dark:text-white font-bold mb-2">{q}</h3>
+                <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{a}</p>
               </div>
             ))}
           </div>

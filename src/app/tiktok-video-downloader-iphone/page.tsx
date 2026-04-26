@@ -41,17 +41,17 @@ const steps = [
 
 export default function TikTokDownloaderIphonePage() {
   return (
-    <div className="bg-white">
+    <div className="bg-white dark:bg-slate-900">
 
       {/* Hero */}
-      <section className="bg-gradient-to-b from-rose-50/60 to-white py-14 px-4 text-center border-b border-slate-100">
+      <section className="bg-gradient-to-b from-rose-50/60 dark:from-slate-800 to-white dark:to-slate-900 py-14 px-4 text-center border-b border-slate-100 dark:border-slate-700/50">
         <div className="max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-white text-rose-500 text-xs font-bold px-4 py-1.5 rounded-full mb-5 border border-rose-100 shadow-sm">🍎 iPhone Guide · Safari · No App</div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-4 leading-tight">
+          <div className="inline-flex items-center gap-2 bg-white dark:bg-slate-800 text-rose-500 text-xs font-bold px-4 py-1.5 rounded-full mb-5 border border-rose-100 dark:border-rose-800/40 shadow-sm">🍎 iPhone Guide · Safari · No App</div>
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight">
             TikTok Downloader for{' '}
             <span className="bg-gradient-to-r from-rose-500 to-violet-600 bg-clip-text text-transparent">iPhone</span>
           </h1>
-          <p className="text-lg text-slate-500 mb-8 max-w-xl mx-auto">
+          <p className="text-lg text-slate-500 dark:text-slate-400 mb-8 max-w-xl mx-auto">
             Download TikTok videos on iPhone without watermark — 2026 guide. Works in Safari, saves to Camera Roll. No app install.
           </p>
           <Link href="/" className="inline-block bg-gradient-to-r from-rose-500 to-violet-600 hover:from-rose-600 hover:to-violet-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg shadow-rose-500/25 transition-all">
@@ -61,16 +61,16 @@ export default function TikTokDownloaderIphonePage() {
       </section>
 
       {/* Steps */}
-      <section className="bg-slate-50 py-14 px-4 border-b border-slate-100">
+      <section className="bg-slate-50 dark:bg-slate-800/50 py-14 px-4 border-b border-slate-100 dark:border-slate-700/50">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-extrabold text-slate-900 text-center mb-10">How to Download TikTok on iPhone</h2>
+          <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white text-center mb-10">How to Download TikTok on iPhone</h2>
           <div className="space-y-4">
             {steps.map(({ n, icon, title, desc }) => (
-              <div key={n} className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm flex items-start gap-4">
+              <div key={n} className="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-100 dark:border-slate-700/50 shadow-sm flex items-start gap-4">
                 <div className="w-11 h-11 bg-gradient-to-r from-rose-500 to-violet-600 rounded-full flex items-center justify-center text-white font-extrabold text-lg flex-shrink-0">{n}</div>
                 <div>
-                  <h3 className="text-slate-900 font-bold text-lg mb-1">{icon} {title}</h3>
-                  <p className="text-slate-500 text-sm leading-relaxed">{desc}</p>
+                  <h3 className="text-slate-900 dark:text-white font-bold text-lg mb-1">{icon} {title}</h3>
+                  <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{desc}</p>
                 </div>
               </div>
             ))}
@@ -79,11 +79,11 @@ export default function TikTokDownloaderIphonePage() {
       </section>
 
       {/* Tips + What you get */}
-      <section className="bg-white py-14 px-4 border-b border-slate-100">
+      <section className="bg-white dark:bg-slate-900 py-14 px-4 border-b border-slate-100 dark:border-slate-700/50">
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100">
-            <h3 className="text-xl font-bold text-slate-900 mb-5">📱 iPhone Tips</h3>
-            <ul className="space-y-3 text-sm text-slate-600">
+          <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 border border-slate-100 dark:border-slate-700/50">
+            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-5">📱 iPhone Tips</h3>
+            <ul className="space-y-3 text-sm text-slate-600 dark:text-slate-300">
               {[
                 'Use Safari — Chrome may not support tap-to-save on iPhone',
                 'After video opens, tap and hold to see "Save Video" option',
@@ -97,9 +97,9 @@ export default function TikTokDownloaderIphonePage() {
               ))}
             </ul>
           </div>
-          <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100">
-            <h3 className="text-xl font-bold text-slate-900 mb-5">✨ What You Can Download</h3>
-            <ul className="space-y-3 text-sm text-slate-600">
+          <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 border border-slate-100 dark:border-slate-700/50">
+            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-5">✨ What You Can Download</h3>
+            <ul className="space-y-3 text-sm text-slate-600 dark:text-slate-300">
               {[
                 { icon: '🎬', text: 'HD Video (MP4) — no watermark, original quality' },
                 { icon: '🎵', text: 'MP3 Audio — extract music or sounds' },
@@ -114,9 +114,9 @@ export default function TikTokDownloaderIphonePage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-slate-50 py-14 px-4 border-b border-slate-100">
+      <section className="bg-slate-50 dark:bg-slate-800/50 py-14 px-4 border-b border-slate-100 dark:border-slate-700/50">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-extrabold text-slate-900 text-center mb-10">FAQ — TikTok Downloader iPhone</h2>
+          <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white text-center mb-10">FAQ — TikTok Downloader iPhone</h2>
           <div className="space-y-4">
             {[
               { q: 'Why does the video open in Safari instead of downloading?', a: 'Safari streams videos by default on iPhone. When the video opens, tap and hold the video player and select "Save Video" to save to your Camera Roll.' },
@@ -124,9 +124,9 @@ export default function TikTokDownloaderIphonePage() {
               { q: 'Do I need to install an app on my iPhone?', a: 'No. Open Safari, visit savefrominternet.com, paste a TikTok link, and download. Nothing to install.' },
               { q: 'Does it work on older iPhones?', a: 'Yes, works on any iPhone running iOS 14 or later.' },
             ].map(({ q, a }) => (
-              <div key={q} className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm">
-                <h3 className="text-slate-900 font-bold mb-2">{q}</h3>
-                <p className="text-slate-500 text-sm leading-relaxed">{a}</p>
+              <div key={q} className="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-100 dark:border-slate-700/50 shadow-sm">
+                <h3 className="text-slate-900 dark:text-white font-bold mb-2">{q}</h3>
+                <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{a}</p>
               </div>
             ))}
           </div>

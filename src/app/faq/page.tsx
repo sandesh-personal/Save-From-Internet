@@ -175,7 +175,7 @@ const faqs: { question: string; answer: React.ReactNode }[] = [
 
 export default function FAQPage() {
   return (
-    <div className="bg-white">
+    <div className="bg-white dark:bg-slate-900">
 
       {/* Structured data */}
       <script
@@ -184,25 +184,25 @@ export default function FAQPage() {
       />
 
       {/* Hero */}
-      <section className="bg-gradient-to-b from-slate-50 to-white py-14 px-4 text-center border-b border-slate-100">
+      <section className="bg-gradient-to-b from-slate-50 dark:from-slate-800 to-white dark:to-slate-900 py-14 px-4 text-center border-b border-slate-100 dark:border-slate-700/50">
         <div className="max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-white text-rose-500 text-xs font-bold px-4 py-1.5 rounded-full mb-5 border border-rose-100 shadow-sm">
+          <div className="inline-flex items-center gap-2 bg-white dark:bg-slate-800 text-rose-500 text-xs font-bold px-4 py-1.5 rounded-full mb-5 border border-rose-100 dark:border-rose-800/40 shadow-sm">
             ❓ Help & Support
           </div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-4 leading-tight">
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight">
             TikTok Downloader{' '}
             <span className="bg-gradient-to-r from-rose-500 to-violet-600 bg-clip-text text-transparent">
               FAQ
             </span>
           </h1>
-          <p className="text-lg text-slate-500 max-w-xl mx-auto">
+          <p className="text-lg text-slate-500 dark:text-slate-400 max-w-xl mx-auto">
             Answers to common questions about downloading TikTok videos, audio, and photos with SaveFromInternet.
           </p>
         </div>
       </section>
 
       {/* Top Ad */}
-      <div className="flex justify-center py-6 px-4 border-b border-slate-100">
+      <div className="flex justify-center py-6 px-4 border-b border-slate-100 dark:border-slate-700/50">
         <GoogleAdSense
           adSlot="5309301802"
           adFormat="auto"
@@ -212,13 +212,13 @@ export default function FAQPage() {
       </div>
 
       {/* FAQ list */}
-      <section className="bg-white py-10 px-4">
+      <section className="bg-white dark:bg-slate-900 py-10 px-4">
         <div className="max-w-3xl mx-auto space-y-4">
           {faqs.map((faq, index) => (
             <div key={index}>
-              <div className="bg-slate-50 rounded-2xl p-5 border border-slate-100">
-                <h3 className="text-slate-900 font-bold text-base mb-2">{faq.question}</h3>
-                <p className="text-slate-500 text-sm leading-relaxed">{faq.answer}</p>
+              <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-5 border border-slate-100 dark:border-slate-700/50">
+                <h3 className="text-slate-900 dark:text-white font-bold text-base mb-2">{faq.question}</h3>
+                <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{faq.answer}</p>
               </div>
 
               {/* Ad after every 4th FAQ */}
@@ -238,7 +238,7 @@ export default function FAQPage() {
       </section>
 
       {/* Bottom Ad */}
-      <div className="flex justify-center py-8 px-4 border-t border-slate-100">
+      <div className="flex justify-center py-8 px-4 border-t border-slate-100 dark:border-slate-700/50">
         <GoogleAdSense
           adSlot="2491566773"
           adFormat="auto"

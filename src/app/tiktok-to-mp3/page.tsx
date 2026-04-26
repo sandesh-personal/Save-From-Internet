@@ -77,21 +77,21 @@ const howToSchema = {
 
 export default function TikTokToMp3Page() {
   return (
-    <div className="bg-white">
+    <div className="bg-white dark:bg-slate-900">
 
       {/* Hero */}
-      <section className="bg-gradient-to-b from-emerald-50/60 to-white py-14 px-4 text-center border-b border-slate-100">
+      <section className="bg-gradient-to-b from-emerald-50/60 dark:from-slate-800 to-white dark:to-slate-900 py-14 px-4 text-center border-b border-slate-100 dark:border-slate-700/50">
         <div className="max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-white text-emerald-600 text-xs font-bold px-4 py-1.5 rounded-full mb-5 border border-emerald-100 shadow-sm">
+          <div className="inline-flex items-center gap-2 bg-white dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 text-xs font-bold px-4 py-1.5 rounded-full mb-5 border border-emerald-100 dark:border-emerald-800/40 shadow-sm">
             🎵 MP3 Audio Extractor · Free
           </div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-4 leading-tight">
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight">
             TikTok to{' '}
             <span className="bg-gradient-to-r from-emerald-500 to-rose-500 bg-clip-text text-transparent">
               MP3 Converter
             </span>
           </h1>
-          <p className="text-lg text-slate-500 mb-8 max-w-xl mx-auto">
+          <p className="text-lg text-slate-500 dark:text-slate-400 mb-8 max-w-xl mx-auto">
             Convert any TikTok video to MP3 audio in seconds. High quality, no app, no sign-up — free forever.
           </p>
           <Link
@@ -104,7 +104,7 @@ export default function TikTokToMp3Page() {
       </section>
 
       {/* Ad */}
-      <div className="flex justify-center py-6 px-4 border-b border-slate-100">
+      <div className="flex justify-center py-6 px-4 border-b border-slate-100 dark:border-slate-700/50">
         <GoogleAdSense
           adSlot="3804648444"
           adFormat="auto"
@@ -114,9 +114,9 @@ export default function TikTokToMp3Page() {
       </div>
 
       {/* How it works */}
-      <section className="bg-slate-50 py-14 px-4 border-b border-slate-100">
+      <section className="bg-slate-50 dark:bg-slate-800/50 py-14 px-4 border-b border-slate-100 dark:border-slate-700/50">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-extrabold text-slate-900 text-center mb-10">
+          <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white text-center mb-10">
             How to Convert TikTok to MP3
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -125,12 +125,12 @@ export default function TikTokToMp3Page() {
               { n: '2', title: 'Paste & Process', desc: 'Paste the URL on savefrominternet.com and click Download TikTok Video.' },
               { n: '3', title: 'Extract MP3', desc: 'Click "Extract Audio" — the MP3 downloads instantly, no watermark.' },
             ].map(({ n, title, desc }) => (
-              <div key={n} className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm text-center">
+              <div key={n} className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-100 dark:border-slate-700/50 shadow-sm text-center">
                 <div className="w-12 h-12 bg-gradient-to-r from-emerald-500 to-rose-500 rounded-full flex items-center justify-center text-white font-extrabold text-xl mx-auto mb-4">
                   {n}
                 </div>
-                <h3 className="text-slate-900 font-bold text-lg mb-2">{title}</h3>
-                <p className="text-slate-500 text-sm leading-relaxed">{desc}</p>
+                <h3 className="text-slate-900 dark:text-white font-bold text-lg mb-2">{title}</h3>
+                <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
@@ -138,11 +138,11 @@ export default function TikTokToMp3Page() {
       </section>
 
       {/* Features */}
-      <section className="bg-white py-14 px-4 border-b border-slate-100">
+      <section className="bg-white dark:bg-slate-900 py-14 px-4 border-b border-slate-100 dark:border-slate-700/50">
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100">
-            <h3 className="text-xl font-bold text-slate-900 mb-5">✨ Key Features</h3>
-            <ul className="space-y-3 text-sm text-slate-600">
+          <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 border border-slate-100 dark:border-slate-700/50">
+            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-5">✨ Key Features</h3>
+            <ul className="space-y-3 text-sm text-slate-600 dark:text-slate-300">
               {[
                 'High-quality MP3 audio extraction',
                 'No app installation required',
@@ -159,9 +159,9 @@ export default function TikTokToMp3Page() {
             </ul>
           </div>
 
-          <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100">
-            <h3 className="text-xl font-bold text-slate-900 mb-5">🎵 Perfect For</h3>
-            <ul className="space-y-3 text-sm text-slate-600">
+          <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 border border-slate-100 dark:border-slate-700/50">
+            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-5">🎵 Perfect For</h3>
+            <ul className="space-y-3 text-sm text-slate-600 dark:text-slate-300">
               {[
                 'Creating ringtones from TikTok sounds',
                 'Extracting music for personal listening',
@@ -180,9 +180,9 @@ export default function TikTokToMp3Page() {
       </section>
 
       {/* Device guide */}
-      <section className="bg-slate-50 py-14 px-4 border-b border-slate-100">
+      <section className="bg-slate-50 dark:bg-slate-800/50 py-14 px-4 border-b border-slate-100 dark:border-slate-700/50">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-extrabold text-slate-900 text-center mb-10">
+          <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white text-center mb-10">
             Download TikTok MP3 on Any Device
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -203,10 +203,10 @@ export default function TikTokToMp3Page() {
                 steps: ['Open any browser → savefrominternet.com', 'Paste TikTok URL → click Download', 'Click Extract Audio', 'MP3 saves to your Downloads folder'],
               },
             ].map(({ icon, title, steps }) => (
-              <div key={title} className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
+              <div key={title} className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-100 dark:border-slate-700/50 shadow-sm">
                 <div className="text-3xl mb-3">{icon}</div>
-                <h3 className="text-slate-900 font-bold text-lg mb-4">{title}</h3>
-                <ol className="space-y-2 text-sm text-slate-500 list-decimal list-inside">
+                <h3 className="text-slate-900 dark:text-white font-bold text-lg mb-4">{title}</h3>
+                <ol className="space-y-2 text-sm text-slate-500 dark:text-slate-400 list-decimal list-inside">
                   {steps.map((s) => <li key={s}>{s}</li>)}
                 </ol>
               </div>
@@ -216,9 +216,9 @@ export default function TikTokToMp3Page() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-white py-14 px-4 border-b border-slate-100">
+      <section className="bg-white dark:bg-slate-900 py-14 px-4 border-b border-slate-100 dark:border-slate-700/50">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-extrabold text-slate-900 text-center mb-10">
+          <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white text-center mb-10">
             Frequently Asked Questions
           </h2>
           <div className="space-y-4">
@@ -229,9 +229,9 @@ export default function TikTokToMp3Page() {
               { q: 'Can I convert private TikTok videos?', a: 'No. Only public TikTok videos can be processed. Private videos require authentication we do not have.' },
               { q: 'Is the TikTok to MP3 converter free?', a: 'Yes. Completely free — no account, no app, no limits.' },
             ].map(({ q, a }) => (
-              <div key={q} className="bg-slate-50 rounded-2xl p-5 border border-slate-100">
-                <h3 className="text-slate-900 font-bold mb-2">{q}</h3>
-                <p className="text-slate-500 text-sm leading-relaxed">{a}</p>
+              <div key={q} className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-5 border border-slate-100 dark:border-slate-700/50">
+                <h3 className="text-slate-900 dark:text-white font-bold mb-2">{q}</h3>
+                <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{a}</p>
               </div>
             ))}
           </div>
@@ -239,9 +239,9 @@ export default function TikTokToMp3Page() {
       </section>
 
       {/* Also download */}
-      <section className="bg-slate-50 py-14 px-4 border-b border-slate-100">
+      <section className="bg-slate-50 dark:bg-slate-800/50 py-14 px-4 border-b border-slate-100 dark:border-slate-700/50">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-extrabold text-slate-900 text-center mb-10">
+          <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white text-center mb-10">
             Also Download TikTok Videos &amp; Photos
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -250,10 +250,10 @@ export default function TikTokToMp3Page() {
               { icon: '🎵', title: 'TikTok MP3', desc: 'You are here — extract TikTok audio instantly.', href: '/tiktok-to-mp3', linkText: 'Current page' },
               { icon: '🖼️', title: 'TikTok Photos', desc: 'Save TikTok photo carousels individually or as ZIP.', href: '/tiktok-photo-downloader', linkText: 'Download photos →' },
             ].map(({ icon, title, desc, href, linkText }) => (
-              <div key={title} className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm text-center">
+              <div key={title} className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-100 dark:border-slate-700/50 shadow-sm text-center">
                 <div className="text-4xl mb-4">{icon}</div>
-                <h3 className="text-slate-900 font-bold text-lg mb-2">{title}</h3>
-                <p className="text-slate-500 text-sm mb-4 leading-relaxed">{desc}</p>
+                <h3 className="text-slate-900 dark:text-white font-bold text-lg mb-2">{title}</h3>
+                <p className="text-slate-500 dark:text-slate-400 text-sm mb-4 leading-relaxed">{desc}</p>
                 <Link href={href} className="text-rose-500 text-sm font-semibold hover:underline">{linkText}</Link>
               </div>
             ))}
