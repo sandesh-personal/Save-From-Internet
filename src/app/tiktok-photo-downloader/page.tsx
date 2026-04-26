@@ -2,14 +2,17 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'TikTok Photo Downloader - Save TikTok Images & Carousels 2026 | Save From Internet',
+  title: 'TikTok Photo Downloader — Download TikTok Photos Free | SaveFromInternet',
   description:
-    'Download TikTok photos and image carousels in original quality. Save individual images or download all as a ZIP. Free, no app, no sign-up required.',
+    'Download TikTok photos and image carousels in original quality with SaveFromInternet. Save individual images or download all as a ZIP. Free, no app, no sign-up.',
   keywords: [
     'tiktok photo downloader',
+    'download tiktok photo',
+    'tiktok download photo',
     'download tiktok images',
     'tiktok carousel downloader',
-    'save tiktok photos 2026',
+    'savefrominternet tiktok photo',
+    'save tiktok photos',
   ],
   alternates: { canonical: 'https://www.savefrominternet.com/tiktok-photo-downloader' },
   openGraph: {

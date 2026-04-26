@@ -24,9 +24,15 @@ export const metadata: Metadata = {
   description:
     'Download TikTok videos in HD and MP4 without watermark. Fast, free TikTok video downloader for PC, iPhone, Android. No app required. Save videos instantly!',
   keywords: [
+    'savefrominternet',
+    'save from internet',
+    'savefrom tiktok',
+    'save from internet tiktok',
     'TikTok Video Downloader',
-    'download tiktok videos without watermark 2026',
+    'download tiktok videos without watermark',
     'tiktok video downloader',
+    'tiktok photo downloader',
+    'download tiktok photo',
     'tiktok downloader 2026',
     'download tiktok hd',
     'save tiktok without watermark',
@@ -130,6 +136,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
           <Footer />
           <Analytics />
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            name: 'SaveFromInternet',
+            alternateName: ['Save From Internet', 'SaveFrom TikTok', 'savefrominternet.com', 'Save From Net TikTok'],
+            url: 'https://www.savefrominternet.com',
+          }) }} />
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: 'SaveFromInternet',
+            alternateName: ['Save From Internet', 'savefrominternet.com'],
+            url: 'https://www.savefrominternet.com',
+            logo: 'https://www.savefrominternet.com/logo-final.png',
+            contactPoint: { '@type': 'ContactPoint', email: 'contact@savefrominternet.com', contactType: 'customer support' },
+          }) }} />
         </Providers>
       </body>
     </html>

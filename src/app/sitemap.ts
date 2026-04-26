@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/how-to-download-tiktok-videos',
     '/tiktok-to-mp3',
     '/tiktok-photo-downloader',
+    '/download-tiktok-photo',
     '/tiktok-video-downloader-iphone',
     '/tiktok-video-downloader-android',
     '/faq',
