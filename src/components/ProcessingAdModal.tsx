@@ -85,13 +85,16 @@ export default function ProcessingAdModal({ isOpen, isReady, hasError, onClose }
         </div>
 
         {/* Ad area */}
-        <div className="px-5 pt-4 pb-2 min-h-[120px] flex items-center justify-center bg-slate-50 border-b border-slate-100">
-          <GoogleAdSense
-            adSlot="3804648444"
-            adFormat="auto"
-            className="flex justify-center w-full"
-            containerStyle="default"
-          />
+        <div className="px-4 pt-3 pb-3 bg-slate-50 border-b border-slate-100">
+          <p className="text-[10px] text-center text-slate-400 uppercase tracking-wider mb-1.5">Advertisement</p>
+          <div className="min-h-[250px] flex items-center justify-center">
+            <GoogleAdSense
+              adSlot="3804648444"
+              adFormat="auto"
+              className="w-full"
+              containerStyle="none"
+            />
+          </div>
         </div>
 
         {/* CTA */}

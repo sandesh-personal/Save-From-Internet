@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import GoogleAdSense from '@/components/GoogleAdSense'
 import BackToTopButton from './BackToTopButton'
+import MidArticleAd from './MidArticleAd'
 import type { ReactNode } from 'react'
 
 interface BlogPostLayoutProps {
@@ -90,6 +91,7 @@ export default function BlogPostLayout({ title, description, date, category, chi
 
         {/* Top Ad */}
         <div className="mb-8">
+          <p className="text-[10px] text-center text-slate-400 uppercase tracking-wider mb-1.5">Advertisement</p>
           <GoogleAdSense
             adSlot="5309301802"
             adFormat="auto"
@@ -99,10 +101,12 @@ export default function BlogPostLayout({ title, description, date, category, chi
         </div>
 
         {/* Blog content */}
+        <MidArticleAd />
         <div className="blog-prose">{children}</div>
 
-        {/* Mid Ad */}
+        {/* Mid Ad — after content */}
         <div className="my-10">
+          <p className="text-[10px] text-center text-slate-400 uppercase tracking-wider mb-1.5">Advertisement</p>
           <GoogleAdSense
             adSlot="3804648444"
             adFormat="auto"
@@ -132,6 +136,7 @@ export default function BlogPostLayout({ title, description, date, category, chi
 
         {/* Bottom Ad */}
         <div className="mt-10 mb-4">
+          <p className="text-[10px] text-center text-slate-400 uppercase tracking-wider mb-1.5">Advertisement</p>
           <GoogleAdSense
             adSlot="2491566773"
             adFormat="auto"
