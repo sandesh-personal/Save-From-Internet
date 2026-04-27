@@ -1,6 +1,27 @@
 import Link from 'next/link'
 import DownloaderTool from '@/components/DownloaderTool'
 
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'SaveFromInternet',
+  url: 'https://www.savefrominternet.com',
+}
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'SaveFromInternet',
+  url: 'https://www.savefrominternet.com',
+  logo: 'https://www.savefrominternet.com/og-final.jpg',
+  description: 'Free TikTok video downloader. Download TikTok videos without watermark, extract MP3 audio, and save image galleries. No app required.',
+  contactPoint: {
+    '@type': 'ContactPoint',
+    email: 'contact@savefrominternet.com',
+    contactType: 'customer support',
+  },
+}
+
 const webAppSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
@@ -199,6 +220,8 @@ export default function Home() {
         </div>
       </section>
 
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
     </div>

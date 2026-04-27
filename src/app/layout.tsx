@@ -104,7 +104,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               {/* Logo */}
               <Link href="/" className="flex items-center gap-2.5 select-none flex-shrink-0">
                 <img src="/logo-final.png" alt="Save From Internet Logo" className="h-8 w-auto object-contain" draggable={false} />
-                <span className="font-extrabold text-slate-900 dark:text-white text-base sm:text-lg tracking-tight hidden sm:block">
+                <span className="font-extrabold text-slate-900 dark:text-white text-sm sm:text-lg tracking-tight">
                   Save From <span className="bg-gradient-to-r from-rose-500 to-violet-600 bg-clip-text text-transparent">Internet</span>
                 </span>
               </Link>
@@ -122,9 +122,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <div className="flex items-center gap-2">
                 <LanguageSwitcher />
                 <ThemeToggle />
-                <Link href="/" className="md:hidden px-4 py-2 bg-gradient-to-r from-rose-500 to-violet-600 text-white text-sm font-bold rounded-lg">
-                  Download
-                </Link>
               </div>
             </div>
           </header>

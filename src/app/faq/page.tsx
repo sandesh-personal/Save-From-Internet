@@ -29,46 +29,21 @@ const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
   mainEntity: [
-    {
-      '@type': 'Question',
-      name: 'How do I download TikTok videos without a watermark?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Paste the TikTok URL into savefrominternet.com, click Download TikTok Video, then click Download Video. The file has no watermark.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Is SaveFromInternet free to use?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes. Completely free — no registration, no hidden fees, and no download limits.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Can I extract audio from TikTok videos?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: "Yes. After processing a TikTok URL, click 'Extract Audio' to download an MP3 file.",
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Does the TikTok downloader work on mobile?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes. Open savefrominternet.com in Safari (iPhone) or Chrome (Android), paste the TikTok URL, and download.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Can I download private TikTok videos?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'No. Only public TikTok videos can be downloaded. Private videos require authentication.',
-      },
-    },
+    { '@type': 'Question', name: 'How do I download TikTok videos without a watermark?', acceptedAnswer: { '@type': 'Answer', text: 'Paste the TikTok URL into savefrominternet.com, click Download TikTok Video, then click the Download Video button. The MP4 file saved to your device has no watermark.' } },
+    { '@type': 'Question', name: 'Is SaveFromInternet free to use?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Completely free — no registration, no hidden fees, and no download limits. You can download unlimited TikTok videos, audio, and images at no cost.' } },
+    { '@type': 'Question', name: 'Can I extract audio from TikTok videos?', acceptedAnswer: { '@type': 'Answer', text: "Yes. After processing a TikTok URL, click 'Extract Audio' to download the audio as a high-quality MP3 file." } },
+    { '@type': 'Question', name: 'Does the TikTok downloader work on iPhone?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Open Safari on your iPhone, go to savefrominternet.com, paste the TikTok URL, and tap Download TikTok Video. When the video opens in Safari, tap and hold to save it to your Camera Roll.' } },
+    { '@type': 'Question', name: 'Does the TikTok downloader work on Android?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Open Chrome on your Android device, go to savefrominternet.com, paste the TikTok URL, and tap Download. The video or audio saves directly to your Downloads folder.' } },
+    { '@type': 'Question', name: 'Can I download private TikTok videos?', acceptedAnswer: { '@type': 'Answer', text: "No. SaveFromInternet only works with public TikTok videos. Private videos require authentication that third-party tools don't have access to." } },
+    { '@type': 'Question', name: 'What video quality can I download?', acceptedAnswer: { '@type': 'Answer', text: 'We download TikTok videos in their original HD quality — typically 720p or 1080p, depending on what the creator uploaded. No additional compression is applied.' } },
+    { '@type': 'Question', name: 'How do I download TikTok photos and image carousels?', acceptedAnswer: { '@type': 'Answer', text: "Paste the TikTok photo post URL on savefrominternet.com and click Download. Tap 'Show Images' to see the gallery, then download individual images or all of them as a ZIP archive." } },
+    { '@type': 'Question', name: 'Is it legal to download TikTok videos?', acceptedAnswer: { '@type': 'Answer', text: 'Downloading TikTok videos for personal use is generally permitted, but re-uploading or using them commercially without the creator\'s permission may violate copyright law.' } },
+    { '@type': 'Question', name: "Why can't I download some TikTok videos?", acceptedAnswer: { '@type': 'Answer', text: 'Some videos may be private, region-restricted, or temporarily unavailable. Make sure the TikTok URL is correct and the video is set to public.' } },
+    { '@type': 'Question', name: 'Is it safe to use SaveFromInternet?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. SaveFromInternet does not collect personal information, install anything, or require any permissions beyond your browser. We are AdSense-approved, meaning Google has verified the site is safe and legitimate.' } },
+    { '@type': 'Question', name: 'Do I need to install any software or app?', acceptedAnswer: { '@type': 'Answer', text: 'No. SaveFromInternet works entirely in your browser. No app, no extension, no account — just paste the TikTok URL and download.' } },
+    { '@type': 'Question', name: 'What if the download fails?', acceptedAnswer: { '@type': 'Answer', text: "Check that the TikTok video is public and the URL is correct. Try refreshing the page or using a different browser. Our tool is regularly updated for TikTok's latest changes." } },
+    { '@type': 'Question', name: 'What file formats are supported?', acceptedAnswer: { '@type': 'Answer', text: 'Video is downloaded as MP4, which plays on all devices. Audio is extracted as MP3. TikTok photos are downloaded as JPEG/WEBP individually or as a ZIP archive.' } },
+    { '@type': 'Question', name: 'Is my privacy protected?', acceptedAnswer: { '@type': 'Answer', text: "Yes. We don't collect personal data, track your activity, or store downloaded content. All processing is done in real-time and nothing is saved on our servers." } },
   ],
 }
 

@@ -15,6 +15,19 @@ export const metadata: Metadata = {
   },
 }
 
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'How to Save TikTok Videos to Your Phone or PC',
+  description: 'Save TikTok videos without watermark to any device using SaveFromInternet.com.',
+  totalTime: 'PT1M',
+  step: [
+    { '@type': 'HowToStep', position: 1, name: 'Copy the TikTok URL', text: 'Open TikTok, tap Share, then Copy Link.' },
+    { '@type': 'HowToStep', position: 2, name: 'Paste on SaveFromInternet', text: 'Go to savefrominternet.com and paste the URL.' },
+    { '@type': 'HowToStep', position: 3, name: 'Save to your device', text: 'Click Download. On iPhone, tap and hold the video in Safari and select Save Video. On Android, the MP4 saves to Downloads.' },
+  ],
+}
+
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -141,6 +154,7 @@ export default function SaveTikTokVideoPage() {
         </Link>
       </section>
 
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
     </div>
   )

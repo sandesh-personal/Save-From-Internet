@@ -1,6 +1,30 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'How to Download TikTok Videos on Android Without Watermark',
+  description: 'Download TikTok videos on Android in Chrome without watermark using SaveFromInternet.com.',
+  totalTime: 'PT1M',
+  step: [
+    { '@type': 'HowToStep', position: 1, name: 'Copy TikTok URL', text: 'Open TikTok, find the video, tap Share → Copy Link.' },
+    { '@type': 'HowToStep', position: 2, name: 'Open Chrome and go to SaveFromInternet', text: 'Open Chrome on your Android and go to savefrominternet.com.' },
+    { '@type': 'HowToStep', position: 3, name: 'Paste and download', text: 'Paste the URL and tap Download TikTok Video. The MP4 saves to your Downloads folder with no watermark.' },
+  ],
+}
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'Where does the video save on Android?', acceptedAnswer: { '@type': 'Answer', text: 'Chrome saves downloads to the Downloads folder on your device. Open the Files app or the Chrome downloads tray to find your video.' } },
+    { '@type': 'Question', name: 'Do I need to install an app to download TikTok on Android?', acceptedAnswer: { '@type': 'Answer', text: 'No. SaveFromInternet works entirely in Chrome — no installation required.' } },
+    { '@type': 'Question', name: 'Does the TikTok downloader work on Samsung Galaxy?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Works on all Android devices including Samsung Galaxy, Google Pixel, OnePlus, Xiaomi, and others.' } },
+    { '@type': 'Question', name: 'Can I download TikTok audio as MP3 on Android?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. After processing a TikTok URL, tap Extract Audio. The MP3 downloads directly to your Downloads folder.' } },
+  ],
+}
+
 export const metadata: Metadata = {
   title: 'TikTok Video Downloader for Android — No Watermark (2026)',
   description: 'Download TikTok videos on any Android phone without watermark in 2026. Works in Chrome, no app install needed.',
@@ -79,6 +103,9 @@ export default function TikTokDownloaderAndroidPage() {
           </ul>
         </div>
       </div>
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
     </div>
   )
 }

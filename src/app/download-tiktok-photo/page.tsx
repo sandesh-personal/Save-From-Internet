@@ -23,6 +23,19 @@ export const metadata: Metadata = {
   },
 }
 
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'How to Download TikTok Photos and Image Carousels',
+  description: 'Download TikTok photos in original quality using SaveFromInternet.com.',
+  totalTime: 'PT1M',
+  step: [
+    { '@type': 'HowToStep', position: 1, name: 'Copy the TikTok photo link', text: 'Open TikTok, find a photo post, tap Share → Copy Link.' },
+    { '@type': 'HowToStep', position: 2, name: 'Paste on SaveFromInternet', text: 'Go to savefrominternet.com and paste the link, then tap Download TikTok Video.' },
+    { '@type': 'HowToStep', position: 3, name: 'Save photos', text: "Tap 'Show Images' to view the carousel. Download individual photos or all at once as a ZIP file." },
+  ],
+}
+
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -197,6 +210,7 @@ export default function DownloadTikTokPhotoPage() {
         </Link>
       </section>
 
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
     </div>
   )

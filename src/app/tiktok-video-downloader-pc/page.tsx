@@ -15,6 +15,17 @@ export const metadata: Metadata = {
   },
 }
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'Can I download TikTok videos on Windows PC?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Open Chrome, Firefox, or Edge on Windows, go to savefrominternet.com, paste the TikTok URL, and click Download. The MP4 saves to your Downloads folder.' } },
+    { '@type': 'Question', name: 'Does the TikTok downloader work on Mac?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Open Safari or Chrome on Mac, go to savefrominternet.com, paste the URL, and download. Works on macOS.' } },
+    { '@type': 'Question', name: 'Do I need to install software to download TikTok on PC?', acceptedAnswer: { '@type': 'Answer', text: 'No. SaveFromInternet is entirely browser-based — no software, no extension, no account required.' } },
+    { '@type': 'Question', name: 'Can I download TikTok in HD on PC?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. We download the original quality — typically 720p or 1080p HD with no compression.' } },
+  ],
+}
+
 const howToSchema = {
   '@context': 'https://schema.org',
   '@type': 'HowTo',
@@ -107,6 +118,7 @@ export default function TikTokDownloaderPCPage() {
       </section>
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
     </div>
   )
 }

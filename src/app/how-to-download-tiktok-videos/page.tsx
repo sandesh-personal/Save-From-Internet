@@ -132,6 +132,21 @@ export default function HowToDownloadPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
+      <Script
+        id="faq-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: [
+            { '@type': 'Question', name: 'How do I download TikTok videos without a watermark?', acceptedAnswer: { '@type': 'Answer', text: 'Copy the TikTok URL, paste it on savefrominternet.com, click Download TikTok Video, then click Download. The MP4 has no watermark.' } },
+            { '@type': 'Question', name: 'Can I download TikTok videos on iPhone?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Open Safari, go to savefrominternet.com, paste the URL and tap Download. When the video opens, tap and hold and select Save Video to save to Camera Roll.' } },
+            { '@type': 'Question', name: 'Can I download TikTok videos on Android?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Open Chrome on Android, go to savefrominternet.com, paste the URL and tap Download. The MP4 saves to your Downloads folder.' } },
+            { '@type': 'Question', name: 'Is there a limit to how many TikTok videos I can download?', acceptedAnswer: { '@type': 'Answer', text: 'No. SaveFromInternet is completely free with no download limits.' } },
+            { '@type': 'Question', name: 'Do I need to install an app or software?', acceptedAnswer: { '@type': 'Answer', text: 'No. SaveFromInternet works entirely in your browser — no app, no extension, no account required.' } },
+          ],
+        }) }}
+      />
       
       <div className="flex flex-col flex-grow min-h-[calc(100vh-4rem)] p-8 bg-white dark:bg-slate-900 text-black dark:text-white">
         <div className="max-w-4xl mx-auto flex flex-col">

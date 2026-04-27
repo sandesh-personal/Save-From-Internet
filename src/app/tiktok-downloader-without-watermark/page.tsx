@@ -15,6 +15,19 @@ export const metadata: Metadata = {
   },
 }
 
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'How to Download TikTok Videos Without Watermark',
+  description: 'Download TikTok videos without watermark using SaveFromInternet.com.',
+  totalTime: 'PT1M',
+  step: [
+    { '@type': 'HowToStep', position: 1, name: 'Copy the TikTok URL', text: 'Open TikTok, tap Share, then Copy Link on any video.' },
+    { '@type': 'HowToStep', position: 2, name: 'Paste on SaveFromInternet', text: 'Go to savefrominternet.com, paste the URL, and click Download TikTok Video.' },
+    { '@type': 'HowToStep', position: 3, name: 'Download without watermark', text: 'Click Download — the MP4 file has no watermark and is saved at original HD quality.' },
+  ],
+}
+
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -125,6 +138,7 @@ export default function TikTokDownloaderWithoutWatermarkPage() {
         </Link>
       </section>
 
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
     </div>
   )
