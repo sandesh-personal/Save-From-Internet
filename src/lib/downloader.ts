@@ -254,6 +254,12 @@ export class Downloader {
           cover = 'https://www.tikwm.com' + cover
         }
 
+        // data.music is the actual audio-only MP3 URL from tikwm
+        let audioUrl: string | undefined = data.music || undefined
+        if (audioUrl && audioUrl.startsWith('/')) {
+          audioUrl = 'https://www.tikwm.com' + audioUrl
+        }
+
         return {
           id: videoId,
           title: data.title || 'TikTok Video (Tikwm)',
@@ -263,6 +269,7 @@ export class Downloader {
           author: data.author?.nickname || 'Unknown',
           description: data.title || 'Downloaded via Tikwm',
           downloadUrl: downloadUrl,
+          audioUrl: audioUrl,
           images: images,
           isPhotoCarousel: isPhotoCarousel,
         }

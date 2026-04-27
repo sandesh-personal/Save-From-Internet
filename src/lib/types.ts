@@ -13,6 +13,7 @@ export interface VideoData {
   author: string
   description: string
   downloadUrl: string
+  audioUrl?: string
   images?: ImageData[]
   isPhotoCarousel?: boolean
 }

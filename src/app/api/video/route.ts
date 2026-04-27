@@ -32,7 +32,12 @@ function isAllowedVideoHost(url: string): boolean {
   }
 }
 
-async function fetchViaTikwmFallback(tiktokUrl: string): Promise<ArrayBuffer | null> {
+function isJsonContentType(response: Response): boolean {
+  const ct = response.headers.get('content-type') || ''
+  return ct.includes('application/json') || ct.includes('text/plain')
+}
+
+async function fetchViaTikwmFallback(tiktokUrl: string): Promise<Response | null> {
   try {
     const apiResp = await fetch(
       `https://www.tikwm.com/api/?url=${encodeURIComponent(tiktokUrl)}&hd=1`,
@@ -47,15 +52,11 @@ async function fetchViaTikwmFallback(tiktokUrl: string): Promise<ArrayBuffer | n
     if (!isAllowedVideoHost(dlUrl)) return null
 
     const videoResp = await fetch(dlUrl, { headers: FETCH_HEADERS })
-    if (!videoResp.ok) return null
-    return await videoResp.arrayBuffer()
+    if (!videoResp.ok || isJsonContentType(videoResp)) return null
+    return videoResp
   } catch {
     return null
   }
-}
-
-function isJsonResponse(buffer: ArrayBuffer): boolean {
-  return new Uint8Array(buffer.slice(0, 1))[0] === 0x7b
 }
 
 export async function GET(request: NextRequest) {
@@ -86,16 +87,14 @@ export async function GET(request: NextRequest) {
       clearTimeout(timeout)
     }
 
-    if ((!response.ok || (response.ok && isJsonResponse(await response.clone().arrayBuffer())))
-      && videoUrl.includes('robotilab.online')) {
+    // If robotilab.online returns JSON (error), fall back to tikwm
+    if (videoUrl.includes('robotilab.online') && (!response.ok || isJsonContentType(response))) {
       console.log('robotilab.online failed, falling back to tikwm')
       try {
         const inner = new URL(videoUrl).searchParams.get('videoUrl')
         if (inner && isAllowedVideoHost(inner)) {
-          const fallbackBuffer = await fetchViaTikwmFallback(inner)
-          if (fallbackBuffer && !isJsonResponse(fallbackBuffer)) {
-            return buildVideoResponse(fallbackBuffer, corsOrigin)
-          }
+          const fallbackResp = await fetchViaTikwmFallback(inner)
+          if (fallbackResp) return streamVideoResponse(fallbackResp, corsOrigin)
         }
       } catch { /* fall through to error */ }
     }
@@ -104,35 +103,33 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Failed to fetch video' }, { status: response.status })
     }
 
-    const videoBuffer = await response.arrayBuffer()
-
-    if (isJsonResponse(videoBuffer)) {
+    if (isJsonContentType(response)) {
       return NextResponse.json({ error: 'Video source returned an error. Please try again.' }, { status: 502 })
     }
 
-    console.log('Video buffer size:', videoBuffer.byteLength)
-    return buildVideoResponse(videoBuffer, corsOrigin)
+    return streamVideoResponse(response, corsOrigin)
   } catch (error) {
     console.error('Video proxy error:', error)
     return NextResponse.json({ error: 'Failed to fetch video' }, { status: 500 })
   }
 }
 
-function buildVideoResponse(buffer: ArrayBuffer, corsOrigin: string): NextResponse {
+function streamVideoResponse(response: Response, corsOrigin: string): NextResponse {
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-')
   const filename = `savefrominternet.com-tiktok-video-${timestamp}.mp4`
-  return new NextResponse(buffer, {
-    status: 200,
-    headers: {
-      'Content-Type': 'video/mp4',
-      'Content-Disposition': `attachment; filename="${filename}"; filename*=UTF-8''${encodeURIComponent(filename)}`,
-      'Content-Length': buffer.byteLength.toString(),
-      'Accept-Ranges': 'bytes',
-      'Cache-Control': 'no-cache',
-      'Access-Control-Allow-Origin': corsOrigin,
-      'Access-Control-Allow-Methods': 'GET',
-      'Access-Control-Allow-Headers': 'Content-Type',
-      'Access-Control-Expose-Headers': 'Content-Disposition, Accept-Ranges',
-    },
-  })
+  const contentLength = response.headers.get('content-length')
+
+  const headers: Record<string, string> = {
+    'Content-Type': 'video/mp4',
+    'Content-Disposition': `attachment; filename="${filename}"; filename*=UTF-8''${encodeURIComponent(filename)}`,
+    'Accept-Ranges': 'bytes',
+    'Cache-Control': 'no-cache',
+    'Access-Control-Allow-Origin': corsOrigin,
+    'Access-Control-Allow-Methods': 'GET',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Expose-Headers': 'Content-Disposition, Accept-Ranges',
+  }
+  if (contentLength) headers['Content-Length'] = contentLength
+
+  return new NextResponse(response.body, { status: 200, headers })
 }

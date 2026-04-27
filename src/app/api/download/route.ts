@@ -37,9 +37,9 @@ export async function POST(request: NextRequest) {
       videoData.downloadUrl
     )}`
 
-    const audioProxyUrl = `/api/audio?url=${encodeURIComponent(
-      videoData.downloadUrl
-    )}`
+    // Prefer the dedicated audio URL (actual MP3 from tikwm); fall back to video URL
+    const audioSourceUrl = videoData.audioUrl || videoData.downloadUrl
+    const audioProxyUrl = `/api/audio?url=${encodeURIComponent(audioSourceUrl)}`
 
     return NextResponse.json({
       success: true,
