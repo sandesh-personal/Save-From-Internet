@@ -2,17 +2,31 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'TikTok Photo Downloader — Download TikTok Photos Free | SaveFromInternet',
+  title: 'TikTok Photo Downloader — Save TikTok Photos, Images & Pictures Free | SaveFromInternet',
   description:
-    'Download TikTok photos and image carousels in original quality with SaveFromInternet. Save individual images or download all as a ZIP. Free, no app, no sign-up.',
+    'Download TikTok photos, images, and picture carousels in original HD quality. Free TikTok photo & image downloader — save TikTok pics individually or as a ZIP. No app, no sign-up required.',
   keywords: [
     'tiktok photo downloader',
+    'tiktok photo download',
     'download tiktok photo',
-    'tiktok download photo',
+    'tiktok image download',
+    'tiktok image downloader',
+    'tiktok picture downloader',
+    'tiktok picture download',
+    'tiktok pic download',
+    'tiktok pic downloader',
+    'download tiktok photos',
     'download tiktok images',
+    'download tiktok pictures',
+    'save tiktok photo',
+    'save tiktok photos',
+    'tiktok photos download',
+    'tiktok pictures download',
+    'tiktok photo download hd',
+    'tiktok photo downloader hd',
     'tiktok carousel downloader',
     'savefrominternet tiktok photo',
-    'save tiktok photos',
+    'savefrom tiktok photo',
   ],
   alternates: { canonical: 'https://www.savefrominternet.com/tiktok-photo-downloader' },
   openGraph: {
@@ -60,6 +74,22 @@ const faqSchema = {
         text: 'Yes. Completely free — no account, no app, no limits.',
       },
     },
+    {
+      '@type': 'Question',
+      name: 'Can I download TikTok images in HD quality?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. We fetch TikTok images at their original resolution with no compression — full HD quality, exactly as uploaded by the creator.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How do I save TikTok pictures to my phone?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Paste the TikTok photo post URL into savefrominternet.com, tap Show Images, select the pictures you want, and tap Download. On iPhone the file saves to Files; on Android it goes to your Downloads folder.',
+      },
+    },
   ],
 }
 
@@ -86,13 +116,13 @@ export default function TikTokPhotoDownloaderPage() {
             🖼️ Photo &amp; Carousel Downloader · Free
           </div>
           <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight">
-            TikTok{' '}
+            TikTok Photo &amp;{' '}
             <span className="bg-gradient-to-r from-violet-500 to-pink-500 bg-clip-text text-transparent">
-              Photo Downloader
+              Image Downloader
             </span>
           </h1>
           <p className="text-lg text-slate-500 dark:text-slate-400 mb-8 max-w-xl mx-auto">
-            Download TikTok photos and image carousels in original quality. Save individual images or download all as a ZIP. Free, no app needed.
+            Download TikTok photos, images, and picture carousels in original HD quality. Save TikTok pics individually or download all as a ZIP. Free, no app needed.
           </p>
           <Link
             href="/"
@@ -254,6 +284,14 @@ export default function TikTokPhotoDownloaderPage() {
               {
                 q: 'Is the TikTok photo downloader free?',
                 a: 'Yes, completely free. No account, no app, no download limits.',
+              },
+              {
+                q: 'Can I download TikTok images in HD quality?',
+                a: 'Yes. We fetch TikTok images at their original resolution with no compression — full HD quality, exactly as uploaded by the creator.',
+              },
+              {
+                q: 'How do I save TikTok pictures to my phone?',
+                a: 'Paste the TikTok photo post URL into savefrominternet.com, tap Show Images, select the pictures you want, and tap Download. On iPhone the file saves to Files; on Android it goes to your Downloads folder. Then move it to your Gallery.',
               },
             ].map(({ q, a }) => (
               <div key={q} className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-5 border border-slate-100 dark:border-slate-700/50">

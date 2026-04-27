@@ -20,14 +20,16 @@ const baseUrl = 'https://www.savefrominternet.com'
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
-  title: 'TikTok Video Downloader - Download TikTok Videos Without Watermark 2026 - Save From Internet',
+  title: 'SaveFromInternet — Free TikTok Downloader, Photo & MP3 | Save From Internet',
   description:
-    'Download TikTok videos in HD and MP4 without watermark. Fast, free TikTok video downloader for PC, iPhone, Android. No app required. Save videos instantly!',
+    'SaveFromInternet — the free savefrom.net alternative for TikTok. Download TikTok videos without watermark, save TikTok photos, and extract MP3 audio. Works on PC, iPhone, Android. No app needed.',
   keywords: [
     'savefrominternet',
     'save from internet',
     'savefrom tiktok',
     'save from internet tiktok',
+    'save from net tiktok',
+    'savefrom.net tiktok',
     'TikTok Video Downloader',
     'download tiktok videos without watermark',
     'tiktok video downloader',
@@ -36,12 +38,13 @@ export const metadata: Metadata = {
     'tiktok downloader 2026',
     'download tiktok hd',
     'save tiktok without watermark',
+    'save from tiktok',
   ],
   alternates: { canonical: baseUrl },
   openGraph: {
-    title: 'TikTok Video Downloader - Download TikTok Videos Without Watermark 2026 - Save From Internet',
+    title: 'SaveFromInternet — Free TikTok Downloader, Photo & MP3 | Save From Internet',
     description:
-      'Download TikTok videos in HD and MP4 without watermark. Fast, free TikTok video downloader for PC, iPhone, Android. No app required. Save videos instantly!',
+      'SaveFromInternet — free TikTok downloader without watermark. Save TikTok videos, photos, and MP3 audio. Works on PC, iPhone, Android. No app required.',
     url: baseUrl,
     type: 'website',
     siteName: 'Save From Internet',
@@ -50,8 +53,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'TikTok Video Downloader - Download TikTok Videos Without Watermark 2026 - Save From Internet',
-    description: 'Download TikTok videos in HD and MP4 without watermark. Fast, free TikTok video downloader for PC, iPhone, Android. No app required. Save videos instantly!',
+    title: 'SaveFromInternet — Free TikTok Downloader, Photo & MP3 | Save From Internet',
+    description: 'SaveFromInternet — free TikTok downloader without watermark. Save TikTok videos, photos, and MP3 audio. Works on PC, iPhone, Android. No app required.',
     site: '@savefrominternet',
     images: [`${baseUrl}/og-final.jpg`],
   },

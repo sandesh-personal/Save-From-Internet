@@ -2,9 +2,24 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'TikTok Video Downloader for PC - Windows & Mac 2026 | Save From Internet',
-  description: 'Download TikTok videos on PC without watermark. Works on Windows and Mac in Chrome, Firefox, Edge, and Safari. No software to install.',
-  keywords: ['tiktok video downloader pc', 'download tiktok on windows', 'tiktok downloader mac 2026'],
+  title: 'TikTok Downloader for PC & Windows — Free Video Saver, No Software 2026 | SaveFromInternet',
+  description: 'Free TikTok downloader for PC — download TikTok videos on Windows 10/11 or Mac without watermark. TikTok video saver for Windows, MacBook, Chrome, Edge & Firefox. No software needed.',
+  keywords: [
+    'tiktok downloader pc',
+    'tiktok downloader for pc',
+    'tiktok video downloader pc',
+    'tiktok downloader windows',
+    'tiktok downloader windows 11',
+    'free tiktok video downloader windows',
+    'tiktok video saver pc',
+    'tiktok downloader mac',
+    'tiktok downloader macbook',
+    'tiktok downloader app for pc',
+    'download tiktok videos on pc',
+    'download tiktok video on pc',
+    'tiktok downloader for mac',
+    'download tiktok on pc without watermark',
+  ],
   alternates: { canonical: 'https://www.savefrominternet.com/tiktok-video-downloader-pc' },
   openGraph: {
     title: 'TikTok Video Downloader for PC - Windows & Mac 2026',
@@ -46,12 +61,12 @@ export default function TikTokDownloaderPCPage() {
       {/* Hero */}
       <section className="bg-gradient-to-b from-rose-50/60 dark:from-slate-800 to-white dark:to-slate-900 py-14 px-4 text-center border-b border-slate-100 dark:border-slate-700/50">
         <div className="max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-white dark:bg-slate-800 text-rose-500 text-xs font-bold px-4 py-1.5 rounded-full mb-5 border border-rose-100 dark:border-rose-800/40 shadow-sm">🖥️ Windows & Mac · No Software</div>
+          <div className="inline-flex items-center gap-2 bg-white dark:bg-slate-800 text-rose-500 text-xs font-bold px-4 py-1.5 rounded-full mb-5 border border-rose-100 dark:border-rose-800/40 shadow-sm">🖥️ Windows 10/11 &amp; Mac · No Software</div>
           <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight">
             TikTok Downloader for{' '}
-            <span className="bg-gradient-to-r from-rose-500 to-violet-600 bg-clip-text text-transparent">PC</span>
+            <span className="bg-gradient-to-r from-rose-500 to-violet-600 bg-clip-text text-transparent">PC &amp; Windows</span>
           </h1>
-          <p className="text-lg text-slate-500 dark:text-slate-400 mb-8 max-w-xl mx-auto">Download TikTok videos on Windows or Mac without watermark. Works in any browser — no software to install.</p>
+          <p className="text-lg text-slate-500 dark:text-slate-400 mb-8 max-w-xl mx-auto">Free TikTok video saver for Windows 10/11 and Mac — download TikTok videos without watermark in any browser. No software, no app to install.</p>
           <Link href="/" className="inline-block bg-gradient-to-r from-rose-500 to-violet-600 hover:from-rose-600 hover:to-violet-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg shadow-rose-500/25 transition-all">
             ⬇ Download TikTok on PC
           </Link>
@@ -61,7 +76,7 @@ export default function TikTokDownloaderPCPage() {
       {/* Steps */}
       <section className="bg-slate-50 dark:bg-slate-800/50 py-14 px-4 border-b border-slate-100 dark:border-slate-700/50">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white text-center mb-10">How to Download TikTok on PC</h2>
+          <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white text-center mb-10">How to Download TikTok on PC / Windows</h2>
           <div className="space-y-4">
             {[
               { n: '1', title: 'Copy the TikTok Video Link', desc: 'Open TikTok in your browser (tiktok.com) or on your phone. Click Share → Copy Link. On PC browser, you can also copy the URL from the address bar directly.' },
