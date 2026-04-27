@@ -2,6 +2,7 @@ import Link from 'next/link'
 import GoogleAdSense from '@/components/GoogleAdSense'
 import BackToTopButton from './BackToTopButton'
 import MidArticleAd from './MidArticleAd'
+import ArticleSchema from './ArticleSchema'
 import type { ReactNode } from 'react'
 
 interface BlogPostLayoutProps {
@@ -29,6 +30,7 @@ export default function BlogPostLayout({ title, description, date, category, chi
 
   return (
     <div className="bg-white dark:bg-slate-900" id="top">
+      <ArticleSchema title={title} description={description} date={date} />
       {/* Sticky back-to-blog breadcrumb */}
       <div className="bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-700/50 px-4 py-3 sticky top-16 z-40 shadow-sm">
         <div className="max-w-3xl mx-auto flex items-center justify-between gap-2">
@@ -60,6 +62,8 @@ export default function BlogPostLayout({ title, description, date, category, chi
           </h1>
           <p className="text-slate-500 dark:text-slate-400 text-base leading-relaxed mb-3">{description}</p>
           <div className="flex items-center gap-4 text-xs text-slate-400 dark:text-slate-500">
+            <span>By <span className="font-medium text-slate-500 dark:text-slate-400">SaveFromInternet Team</span></span>
+            <span>·</span>
             <span>
               Updated:{' '}
               {new Date(date).toLocaleDateString('en-US', {
@@ -89,20 +93,9 @@ export default function BlogPostLayout({ title, description, date, category, chi
           </Link>
         </div>
 
-        {/* Top Ad */}
-        <div className="mb-8">
-          <p className="text-[10px] text-center text-slate-400 uppercase tracking-wider mb-1.5">Advertisement</p>
-          <GoogleAdSense
-            adSlot="5309301802"
-            adFormat="auto"
-            className="flex justify-center"
-            containerStyle="default"
-          />
-        </div>
-
         {/* Blog content */}
-        <MidArticleAd />
         <div className="blog-prose">{children}</div>
+        <MidArticleAd />
 
         {/* Mid Ad — after content */}
         <div className="my-10">
