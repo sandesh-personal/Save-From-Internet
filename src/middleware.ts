@@ -25,7 +25,9 @@ export function middleware(request: NextRequest) {
 
   // Redirect any subdomain (e.g. insta.savefrominternet.com) to www
   if (host.endsWith(BASE_DOMAIN) && host !== WWW_HOST && host !== BASE_DOMAIN) {
-    return NextResponse.redirect(`https://${WWW_HOST}/`, 301)
+    const url = request.nextUrl.clone()
+    url.hostname = WWW_HOST
+    return NextResponse.redirect(url, 301)
   }
 
   const url = request.nextUrl.clone()
