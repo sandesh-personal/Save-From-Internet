@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+const PRIMARY_API_KEY = process.env.TIKWM_API_KEY ?? '84ae3d78153d649762c5835648df0af2'
+
 const FETCH_HEADERS = {
   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
   Referer: 'https://www.tiktok.com/',
@@ -27,17 +29,15 @@ function isJsonContentType(response: Response): boolean {
   return ct.includes('application/json') || ct.includes('text/plain')
 }
 
-// Fallback: re-fetch from tikwm and return the music URL
-async function fetchAudioViaTikwmFallback(tiktokUrl: string): Promise<Response | null> {
+async function fetchAudioViaApiFallback(tiktokUrl: string): Promise<Response | null> {
   try {
     const apiResp = await fetch(
-      `https://www.tikwm.com/api/?url=${encodeURIComponent(tiktokUrl)}&hd=1`,
+      `https://www.tikwm.com/api/?url=${encodeURIComponent(tiktokUrl)}&hd=1&api_key=${PRIMARY_API_KEY}`,
       { headers: { Referer: 'https://www.tikwm.com/' } }
     )
     const apiData = await apiResp.json()
     if (apiData?.code !== 0 || !apiData?.data) return null
 
-    // Prefer the dedicated music MP3; fall back to the video stream
     let audioUrl: string = apiData.data.music || apiData.data.play || apiData.data.hdplay || ''
     if (!audioUrl) return null
     if (audioUrl.startsWith('/')) audioUrl = 'https://www.tikwm.com' + audioUrl
@@ -74,9 +74,8 @@ export async function GET(request: NextRequest) {
       clearTimeout(timeout)
     }
 
-    // If the primary URL failed, try to re-fetch from tikwm using it as the TikTok source
     if (!response.ok || isJsonContentType(response)) {
-      const fallbackResp = await fetchAudioViaTikwmFallback(audioUrl)
+      const fallbackResp = await fetchAudioViaApiFallback(audioUrl)
       if (fallbackResp) return buildAudioResponse(fallbackResp)
       return NextResponse.json({ success: false, error: 'Failed to fetch audio' }, { status: 500 })
     }
@@ -91,7 +90,6 @@ export async function GET(request: NextRequest) {
 function buildAudioResponse(response: Response): NextResponse {
   const contentLength = response.headers.get('content-length')
   const contentType = response.headers.get('content-type') || ''
-  // Use audio/mpeg for MP3 sources; keep video content-type for video-as-audio fallback
   const isVideoSource = contentType.startsWith('video/')
   const headers: Record<string, string> = {
     'Content-Type': isVideoSource ? 'video/mp4' : 'audio/mpeg',

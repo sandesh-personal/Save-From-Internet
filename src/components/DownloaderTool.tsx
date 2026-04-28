@@ -196,6 +196,12 @@ export default function DownloaderTool() {
   const selectAllImages = (selected: boolean) => dispatch({ type: 'SELECT_ALL_IMAGES', payload: selected })
   const togglePreview = () => dispatch({ type: 'TOGGLE_PREVIEW' })
 
+  const handleReset = () => {
+    dispatch({ type: 'RESET_DOWNLOAD_STATE' })
+    dispatch({ type: 'SET_URL', payload: '' })
+    containerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
   const isBusy = state.loading || state.downloading || state.downloadingAudio || state.downloadingImages
 
   return (

@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+const PRIMARY_API_KEY = process.env.TIKWM_API_KEY ?? '84ae3d78153d649762c5835648df0af2'
+
 const FETCH_HEADERS = {
   'User-Agent':
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
@@ -37,10 +39,10 @@ function isJsonContentType(response: Response): boolean {
   return ct.includes('application/json') || ct.includes('text/plain')
 }
 
-async function fetchViaTikwmFallback(tiktokUrl: string): Promise<Response | null> {
+async function fetchViaApiFallback(tiktokUrl: string): Promise<Response | null> {
   try {
     const apiResp = await fetch(
-      `https://www.tikwm.com/api/?url=${encodeURIComponent(tiktokUrl)}&hd=1`,
+      `https://www.tikwm.com/api/?url=${encodeURIComponent(tiktokUrl)}&hd=1&api_key=${PRIMARY_API_KEY}`,
       { headers: { Referer: 'https://www.tikwm.com/' } }
     )
     const apiData = await apiResp.json()
@@ -87,13 +89,11 @@ export async function GET(request: NextRequest) {
       clearTimeout(timeout)
     }
 
-    // If robotilab.online returns JSON (error), fall back to tikwm
     if (videoUrl.includes('robotilab.online') && (!response.ok || isJsonContentType(response))) {
-      console.log('robotilab.online failed, falling back to tikwm')
       try {
         const inner = new URL(videoUrl).searchParams.get('videoUrl')
         if (inner && isAllowedVideoHost(inner)) {
-          const fallbackResp = await fetchViaTikwmFallback(inner)
+          const fallbackResp = await fetchViaApiFallback(inner)
           if (fallbackResp) return streamVideoResponse(fallbackResp, corsOrigin)
         }
       } catch { /* fall through to error */ }
