@@ -5,10 +5,11 @@ interface ArticleSchemaProps {
   title: string
   description: string
   date: string
+  lastModified?: string
   image?: string
 }
 
-export default function ArticleSchema({ title, description, date, image }: ArticleSchemaProps) {
+export default function ArticleSchema({ title, description, date, lastModified, image }: ArticleSchemaProps) {
   const pathname = usePathname()
   const url = `https://www.savefrominternet.com${pathname}`
 
@@ -19,7 +20,7 @@ export default function ArticleSchema({ title, description, date, image }: Artic
     description,
     url,
     datePublished: date,
-    dateModified: date,
+    dateModified: lastModified ?? date,
     image: image ?? 'https://www.savefrominternet.com/og-final.jpg',
     author: {
       '@type': 'Organization',
@@ -43,10 +44,20 @@ export default function ArticleSchema({ title, description, date, image }: Artic
     },
   }
 
+  const breadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.savefrominternet.com' },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://www.savefrominternet.com/blog' },
+      { '@type': 'ListItem', position: 3, name: title, item: url },
+    ],
+  }
+
   return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+    </>
   )
 }

@@ -3,14 +3,25 @@ import GoogleAdSense from '@/components/GoogleAdSense'
 import BackToTopButton from './BackToTopButton'
 import MidArticleAd from './MidArticleAd'
 import ArticleSchema from './ArticleSchema'
-import type { ReactNode } from 'react'
+import type { ReactNode, ReactElement } from 'react'
 
 interface BlogPostLayoutProps {
   title: string
   description: string
   date: string
+  lastModified?: string
   category: string
   children: ReactNode
+}
+
+function extractText(node: ReactNode): string {
+  if (typeof node === 'string') return node
+  if (typeof node === 'number') return String(node)
+  if (!node) return ''
+  if (Array.isArray(node)) return node.map(extractText).join(' ')
+  if (typeof node === 'object' && 'props' in (node as ReactElement))
+    return extractText((node as ReactElement).props.children)
+  return ''
 }
 
 const categoryLabels: Record<string, string> = {
@@ -25,12 +36,14 @@ const categoryLabels: Record<string, string> = {
   legal: 'Legal & Privacy',
 }
 
-export default function BlogPostLayout({ title, description, date, category, children }: BlogPostLayoutProps) {
+export default function BlogPostLayout({ title, description, date, lastModified, category, children }: BlogPostLayoutProps) {
   const label = categoryLabels[category] ?? category
+  const wordCount = extractText(children).split(/\s+/).filter(Boolean).length
+  const readingTime = Math.max(1, Math.round(wordCount / 200))
 
   return (
     <div className="bg-white dark:bg-slate-900" id="top">
-      <ArticleSchema title={title} description={description} date={date} />
+      <ArticleSchema title={title} description={description} date={date} lastModified={lastModified} />
       {/* Sticky back-to-blog breadcrumb */}
       <div className="bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-700/50 px-4 py-3 sticky top-16 z-40 shadow-sm">
         <div className="max-w-3xl mx-auto flex items-center justify-between gap-2">
@@ -66,12 +79,14 @@ export default function BlogPostLayout({ title, description, date, category, chi
             <span>·</span>
             <span>
               Updated:{' '}
-              {new Date(date).toLocaleDateString('en-US', {
+              {new Date(lastModified ?? date).toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric',
               })}
             </span>
+            <span>·</span>
+            <span>{readingTime} min read</span>
             <span>·</span>
             <Link href="/" className="text-rose-400 hover:underline font-medium">
               SaveFromInternet.com

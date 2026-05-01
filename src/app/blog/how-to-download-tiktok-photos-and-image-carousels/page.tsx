@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <BlogPostLayout title="How to Download TikTok Photos and Image Carousels — Complete Guide 2026" description="Save TikTok photos and image carousels in original quality. Download individually or as a ZIP file." date="2026-04-01T08:00:00.000Z" category="photos">
+    <BlogPostLayout title="How to Download TikTok Photos and Image Carousels — Complete Guide 2026" description="Save TikTok photos and image carousels in original quality. Download individually or as a ZIP file." date="2025-07-18T08:00:00.000Z" lastModified="2026-02-05T08:00:00.000Z" category="photos">
       <p>TikTok photo posts and image carousels are increasingly popular — but TikTok's in-app save often compresses images or blocks downloads entirely. <a href="https://savefrominternet.com">SaveFromInternet.com</a> downloads all images from any TikTok carousel in original quality, individually or as a ZIP.</p>
       <h2>What Is a TikTok Photo Carousel?</h2>
       <p>A TikTok carousel is a post containing multiple images that users swipe through. The standard TikTok save converts the carousel into a video — our tool saves each original image file.</p>

@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: 'LinkedIn Video Downloader — Save LinkedIn Videos Free 2026 | SaveFromInternet',
   description: "LinkedIn doesn't have a video download button. Here's how to save LinkedIn videos to your device for free in 2026 — no software, no account changes.",
   keywords: ['linkedin video downloader', 'download linkedin videos', 'save linkedin video 2026', 'linkedin video download free'],
+  robots: { index: false, follow: true },
   alternates: { canonical: 'https://www.savefrominternet.com/blog/linkedin-video-downloader' },
   openGraph: {
     title: 'LinkedIn Video Downloader — Save LinkedIn Videos Free 2026',

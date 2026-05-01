@@ -11,8 +11,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/tiktok-to-mp3', lastModified: '2026-04-27', priority: 0.9 },
     { path: '/tiktok-photo-downloader', lastModified: '2026-04-27', priority: 0.9 },
     { path: '/download-tiktok-photo', lastModified: '2026-04-27', priority: 0.8 },
-    { path: '/tiktok-video-downloader-iphone', lastModified: '2026-04-27', priority: 0.8 },
-    { path: '/tiktok-video-downloader-android', lastModified: '2026-04-27', priority: 0.8 },
+    { path: '/tiktok-video-downloader-iphone', lastModified: '2026-04-30', priority: 0.8 },
+    { path: '/tiktok-video-downloader-android', lastModified: '2026-04-30', priority: 0.8 },
     { path: '/tiktok-video-downloader-pc', lastModified: '2026-04-27', priority: 0.8 },
     { path: '/save-tiktok-video', lastModified: '2026-04-27', priority: 0.8 },
     { path: '/how-to-download-tiktok-videos', lastModified: '2026-04-27', priority: 0.8 },
@@ -20,7 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/blog', lastModified: '2026-04-27', priority: 0.7 },
     { path: '/about', lastModified: '2026-01-01', priority: 0.5 },
     { path: '/privacy-policy', lastModified: '2026-01-01', priority: 0.3 },
-    { path: '/disclaimer', lastModified: '2026-01-01', priority: 0.3 },
+    { path: '/disclaimer', lastModified: '2026-04-30', priority: 0.3 },
   ];
 
   const allRoutes = [

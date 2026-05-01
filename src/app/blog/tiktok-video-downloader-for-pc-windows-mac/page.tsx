@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <BlogPostLayout title="TikTok Video Downloader for PC — Windows & Mac Complete Guide 2026" description="Download TikTok videos on Windows or Mac without watermark. Works in any browser — no software to install." date="2026-04-01T08:00:00.000Z" category="device">
+    <BlogPostLayout title="TikTok Video Downloader for PC — Windows & Mac Complete Guide 2026" description="Download TikTok videos on Windows or Mac without watermark. Works in any browser — no software to install." date="2025-08-22T08:00:00.000Z" lastModified="2026-02-15T08:00:00.000Z" category="device">
       <p>Downloading TikTok videos on PC is the easiest way to get HD quality with zero watermark. No software, no extensions — just open your browser, paste the link, and download. <a href="https://savefrominternet.com">SaveFromInternet.com</a> works on Chrome, Firefox, Edge, and Safari on both Windows and Mac.</p>
       <h2>Step 1 — Copy the TikTok Link</h2>
       <Image src="/images/step1.jpg" alt="Copy TikTok link on PC" width={800} height={400} />

@@ -6,7 +6,8 @@ import BlogPostLayout from '@/components/blog/BlogPostLayout'
 export const metadata: Metadata = {
   title: 'How to Download TikTok Videos Without Watermark (2026 Guide) | SaveFromInternet',
   description: 'Learn how to download TikTok videos without watermark in high quality using SaveFromInternet.com. Step-by-step guide for 2026.',
-  alternates: { canonical: 'https://www.savefrominternet.com/blog/how-to-download-tiktok-videos-without-watermark-2025' },
+  robots: { index: false, follow: true },
+  alternates: { canonical: 'https://www.savefrominternet.com/blog/download-tiktok-videos-without-watermark-2025' },
   openGraph: {
     title: 'How to Download TikTok Videos Without Watermark (2026)',
     description: 'Step-by-step guide to saving TikTok videos without the watermark — free, no app needed.',
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <BlogPostLayout title="How to Download TikTok Videos Without Watermark (2026 Guide)" description="Download any TikTok video without the watermark in high quality. Free, no app, works on all devices." date="2026-04-01T08:00:00.000Z" category="no-watermark">
+    <BlogPostLayout title="How to Download TikTok Videos Without Watermark (2026 Guide)" description="Download any TikTok video without the watermark in high quality. Free, no app, works on all devices." date="2025-06-15T08:00:00.000Z" lastModified="2026-03-10T08:00:00.000Z" category="no-watermark">
       <p>TikTok's built-in Save button adds a watermark to every video. This guide shows you how to download any TikTok video without the watermark in full quality — in under 30 seconds.</p>
       <h2>Step 1 — Open TikTok and Select the Video</h2>
       <Image src="/images/step1.jpg" alt="Open TikTok and select your video" width={400} height={200} className="rounded-xl w-full" />

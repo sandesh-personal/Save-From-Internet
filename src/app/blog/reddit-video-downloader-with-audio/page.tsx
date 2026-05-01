@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: 'Reddit Video Downloader — Save Reddit Videos With Audio Free (2026) | SaveFromInternet',
   description: 'Reddit stores video and audio separately — most downloaders get it wrong. This guide shows you how to save Reddit videos WITH audio intact. Free, 2026.',
   keywords: ['reddit video downloader', 'download reddit videos with audio', 'save reddit video', 'reddit video downloader 2026'],
+  robots: { index: false, follow: true },
   alternates: { canonical: 'https://www.savefrominternet.com/blog/reddit-video-downloader-with-audio' },
   openGraph: {
     title: 'Reddit Video Downloader — Save Reddit Videos With Audio Free (2026)',

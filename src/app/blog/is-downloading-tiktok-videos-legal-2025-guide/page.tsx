@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <BlogPostLayout title="Is Downloading TikTok Videos Legal? What You Need to Know (2026)" description="Copyright law, TikTok's Terms of Service, and personal use rules — what is actually legal when you download TikTok videos." date="2026-04-01T08:00:00.000Z" category="legal">
+    <BlogPostLayout title="Is Downloading TikTok Videos Legal? What You Need to Know (2026)" description="Copyright law, TikTok's Terms of Service, and personal use rules — what is actually legal when you download TikTok videos." date="2026-01-24T08:00:00.000Z" lastModified="2026-02-18T08:00:00.000Z" category="legal">
       <p>Millions of people download TikTok videos every day — but is it legal? The answer depends on <em>who</em> owns the video, <em>why</em> you are downloading it, and <em>what</em> you plan to do with it. Here is the honest breakdown.</p>
       <h2>What TikTok's Terms of Service Say</h2>
       <p>TikTok's Terms of Service state that you may not copy, reproduce, distribute, or create derivative works of content on TikTok without the permission of the content owner or TikTok. However, ToS violations are a civil matter between you and TikTok — they do not automatically make an action criminal.</p>

@@ -7,10 +7,11 @@ const baseUrl = 'https://savefrominternet.com'
 export const metadata: Metadata = {
   title: 'Disclaimer - TikTok Video Downloader | Save From Internet',
   description: 'Legal disclaimer for Save From Internet TikTok video downloader. Learn about our terms of service, user responsibilities, and copyright information.',
+  alternates: { canonical: 'https://www.savefrominternet.com/disclaimer' },
   openGraph: {
     title: 'Disclaimer - TikTok Video Downloader | Save From Internet',
     description: 'Legal disclaimer for Save From Internet TikTok video downloader. Learn about our terms of service, user responsibilities, and copyright information.',
-    url: `${baseUrl}/disclaimer`,
+    url: 'https://www.savefrominternet.com/disclaimer',
     type: 'website',
     siteName: 'Save From Internet',
   },

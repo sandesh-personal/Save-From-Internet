@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <BlogPostLayout title="How to Download Facebook Videos — Complete Guide 2026" description="Save any public Facebook video in HD quality. Free browser tool — no app, no login." date="2026-04-01T08:00:00.000Z" category="other-platforms">
+    <BlogPostLayout title="How to Download Facebook Videos — Complete Guide 2026" description="Save any public Facebook video in HD quality. Free browser tool — no app, no login." date="2026-01-08T08:00:00.000Z" lastModified="2026-03-05T08:00:00.000Z" category="other-platforms">
       <p>Facebook does not have a built-in video download option. But browser-based tools make it easy to save any public Facebook video to your device — no app needed, no Facebook login required.</p>
       <div className="warn-box">⚠️ Only download public Facebook videos. Private videos are inaccessible without login. Always respect creator rights.</div>
       <h2>How to Copy a Facebook Video URL</h2>
