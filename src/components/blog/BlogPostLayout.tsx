@@ -3,7 +3,7 @@ import GoogleAdSense from '@/components/GoogleAdSense'
 import BackToTopButton from './BackToTopButton'
 import MidArticleAd from './MidArticleAd'
 import ArticleSchema from './ArticleSchema'
-import type { ReactNode, ReactElement } from 'react'
+import type { ReactNode } from 'react'
 
 interface BlogPostLayoutProps {
   title: string
@@ -19,8 +19,8 @@ function extractText(node: ReactNode): string {
   if (typeof node === 'number') return String(node)
   if (!node) return ''
   if (Array.isArray(node)) return node.map(extractText).join(' ')
-  if (typeof node === 'object' && 'props' in (node as ReactElement))
-    return extractText((node as ReactElement).props.children)
+  if (typeof node === 'object' && node !== null && 'props' in node)
+    return extractText((node as { props: { children?: ReactNode } }).props.children)
   return ''
 }
 
