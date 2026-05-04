@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useReducer, useRef, useState, useCallback } from 'react'
 import Image from 'next/image'
@@ -207,14 +207,15 @@ export default function DownloaderTool() {
   return (
     <div ref={containerRef}>
       {/* ── Hero ── */}
-      <section className="bg-gradient-to-b from-rose-50/60 dark:from-rose-950/20 via-white dark:via-slate-900 to-white dark:to-slate-900 text-center pt-14 pb-8 px-4">
-        <div className="inline-flex items-center gap-2 bg-white dark:bg-slate-800 text-rose-500 text-xs font-bold px-4 py-1.5 rounded-full mb-5 border border-rose-100 dark:border-rose-900/50 shadow-sm">
-          <span>✨</span> {t('heroBadge')}
+      <section className="bg-gradient-to-b from-indigo-50/50 dark:from-indigo-950/20 via-white dark:via-slate-900 to-white dark:to-slate-900 text-center pt-14 pb-8 px-4">
+        <div className="inline-flex items-center gap-1.5 bg-white dark:bg-slate-800 text-indigo-500 text-xs font-semibold px-4 py-1.5 rounded-full mb-5 border border-indigo-100 dark:border-indigo-900/50 shadow-sm">
+          <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 inline-block" />
+          {t('heroBadge')}
         </div>
 
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight tracking-tight">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-4 leading-tight tracking-tight">
           {t('heroTitle1')}{' '}
-          <span className="bg-gradient-to-r from-rose-500 to-violet-600 bg-clip-text text-transparent">
+          <span className="text-indigo-500">
             {t('heroTitle2')}
           </span>
         </h1>
@@ -233,7 +234,7 @@ export default function DownloaderTool() {
             t('badgeUnlimited'),
           ]).map((badge) => (
             <span key={badge} className="flex items-center gap-1.5">
-              <svg className="w-4 h-4 text-emerald-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <svg className="w-4 h-4 text-indigo-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
               </svg>
               {badge}
@@ -244,7 +245,7 @@ export default function DownloaderTool() {
 
       {/* ── Input Card ── */}
       <div className="max-w-2xl mx-auto px-4 -mt-2 mb-8">
-        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl shadow-slate-200/60 dark:shadow-slate-900/60 border border-slate-100 dark:border-slate-700 p-5">
+        <div className="bg-white dark:bg-slate-800 rounded-lg shadow-xl shadow-slate-200/60 dark:shadow-slate-900/60 border border-slate-100 dark:border-slate-700 p-5">
           {/* URL row */}
           <div className="flex gap-2 mb-3">
             <input
@@ -253,7 +254,7 @@ export default function DownloaderTool() {
               value={state.url}
               onChange={(e) => dispatch({ type: 'SET_URL', payload: e.target.value })}
               onKeyDown={(e) => e.key === 'Enter' && !isBusy && handleProcess()}
-              className="flex-1 min-w-0 px-4 py-3.5 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-rose-400 focus:border-transparent text-base transition-all"
+              className="flex-1 min-w-0 px-4 py-3.5 rounded-lg bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent text-base transition-all"
             />
             <button
               onClick={async () => {
@@ -264,7 +265,7 @@ export default function DownloaderTool() {
                   alert('Failed to paste. Please paste manually.')
                 }
               }}
-              className="shrink-0 px-4 py-3 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-300 font-semibold rounded-xl transition-all text-sm border border-slate-200 dark:border-slate-600 active:scale-95"
+              className="shrink-0 px-4 py-3 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-300 font-semibold rounded-lg transition-all text-sm border border-slate-200 dark:border-slate-600 active:scale-95"
             >
               {t('btnPaste')}
             </button>
@@ -274,7 +275,7 @@ export default function DownloaderTool() {
           <button
             onClick={handleProcess}
             disabled={isBusy}
-            className="w-full py-4 bg-gradient-to-r from-rose-500 to-violet-600 hover:from-rose-600 hover:to-violet-700 text-white font-bold rounded-xl transition-all duration-200 text-base sm:text-lg shadow-lg shadow-rose-500/25 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2 active:scale-[0.99]"
+            className="w-full py-4 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold rounded-lg transition-all duration-200 text-base sm:text-lg shadow-lg shadow-indigo-500/25 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2 active:scale-[0.99]"
           >
             {state.loading ? (
               <><SpinnerIcon className="h-5 w-5" /> {t('btnProcessing')}</>
@@ -303,7 +304,7 @@ export default function DownloaderTool() {
       <div className="results-section max-w-2xl mx-auto px-4 pb-4">
         {/* Status message */}
         {state.message && (
-          <div className={`p-4 rounded-xl text-center text-sm mb-4 font-medium ${
+          <div className={`p-4 rounded-lg text-center text-sm mb-4 font-medium ${
             state.message.includes('success') || state.message.includes('🎉') || state.message.includes('🎵')
               ? 'bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800'
               : 'bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 border border-red-200 dark:border-red-800'
@@ -316,12 +317,12 @@ export default function DownloaderTool() {
         {!state.videoMetadata && !state.message && (
           <div className="grid grid-cols-3 gap-2 mt-2 mb-6">
             {[
-              { icon: '📋', step: t('step1'), hint: t('step1hint') },
-              { icon: '⚙️', step: t('step2'), hint: t('step2hint') },
-              { icon: '⬇️', step: t('step3'), hint: t('step3hint') },
-            ].map(({ icon, step, hint }) => (
-              <div key={step} className="text-center p-3 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700">
-                <div className="text-2xl mb-1">{icon}</div>
+              { n: '1', step: t('step1'), hint: t('step1hint') },
+              { n: '2', step: t('step2'), hint: t('step2hint') },
+              { n: '3', step: t('step3'), hint: t('step3hint') },
+            ].map(({ n, step, hint }) => (
+              <div key={step} className="text-center p-3 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-100 dark:border-slate-700">
+                <div className="text-xs font-bold text-indigo-500 mb-1">{n}</div>
                 <p className="text-xs font-semibold text-slate-700 dark:text-slate-200">{step}</p>
                 <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5 hidden sm:block">{hint}</p>
               </div>
@@ -331,7 +332,7 @@ export default function DownloaderTool() {
 
         {/* Video metadata + download */}
         {state.videoMetadata && (
-          <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-md p-5 space-y-4">
+          <div className="bg-white dark:bg-slate-800 rounded-lg border border-slate-100 dark:border-slate-700 shadow-md p-5 space-y-4">
             {/* Metadata row */}
             <div className="flex items-start gap-3">
               {state.videoMetadata.thumbnail && (
@@ -341,7 +342,7 @@ export default function DownloaderTool() {
                   alt="TikTok video thumbnail"
                   width={72}
                   height={72}
-                  className="rounded-xl object-cover flex-shrink-0 border border-slate-100 dark:border-slate-700"
+                  className="rounded-lg object-cover flex-shrink-0 border border-slate-100 dark:border-slate-700"
                   onError={(e) => { e.currentTarget.style.display = 'none' }}
                 />
               )}
@@ -358,14 +359,14 @@ export default function DownloaderTool() {
 
             {/* Preview toggle */}
             {state.downloadUrl && (
-              <button onClick={togglePreview} className="w-full py-2.5 px-4 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-300 font-medium rounded-xl transition-all text-sm border border-slate-200 dark:border-slate-600">
+              <button onClick={togglePreview} className="w-full py-2.5 px-4 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition-all text-sm border border-slate-200 dark:border-slate-600">
                 {state.showPreview ? t('btnHidePreview') : t('btnShowPreview')}
               </button>
             )}
 
             {/* Video player */}
             {state.showPreview && state.downloadUrl && (
-              <div className="rounded-xl overflow-hidden bg-slate-900 border border-slate-200 dark:border-slate-700">
+              <div className="rounded-lg overflow-hidden bg-slate-900 border border-slate-200 dark:border-slate-700">
                 <video
                   src={state.downloadUrl}
                   controls
@@ -381,15 +382,15 @@ export default function DownloaderTool() {
             {/* Image gallery */}
             {state.videoMetadata?.images && state.videoMetadata.images.length > 0 && (
               <div className="space-y-3">
-                <button onClick={toggleImageGallery} className="w-full py-2.5 px-4 bg-violet-50 dark:bg-violet-900/20 hover:bg-violet-100 dark:hover:bg-violet-900/30 text-violet-700 dark:text-violet-400 font-semibold rounded-xl transition-all text-sm border border-violet-200 dark:border-violet-800">
-                  {state.showImageGallery ? `🖼️ ${t('btnHideImages')}` : `🖼️ ${t('btnShowImages')} (${state.videoMetadata.images.length})`}
+                <button onClick={toggleImageGallery} className="w-full py-2.5 px-4 bg-indigo-50 dark:bg-indigo-900/20 hover:bg-indigo-100 dark:hover:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400 font-semibold rounded-lg transition-all text-sm border border-indigo-200 dark:border-indigo-800">
+                  {state.showImageGallery ? t('btnHideImages') : `${t('btnShowImages')} (${state.videoMetadata.images.length})`}
                 </button>
                 {state.showImageGallery && (
                   <div className="space-y-3">
-                    <div className="flex items-center justify-between bg-slate-50 dark:bg-slate-700/50 rounded-xl p-3 border border-slate-100 dark:border-slate-600">
+                    <div className="flex items-center justify-between bg-slate-50 dark:bg-slate-700/50 rounded-lg p-3 border border-slate-100 dark:border-slate-600">
                       <span className="text-slate-700 dark:text-slate-300 text-sm font-medium">{t('labelSelectImages')}</span>
                       <div className="flex gap-2">
-                        <button onClick={() => selectAllImages(true)} className="px-3 py-1.5 bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-semibold rounded-lg">{t('btnAll')}</button>
+                        <button onClick={() => selectAllImages(true)} className="px-3 py-1.5 bg-indigo-500 hover:bg-indigo-600 text-white text-xs font-semibold rounded-lg">{t('btnAll')}</button>
                         <button onClick={() => selectAllImages(false)} className="px-3 py-1.5 bg-slate-200 dark:bg-slate-600 hover:bg-slate-300 dark:hover:bg-slate-500 text-slate-700 dark:text-slate-300 text-xs font-semibold rounded-lg">{t('btnNone')}</button>
                       </div>
                     </div>
@@ -398,25 +399,25 @@ export default function DownloaderTool() {
                         <div
                           key={image.id}
                           onClick={() => toggleImageSelection(image.id)}
-                          className={`relative rounded-xl overflow-hidden cursor-pointer transition-all duration-150 ${image.selected ? 'ring-2 ring-rose-500 ring-offset-1' : 'hover:ring-2 hover:ring-slate-300'}`}
+                          className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-150 ${image.selected ? 'ring-2 ring-indigo-500 ring-offset-1' : 'hover:ring-2 hover:ring-slate-300'}`}
                         >
                           <Image src={image.thumbnail} alt={`Image ${index + 1}`} width={200} height={128} className="object-cover w-full aspect-square"
                             onError={(e) => { e.currentTarget.src = getImagePlaceholderBase64() }} />
-                          <div className={`absolute inset-0 transition-all ${image.selected ? 'bg-rose-500/15' : 'hover:bg-black/10'}`} />
-                          <div className={`absolute top-1.5 right-1.5 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${image.selected ? 'bg-rose-500 border-rose-500' : 'border-white/70 bg-black/20'}`}>
+                          <div className={`absolute inset-0 transition-all ${image.selected ? 'bg-indigo-500/15' : 'hover:bg-black/10'}`} />
+                          <div className={`absolute top-1.5 right-1.5 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${image.selected ? 'bg-indigo-500 border-indigo-500' : 'border-white/70 bg-black/20'}`}>
                             {image.selected && <CheckIcon className="w-3 h-3 text-white" />}
                           </div>
                           <span className="absolute top-1.5 left-1.5 bg-black/50 text-white text-xs px-1.5 py-0.5 rounded font-medium">{index + 1}</span>
                         </div>
                       ))}
                     </div>
-                    <div className="flex items-center gap-3 bg-slate-50 dark:bg-slate-700/50 rounded-xl p-3 border border-slate-100 dark:border-slate-600">
+                    <div className="flex items-center gap-3 bg-slate-50 dark:bg-slate-700/50 rounded-lg p-3 border border-slate-100 dark:border-slate-600">
                       <input
                         type="checkbox"
                         id="downloadAsZip"
                         checked={state.downloadImagesAsZip}
                         onChange={(e) => dispatch({ type: 'SET_DOWNLOAD_IMAGES_AS_ZIP', payload: e.target.checked })}
-                        className="w-4 h-4 accent-rose-500 rounded"
+                        className="w-4 h-4 accent-indigo-500 rounded"
                       />
                       <label htmlFor="downloadAsZip" className="text-slate-700 dark:text-slate-300 text-sm cursor-pointer">
                         {t('labelDownloadZip')}
@@ -425,7 +426,7 @@ export default function DownloaderTool() {
                     <button
                       onClick={handleImageDownload}
                       disabled={state.downloadingImages || !state.videoMetadata?.images?.some((img) => img.selected)}
-                      className="w-full py-3 px-4 bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full py-3 px-4 bg-indigo-500 hover:bg-indigo-600 text-white font-bold rounded-lg transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {state.downloadingImages ? (
                         <><SpinnerIcon className="h-4 w-4" /> {t('btnDownloadingImages')}</>
@@ -445,7 +446,7 @@ export default function DownloaderTool() {
                   <button
                     onClick={handleVideoDownload}
                     disabled={state.downloading || state.downloadingImages}
-                    className="py-3.5 px-4 bg-gradient-to-r from-rose-500 to-violet-600 hover:from-rose-600 hover:to-violet-700 text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg shadow-rose-500/20 disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.99]"
+                    className="py-3.5 px-4 bg-indigo-500 hover:bg-indigo-600 text-white font-bold rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg shadow-indigo-500/20 disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.99]"
                   >
                     {state.downloading ? <><SpinnerIcon className="h-4 w-4" /> {t('btnDownloading')}</> : <><DownloadIcon className="h-4 w-4" /> {t('btnDownloadMP4')}</>}
                   </button>
@@ -454,7 +455,7 @@ export default function DownloaderTool() {
                   <button
                     onClick={handleAudioDownload}
                     disabled={state.downloadingAudio || state.downloadingImages}
-                    className="py-3.5 px-4 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.99]"
+                    className="py-3.5 px-4 bg-indigo-400 hover:bg-indigo-500 text-white font-bold rounded-lg transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.99]"
                   >
                     {state.downloadingAudio ? <><SpinnerIcon className="h-4 w-4" /> {t('btnExtracting')}</> : <><MusicIcon className="h-4 w-4" /> {t('btnExtractMP3')}</>}
                   </button>

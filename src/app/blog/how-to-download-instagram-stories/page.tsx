@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import BlogPostLayout from '@/components/blog/BlogPostLayout'
@@ -36,7 +36,7 @@ export default function Page() {
         width={800}
         height={450}
         unoptimized
-        className="rounded-xl my-6"
+        className="rounded-lg my-6"
       />
 
       <h2>Method 1 — Save Your Own Story (Built-in)</h2>
@@ -63,7 +63,7 @@ export default function Page() {
         alt="Paste Instagram Story link to download it"
         width={800}
         height={400}
-        className="rounded-xl my-6"
+        className="rounded-lg my-6"
       />
 
       <h2>Method 3 — Screen Record (Fallback)</h2>

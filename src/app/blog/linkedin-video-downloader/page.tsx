@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import BlogPostLayout from '@/components/blog/BlogPostLayout'
@@ -43,7 +43,7 @@ export default function Page() {
         width={800}
         height={450}
         unoptimized
-        className="rounded-xl my-6"
+        className="rounded-lg my-6"
       />
 
       <h2>How to Download LinkedIn Videos on Desktop</h2>
@@ -71,7 +71,7 @@ export default function Page() {
         alt="Paste LinkedIn video URL to download it free"
         width={800}
         height={400}
-        className="rounded-xl my-6"
+        className="rounded-lg my-6"
       />
 
       <h2>How to Download Your Own LinkedIn Video</h2>

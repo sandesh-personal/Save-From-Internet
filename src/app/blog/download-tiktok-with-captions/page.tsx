@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import BlogPostLayout from '@/components/blog/BlogPostLayout'
@@ -41,7 +41,7 @@ export default function Page() {
         width={800}
         height={450}
         unoptimized
-        className="rounded-xl my-6"
+        className="rounded-lg my-6"
       />
 
       <h2>Method 1 — Screen Record With Captions Visible (Simplest)</h2>
@@ -66,7 +66,7 @@ export default function Page() {
         alt="Edit downloaded TikTok video to add captions using a video editor"
         width={800}
         height={400}
-        className="rounded-xl my-6"
+        className="rounded-lg my-6"
       />
 
       <h2>Method 3 — CapCut (Free, Fast)</h2>

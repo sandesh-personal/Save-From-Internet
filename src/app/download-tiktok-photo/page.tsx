@@ -1,5 +1,6 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Link from 'next/link'
+import { PhotoIcon, DownloadIcon, BoltIcon, DevicePhoneIcon } from '@/components/icons'
 
 export const metadata: Metadata = {
   title: 'Download TikTok Photo - Save TikTok Photos & Carousels Free | SaveFromInternet',
@@ -80,14 +81,14 @@ export default function DownloadTikTokPhotoPage() {
     <div className="bg-white dark:bg-slate-900">
 
       {/* Hero */}
-      <section className="bg-gradient-to-b from-violet-50/60 dark:from-slate-800 to-white dark:to-slate-900 py-14 px-4 text-center border-b border-slate-100 dark:border-slate-700/50">
+      <section className="bg-gradient-to-b from-indigo-50/50 dark:from-slate-800 to-white dark:to-slate-900 py-14 px-4 text-center border-b border-slate-100 dark:border-slate-700/50">
         <div className="max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-white dark:bg-slate-800 text-violet-600 dark:text-violet-400 text-xs font-bold px-4 py-1.5 rounded-full mb-5 border border-violet-100 dark:border-violet-800/40 shadow-sm">
-            🖼️ SaveFromInternet · TikTok Photo Downloader
+          <div className="inline-flex items-center gap-2 bg-white dark:bg-slate-800 text-indigo-500 text-xs font-semibold px-4 py-1.5 rounded-full mb-5 border border-indigo-100 dark:border-indigo-900/40 shadow-sm">
+            SaveFromInternet · TikTok Photo Downloader
           </div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight">
+          <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-4 leading-tight">
             Download{' '}
-            <span className="bg-gradient-to-r from-violet-500 to-pink-500 bg-clip-text text-transparent">
+            <span className="text-indigo-500">
               TikTok Photo
             </span>
           </h1>
@@ -96,9 +97,9 @@ export default function DownloadTikTokPhotoPage() {
           </p>
           <Link
             href="/"
-            className="inline-block bg-gradient-to-r from-rose-500 to-violet-600 hover:from-rose-600 hover:to-violet-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg shadow-rose-500/25 transition-all"
+            className="inline-block bg-indigo-500 hover:bg-indigo-600 text-white font-semibold px-8 py-4 rounded-lg text-lg shadow-lg shadow-indigo-500/25 transition-all"
           >
-            ⬇ Download TikTok Photo Now
+            Download TikTok Photo Now
           </Link>
         </div>
       </section>
@@ -106,7 +107,7 @@ export default function DownloadTikTokPhotoPage() {
       {/* Steps */}
       <section className="bg-slate-50 dark:bg-slate-800/50 py-14 px-4 border-b border-slate-100 dark:border-slate-700/50">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white text-center mb-10">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white text-center mb-10">
             How to Download TikTok Photos
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -115,8 +116,8 @@ export default function DownloadTikTokPhotoPage() {
               { n: '2', title: 'Paste on SaveFromInternet', desc: 'Go to savefrominternet.com, paste the link and tap Download TikTok Video.' },
               { n: '3', title: 'Save Your Photos', desc: 'Tap Show Images, select photos, and download individually or all as ZIP.' },
             ].map(({ n, title, desc }) => (
-              <div key={n} className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-100 dark:border-slate-700/50 shadow-sm text-center">
-                <div className="w-12 h-12 bg-gradient-to-r from-violet-500 to-pink-500 rounded-full flex items-center justify-center text-white font-extrabold text-xl mx-auto mb-4">{n}</div>
+              <div key={n} className="bg-white dark:bg-slate-800 rounded-lg p-6 border border-slate-100 dark:border-slate-700/50 shadow-sm text-center">
+                <div className="w-12 h-12 bg-indigo-500 rounded-lg flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">{n}</div>
                 <h3 className="text-slate-900 dark:text-white font-bold text-lg mb-2">{title}</h3>
                 <p className="text-slate-500 dark:text-slate-400 text-sm">{desc}</p>
               </div>
@@ -128,14 +129,16 @@ export default function DownloadTikTokPhotoPage() {
       {/* Features */}
       <section className="bg-white dark:bg-slate-900 py-14 px-4 border-b border-slate-100 dark:border-slate-700/50">
         <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {[
-            { icon: '🖼️', title: 'Original Quality', desc: 'Full-resolution images, no compression added.' },
-            { icon: '🗜️', title: 'ZIP Download', desc: 'Download all carousel images in one ZIP file.' },
-            { icon: '🆓', title: 'Completely Free', desc: 'No account, no app, no hidden limits.' },
-            { icon: '📱', title: 'All Devices', desc: 'iPhone, Android, PC, Mac — any browser.' },
-          ].map(({ icon, title, desc }) => (
-            <div key={title} className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-5 border border-slate-100 dark:border-slate-700/50 text-center">
-              <div className="text-3xl mb-3">{icon}</div>
+          {([
+            { Icon: PhotoIcon, title: 'Original Quality', desc: 'Full-resolution images, no compression added.' },
+            { Icon: DownloadIcon, title: 'ZIP Download', desc: 'Download all carousel images in one ZIP file.' },
+            { Icon: BoltIcon, title: 'Completely Free', desc: 'No account, no app, no hidden limits.' },
+            { Icon: DevicePhoneIcon, title: 'All Devices', desc: 'iPhone, Android, PC, Mac — any browser.' },
+          ] as const).map(({ Icon, title, desc }) => (
+            <div key={title} className="bg-slate-50 dark:bg-slate-800 rounded-lg p-5 border border-slate-100 dark:border-slate-700/50 text-center">
+              <div className="w-10 h-10 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg flex items-center justify-center mx-auto mb-3">
+                <Icon className="w-5 h-5 text-indigo-500" />
+              </div>
               <h3 className="text-slate-900 dark:text-white font-bold mb-1">{title}</h3>
               <p className="text-slate-500 dark:text-slate-400 text-sm">{desc}</p>
             </div>
@@ -146,13 +149,13 @@ export default function DownloadTikTokPhotoPage() {
       {/* What types of TikTok photos */}
       <section className="bg-slate-50 dark:bg-slate-800/50 py-14 px-4 border-b border-slate-100 dark:border-slate-700/50">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white text-center mb-8">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white text-center mb-8">
             What TikTok Photos Can You Download?
           </h2>
-          <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-100 dark:border-slate-700/50 shadow-sm space-y-3 text-sm text-slate-600 dark:text-slate-300">
-            <p className="flex gap-2"><span className="text-emerald-500 font-bold">✓</span><span><strong className="text-slate-900 dark:text-white">Single photo posts</strong> — any standalone image shared on TikTok</span></p>
-            <p className="flex gap-2"><span className="text-emerald-500 font-bold">✓</span><span><strong className="text-slate-900 dark:text-white">Photo carousels</strong> — all images in a multi-photo slideshow post</span></p>
-            <p className="flex gap-2"><span className="text-emerald-500 font-bold">✓</span><span><strong className="text-slate-900 dark:text-white">Image galleries</strong> — collections shared as TikTok Stories or posts</span></p>
+          <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border border-slate-100 dark:border-slate-700/50 shadow-sm space-y-3 text-sm text-slate-600 dark:text-slate-300">
+            <p className="flex gap-2"><span className="text-indigo-500 font-bold">✓</span><span><strong className="text-slate-900 dark:text-white">Single photo posts</strong> — any standalone image shared on TikTok</span></p>
+            <p className="flex gap-2"><span className="text-indigo-500 font-bold">✓</span><span><strong className="text-slate-900 dark:text-white">Photo carousels</strong> — all images in a multi-photo slideshow post</span></p>
+            <p className="flex gap-2"><span className="text-indigo-500 font-bold">✓</span><span><strong className="text-slate-900 dark:text-white">Image galleries</strong> — collections shared as TikTok Stories or posts</span></p>
             <p className="text-xs text-slate-400 dark:text-slate-500 pt-2">Only publicly available posts are supported. Private or restricted content cannot be downloaded.</p>
           </div>
         </div>
@@ -161,7 +164,7 @@ export default function DownloadTikTokPhotoPage() {
       {/* FAQ */}
       <section className="bg-white dark:bg-slate-900 py-14 px-4 border-b border-slate-100 dark:border-slate-700/50">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white text-center mb-10">FAQ</h2>
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white text-center mb-10">FAQ</h2>
           <div className="space-y-4">
             {[
               { q: 'How do I download a TikTok photo?', a: 'Copy the TikTok photo URL, paste it on savefrominternet.com, click Download, then tap "Show Images" to view and download the photos.' },
@@ -169,7 +172,7 @@ export default function DownloadTikTokPhotoPage() {
               { q: 'What quality are the images?', a: 'Original quality. We fetch the full-resolution image directly from TikTok with no compression.' },
               { q: 'Is TikTok photo download free?', a: 'Yes, completely free. No account, no app, no download limits.' },
             ].map(({ q, a }) => (
-              <div key={q} className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-5 border border-slate-100 dark:border-slate-700/50">
+              <div key={q} className="bg-slate-50 dark:bg-slate-800 rounded-lg p-5 border border-slate-100 dark:border-slate-700/50">
                 <h3 className="text-slate-900 dark:text-white font-bold mb-2">{q}</h3>
                 <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{a}</p>
               </div>
@@ -190,7 +193,7 @@ export default function DownloadTikTokPhotoPage() {
               { label: 'iPhone Guide', href: '/tiktok-video-downloader-iphone' },
               { label: 'Android Guide', href: '/tiktok-video-downloader-android' },
             ].map(({ label, href }) => (
-              <Link key={href} href={href} className="px-4 py-2 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-rose-600 dark:hover:text-rose-400 border border-slate-200 dark:border-slate-700 hover:border-rose-200 rounded-full text-sm font-medium transition-all">
+              <Link key={href} href={href} className="px-4 py-2 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 border border-slate-200 dark:border-slate-700 hover:border-indigo-200 rounded-full text-sm font-medium transition-all">
                 {label}
               </Link>
             ))}
@@ -199,14 +202,14 @@ export default function DownloadTikTokPhotoPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-gradient-to-r from-violet-500 to-pink-500 py-14 px-4 text-center">
-        <h2 className="text-3xl font-extrabold text-white mb-4">Download TikTok Photos — Free</h2>
-        <p className="text-violet-100 mb-8 text-lg">Original quality · Carousel support · SaveFromInternet.com</p>
+      <section className="bg-indigo-500 py-14 px-4 text-center">
+        <h2 className="text-3xl font-bold text-white mb-4">Download TikTok Photos — Free</h2>
+        <p className="text-indigo-100 mb-8 text-lg">Original quality · Carousel support · SaveFromInternet.com</p>
         <Link
           href="/"
-          className="inline-block bg-white text-violet-600 font-bold px-8 py-4 rounded-xl text-lg shadow-xl hover:scale-105 transition-all"
+          className="inline-block bg-white text-indigo-600 font-semibold px-8 py-4 rounded-lg text-lg shadow-xl hover:scale-105 transition-all"
         >
-          ⬇ Download TikTok Photo
+          Download TikTok Photo
         </Link>
       </section>
 

@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import BlogPostLayout from '@/components/blog/BlogPostLayout'
@@ -41,7 +41,7 @@ export default function Page() {
         width={800}
         height={450}
         unoptimized
-        className="rounded-xl my-6"
+        className="rounded-lg my-6"
       />
 
       <h2>Step-by-Step: Download Instagram Video on iPhone</h2>
@@ -68,7 +68,7 @@ export default function Page() {
         alt="Download Instagram video on Android using Chrome browser"
         width={800}
         height={400}
-        className="rounded-xl my-6"
+        className="rounded-lg my-6"
       />
 
       <h2>Step-by-Step: Download Instagram Video on PC/Mac</h2>

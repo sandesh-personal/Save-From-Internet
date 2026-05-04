@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import BlogPostLayout from '@/components/blog/BlogPostLayout'
@@ -47,7 +47,7 @@ export default function Page() {
         width={800}
         height={450}
         unoptimized
-        className="rounded-xl my-6"
+        className="rounded-lg my-6"
       />
 
       <h2>SaveFromInternet.com — Platform Support Matrix (2026)</h2>
@@ -98,7 +98,7 @@ export default function Page() {
         alt="Universal online video downloader supporting all major platforms"
         width={800}
         height={400}
-        className="rounded-xl my-6"
+        className="rounded-lg my-6"
       />
 
       <h2>Why Not Just Use Platform-Specific Tools?</h2>

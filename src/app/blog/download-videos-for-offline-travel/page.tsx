@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import BlogPostLayout from '@/components/blog/BlogPostLayout'
@@ -42,7 +42,7 @@ export default function Page() {
         width={800}
         height={450}
         unoptimized
-        className="rounded-xl my-6"
+        className="rounded-lg my-6"
       />
 
       <h2>Downloading TikTok Videos for Offline Viewing</h2>
@@ -75,7 +75,7 @@ export default function Page() {
         alt="Download YouTube and TikTok videos before traveling for offline entertainment"
         width={800}
         height={400}
-        className="rounded-xl my-6"
+        className="rounded-lg my-6"
       />
 
       <h2>Storage Planning — How Much Space Do You Need?</h2>

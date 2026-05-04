@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import Link from 'next/link'
 import Image from 'next/image'
 import GoogleAdSense from '@/components/GoogleAdSense'
@@ -18,12 +18,12 @@ export default function BlogPage() {
       {/* Hero */}
       <section className="bg-gradient-to-b from-slate-50 dark:from-slate-800 to-white dark:to-slate-900 py-14 px-4 text-center border-b border-slate-100 dark:border-slate-700/50">
         <div className="max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-white dark:bg-slate-800 text-rose-500 text-xs font-bold px-4 py-1.5 rounded-full mb-5 border border-rose-100 dark:border-rose-800/40 shadow-sm">
-            📖 Guides & Tips
+          <div className="inline-flex items-center gap-2 bg-white dark:bg-slate-800 text-indigo-500 text-xs font-semibold px-4 py-1.5 rounded-full mb-5 border border-indigo-100 dark:border-indigo-900/40 shadow-sm">
+            Guides & Tips
           </div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight">
+          <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-4 leading-tight">
             TikTok Downloader{' '}
-            <span className="bg-gradient-to-r from-rose-500 to-violet-600 bg-clip-text text-transparent">
+            <span className="text-indigo-500">
               Blog
             </span>
           </h1>
@@ -51,27 +51,27 @@ export default function BlogPage() {
               onClick={() => setActiveCategory('all')}
               className={`flex-shrink-0 text-xs font-bold px-4 py-2 rounded-full border transition-all ${
                 activeCategory === 'all'
-                  ? 'bg-rose-500 text-white border-rose-500'
-                  : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-rose-300 hover:text-rose-500'
+                  ? 'bg-indigo-500 text-white border-indigo-500'
+                  : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-indigo-300 hover:text-indigo-500'
               }`}
             >
               All ({blogPosts.length})
             </button>
-            {(Object.entries(categoryMeta) as [BlogCategory, { label: string; icon: string }][]).map(
-              ([key, { label, icon }]) => {
+            {(Object.entries(categoryMeta) as [BlogCategory, { label: string }][]).map(
+              ([key, { label }]) => {
                 const count = blogPosts.filter((p) => p.category === key).length
                 if (count === 0) return null
                 return (
                   <button
                     key={key}
                     onClick={() => setActiveCategory(key)}
-                    className={`flex-shrink-0 text-xs font-bold px-4 py-2 rounded-full border transition-all whitespace-nowrap ${
+                    className={`flex-shrink-0 text-xs font-semibold px-4 py-2 rounded-full border transition-all whitespace-nowrap ${
                       activeCategory === key
-                        ? 'bg-rose-500 text-white border-rose-500'
-                        : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-rose-300 hover:text-rose-500'
+                        ? 'bg-indigo-500 text-white border-indigo-500'
+                        : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-indigo-300 hover:text-indigo-500'
                     }`}
                   >
-                    {icon} {label} ({count})
+                    {label} ({count})
                   </button>
                 )
               }
@@ -91,9 +91,9 @@ export default function BlogPage() {
                 <div key={post.slug}>
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="flex items-center gap-4 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-100 dark:border-slate-700/50 rounded-2xl p-4 shadow-sm transition-all group"
+                    className="flex items-center gap-4 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-100 dark:border-slate-700/50 rounded-lg p-4 shadow-sm transition-all group"
                   >
-                    <div className="w-20 h-20 relative rounded-xl overflow-hidden flex-shrink-0 border border-slate-100 dark:border-slate-700/50">
+                    <div className="w-20 h-20 relative rounded-lg overflow-hidden flex-shrink-0 border border-slate-100 dark:border-slate-700/50">
                       <Image
                         src={post.image}
                         alt={post.title}
@@ -106,11 +106,11 @@ export default function BlogPage() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="text-xs font-bold text-rose-400 bg-rose-50 dark:bg-rose-900/30 px-2 py-0.5 rounded-full">
-                          {categoryMeta[post.category]?.icon} {categoryMeta[post.category]?.label}
+                        <span className="text-xs font-semibold text-indigo-500 bg-indigo-50 dark:bg-indigo-900/30 px-2 py-0.5 rounded-full">
+                          {categoryMeta[post.category]?.label}
                         </span>
                       </div>
-                      <h2 className="text-slate-900 dark:text-white font-bold text-sm sm:text-base leading-snug group-hover:text-rose-500 transition-colors line-clamp-2">
+                      <h2 className="text-slate-900 dark:text-white font-bold text-sm sm:text-base leading-snug group-hover:text-indigo-500 transition-colors line-clamp-2">
                         {post.title}
                       </h2>
                       <p className="text-slate-500 dark:text-slate-400 text-xs mt-1 line-clamp-1 leading-relaxed hidden sm:block">
@@ -124,7 +124,7 @@ export default function BlogPage() {
                         })}
                       </p>
                     </div>
-                    <span className="text-rose-400 font-bold text-lg flex-shrink-0 group-hover:translate-x-1 transition-transform hidden sm:block">
+                    <span className="text-indigo-400 font-bold text-lg flex-shrink-0 group-hover:translate-x-1 transition-transform hidden sm:block">
                       →
                     </span>
                   </Link>
@@ -158,18 +158,18 @@ export default function BlogPage() {
       </div>
 
       {/* CTA */}
-      <section className="bg-gradient-to-r from-rose-500 to-violet-600 py-14 px-4 text-center">
-        <h2 className="text-3xl font-extrabold text-white mb-4">
+      <section className="bg-indigo-500 py-14 px-4 text-center">
+        <h2 className="text-3xl font-bold text-white mb-4">
           Ready to Download TikTok Videos?
         </h2>
-        <p className="text-rose-100 mb-8 text-lg">
+        <p className="text-indigo-100 mb-8 text-lg">
           Free · No watermark · No app · iPhone, Android & PC
         </p>
         <Link
           href="/"
-          className="inline-block bg-white text-rose-600 font-bold px-8 py-4 rounded-xl text-lg shadow-xl hover:scale-105 transition-all"
+          className="inline-block bg-white text-indigo-600 font-semibold px-8 py-4 rounded-lg text-lg shadow-xl hover:scale-105 transition-all"
         >
-          ⬇ Try TikTok Downloader Free
+          Try TikTok Downloader Free
         </Link>
       </section>
     </div>

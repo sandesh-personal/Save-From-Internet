@@ -8,8 +8,8 @@
   --background: #ffffff;
   --foreground: #000000;
   --muted: #6b7280;
-  --primary: #000000;
-  --accent: #111827;
+  --primary: #6366f1;
+  --accent: #4f46e5;
   --radius: 8px;
 }
 
@@ -17,14 +17,15 @@
   --background: #0f172a;
   --foreground: #f1f5f9;
   --muted: #94a3b8;
-  --primary: #f1f5f9;
-  --accent: #e2e8f0;
+  --primary: #818cf8;
+  --accent: #a5b4fc;
 }
 
 /* Apply theme globally */
 html, body, #__next {
   background-color: var(--background);
   color: var(--foreground);
+  font-family: var(--font-inter), 'Inter', system-ui, 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -121,7 +122,7 @@ html, body, #__next {
   line-height: 1.65;
 }
 .blog-prose a {
-  color: #f43f5e;
+  color: #6366f1;
   font-weight: 500;
   text-decoration: underline;
 }
@@ -130,7 +131,7 @@ html, body, #__next {
   font-weight: 600;
 }
 .blog-prose blockquote {
-  border-left: 4px solid #fda4af;
+  border-left: 4px solid #a5b4fc;
   padding-left: 1rem;
   font-style: italic;
   color: #64748b;
@@ -188,8 +189,8 @@ html, body, #__next {
 .dark .blog-prose ul { color: #94a3b8; }
 .dark .blog-prose ol { color: #94a3b8; }
 .dark .blog-prose strong { color: #f1f5f9; }
-.dark .blog-prose a { color: #fb7185; }
-.dark .blog-prose blockquote { color: #94a3b8; border-left-color: #4c1d30; }
+.dark .blog-prose a { color: #818cf8; }
+.dark .blog-prose blockquote { color: #94a3b8; border-left-color: #3730a3; }
 .dark .blog-prose table { border-color: #334155; }
 .dark .blog-prose thead tr { background-color: #1e293b; }
 .dark .blog-prose th { color: #f1f5f9; border-bottom-color: #334155; }

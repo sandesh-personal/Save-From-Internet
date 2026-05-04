@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import BlogPostLayout from '@/components/blog/BlogPostLayout'
@@ -22,10 +22,10 @@ export default function Page() {
     <BlogPostLayout title="How to Download TikTok Videos Without Watermark (2026 Guide)" description="Download any TikTok video without the watermark in high quality. Free, no app, works on all devices." date="2025-06-15T08:00:00.000Z" lastModified="2026-03-10T08:00:00.000Z" category="no-watermark">
       <p>TikTok's built-in Save button adds a watermark to every video. This guide shows you how to download any TikTok video without the watermark in full quality — in under 30 seconds.</p>
       <h2>Step 1 — Open TikTok and Select the Video</h2>
-      <Image src="/images/step1.jpg" alt="Open TikTok and select your video" width={400} height={200} className="rounded-xl w-full" />
+      <Image src="/images/step1.jpg" alt="Open TikTok and select your video" width={400} height={200} className="rounded-lg w-full" />
       <p>Open the TikTok app, go to your profile or browse to the video you want to download.</p>
       <h2>Step 2 — Copy the TikTok Link</h2>
-      <Image src="/images/step2.jpg" alt="Copy the TikTok link" width={400} height={200} className="rounded-xl w-full" />
+      <Image src="/images/step2.jpg" alt="Copy the TikTok link" width={400} height={200} className="rounded-lg w-full" />
       <p>Tap the <strong>Share</strong> icon and select <strong>Copy Link</strong>. Valid TikTok link formats:</p>
       <ul>
         <li>https://www.tiktok.com/@user/video/...</li>
@@ -34,17 +34,17 @@ export default function Page() {
         <li>https://tiktok.com/...</li>
       </ul>
       <h2>Step 3 — Visit SaveFromInternet.com</h2>
-      <Image src="/images/step3.jpg" alt="Visit SaveFromInternet" width={400} height={200} className="rounded-xl w-full" />
+      <Image src="/images/step3.jpg" alt="Visit SaveFromInternet" width={400} height={200} className="rounded-lg w-full" />
       <p>Open any browser and go to <a href="https://savefrominternet.com">savefrominternet.com</a>. Paste your copied link into the input bar and click <strong>Download TikTok Video</strong>.</p>
       <h2>Step 4 — Choose Your Format</h2>
-      <Image src="/images/step4.jpg" alt="Choose video, audio, or image format" width={200} height={100} className="rounded-xl w-full" />
+      <Image src="/images/step4.jpg" alt="Choose video, audio, or image format" width={200} height={100} className="rounded-lg w-full" />
       <ul>
         <li><strong>Video</strong> — HD MP4, no watermark</li>
         <li><strong>Audio</strong> — MP3 audio extracted from the video</li>
         <li><strong>Images</strong> — for carousel posts, download each image or the full ZIP</li>
       </ul>
       <h2>Step 5 — Download Your File</h2>
-      <Image src="/images/step5.jpg" alt="Download the final file" width={200} height={100} className="rounded-xl w-full" />
+      <Image src="/images/step5.jpg" alt="Download the final file" width={200} height={100} className="rounded-lg w-full" />
       <p>Click the download button. Your content saves instantly — watermark-free, no quality loss.</p>
       <div className="tip-box">💡 <strong>Pro tip:</strong> SaveFromInternet fetches the original file directly from TikTok's CDN — no re-encoding, same quality as what TikTok streams.</div>
       <h2>Safe and Private</h2>

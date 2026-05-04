@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useEffect, useRef } from 'react'
 
@@ -37,7 +37,7 @@ export default function GoogleAdSense({
   const containerClass =
     containerStyle === 'none'
       ? ''
-      : 'rounded-xl overflow-hidden'
+      : 'rounded-lg overflow-hidden'
 
   return (
     <div className={`${containerClass} ${className}`} style={style}>

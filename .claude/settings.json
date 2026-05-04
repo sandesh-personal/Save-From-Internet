@@ -17,7 +17,15 @@
       "Bash(curl -s -I 'https://robotilab.online/download-api/tiktok/download?videoUrl=https://www.tiktok.com/@tiktok/video/7607695658434202901' --max-time 20)",
       "Bash(curl -s -r 0-100 'https://robotilab.online/download-api/tiktok/download?videoUrl=https://www.tiktok.com/@tiktok/video/7607695658434202901' --max-time 20)",
       "Bash(pnpm build *)",
-      "Bash(npm install *)"
+      "Bash(npm install *)",
+      "Bash(git -C \"c:/Users/sande/Desktop/Websites/Save-From-Internet/Save-From-Internet\" status)",
+      "Bash(git -C \"c:/Users/sande/Desktop/Websites/Save-From-Internet/Save-From-Internet\" push origin main)",
+      "Bash(npx tsc *)",
+      "WebFetch(domain:grabreels.com)",
+      "Bash(gh api *)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:github.com)",
+      "Bash(python3 -c ' *)"
     ]
   }
 }

@@ -1,4 +1,4 @@
-import Link from 'next/link';
+﻿import Link from 'next/link';
 import Script from 'next/script';
 import Image from 'next/image';
 import GoogleAdSense from '@/components/GoogleAdSense';
@@ -170,7 +170,7 @@ export default function HowToDownloadPage() {
             <h2 className="text-2xl font-bold mb-6">Step-by-Step Guide to Download TikTok Videos</h2>
             <div className="space-y-8">
               {steps.map((step, index) => (
-                <div key={index} className="bg-gray-50 dark:bg-slate-800 rounded-xl p-6 border border-gray-200 dark:border-slate-700/50">
+                <div key={index} className="bg-gray-50 dark:bg-slate-800 rounded-lg p-6 border border-gray-200 dark:border-slate-700/50">
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-gradient-to-r from-pink-500 to-violet-500 rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
                       {step.number}
@@ -210,7 +210,7 @@ export default function HowToDownloadPage() {
             <h2 className="text-2xl font-bold mb-6">Why Choose Our TikTok Video Downloader?</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {features.map((feature, index) => (
-                <div key={index} className="bg-gray-50 dark:bg-slate-800 rounded-xl p-4 border border-gray-200 dark:border-slate-700/50">
+                <div key={index} className="bg-gray-50 dark:bg-slate-800 rounded-lg p-4 border border-gray-200 dark:border-slate-700/50">
                   <h3 className="text-black dark:text-white font-semibold mb-2">{feature.title}</h3>
                   <p className="text-black/70 dark:text-slate-400 text-sm">{feature.description}</p>
                 </div>
@@ -219,14 +219,14 @@ export default function HowToDownloadPage() {
           </div>
 
           {/* CTA Section */}
-          <div className="text-center bg-gradient-to-r from-pink-500/10 to-violet-500/10 dark:from-pink-900/20 dark:to-violet-900/20 rounded-xl p-8 border border-pink-100 dark:border-pink-900/30">
+          <div className="text-center bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-8 border border-indigo-100 dark:border-indigo-900/30">
             <h2 className="text-2xl font-bold mb-4">Ready to Download TikTok Videos?</h2>
             <p className="text-black/70 dark:text-slate-400 mb-6">
               Start downloading TikTok videos without watermark right now. It's free, fast, and easy to use!
             </p>
             <Link 
               href="/"
-              className="inline-block bg-gradient-to-r from-pink-500 to-violet-500 text-white font-semibold px-8 py-4 rounded-xl hover:from-pink-600 hover:to-violet-600 transition-all duration-200 text-lg"
+              className="inline-block bg-indigo-500 hover:bg-indigo-600 text-white font-semibold px-8 py-4 rounded-lg transition-all duration-200 text-lg"
             >
               Download TikTok Videos Now
             </Link>
@@ -248,14 +248,14 @@ export default function HowToDownloadPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Link
                 href="/faq"
-                className="bg-gray-50 dark:bg-slate-800 rounded-xl p-4 border border-gray-200 dark:border-slate-700/50 hover:bg-gray-100 dark:hover:bg-slate-700 transition-all duration-200"
+                className="bg-gray-50 dark:bg-slate-800 rounded-lg p-4 border border-gray-200 dark:border-slate-700/50 hover:bg-gray-100 dark:hover:bg-slate-700 transition-all duration-200"
               >
                 <h3 className="text-black dark:text-white font-semibold mb-2">Frequently Asked Questions</h3>
                 <p className="text-black/70 dark:text-slate-400 text-sm">Get answers to common questions about TikTok video downloading</p>
               </Link>
               <Link
                 href="/blog"
-                className="bg-gray-50 dark:bg-slate-800 rounded-xl p-4 border border-gray-200 dark:border-slate-700/50 hover:bg-gray-100 dark:hover:bg-slate-700 transition-all duration-200"
+                className="bg-gray-50 dark:bg-slate-800 rounded-lg p-4 border border-gray-200 dark:border-slate-700/50 hover:bg-gray-100 dark:hover:bg-slate-700 transition-all duration-200"
               >
                 <h3 className="text-black dark:text-white font-semibold mb-2">TikTok Downloader Blog</h3>
                 <p className="text-black/70 dark:text-slate-400 text-sm">Read guides and tips for downloading TikTok content</p>

@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import BlogPostLayout from '@/components/blog/BlogPostLayout'
@@ -42,7 +42,7 @@ export default function Page() {
         width={800}
         height={450}
         unoptimized
-        className="rounded-xl my-6"
+        className="rounded-lg my-6"
       />
 
       <h2>Method 1 — Save Directly From Telegram App (Easiest)</h2>
@@ -70,7 +70,7 @@ export default function Page() {
         alt="Download Telegram channel video using an online tool"
         width={800}
         height={400}
-        className="rounded-xl my-6"
+        className="rounded-lg my-6"
       />
 
       <h2>Method 3 — Enable Auto-Download in Telegram Settings</h2>

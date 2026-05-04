@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import BlogPostLayout from '@/components/blog/BlogPostLayout'
@@ -33,7 +33,7 @@ export default function Page() {
         width={800}
         height={450}
         unoptimized
-        className="rounded-xl my-6"
+        className="rounded-lg my-6"
       />
 
       <h2>1. SaveFromInternet.com — Download Your Own Content</h2>
@@ -56,7 +56,7 @@ export default function Page() {
         alt="Essential tools for TikTok content creators in 2026"
         width={800}
         height={400}
-        className="rounded-xl my-6"
+        className="rounded-lg my-6"
       />
 
       <h2>6. Publer — Advanced TikTok Scheduling</h2>

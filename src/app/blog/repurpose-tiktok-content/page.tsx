@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import BlogPostLayout from '@/components/blog/BlogPostLayout'
@@ -43,7 +43,7 @@ export default function Page() {
         width={800}
         height={450}
         unoptimized
-        className="rounded-xl my-6"
+        className="rounded-lg my-6"
       />
 
       <h2>Step 1 — Download Your TikTok Without Watermark</h2>
@@ -79,7 +79,7 @@ export default function Page() {
         alt="Upload TikTok content to YouTube Shorts and Instagram Reels without watermark"
         width={800}
         height={400}
-        className="rounded-xl my-6"
+        className="rounded-lg my-6"
       />
 
       <h3>Twitter/X</h3>

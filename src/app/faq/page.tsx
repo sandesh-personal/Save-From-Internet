@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import GoogleAdSense from '@/components/GoogleAdSense'
 
 export const metadata: Metadata = {
-  title: 'TikTok Downloader FAQ 2026 — Common Questions Answered | Save From Internet',
+  title: 'TikTok Downloader FAQ 2026 - Common Questions Answered | Save From Internet',
   description:
     'Answers to the most common questions about downloading TikTok videos without watermark, extracting MP3 audio, and using SaveFromInternet on iPhone, Android, and PC.',
   keywords: [
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     'tiktok downloader help 2026',
   ],
   openGraph: {
-    title: 'TikTok Downloader FAQ 2026 — Common Questions Answered',
+    title: 'TikTok Downloader FAQ 2026 - Common Questions Answered',
     description:
       'Answers to common questions about downloading TikTok videos, audio, and images with SaveFromInternet.',
     type: 'website',
@@ -30,17 +30,17 @@ const structuredData = {
   '@type': 'FAQPage',
   mainEntity: [
     { '@type': 'Question', name: 'How do I download TikTok videos without a watermark?', acceptedAnswer: { '@type': 'Answer', text: 'Paste the TikTok URL into savefrominternet.com, click Download TikTok Video, then click the Download Video button. The MP4 file saved to your device has no watermark.' } },
-    { '@type': 'Question', name: 'Is SaveFromInternet free to use?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Completely free — no registration, no hidden fees, and no download limits. You can download unlimited TikTok videos, audio, and images at no cost.' } },
+    { '@type': 'Question', name: 'Is SaveFromInternet free to use?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Completely free - no registration, no hidden fees, and no download limits. You can download unlimited TikTok videos, audio, and images at no cost.' } },
     { '@type': 'Question', name: 'Can I extract audio from TikTok videos?', acceptedAnswer: { '@type': 'Answer', text: "Yes. After processing a TikTok URL, click 'Extract Audio' to download the audio as a high-quality MP3 file." } },
     { '@type': 'Question', name: 'Does the TikTok downloader work on iPhone?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Open Safari on your iPhone, go to savefrominternet.com, paste the TikTok URL, and tap Download TikTok Video. When the video opens in Safari, tap and hold to save it to your Camera Roll.' } },
     { '@type': 'Question', name: 'Does the TikTok downloader work on Android?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Open Chrome on your Android device, go to savefrominternet.com, paste the TikTok URL, and tap Download. The video or audio saves directly to your Downloads folder.' } },
     { '@type': 'Question', name: 'Can I download private TikTok videos?', acceptedAnswer: { '@type': 'Answer', text: "No. SaveFromInternet only works with public TikTok videos. Private videos require authentication that third-party tools don't have access to." } },
-    { '@type': 'Question', name: 'What video quality can I download?', acceptedAnswer: { '@type': 'Answer', text: 'We download TikTok videos in their original HD quality — typically 720p or 1080p, depending on what the creator uploaded. No additional compression is applied.' } },
+    { '@type': 'Question', name: 'What video quality can I download?', acceptedAnswer: { '@type': 'Answer', text: 'We download TikTok videos in their original HD quality - typically 720p or 1080p, depending on what the creator uploaded. No additional compression is applied.' } },
     { '@type': 'Question', name: 'How do I download TikTok photos and image carousels?', acceptedAnswer: { '@type': 'Answer', text: "Paste the TikTok photo post URL on savefrominternet.com and click Download. Tap 'Show Images' to see the gallery, then download individual images or all of them as a ZIP archive." } },
-    { '@type': 'Question', name: 'Is it legal to download TikTok videos?', acceptedAnswer: { '@type': 'Answer', text: 'Downloading TikTok videos for personal use is generally permitted, but re-uploading or using them commercially without the creator\'s permission may violate copyright law.' } },
+    { '@type': 'Question', name: 'Is it legal to download TikTok videos?', acceptedAnswer: { '@type': 'Answer', text: "Downloading TikTok videos for personal use is generally permitted, but re-uploading or using them commercially without the creator's permission may violate copyright law." } },
     { '@type': 'Question', name: "Why can't I download some TikTok videos?", acceptedAnswer: { '@type': 'Answer', text: 'Some videos may be private, region-restricted, or temporarily unavailable. Make sure the TikTok URL is correct and the video is set to public.' } },
     { '@type': 'Question', name: 'Is it safe to use SaveFromInternet?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. SaveFromInternet does not collect personal information, install anything, or require any permissions beyond your browser. We are AdSense-approved, meaning Google has verified the site is safe and legitimate.' } },
-    { '@type': 'Question', name: 'Do I need to install any software or app?', acceptedAnswer: { '@type': 'Answer', text: 'No. SaveFromInternet works entirely in your browser. No app, no extension, no account — just paste the TikTok URL and download.' } },
+    { '@type': 'Question', name: 'Do I need to install any software or app?', acceptedAnswer: { '@type': 'Answer', text: 'No. SaveFromInternet works entirely in your browser. No app, no extension, no account - just paste the TikTok URL and download.' } },
     { '@type': 'Question', name: 'What if the download fails?', acceptedAnswer: { '@type': 'Answer', text: "Check that the TikTok video is public and the URL is correct. Try refreshing the page or using a different browser. Our tool is regularly updated for TikTok's latest changes." } },
     { '@type': 'Question', name: 'What file formats are supported?', acceptedAnswer: { '@type': 'Answer', text: 'Video is downloaded as MP4, which plays on all devices. Audio is extracted as MP3. TikTok photos are downloaded as JPEG/WEBP individually or as a ZIP archive.' } },
     { '@type': 'Question', name: 'Is my privacy protected?', acceptedAnswer: { '@type': 'Answer', text: "Yes. We don't collect personal data, track your activity, or store downloaded content. All processing is done in real-time and nothing is saved on our servers." } },
@@ -51,12 +51,12 @@ const faqs: { question: string; answer: React.ReactNode }[] = [
   {
     question: 'How do I download TikTok videos without a watermark?',
     answer:
-      'Paste the TikTok URL into savefrominternet.com, click Download TikTok Video, then click the Download Video button. The MP4 file saved to your device has no watermark — the original file is fetched directly before any branding is applied.',
+      'Paste the TikTok URL into savefrominternet.com, click Download TikTok Video, then click the Download Video button. The MP4 file saved to your device has no watermark - the original file is fetched directly before any branding is applied.',
   },
   {
     question: 'Is SaveFromInternet free to use?',
     answer:
-      'Yes. Completely free — no registration, no hidden fees, and no download limits. You can download unlimited TikTok videos, audio, and images at no cost.',
+      'Yes. Completely free - no registration, no hidden fees, and no download limits. You can download unlimited TikTok videos, audio, and images at no cost.',
   },
   {
     question: 'Can I extract audio from TikTok videos?',
@@ -66,7 +66,7 @@ const faqs: { question: string; answer: React.ReactNode }[] = [
   {
     question: 'Does the TikTok downloader work on iPhone?',
     answer:
-      'Yes. Open Safari on your iPhone, go to savefrominternet.com, paste the TikTok URL, and tap Download TikTok Video. When the video opens in Safari, tap and hold to save it to your Camera Roll. MP3 files go to Files → Downloads.',
+      'Yes. Open Safari on your iPhone, go to savefrominternet.com, paste the TikTok URL, and tap Download TikTok Video. When the video opens in Safari, tap and hold to save it to your Camera Roll. MP3 files go to Files / Downloads.',
   },
   {
     question: 'Does the TikTok downloader work on Android?',
@@ -81,14 +81,14 @@ const faqs: { question: string; answer: React.ReactNode }[] = [
   {
     question: 'What video quality can I download?',
     answer:
-      'We download TikTok videos in their original HD quality — typically 720p or 1080p, depending on what the creator uploaded. No additional compression is applied.',
+      'We download TikTok videos in their original HD quality - typically 720p or 1080p, depending on what the creator uploaded. No additional compression is applied.',
   },
   {
     question: 'How do I download TikTok photos and image carousels?',
     answer: (
       <>
         Paste the TikTok photo post URL on savefrominternet.com and click Download. Tap &quot;Show Images&quot; to see the gallery, then download individual images or all of them as a ZIP archive. See the{' '}
-        <Link href="/tiktok-photo-downloader" className="text-rose-500 hover:underline font-medium">
+        <Link href="/tiktok-photo-downloader" className="text-indigo-500 hover:underline font-medium">
           TikTok photo downloader
         </Link>{' '}
         guide for details.
@@ -100,7 +100,7 @@ const faqs: { question: string; answer: React.ReactNode }[] = [
     answer: (
       <>
         Downloading TikTok videos for personal use is generally permitted, but re-uploading or using them commercially without the creator&apos;s permission may violate copyright law. See our{' '}
-        <Link href="/blog/is-downloading-tiktok-videos-legal-2025-guide" className="text-rose-500 hover:underline font-medium">
+        <Link href="/blog/is-downloading-tiktok-videos-legal-2025-guide" className="text-indigo-500 hover:underline font-medium">
           legal guide
         </Link>{' '}
         for full details.
@@ -112,7 +112,7 @@ const faqs: { question: string; answer: React.ReactNode }[] = [
     answer: (
       <>
         Some videos may be private, region-restricted, or temporarily unavailable. Make sure the TikTok URL is correct and the video is set to public. Learn more in our{' '}
-        <Link href="/blog/how-to-download-private-tiktok-videos-legal-methods" className="text-rose-500 hover:underline font-medium">
+        <Link href="/blog/how-to-download-private-tiktok-videos-legal-methods" className="text-indigo-500 hover:underline font-medium">
           private video guide
         </Link>.
       </>
@@ -129,7 +129,7 @@ const faqs: { question: string; answer: React.ReactNode }[] = [
   {
     question: 'Do I need to install any software or app?',
     answer:
-      'No. SaveFromInternet works entirely in your browser. No app, no extension, no account — just paste the TikTok URL and download.',
+      'No. SaveFromInternet works entirely in your browser. No app, no extension, no account - just paste the TikTok URL and download.',
   },
   {
     question: 'What if the download fails?',
@@ -161,12 +161,12 @@ export default function FAQPage() {
       {/* Hero */}
       <section className="bg-gradient-to-b from-slate-50 dark:from-slate-800 to-white dark:to-slate-900 py-14 px-4 text-center border-b border-slate-100 dark:border-slate-700/50">
         <div className="max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-white dark:bg-slate-800 text-rose-500 text-xs font-bold px-4 py-1.5 rounded-full mb-5 border border-rose-100 dark:border-rose-800/40 shadow-sm">
-            ❓ Help & Support
+          <div className="inline-flex items-center gap-2 bg-white dark:bg-slate-800 text-indigo-500 text-xs font-semibold px-4 py-1.5 rounded-full mb-5 border border-indigo-100 dark:border-indigo-900/40 shadow-sm">
+            Help & Support
           </div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight">
+          <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-4 leading-tight">
             TikTok Downloader{' '}
-            <span className="bg-gradient-to-r from-rose-500 to-violet-600 bg-clip-text text-transparent">
+            <span className="text-indigo-500">
               FAQ
             </span>
           </h1>
@@ -191,7 +191,7 @@ export default function FAQPage() {
         <div className="max-w-3xl mx-auto space-y-4">
           {faqs.map((faq, index) => (
             <div key={index}>
-              <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-5 border border-slate-100 dark:border-slate-700/50">
+              <div className="bg-slate-50 dark:bg-slate-800 rounded-lg p-5 border border-slate-100 dark:border-slate-700/50">
                 <h3 className="text-slate-900 dark:text-white font-bold text-base mb-2">{faq.question}</h3>
                 <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{faq.answer}</p>
               </div>
@@ -223,18 +223,18 @@ export default function FAQPage() {
       </div>
 
       {/* CTA */}
-      <section className="bg-gradient-to-r from-rose-500 to-violet-600 py-14 px-4 text-center">
-        <h2 className="text-3xl font-extrabold text-white mb-4">
+      <section className="bg-indigo-500 py-14 px-4 text-center">
+        <h2 className="text-3xl font-bold text-white mb-4">
           Ready to Download TikTok Videos?
         </h2>
-        <p className="text-rose-100 mb-8 text-lg">
-          Free · No watermark · No app · iPhone, Android & PC
+        <p className="text-indigo-100 mb-8 text-lg">
+          Free - No watermark - No app - iPhone, Android &amp; PC
         </p>
         <Link
           href="/"
-          className="inline-block bg-white text-rose-600 font-bold px-8 py-4 rounded-xl text-lg shadow-xl hover:scale-105 transition-all"
+          className="inline-block bg-white text-indigo-600 font-semibold px-8 py-4 rounded-lg text-lg shadow-xl hover:scale-105 transition-all"
         >
-          ⬇ Try TikTok Downloader
+          Try TikTok Downloader
         </Link>
       </section>
     </div>

@@ -19,16 +19,16 @@ export interface BlogPost {
   category: BlogCategory
 }
 
-export const categoryMeta: Record<BlogCategory, { label: string; icon: string }> = {
-  'how-to':          { label: 'How-To Guides',       icon: '📖' },
-  'no-watermark':    { label: 'No Watermark',         icon: '🚫💧' },
-  device:            { label: 'Device Guides',         icon: '📱' },
-  audio:             { label: 'Audio & MP3',           icon: '🎵' },
-  photos:            { label: 'Photos & Carousels',    icon: '🖼️' },
-  troubleshooting:   { label: 'Troubleshooting',       icon: '🔧' },
-  comparison:        { label: 'Tool Comparisons',      icon: '⚖️' },
-  'other-platforms': { label: 'Other Platforms',       icon: '🌐' },
-  legal:             { label: 'Legal & Privacy',       icon: '⚖️' },
+export const categoryMeta: Record<BlogCategory, { label: string }> = {
+  'how-to':          { label: 'How-To Guides' },
+  'no-watermark':    { label: 'No Watermark' },
+  device:            { label: 'Device Guides' },
+  audio:             { label: 'Audio & MP3' },
+  photos:            { label: 'Photos & Carousels' },
+  troubleshooting:   { label: 'Troubleshooting' },
+  comparison:        { label: 'Tool Comparisons' },
+  'other-platforms': { label: 'Other Platforms' },
+  legal:             { label: 'Legal & Privacy' },
 }
 
 // Unsplash photo IDs used as blog thumbnails (matching topics already used in blog post content)

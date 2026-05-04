@@ -1,4 +1,4 @@
-import Link from 'next/link'
+﻿import Link from 'next/link'
 
 const downloaders = [
   { label: 'TikTok Video Downloader', href: '/tiktok-video-downloader' },
@@ -33,7 +33,7 @@ export default function Footer() {
           <div>
             <Link href="/" className="flex items-center gap-2.5 mb-4">
               <img src="/logo-final.png" alt="Save From Internet" className="h-8 w-auto object-contain brightness-0 invert" />
-              <span className="font-extrabold text-white text-base">Save From Internet</span>
+              <span className="font-bold text-white text-base">Save From Internet</span>
             </Link>
             <p className="text-slate-400 text-sm leading-relaxed">
               Free TikTok video downloader. Download without watermark in HD — no app, no account, unlimited downloads.
@@ -47,7 +47,7 @@ export default function Footer() {
             <ul className="space-y-2.5">
               {downloaders.map(({ label, href }) => (
                 <li key={href}>
-                  <Link href={href} className="text-slate-400 hover:text-rose-400 text-sm transition-colors">
+                  <Link href={href} className="text-slate-400 hover:text-indigo-400 text-sm transition-colors">
                     {label}
                   </Link>
                 </li>
@@ -61,7 +61,7 @@ export default function Footer() {
             <ul className="space-y-2.5">
               {guides.map(({ label, href }) => (
                 <li key={href}>
-                  <Link href={href} className="text-slate-400 hover:text-rose-400 text-sm transition-colors">
+                  <Link href={href} className="text-slate-400 hover:text-indigo-400 text-sm transition-colors">
                     {label}
                   </Link>
                 </li>
@@ -75,7 +75,7 @@ export default function Footer() {
             <ul className="space-y-2.5 mb-6">
               {legal.map(({ label, href }) => (
                 <li key={href}>
-                  <Link href={href} className="text-slate-400 hover:text-rose-400 text-sm transition-colors">
+                  <Link href={href} className="text-slate-400 hover:text-indigo-400 text-sm transition-colors">
                     {label}
                   </Link>
                 </li>
@@ -83,9 +83,9 @@ export default function Footer() {
             </ul>
             <Link
               href="/"
-              className="inline-block px-5 py-2.5 bg-gradient-to-r from-rose-500 to-violet-600 hover:from-rose-600 hover:to-violet-700 text-white text-sm font-bold rounded-xl transition-all shadow-lg shadow-rose-900/30"
+              className="inline-block px-5 py-2.5 bg-indigo-500 hover:bg-indigo-600 text-white text-sm font-semibold rounded-lg transition-all shadow-lg shadow-indigo-900/30"
             >
-              ⬇ Download TikTok Now
+              Download TikTok Now
             </Link>
           </div>
         </div>

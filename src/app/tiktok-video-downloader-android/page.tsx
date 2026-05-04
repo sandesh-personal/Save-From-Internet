@@ -1,5 +1,6 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Link from 'next/link'
+import { ShieldCheckIcon, DevicePhoneIcon, BoltIcon } from '@/components/icons'
 
 const howToSchema = {
   '@context': 'https://schema.org',
@@ -46,35 +47,37 @@ export default function TikTokDownloaderAndroidPage() {
         {/* Hero */}
         <div className="text-center space-y-3">
           <span className="inline-block bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wide">Android Guide · 2026</span>
-          <h1 className="text-4xl font-extrabold text-slate-900 dark:text-white">TikTok Video Downloader for Android</h1>
+          <h1 className="text-4xl font-bold text-slate-900 dark:text-white">TikTok Video Downloader for Android</h1>
           <p className="text-slate-500 dark:text-slate-400 text-lg">Download any TikTok video without watermark directly in Chrome or Samsung Internet. No app install, no account, no limits.</p>
-          <Link href="/" className="inline-block bg-rose-500 hover:bg-rose-600 text-white font-bold px-8 py-3 rounded-xl text-base transition-colors mt-2">
-            ⬇ Download TikTok Video Now — Free
+          <Link href="/" className="inline-block bg-indigo-500 hover:bg-indigo-600 text-white font-semibold px-8 py-3 rounded-lg text-base transition-colors mt-2">
+            Download TikTok Video Now — Free
           </Link>
         </div>
 
         {/* Steps */}
-        <div className="bg-rose-50 dark:bg-rose-900/20 border border-rose-200 dark:border-rose-800/40 rounded-2xl p-6 space-y-4">
+        <div className="bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-200 dark:border-indigo-800/40 rounded-lg p-6 space-y-4">
           <h2 className="text-xl font-bold text-slate-900 dark:text-white">How to Download TikTok on Android</h2>
           <ol className="space-y-3 text-slate-700 dark:text-slate-300">
-            <li className="flex gap-3"><span className="flex-shrink-0 w-7 h-7 bg-rose-500 text-white rounded-full flex items-center justify-center font-bold text-sm">1</span><span>Open TikTok → find the video → tap <strong>Share → Copy Link</strong></span></li>
-            <li className="flex gap-3"><span className="flex-shrink-0 w-7 h-7 bg-rose-500 text-white rounded-full flex items-center justify-center font-bold text-sm">2</span><span>Open Chrome (or Samsung Internet) and go to <Link href="/" className="text-rose-500 font-semibold underline">savefrominternet.com</Link></span></li>
-            <li className="flex gap-3"><span className="flex-shrink-0 w-7 h-7 bg-rose-500 text-white rounded-full flex items-center justify-center font-bold text-sm">3</span><span>Paste the link in the box and tap <strong>Download TikTok Video</strong></span></li>
-            <li className="flex gap-3"><span className="flex-shrink-0 w-7 h-7 bg-rose-500 text-white rounded-full flex items-center justify-center font-bold text-sm">4</span><span>Tap <strong>Download Video</strong> — the MP4 saves to your Downloads folder automatically</span></li>
+            <li className="flex gap-3"><span className="flex-shrink-0 w-7 h-7 bg-indigo-500 text-white rounded-full flex items-center justify-center font-bold text-sm">1</span><span>Open TikTok → find the video → tap <strong>Share → Copy Link</strong></span></li>
+            <li className="flex gap-3"><span className="flex-shrink-0 w-7 h-7 bg-indigo-500 text-white rounded-full flex items-center justify-center font-bold text-sm">2</span><span>Open Chrome (or Samsung Internet) and go to <Link href="/" className="text-indigo-500 font-semibold underline">savefrominternet.com</Link></span></li>
+            <li className="flex gap-3"><span className="flex-shrink-0 w-7 h-7 bg-indigo-500 text-white rounded-full flex items-center justify-center font-bold text-sm">3</span><span>Paste the link in the box and tap <strong>Download TikTok Video</strong></span></li>
+            <li className="flex gap-3"><span className="flex-shrink-0 w-7 h-7 bg-indigo-500 text-white rounded-full flex items-center justify-center font-bold text-sm">4</span><span>Tap <strong>Download Video</strong> — the MP4 saves to your Downloads folder automatically</span></li>
           </ol>
         </div>
 
         {/* Features */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {[
-            { icon: '🚫', title: 'No Watermark', desc: 'Clean MP4, no TikTok logo or branding' },
-            { icon: '📱', title: 'Any Android', desc: 'Samsung, Pixel, OnePlus, Xiaomi — all work' },
-            { icon: '🆓', title: 'Completely Free', desc: 'No account, no limits, no hidden charges' },
-          ].map(f => (
-            <div key={f.title} className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700/50 rounded-xl p-4 text-center">
-              <div className="text-3xl mb-2">{f.icon}</div>
-              <div className="font-bold text-slate-900 dark:text-white">{f.title}</div>
-              <div className="text-sm text-slate-500 dark:text-slate-400">{f.desc}</div>
+          {([
+            { Icon: ShieldCheckIcon, title: 'No Watermark', desc: 'Clean MP4, no TikTok logo or branding' },
+            { Icon: DevicePhoneIcon, title: 'Any Android', desc: 'Samsung, Pixel, OnePlus, Xiaomi — all work' },
+            { Icon: BoltIcon, title: 'Completely Free', desc: 'No account, no limits, no hidden charges' },
+          ] as const).map(({ Icon, title, desc }) => (
+            <div key={title} className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700/50 rounded-lg p-4 text-center">
+              <div className="w-10 h-10 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg flex items-center justify-center mx-auto mb-2">
+                <Icon className="w-5 h-5 text-indigo-500" />
+              </div>
+              <div className="font-bold text-slate-900 dark:text-white">{title}</div>
+              <div className="text-sm text-slate-500 dark:text-slate-400">{desc}</div>
             </div>
           ))}
         </div>
@@ -83,9 +86,9 @@ export default function TikTokDownloaderAndroidPage() {
         <div className="space-y-4">
           <h2 className="text-2xl font-bold text-slate-900 dark:text-white">What You Can Download</h2>
           <ul className="space-y-2 text-slate-700 dark:text-slate-300">
-            <li className="flex items-start gap-2"><span className="text-rose-500 font-bold mt-0.5">✓</span><span><strong>TikTok videos (MP4)</strong> — HD quality up to 1080p, no watermark</span></li>
-            <li className="flex items-start gap-2"><span className="text-rose-500 font-bold mt-0.5">✓</span><span><strong>TikTok audio (MP3)</strong> — extract just the sound or music track</span></li>
-            <li className="flex items-start gap-2"><span className="text-rose-500 font-bold mt-0.5">✓</span><span><strong>TikTok photo carousels</strong> — download all images as a ZIP file</span></li>
+            <li className="flex items-start gap-2"><span className="text-indigo-500 font-bold mt-0.5">✓</span><span><strong>TikTok videos (MP4)</strong> — HD quality up to 1080p, no watermark</span></li>
+            <li className="flex items-start gap-2"><span className="text-indigo-500 font-bold mt-0.5">✓</span><span><strong>TikTok audio (MP3)</strong> — extract just the sound or music track</span></li>
+            <li className="flex items-start gap-2"><span className="text-indigo-500 font-bold mt-0.5">✓</span><span><strong>TikTok photo carousels</strong> — download all images as a ZIP file</span></li>
           </ul>
         </div>
 
@@ -103,11 +106,11 @@ export default function TikTokDownloaderAndroidPage() {
               </thead>
               <tbody className="text-slate-700 dark:text-slate-300">
                 {[
-                  ['Chrome', '✅ Best', 'Fastest downloads, direct to Downloads folder'],
-                  ['Samsung Internet', '✅ Great', 'Integrates with Samsung Gallery automatically'],
-                  ['Firefox', '✅ Good', 'Works well, download manager built in'],
-                  ['Edge', '✅ Good', 'Full support on Android'],
-                  ['Opera', '✅ Good', 'Works fine, has a built-in file manager'],
+                  ['Chrome', 'Best', 'Fastest downloads, direct to Downloads folder'],
+                  ['Samsung Internet', 'Great', 'Integrates with Samsung Gallery automatically'],
+                  ['Firefox', 'Good', 'Works well, download manager built in'],
+                  ['Edge', 'Good', 'Full support on Android'],
+                  ['Opera', 'Good', 'Works fine, has a built-in file manager'],
                 ].map(([browser, works, note]) => (
                   <tr key={browser} className="border border-slate-200 dark:border-slate-700">
                     <td className="p-3 font-medium">{browser}</td>
@@ -125,10 +128,10 @@ export default function TikTokDownloaderAndroidPage() {
           <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Where Do Downloads Save on Android?</h2>
           <p className="text-slate-600 dark:text-slate-400">Downloaded videos save to your <strong>Downloads folder</strong>. Access them via:</p>
           <ul className="space-y-2 text-slate-700 dark:text-slate-300">
-            <li className="flex items-start gap-2"><span className="text-rose-500 font-bold mt-0.5">→</span><span><strong>Files app</strong> (built-in on most Android devices) → Downloads</span></li>
-            <li className="flex items-start gap-2"><span className="text-rose-500 font-bold mt-0.5">→</span><span><strong>Samsung Galaxy:</strong> My Files → Downloads, or Gallery → Downloads album</span></li>
-            <li className="flex items-start gap-2"><span className="text-rose-500 font-bold mt-0.5">→</span><span><strong>Google Pixel:</strong> Files by Google app → Downloads</span></li>
-            <li className="flex items-start gap-2"><span className="text-rose-500 font-bold mt-0.5">→</span><span><strong>Chrome tray:</strong> Tap the three dots → Downloads to see recent files</span></li>
+            <li className="flex items-start gap-2"><span className="text-indigo-500 font-bold mt-0.5">→</span><span><strong>Files app</strong> (built-in on most Android devices) → Downloads</span></li>
+            <li className="flex items-start gap-2"><span className="text-indigo-500 font-bold mt-0.5">→</span><span><strong>Samsung Galaxy:</strong> My Files → Downloads, or Gallery → Downloads album</span></li>
+            <li className="flex items-start gap-2"><span className="text-indigo-500 font-bold mt-0.5">→</span><span><strong>Google Pixel:</strong> Files by Google app → Downloads</span></li>
+            <li className="flex items-start gap-2"><span className="text-indigo-500 font-bold mt-0.5">→</span><span><strong>Chrome tray:</strong> Tap the three dots → Downloads to see recent files</span></li>
           </ul>
           <p className="text-slate-600 dark:text-slate-400 text-sm">To move a video to your main Gallery, open Files → Downloads, long-press the MP4, tap <strong>Move</strong>, then navigate to DCIM/Camera.</p>
         </div>
@@ -152,7 +155,7 @@ export default function TikTokDownloaderAndroidPage() {
 
         {/* CTA */}
         <div className="text-center pt-4">
-          <Link href="/" className="inline-block bg-rose-500 hover:bg-rose-600 text-white font-bold px-10 py-4 rounded-2xl text-lg transition-colors">
+          <Link href="/" className="inline-block bg-indigo-500 hover:bg-indigo-600 text-white font-semibold px-10 py-4 rounded-lg text-lg transition-colors">
             Download TikTok Video Now — Free
           </Link>
         </div>
@@ -160,7 +163,7 @@ export default function TikTokDownloaderAndroidPage() {
         {/* Related */}
         <div className="pt-4 border-t border-slate-100 dark:border-slate-700/50">
           <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-3">Related Guides</h2>
-          <ul className="space-y-1 text-rose-500 text-sm">
+          <ul className="space-y-1 text-indigo-500 text-sm">
             <li><Link href="/blog/how-to-download-tiktok-videos-on-android-complete-guide" className="underline">Complete Android TikTok Download Guide</Link></li>
             <li><Link href="/blog/download-tiktok-no-watermark-android" className="underline">Download TikTok Without Watermark on Android</Link></li>
             <li><Link href="/blog/download-tiktok-samsung" className="underline">Download TikTok on Samsung Galaxy</Link></li>
