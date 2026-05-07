@@ -33,7 +33,7 @@ export default function ArticleSchema({ title, description, date, lastModified, 
       url: 'https://www.savefrominternet.com',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://www.savefrominternet.com/logo-final.png',
+        url: 'https://www.savefrominternet.com/logo-circle.svg',
         width: 512,
         height: 512,
       },

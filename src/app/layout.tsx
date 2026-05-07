@@ -59,8 +59,8 @@ export const metadata: Metadata = {
     images: [`${baseUrl}/og-final.jpg`],
   },
   icons: {
-    icon: [{ url: '/favicon-final.svg', type: 'image/svg+xml' }, { url: '/favicon.ico', sizes: '32x32' }],
-    apple: '/apple-touch-icon-final.svg',
+    icon: [{ url: '/logo-circle.svg', type: 'image/svg+xml' }, { url: '/favicon.ico', sizes: '32x32' }],
+    apple: '/logo-circle.svg',
   },
   manifest: '/manifest.json',
 }
@@ -106,7 +106,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
               {/* Logo */}
               <Link href="/" className="flex items-center gap-2.5 select-none flex-shrink-0">
-                <img src="/logo-final.png" alt="Save From Internet Logo" className="h-8 w-auto object-contain" draggable={false} />
+                <img src="/logo-circle.svg" alt="Save From Internet Logo" className="h-8 w-auto object-contain" draggable={false} />
                 <span className="font-bold text-slate-900 dark:text-white text-sm sm:text-lg tracking-tight">
                   Save From <span className="text-indigo-500">Internet</span>
                 </span>
@@ -179,7 +179,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             name: 'SaveFromInternet',
             alternateName: ['Save From Internet', 'savefrominternet.com'],
             url: 'https://www.savefrominternet.com',
-            logo: 'https://www.savefrominternet.com/logo-final.png',
+            logo: 'https://www.savefrominternet.com/logo-circle.svg',
             contactPoint: { '@type': 'ContactPoint', email: 'contact@savefrominternet.com', contactType: 'customer support' },
           }) }} />
         </Providers>

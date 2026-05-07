@@ -4,15 +4,10 @@
   "description": "Download TikTok videos without watermarks in high quality. Fast, free TikTok video downloader for PC, iPhone, Android.",
   "icons": [
     {
-      "src": "/favicon-final.svg",
+      "src": "/logo-circle.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
-    },
-    {
-      "src": "/apple-touch-icon-final.svg",
-      "sizes": "180x180",
-      "type": "image/svg+xml"
     },
     {
       "src": "/favicon.ico",
