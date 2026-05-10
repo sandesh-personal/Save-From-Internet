@@ -32,13 +32,16 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Create proxy URLs for both video and audio
-    const videoProxyUrl = `/api/video?url=${encodeURIComponent(
-      videoData.downloadUrl
-    )}`
+    // Route video/audio through CF Worker if configured, else fall back to local proxy
+    const workerBase = process.env.PROXY_WORKER_URL?.replace(/\/$/, '')
+    const videoProxyUrl = workerBase
+      ? `${workerBase}/video?url=${encodeURIComponent(videoData.downloadUrl)}`
+      : `/api/video?url=${encodeURIComponent(videoData.downloadUrl)}`
 
     const audioSourceUrl = videoData.audioUrl || videoData.downloadUrl
-    const audioProxyUrl = `/api/audio?url=${encodeURIComponent(audioSourceUrl)}`
+    const audioProxyUrl = workerBase
+      ? `${workerBase}/audio?url=${encodeURIComponent(audioSourceUrl)}`
+      : `/api/audio?url=${encodeURIComponent(audioSourceUrl)}`
 
     return NextResponse.json({
       success: true,

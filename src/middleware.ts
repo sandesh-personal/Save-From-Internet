@@ -30,16 +30,12 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(url, 301)
   }
 
-  const url = request.nextUrl.clone()
+  const needsHttps = protocol !== 'https'
+  const needsWww = host !== WWW_HOST
 
-  // Enforce HTTPS
-  if (protocol !== 'https') {
+  if (needsHttps || needsWww) {
+    const url = request.nextUrl.clone()
     url.protocol = 'https'
-    return NextResponse.redirect(url, 301)
-  }
-
-  // Enforce www
-  if (host !== WWW_HOST) {
     url.hostname = WWW_HOST
     return NextResponse.redirect(url, 301)
   }

@@ -32,7 +32,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <Link href="/" className="flex items-center gap-2.5 mb-4">
-              <img src="/logo-circle.svg" alt="Save From Internet" className="h-8 w-auto object-contain brightness-0 invert" />
+              <img src="/logo-final.png" alt="Save From Internet" className="h-8 w-auto object-contain" />
               <span className="font-bold text-white text-base">Save From Internet</span>
             </Link>
             <p className="text-slate-400 text-sm leading-relaxed">
