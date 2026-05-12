@@ -95,6 +95,17 @@ export default function BlogPostLayout({ title, description, date, lastModified,
           </div>
         </header>
 
+        {/* Above-fold ad — Blog Top of Article */}
+        <div className="mb-8">
+          <p className="text-[10px] text-center text-slate-400 uppercase tracking-wider mb-1.5">Advertisement</p>
+          <GoogleAdSense
+            adSlot="9402513184"
+            adFormat="auto"
+            className="flex justify-center"
+            containerStyle="default"
+          />
+        </div>
+
         {/* Top CTA Banner */}
         <div className="bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-100 dark:border-indigo-800/40 rounded-lg p-4 sm:p-5 mb-8 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="text-center sm:text-left">
