@@ -1,13 +1,30 @@
 ﻿'use client'
 
 import { useState } from 'react'
+import { useRouter, usePathname } from 'next/navigation'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { languages, type LangCode } from '@/lib/translations'
+
+const LOCALE_CODES = languages.map((l) => l.code).filter((c) => c !== 'en')
 
 export default function LanguageSwitcher() {
   const { lang, setLang } = useLanguage()
   const [open, setOpen] = useState(false)
+  const router = useRouter()
+  const pathname = usePathname()
   const current = languages.find((l) => l.code === lang) ?? languages[0]
+
+  function handleSelect(code: LangCode) {
+    setLang(code)
+    setOpen(false)
+
+    // If on the homepage or a locale homepage, navigate to the correct locale URL
+    const isLocalePage = LOCALE_CODES.some((loc) => pathname === `/${loc}`)
+    const isHome = pathname === '/' || isLocalePage
+    if (isHome) {
+      router.push(code === 'en' ? '/' : `/${code}`)
+    }
+  }
 
   return (
     <div className="relative">
@@ -29,7 +46,7 @@ export default function LanguageSwitcher() {
             {languages.map((l) => (
               <button
                 key={l.code}
-                onClick={() => { setLang(l.code as LangCode); setOpen(false) }}
+                onClick={() => handleSelect(l.code as LangCode)}
                 className={`w-full flex items-center gap-2.5 px-3 py-2.5 text-sm transition-colors hover:bg-slate-50 dark:hover:bg-slate-700 ${
                   lang === l.code
                     ? 'bg-rose-50 dark:bg-rose-900/20 text-rose-600 dark:text-rose-400 font-semibold'

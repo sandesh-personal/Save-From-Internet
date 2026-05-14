@@ -1,18 +1,13 @@
-'use client'
-import { usePathname } from 'next/navigation'
-
 interface ArticleSchemaProps {
   title: string
   description: string
   date: string
   lastModified?: string
   image?: string
+  url: string
 }
 
-export default function ArticleSchema({ title, description, date, lastModified, image }: ArticleSchemaProps) {
-  const pathname = usePathname()
-  const url = `https://www.savefrominternet.com${pathname}`
-
+export default function ArticleSchema({ title, description, date, lastModified, image, url }: ArticleSchemaProps) {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',

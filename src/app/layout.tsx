@@ -1,12 +1,16 @@
 ﻿import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
+import { headers } from 'next/headers'
 import { Analytics } from '@vercel/analytics/react'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Footer from '@/components/layout/footer'
 import Header from '@/components/layout/Header'
+import StickyFooterAd from '@/components/StickyFooterAd'
 import { GA_TRACKING_ID } from '@/lib/ga'
 import { Providers } from '@/components/Providers'
+
+const LOCALE_PATHS = ['es', 'pt', 'id', 'fr', 'de', 'ar', 'vi', 'zh', 'ja', 'ru']
 
 const inter = Inter({
   variable: '--font-inter',
@@ -72,10 +76,18 @@ export const viewport: Viewport = {
   initialScale: 1,
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const headersList = await headers()
+  const locale = headersList.get('x-locale') ?? 'en'
+
   return (
-    <html lang="en" className={inter.variable} suppressHydrationWarning>
+    <html lang={locale} className={inter.variable} suppressHydrationWarning>
       <head>
+        <link rel="alternate" hrefLang="x-default" href={baseUrl} />
+        <link rel="alternate" hrefLang="en" href={baseUrl} />
+        {LOCALE_PATHS.map((loc) => (
+          <link key={loc} rel="alternate" hrefLang={loc} href={`${baseUrl}/${loc}`} />
+        ))}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
         <link rel="dns-prefetch" href="https://www.tiktok.com" />
@@ -107,6 +119,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </main>
 
           <Footer />
+          <StickyFooterAd />
           <Analytics />
           <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
             '@context': 'https://schema.org',

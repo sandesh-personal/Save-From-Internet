@@ -1,6 +1,8 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
 import GoogleAdSense from '@/components/GoogleAdSense'
+import ToolRelatedGuides from '@/components/ToolRelatedGuides'
+import ToolSchema from '@/components/ToolSchema'
 import { FilmIcon, MusicIcon, PhotoIcon, DevicePhoneIcon, MonitorIcon } from '@/components/icons'
 
 export const metadata: Metadata = {
@@ -282,8 +284,17 @@ export default function TikTokToMp3Page() {
         </Link>
       </section>
 
+      <ToolRelatedGuides guides={[
+        { label: 'How to Extract TikTok Audio (MP3)', href: '/blog/how-to-extract-audio-from-tiktok-videos-mp3-download' },
+        { label: 'TikTok Audio Downloader Guide', href: '/blog/tiktok-audio-downloader-free' },
+        { label: 'TikTok MP3 Quality Guide', href: '/blog/tiktok-mp3-quality-guide' },
+        { label: 'TikTok to MP3 on iPhone', href: '/blog/tiktok-to-mp3-iphone' },
+        { label: 'TikTok to MP3 on Android', href: '/blog/tiktok-to-mp3-android' },
+        { label: 'Save TikTok Sound as Ringtone', href: '/blog/save-tiktok-sound-as-ringtone' },
+      ]} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <ToolSchema name="TikTok to MP3 Converter" url="https://www.savefrominternet.com/tiktok-to-mp3" description="Free TikTok to MP3 converter. Extract high-quality audio from any TikTok video. No app required." ratingCount="2718" />
     </div>
   )
 }

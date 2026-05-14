@@ -45,6 +45,7 @@ const nextConfig = {
   },
   async headers() {
     return [
+      // Security headers on everything
       {
         source: "/:path*",
         headers: [
@@ -53,6 +54,35 @@ const nextConfig = {
           { key: "X-XSS-Protection", value: "1; mode=block" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
+        ],
+      },
+      // API routes: never cache, no indexing
+      {
+        source: "/api/:path*",
+        headers: [
+          { key: "Cache-Control", value: "no-store, no-cache, must-revalidate" },
+          { key: "X-Robots-Tag", value: "noindex, nofollow" },
+        ],
+      },
+      // Blog posts: Cloudflare edge cache 24h, browser no-cache (content may update)
+      {
+        source: "/blog/:slug*",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800" },
+        ],
+      },
+      // Tool & landing pages: Cloudflare edge cache 1h
+      {
+        source: "/(tiktok-video-downloader|tiktok-to-mp3|tiktok-photo-downloader|tiktok-downloader-without-watermark|tiktok-video-downloader-iphone|tiktok-video-downloader-android|tiktok-video-downloader-pc|instagram-reel-downloader|save-tiktok-video|how-to-download-tiktok-videos|faq|about|privacy-policy|disclaimer)",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400" },
+        ],
+      },
+      // Static assets — immutable long cache
+      {
+        source: "/_next/static/(.*)",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
         ],
       },
       {
@@ -67,12 +97,6 @@ const nextConfig = {
         headers: [
           { key: "Content-Type", value: "image/x-icon" },
           { key: "Cache-Control", value: "public, max-age=86400" },
-        ],
-      },
-      {
-        source: "/_next/static/(.*)",
-        headers: [
-          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
         ],
       },
     ];

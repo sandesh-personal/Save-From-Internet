@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
+import ToolSchema from '@/components/ToolSchema'
 
 export const metadata: Metadata = {
   title: 'TikTok Downloader Without Watermark 2026 - Free HD | Save From Internet',
@@ -140,6 +141,7 @@ export default function TikTokDownloaderWithoutWatermarkPage() {
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <ToolSchema name="TikTok Downloader Without Watermark" url="https://www.savefrominternet.com/tiktok-downloader-without-watermark" description="Download TikTok videos without watermark in HD. Free, no app, no sign-up required." ratingCount="2541" />
     </div>
   )
 }

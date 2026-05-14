@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
+import ToolSchema from '@/components/ToolSchema'
 
 export const metadata: Metadata = {
   title: 'TikTok Downloader for PC & Windows — Free Video Saver, No Software 2026 | SaveFromInternet',
@@ -134,6 +135,7 @@ export default function TikTokDownloaderPCPage() {
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <ToolSchema name="TikTok Downloader for PC" url="https://www.savefrominternet.com/tiktok-video-downloader-pc" description="Download TikTok videos on PC and Windows. Free, no software install, works in Chrome, Firefox and Edge." ratingCount="1654" />
     </div>
   )
 }

@@ -1,6 +1,8 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
 import GoogleAdSense from '@/components/GoogleAdSense'
+import ToolSchema from '@/components/ToolSchema'
+import ToolRelatedGuides from '@/components/ToolRelatedGuides'
 import { FilmIcon, MusicIcon, PhotoIcon } from '@/components/icons'
 
 export const metadata: Metadata = {
@@ -167,8 +169,17 @@ export default function TikTokVideoDownloaderPage() {
         </Link>
       </section>
 
+      <ToolRelatedGuides guides={[
+        { label: 'How to Download TikTok Videos in 2026', href: '/blog/how-to-download-tiktok-videos-2026' },
+        { label: 'Download TikTok Without Watermark', href: '/blog/download-tiktok-videos-without-watermark-2025' },
+        { label: 'Download TikTok in HD Quality', href: '/blog/how-to-download-tiktok-videos-in-hd-quality' },
+        { label: 'TikTok Downloader for Android', href: '/blog/how-to-download-tiktok-videos-on-android-complete-guide' },
+        { label: 'TikTok Downloader for PC & Mac', href: '/blog/tiktok-video-downloader-for-pc-windows-mac' },
+        { label: 'Download TikTok Without Any App', href: '/blog/how-to-download-tiktok-videos-without-app' },
+      ]} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <ToolSchema name="TikTok Video Downloader" url="https://www.savefrominternet.com/tiktok-video-downloader" description="Free TikTok video downloader. Download TikTok videos without watermark in HD MP4. No app, no sign-up." ratingCount="3142" />
     </div>
   )
 }

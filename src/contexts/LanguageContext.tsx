@@ -15,15 +15,17 @@ const LanguageContext = createContext<LanguageContextType>({
   t: (key) => translations.en[key],
 })
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<LangCode>('en')
+export function LanguageProvider({ children, initialLang = 'en' }: { children: ReactNode; initialLang?: LangCode }) {
+  const [lang, setLangState] = useState<LangCode>(initialLang)
 
   useEffect(() => {
+    // If a locale route set an initialLang, honour it and don't override with localStorage
+    if (initialLang !== 'en') return
     const saved = localStorage.getItem('lang') as LangCode
     if (saved && languages.some((l) => l.code === saved)) {
       setLangState(saved)
     }
-  }, [])
+  }, [initialLang])
 
   const setLang = (l: LangCode) => {
     setLangState(l)

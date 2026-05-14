@@ -3,7 +3,25 @@ import * as cheerio from 'cheerio'
 import { VideoData, ImageData } from './types'
 import { parseVideoId } from './validator'
 
-const PRIMARY_API_KEY = process.env.TIKWM_API_KEY ?? '84ae3d78153d649762c5835648df0af2'
+const PRIMARY_API_KEY = process.env.TIKWM_API_KEY ?? ''
+
+// In-memory response cache — avoids hitting TikWM for the same video repeatedly.
+// TTL: 30 min. Max 500 entries (evicts oldest when full).
+const CACHE_TTL = 30 * 60 * 1000
+interface CacheEntry { data: VideoData; expiresAt: number }
+const videoCache = new Map<string, CacheEntry>()
+
+function getCached(key: string): VideoData | null {
+  const entry = videoCache.get(key)
+  if (!entry) return null
+  if (Date.now() > entry.expiresAt) { videoCache.delete(key); return null }
+  return entry.data
+}
+
+function setCached(key: string, data: VideoData): void {
+  if (videoCache.size >= 500) videoCache.delete(videoCache.keys().next().value as string)
+  videoCache.set(key, { data, expiresAt: Date.now() + CACHE_TTL })
+}
 
 export class Downloader {
   private readonly userAgent =
@@ -15,6 +33,9 @@ export class Downloader {
       throw new Error('Could not extract video ID from URL')
     }
 
+    const cached = getCached(videoId)
+    if (cached) return cached
+
     const methods = [
       () => this.tryPrimaryMethod(url),
       () => this.trySnaptikMethod(url),
@@ -25,7 +46,10 @@ export class Downloader {
     for (const method of methods) {
       try {
         const result = await method()
-        if (result) return result
+        if (result) {
+          setCached(videoId, result)
+          return result
+        }
       } catch (error) {
         console.warn('Method failed, trying next...', error)
       }

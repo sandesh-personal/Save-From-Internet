@@ -1,5 +1,7 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
+import ToolSchema from '@/components/ToolSchema'
+import ToolRelatedGuides from '@/components/ToolRelatedGuides'
 import { FilmIcon, MusicIcon, PhotoIcon } from '@/components/icons'
 
 export const metadata: Metadata = {
@@ -302,6 +304,14 @@ export default function TikTokPhotoDownloaderPage() {
         </Link>
       </section>
 
+      <ToolRelatedGuides guides={[
+        { label: 'How to Download TikTok Photos & Carousels', href: '/blog/how-to-download-tiktok-photos-and-image-carousels' },
+        { label: 'Download TikTok Carousel — All Images', href: '/blog/download-tiktok-carousel-all-images' },
+        { label: 'TikTok Image Carousel ZIP Download', href: '/blog/tiktok-image-carousel-zip' },
+        { label: 'TikTok Photo vs Video Download', href: '/blog/tiktok-photo-vs-video-download' },
+        { label: 'Save TikTok Slideshow', href: '/blog/save-tiktok-slideshow' },
+        { label: 'Best TikTok Photo Downloader', href: '/blog/best-tiktok-photo-downloader' },
+      ]} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
@@ -310,6 +320,7 @@ export default function TikTokPhotoDownloaderPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
+      <ToolSchema name="TikTok Photo Downloader" url="https://www.savefrominternet.com/tiktok-photo-downloader" description="Free TikTok photo and image carousel downloader. Save photos individually or as a ZIP. No app required." ratingCount="1893" />
     </div>
   )
 }

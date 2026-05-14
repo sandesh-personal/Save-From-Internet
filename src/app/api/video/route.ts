@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-const PRIMARY_API_KEY = process.env.TIKWM_API_KEY ?? '84ae3d78153d649762c5835648df0af2'
+const PRIMARY_API_KEY = process.env.TIKWM_API_KEY ?? ''
 
 const FETCH_HEADERS = {
   'User-Agent':

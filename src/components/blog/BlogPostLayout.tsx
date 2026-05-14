@@ -1,16 +1,19 @@
 import Link from 'next/link'
+import { headers } from 'next/headers'
 import GoogleAdSense from '@/components/GoogleAdSense'
 import BackToTopButton from './BackToTopButton'
 import MidArticleAd from './MidArticleAd'
 import ArticleSchema from './ArticleSchema'
+import RelatedPosts from './RelatedPosts'
 import type { ReactNode } from 'react'
+import type { BlogCategory } from '@/app/blog/blogData'
 
 interface BlogPostLayoutProps {
   title: string
   description: string
   date: string
   lastModified?: string
-  category: string
+  category: BlogCategory
   children: ReactNode
 }
 
@@ -36,14 +39,60 @@ const categoryLabels: Record<string, string> = {
   legal: 'Legal & Privacy',
 }
 
-export default function BlogPostLayout({ title, description, date, lastModified, category, children }: BlogPostLayoutProps) {
+export default async function BlogPostLayout({ title, description, date, lastModified, category, children }: BlogPostLayoutProps) {
+  const headersList = await headers()
+  const pathname = headersList.get('x-pathname') ?? ''
+  const url = `https://www.savefrominternet.com${pathname}`
+  const currentSlug = pathname.split('/').filter(Boolean).pop() ?? ''
+
   const label = categoryLabels[category] ?? category
   const wordCount = extractText(children).split(/\s+/).filter(Boolean).length
   const readingTime = Math.max(1, Math.round(wordCount / 200))
 
+  const howToSchema = category === 'how-to' ? {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: title,
+    description,
+    step: [
+      {
+        '@type': 'HowToStep',
+        position: 1,
+        name: 'Copy the TikTok URL',
+        text: "Open TikTok, tap the Share button on the video, then tap 'Copy Link'. On desktop, copy the URL from the address bar.",
+      },
+      {
+        '@type': 'HowToStep',
+        position: 2,
+        name: 'Paste on SaveFromInternet.com',
+        text: "Open savefrominternet.com in your browser, paste the link into the input field, and click 'Download TikTok Video'.",
+      },
+      {
+        '@type': 'HowToStep',
+        position: 3,
+        name: 'Download and Save',
+        text: "Click 'Download MP4' for a watermark-free video, 'Extract MP3' for audio only, or select photos from a carousel and download as a ZIP.",
+      },
+    ],
+  } : null
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.savefrominternet.com' },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://www.savefrominternet.com/blog' },
+      { '@type': 'ListItem', position: 3, name: label, item: url },
+    ],
+  }
+
   return (
     <div className="bg-white dark:bg-slate-900" id="top">
-      <ArticleSchema title={title} description={description} date={date} lastModified={lastModified} />
+      <ArticleSchema title={title} description={description} date={date} lastModified={lastModified} url={url} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      {howToSchema && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
+      )}
 
       {/* Sticky breadcrumb */}
       <div className="bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-700/50 px-4 py-3 sticky top-16 z-40 shadow-sm">
@@ -76,7 +125,7 @@ export default function BlogPostLayout({ title, description, date, lastModified,
           </h1>
           <p className="text-slate-500 dark:text-slate-400 text-base leading-relaxed mb-3">{description}</p>
           <div className="flex items-center gap-4 text-xs text-slate-400 dark:text-slate-500">
-            <span>By <span className="font-medium text-slate-500 dark:text-slate-400">SaveFromInternet Team</span></span>
+            <span>By <span className="font-medium text-slate-500 dark:text-slate-400">Sandy</span></span>
             <span>·</span>
             <span>
               Updated:{' '}
@@ -92,6 +141,20 @@ export default function BlogPostLayout({ title, description, date, lastModified,
             <Link href="/" className="text-indigo-400 hover:underline font-medium">
               SaveFromInternet.com
             </Link>
+          </div>
+
+          {/* Author bio */}
+          <div className="flex items-start gap-4 mt-6 p-4 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-100 dark:border-slate-700/50">
+            <div className="w-11 h-11 rounded-full bg-indigo-500 flex items-center justify-center text-white font-bold text-base flex-shrink-0">
+              S
+            </div>
+            <div>
+              <div className="text-sm font-semibold text-slate-900 dark:text-white">Sandy</div>
+              <div className="text-xs text-indigo-500 mb-1.5">Founder, SaveFromInternet.com</div>
+              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                Building free video-download tools since 2024. Expert in web APIs, TikTok extractors, and multimedia processing across all major platforms.
+              </p>
+            </div>
           </div>
         </header>
 
@@ -164,6 +227,8 @@ export default function BlogPostLayout({ title, description, date, lastModified,
             containerStyle="default"
           />
         </div>
+
+        <RelatedPosts category={category} currentSlug={currentSlug} />
 
         {/* Navigation */}
         <div className="mt-8 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50 pt-6">

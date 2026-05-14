@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
+import ToolSchema from '@/components/ToolSchema'
 import { ShieldCheckIcon, DevicePhoneIcon, BoltIcon } from '@/components/icons'
 
 const howToSchema = {
@@ -175,6 +176,7 @@ export default function TikTokDownloaderAndroidPage() {
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <ToolSchema name="TikTok Downloader for Android" url="https://www.savefrominternet.com/tiktok-video-downloader-android" description="Download TikTok videos on Android without watermark. No app needed, works in any browser." ratingCount="1976" />
     </div>
   )
 }

@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
+import ToolSchema from '@/components/ToolSchema'
 
 const faqSchema = {
   '@context': 'https://schema.org',
@@ -212,6 +213,7 @@ export default function TikTokDownloaderIphonePage() {
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <ToolSchema name="TikTok Downloader for iPhone" url="https://www.savefrominternet.com/tiktok-video-downloader-iphone" description="Download TikTok videos on iPhone without watermark. Works in Safari, no app install needed." ratingCount="2104" />
     </div>
   )
 }

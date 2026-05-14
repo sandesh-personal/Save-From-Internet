@@ -1,12 +1,22 @@
-﻿'use client'
 import Link from 'next/link'
 import Image from 'next/image'
+import type { Metadata } from 'next'
 import GoogleAdSense from '@/components/GoogleAdSense'
 import { blogPosts, categoryMeta, type BlogCategory } from './blogData'
-import { useState } from 'react'
 
-export default function BlogPage() {
-  const [activeCategory, setActiveCategory] = useState<BlogCategory | 'all'>('all')
+export const metadata: Metadata = {
+  title: 'TikTok Downloader Blog — Guides, Tips & How-Tos | SaveFromInternet',
+  description: `${blogPosts.length} guides on downloading TikTok videos, audio, and photos without watermark. Step-by-step tutorials for every device.`,
+  alternates: { canonical: 'https://www.savefrominternet.com/blog' },
+}
+
+export default async function BlogPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ cat?: string }>
+}) {
+  const { cat } = await searchParams
+  const activeCategory = (cat ?? 'all') as BlogCategory | 'all'
 
   const filtered =
     activeCategory === 'all'
@@ -23,9 +33,7 @@ export default function BlogPage() {
           </div>
           <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-4 leading-tight">
             TikTok Downloader{' '}
-            <span className="text-indigo-500">
-              Blog
-            </span>
+            <span className="text-indigo-500">Blog</span>
           </h1>
           <p className="text-lg text-slate-500 dark:text-slate-400 max-w-xl mx-auto">
             {blogPosts.length} guides on downloading TikTok videos, audio, and photos — no watermark, no app.
@@ -43,12 +51,12 @@ export default function BlogPage() {
         />
       </div>
 
-      {/* Category filter tabs */}
+      {/* Category filter tabs — <a> links so Google can crawl filtered views */}
       <section className="bg-white dark:bg-slate-900 px-4 pt-8 pb-2 border-b border-slate-100 dark:border-slate-700/50 sticky top-16 z-40 shadow-sm">
         <div className="max-w-5xl mx-auto">
           <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-            <button
-              onClick={() => setActiveCategory('all')}
+            <a
+              href="/blog"
               className={`flex-shrink-0 text-xs font-bold px-4 py-2 rounded-full border transition-all ${
                 activeCategory === 'all'
                   ? 'bg-indigo-500 text-white border-indigo-500'
@@ -56,15 +64,15 @@ export default function BlogPage() {
               }`}
             >
               All ({blogPosts.length})
-            </button>
+            </a>
             {(Object.entries(categoryMeta) as [BlogCategory, { label: string }][]).map(
               ([key, { label }]) => {
                 const count = blogPosts.filter((p) => p.category === key).length
                 if (count === 0) return null
                 return (
-                  <button
+                  <a
                     key={key}
-                    onClick={() => setActiveCategory(key)}
+                    href={`/blog?cat=${key}`}
                     className={`flex-shrink-0 text-xs font-semibold px-4 py-2 rounded-full border transition-all whitespace-nowrap ${
                       activeCategory === key
                         ? 'bg-indigo-500 text-white border-indigo-500'
@@ -72,7 +80,7 @@ export default function BlogPage() {
                     }`}
                   >
                     {label} ({count})
-                  </button>
+                  </a>
                 )
               }
             )}

@@ -3,24 +3,39 @@ import { NextResponse } from 'next/server'
 
 const WWW_HOST = 'www.savefrominternet.com'
 const BASE_DOMAIN = 'savefrominternet.com'
+const LOCALES = ['es', 'pt', 'id', 'fr', 'de', 'ar', 'vi', 'zh', 'ja', 'ru']
+
+function setMeta(response: NextResponse, pathname: string) {
+  const segment = pathname.split('/')[1]
+  response.headers.set('x-pathname', pathname)
+  response.headers.set('x-locale', LOCALES.includes(segment) ? segment : 'en')
+}
 
 export function middleware(request: NextRequest) {
-  // 🔒 Do NOTHING in development
+  const pathname = request.nextUrl.pathname
+
   if (process.env.NODE_ENV !== 'production') {
-    return NextResponse.next()
+    const response = NextResponse.next()
+    setMeta(response, pathname)
+    return response
   }
 
   const host = request.headers.get('host') ?? ''
   const protocol = request.headers.get('x-forwarded-proto') ?? 'https'
 
   if (!host) {
-    return NextResponse.next()
+    const response = NextResponse.next()
+    setMeta(response, pathname)
+    return response
   }
 
-  const isLocal = host.includes('localhost') || host.includes('127.0.0.1') || host.includes('0.0.0.0')
+  const isLocal =
+    host.includes('localhost') || host.includes('127.0.0.1') || host.includes('0.0.0.0')
 
   if (isLocal) {
-    return NextResponse.next()
+    const response = NextResponse.next()
+    setMeta(response, pathname)
+    return response
   }
 
   // Redirect any subdomain (e.g. insta.savefrominternet.com) to www
@@ -40,7 +55,9 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(url, 301)
   }
 
-  return NextResponse.next()
+  const response = NextResponse.next()
+  setMeta(response, pathname)
+  return response
 }
 
 export const config = {

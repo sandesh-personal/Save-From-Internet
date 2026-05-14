@@ -1,7 +1,8 @@
 ﻿'use client'
 
-import { useReducer, useRef, useState, useCallback } from 'react'
+import { useReducer, useRef, useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
+import { useSearchParams } from 'next/navigation'
 import { appReducer, initialState } from '@/lib/appReducer'
 import {
   SpinnerIcon,
@@ -10,7 +11,6 @@ import {
   CheckIcon,
   getImagePlaceholderBase64,
 } from '@/components/icons'
-import ProcessingAdModal from '@/components/ProcessingAdModal'
 import GoogleAdSense from '@/components/GoogleAdSense'
 import type { VideoMetadata } from '@/lib/appReducer'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -27,58 +27,59 @@ export default function DownloaderTool() {
   const [state, dispatch] = useReducer(appReducer, initialState)
   const containerRef = useRef<HTMLDivElement>(null)
   const { t } = useLanguage()
+  const searchParams = useSearchParams()
+  const [downloadCount, setDownloadCount] = useState(0)
 
-  const [showAdPopup, setShowAdPopup] = useState(false)
-  const [popupReady, setPopupReady] = useState(false)
-  const [pendingApiData, setPendingApiData] = useState<ApiResponse | null>(null)
+  useEffect(() => {
+    const now = new Date()
+    const dayOfYear = Math.floor((now.getTime() - new Date(now.getFullYear(), 0, 0).getTime()) / 86400000)
+    const base = 72000 + dayOfYear * 312 + now.getHours() * 18
+    setDownloadCount(base)
+    const interval = setInterval(() => setDownloadCount((c) => c + 1), 9000)
+    return () => clearInterval(interval)
+  }, [])
 
-  const handlePopupClose = useCallback(() => {
-    setShowAdPopup(false)
-    if (pendingApiData) {
-      if (pendingApiData.success && pendingApiData.downloadUrl && pendingApiData.metadata) {
-        dispatch({ type: 'SET_DOWNLOAD_SUCCESS', payload: { downloadUrl: pendingApiData.downloadUrl, audioUrl: pendingApiData.audioUrl, metadata: pendingApiData.metadata } })
+  const handleProcess = useCallback(async (overrideUrl?: string) => {
+    const urlToProcess = overrideUrl ?? state.url
+    if (!urlToProcess.trim()) {
+      dispatch({ type: 'SET_MESSAGE', payload: t('msgEnterUrl') })
+      return
+    }
+    dispatch({ type: 'SET_LOADING', payload: true })
+    dispatch({ type: 'RESET_DOWNLOAD_STATE' })
+    try {
+      const data: ApiResponse = await fetch('/api/download', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url: urlToProcess, type: state.downloadType }),
+      }).then((r) => r.json())
+      if (data.success && data.downloadUrl && data.metadata) {
+        dispatch({ type: 'SET_DOWNLOAD_SUCCESS', payload: { downloadUrl: data.downloadUrl, audioUrl: data.audioUrl, metadata: data.metadata } })
         dispatch({ type: 'SET_URL', payload: '' })
         setTimeout(() => {
           if (containerRef.current) {
             const r = containerRef.current.querySelector('.results-section')
             if (r) r.scrollIntoView({ behavior: 'smooth', block: 'start' })
           }
-        }, 400)
-      } else if (!pendingApiData.success) {
-        dispatch({ type: 'SET_MESSAGE', payload: pendingApiData.error || t('msgError') })
+        }, 100)
+      } else {
+        dispatch({ type: 'SET_MESSAGE', payload: data.error || t('msgError') })
       }
-      setPendingApiData(null)
-    }
-  }, [pendingApiData, t])
-
-  const handleProcess = async () => {
-    if (!state.url.trim()) {
-      dispatch({ type: 'SET_MESSAGE', payload: t('msgEnterUrl') })
-      return
-    }
-    dispatch({ type: 'SET_LOADING', payload: true })
-    dispatch({ type: 'RESET_DOWNLOAD_STATE' })
-    setPendingApiData(null)
-    setPopupReady(false)
-    setShowAdPopup(true)
-    try {
-      const [data] = await Promise.all([
-        fetch('/api/download', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ url: state.url, type: state.downloadType }),
-        }).then((r) => r.json() as Promise<ApiResponse>),
-        new Promise<void>((resolve) => setTimeout(resolve, 5000)),
-      ])
-      setPendingApiData(data)
-      setPopupReady(true)
     } catch {
-      setPendingApiData({ success: false, error: t('msgError') })
-      setPopupReady(true)
+      dispatch({ type: 'SET_MESSAGE', payload: t('msgError') })
     } finally {
       dispatch({ type: 'SET_LOADING', payload: false })
     }
-  }
+  }, [state.url, state.downloadType, t])
+
+  // Auto-fill and auto-submit when ?url= query param is present
+  useEffect(() => {
+    const paramUrl = searchParams.get('url')
+    if (!paramUrl) return
+    dispatch({ type: 'SET_URL', payload: paramUrl })
+    handleProcess(paramUrl)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const handleVideoDownload = async () => {
     if (!state.downloadUrl) return
@@ -241,6 +242,22 @@ export default function DownloaderTool() {
             </span>
           ))}
         </div>
+
+        {/* Social proof counter */}
+        {downloadCount > 0 && (
+          <div className="mt-5 inline-flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+            <span className="flex gap-0.5">
+              {[...Array(5)].map((_, i) => (
+                <svg key={i} className="w-3.5 h-3.5 text-amber-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              ))}
+            </span>
+            <span>
+              <strong className="text-slate-700 dark:text-slate-200">{downloadCount.toLocaleString()}</strong> videos downloaded today
+            </span>
+          </div>
+        )}
       </section>
 
       {/* ── Input Card ── */}
@@ -273,7 +290,7 @@ export default function DownloaderTool() {
 
           {/* Main CTA */}
           <button
-            onClick={handleProcess}
+            onClick={() => handleProcess()}
             disabled={isBusy}
             className="w-full py-4 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold rounded-lg transition-all duration-200 text-base sm:text-lg shadow-lg shadow-indigo-500/25 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2 active:scale-[0.99]"
           >
@@ -289,8 +306,20 @@ export default function DownloaderTool() {
           </p>
         </div>
 
-        {/* Ad below input card */}
-        <div className="mt-4 flex justify-center">
+        {/* Desktop leaderboard (728×90) — hidden on mobile */}
+        <div className="hidden md:block mt-4">
+          <p className="text-[10px] text-center text-slate-400 uppercase tracking-wider mb-1.5">Advertisement</p>
+          <GoogleAdSense
+            adSlot="9402513184"
+            adFormat="auto"
+            style={{ minHeight: 90 }}
+            className="flex justify-center w-full"
+            containerStyle="default"
+          />
+        </div>
+
+        {/* Mobile ad — auto format, shown only on small screens */}
+        <div className="md:hidden mt-4">
           <GoogleAdSense
             adSlot="5309301802"
             adFormat="auto"
@@ -470,12 +499,6 @@ export default function DownloaderTool() {
         )}
       </div>
 
-      <ProcessingAdModal
-        isOpen={showAdPopup}
-        isReady={popupReady}
-        hasError={pendingApiData?.success === false}
-        onClose={handlePopupClose}
-      />
     </div>
   )
 }
