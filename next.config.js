@@ -78,6 +78,20 @@ const nextConfig = {
           { key: "Cache-Control", value: "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400" },
         ],
       },
+      // Homepage: Cloudflare edge cache 1h
+      {
+        source: "/",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400" },
+        ],
+      },
+      // Public images: long cache (these are versioned by filename)
+      {
+        source: "/(.*\\.(?:jpg|jpeg|png|svg|webp|avif|gif|ico))",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=604800, stale-while-revalidate=2592000" },
+        ],
+      },
       // Static assets — immutable long cache
       {
         source: "/_next/static/(.*)",
