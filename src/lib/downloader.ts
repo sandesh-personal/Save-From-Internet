@@ -1,12 +1,8 @@
-import axios from 'axios'
-import * as cheerio from 'cheerio'
 import { VideoData, ImageData } from './types'
 import { parseVideoId } from './validator'
 
 const PRIMARY_API_KEY = process.env.TIKWM_API_KEY ?? ''
 
-// In-memory response cache — avoids hitting TikWM for the same video repeatedly.
-// TTL: 30 min. Max 500 entries (evicts oldest when full).
 const CACHE_TTL = 30 * 60 * 1000
 interface CacheEntry { data: VideoData; expiresAt: number }
 const videoCache = new Map<string, CacheEntry>()
@@ -23,273 +19,116 @@ function setCached(key: string, data: VideoData): void {
   videoCache.set(key, { data, expiresAt: Date.now() + CACHE_TTL })
 }
 
-export class Downloader {
-  private readonly userAgent =
-    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
 
+export class Downloader {
   async downloadVideo(url: string): Promise<VideoData> {
     const videoId = parseVideoId(url)
-    if (!videoId) {
-      throw new Error('Could not extract video ID from URL')
-    }
+    if (!videoId) throw new Error('Could not extract video ID from URL')
 
     const cached = getCached(videoId)
     if (cached) return cached
 
-    const methods = [
-      () => this.tryPrimaryMethod(url),
-      () => this.trySnaptikMethod(url),
-      () => this.trySSSMethod(url),
-      () => this.tryDirectTikTokScraping(url),
-    ]
-
-    for (const method of methods) {
-      try {
-        const result = await method()
-        if (result) {
-          setCached(videoId, result)
-          return result
-        }
-      } catch (error) {
-        console.warn('Method failed, trying next...', error)
-      }
+    const result = await this.tryTikwm(url) ?? await this.tryDirectScrape(url)
+    if (result) {
+      setCached(videoId, result)
+      return result
     }
 
-    throw new Error(
-      'All download methods failed. TikTok might be blocking requests or the video is private.'
-    )
+    throw new Error('All download methods failed. The video may be private or unavailable.')
   }
 
-  private async tryPrimaryMethod(url: string): Promise<VideoData | null> {
+  private async tryTikwm(url: string): Promise<VideoData | null> {
     try {
-      const response = await axios.post(
-        'https://www.tikwm.com/api/',
-        {
-          url: url,
-          count: 12,
-          cursor: 0,
-          web: 1,
-          hd: 1,
-          api_key: PRIMARY_API_KEY,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            'User-Agent': this.userAgent,
-            Accept: 'application/json, text/plain, */*',
-            Origin: 'https://www.tikwm.com',
-            Referer: 'https://www.tikwm.com/',
-          },
-          timeout: 30000,
-        }
-      )
-
-      if (response.data && response.data.code === 0 && response.data.data) {
-        const data = response.data.data
-        const videoId = parseVideoId(url) || 'unknown'
-
-        const isPhotoCarousel =
-          data.images && Array.isArray(data.images) && data.images.length > 0
-
-        let images: ImageData[] = []
-        if (isPhotoCarousel) {
-          images = data.images.map((img: string, index: number) => ({
-            id: `${videoId}_img_${index}`,
-            url: img,
-            thumbnail: img,
-          }))
-        }
-
-        // Prefer H.264 (play) over H.265 (hdplay) — H.265 causes no-video on many Android devices
-        let downloadUrl = data.play || data.hdplay || data.wmplay
-        if (downloadUrl && downloadUrl.startsWith('/')) {
-          downloadUrl = 'https://www.tikwm.com' + downloadUrl
-        }
-
-        let cover = data.cover || ''
-        if (cover && cover.startsWith('/')) {
-          cover = 'https://www.tikwm.com' + cover
-        }
-
-        let audioUrl: string | undefined = data.music || undefined
-        if (audioUrl && audioUrl.startsWith('/')) {
-          audioUrl = 'https://www.tikwm.com' + audioUrl
-        }
-
-        return {
-          id: videoId,
-          title: data.title || 'TikTok Video',
-          url: url,
-          thumbnail: cover,
-          duration: data.duration || 0,
-          author: data.author?.nickname || 'Unknown',
-          description: data.title || '',
-          downloadUrl: downloadUrl,
-          audioUrl: audioUrl,
-          images: images,
-          isPhotoCarousel: isPhotoCarousel,
-        }
-      }
-    } catch {
-      throw new Error('Primary method failed')
-    }
-    return null
-  }
-
-  private async trySnaptikMethod(url: string): Promise<VideoData | null> {
-    try {
-      await axios.get('https://snaptik.app/', {
-        headers: { 'User-Agent': this.userAgent },
-      })
-
-      const formData = new URLSearchParams()
-      formData.append('url', url)
-
-      const response = await axios.post(
-        'https://snaptik.app/abc2.php',
-        formData,
-        {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'User-Agent': this.userAgent,
-            Referer: 'https://snaptik.app/',
-            Origin: 'https://snaptik.app',
-          },
-          timeout: 30000,
-        }
-      )
-
-      if (response.data && typeof response.data === 'string') {
-        const $ = cheerio.load(response.data)
-        const downloadLinks: string[] = []
-        $('a[href*=".mp4"], a[download*=".mp4"]').each((_, element) => {
-          const href = $(element).attr('href')
-          if (href && href.includes('.mp4')) downloadLinks.push(href)
-        })
-
-        if (downloadLinks.length > 0) {
-          const videoId = parseVideoId(url) || 'unknown'
-          return {
-            id: videoId,
-            title: 'TikTok Video',
-            url: url,
-            thumbnail: '',
-            duration: 0,
-            author: 'Unknown',
-            description: '',
-            downloadUrl: downloadLinks[0],
-          }
-        }
-      }
-    } catch {
-      throw new Error('Snaptik method failed')
-    }
-    return null
-  }
-
-  private async trySSSMethod(url: string): Promise<VideoData | null> {
-    try {
-      const response = await axios.post(
-        'https://ssstik.io/abc',
-        { id: url, locale: 'en', tt: 'RFBiZ3Bi' },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            'User-Agent': this.userAgent,
-            Accept: 'application/json, text/plain, */*',
-            Origin: 'https://ssstik.io',
-            Referer: 'https://ssstik.io/en',
-          },
-          timeout: 30000,
-        }
-      )
-
-      if (response.data && response.data.url) {
-        const videoId = parseVideoId(url) || 'unknown'
-        return {
-          id: videoId,
-          title: response.data.title || 'TikTok Video',
-          url: url,
-          thumbnail: response.data.cover || '',
-          duration: response.data.duration || 0,
-          author: response.data.author || 'Unknown',
-          description: response.data.title || '',
-          downloadUrl: response.data.url,
-        }
-      }
-    } catch {
-      throw new Error('SSSTik method failed')
-    }
-    return null
-  }
-
-  private async tryDirectTikTokScraping(url: string): Promise<VideoData | null> {
-    try {
-      const resolvedUrl = await this.resolveUrl(url)
-
-      const response = await axios.get(resolvedUrl, {
+      const res = await fetch('https://www.tikwm.com/api/', {
+        method: 'POST',
         headers: {
-          'User-Agent': this.userAgent,
-          Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-          'Accept-Language': 'en-US,en;q=0.5',
-          'Accept-Encoding': 'gzip, deflate, br',
-          Connection: 'keep-alive',
-          'Upgrade-Insecure-Requests': '1',
+          'Content-Type': 'application/json',
+          'User-Agent': UA,
+          Accept: 'application/json',
+          Origin: 'https://www.tikwm.com',
+          Referer: 'https://www.tikwm.com/',
         },
-        timeout: 30000,
+        body: JSON.stringify({ url, count: 12, cursor: 0, web: 1, hd: 1, api_key: PRIMARY_API_KEY }),
+        signal: AbortSignal.timeout(30000),
       })
 
-      const $ = cheerio.load(response.data)
-      const scripts = $('script').toArray()
-      for (const script of scripts) {
-        const content = $(script).html()
-        if (content && content.includes('webapp.video-detail')) {
-          try {
-            const videoUrlMatch = content.match(/"playAddr":"([^"]+)"/)
-            const downloadUrlMatch = content.match(/"downloadAddr":"([^"]+)"/)
+      const json = await res.json()
+      if (json?.code !== 0 || !json?.data) return null
+      const data = json.data
+      const videoId = parseVideoId(url) || 'unknown'
+      const isPhotoCarousel = Array.isArray(data.images) && data.images.length > 0
 
-            if (videoUrlMatch || downloadUrlMatch) {
-              const videoId = parseVideoId(url) || 'unknown'
-              const downloadUrl = (
-                downloadUrlMatch?.[1] || videoUrlMatch?.[1] || ''
-              ).replace(/\\u002F/g, '/')
+      const images: ImageData[] = isPhotoCarousel
+        ? data.images.map((img: string, i: number) => ({ id: `${videoId}_img_${i}`, url: img, thumbnail: img }))
+        : []
 
-              return {
-                id: videoId,
-                title: 'TikTok Video',
-                url: url,
-                thumbnail: '',
-                duration: 0,
-                author: 'Unknown',
-                description: '',
-                downloadUrl: downloadUrl,
-              }
-            }
-          } catch {
-            continue
-          }
-        }
+      let downloadUrl: string = data.play || data.hdplay || data.wmplay || ''
+      if (downloadUrl.startsWith('/')) downloadUrl = 'https://www.tikwm.com' + downloadUrl
+
+      let cover: string = data.cover || ''
+      if (cover.startsWith('/')) cover = 'https://www.tikwm.com' + cover
+
+      let audioUrl: string | undefined = data.music || undefined
+      if (audioUrl?.startsWith('/')) audioUrl = 'https://www.tikwm.com' + audioUrl
+
+      return {
+        id: videoId,
+        title: data.title || 'TikTok Video',
+        url,
+        thumbnail: cover,
+        duration: data.duration || 0,
+        author: data.author?.nickname || 'Unknown',
+        description: data.title || '',
+        downloadUrl,
+        audioUrl,
+        images,
+        isPhotoCarousel,
       }
     } catch {
-      throw new Error('Direct scraping method failed')
+      return null
     }
-    return null
   }
 
-  private async resolveUrl(url: string): Promise<string> {
+  private async tryDirectScrape(url: string): Promise<VideoData | null> {
     try {
-      if (url.includes('vm.tiktok.com') || url.includes('/t/')) {
-        const response = await axios.head(url, {
-          maxRedirects: 5,
-          validateStatus: () => true,
-          headers: { 'User-Agent': this.userAgent },
-          timeout: 10000,
-        })
-        return response.request.res.responseUrl || url
+      const resolvedUrl = await this.resolveShortUrl(url)
+      const res = await fetch(resolvedUrl, {
+        headers: {
+          'User-Agent': UA,
+          Accept: 'text/html,application/xhtml+xml',
+          'Accept-Language': 'en-US,en;q=0.5',
+        },
+        signal: AbortSignal.timeout(30000),
+      })
+      const html = await res.text()
+      const videoUrlMatch = html.match(/"playAddr":"([^"]+)"/) || html.match(/"downloadAddr":"([^"]+)"/)
+      if (!videoUrlMatch) return null
+
+      const downloadUrl = videoUrlMatch[1].replace(/\\u002F/g, '/')
+      const videoId = parseVideoId(url) || 'unknown'
+      return {
+        id: videoId, title: 'TikTok Video', url,
+        thumbnail: '', duration: 0, author: 'Unknown', description: '',
+        downloadUrl,
       }
     } catch {
-      // return original URL if resolve fails
+      return null
     }
-    return url
+  }
+
+  private async resolveShortUrl(url: string): Promise<string> {
+    if (!url.includes('vm.tiktok.com') && !url.includes('/t/')) return url
+    try {
+      const res = await fetch(url, {
+        method: 'HEAD',
+        redirect: 'follow',
+        headers: { 'User-Agent': UA },
+        signal: AbortSignal.timeout(10000),
+      })
+      return res.url || url
+    } catch {
+      return url
+    }
   }
 }

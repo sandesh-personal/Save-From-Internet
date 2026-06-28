@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import axios from 'axios'
 import JSZip from 'jszip'
+
+const FETCH_HEADERS = {
+  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+}
 
 function isAllowedImageHost(url: string): boolean {
   try {
@@ -26,7 +29,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false, error: 'No images provided' }, { status: 400 })
     }
 
-    // Validate all URLs before processing
     const invalidUrl = (imageUrls as unknown[]).find(
       (u) => typeof u !== 'string' || !isAllowedImageHost(u)
     )
@@ -46,33 +48,24 @@ export async function POST(request: NextRequest) {
 
     const zip = new JSZip()
 
-    if (imageUrls.length === 1) {
-      try {
-        const response = await axios.get(imageUrls[0], {
-          responseType: 'arraybuffer',
-          timeout: 30000,
-          headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' },
-        })
-        zip.file('savefrominternet.com-tiktok-image-1.jpg', response.data)
-      } catch {
-        return NextResponse.json({ success: false, error: 'Failed to download image' }, { status: 500 })
-      }
-    } else {
-      await Promise.all(
-        imageUrls.map(async (url: string, index: number) => {
-          try {
-            const response = await axios.get(url, {
-              responseType: 'arraybuffer',
-              timeout: 30000,
-              headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' },
-            })
-            zip.file(`image-${index + 1}.jpg`, response.data)
-          } catch {
-            zip.file(`image-${index + 1}-failed.txt`, `Failed to download: ${url}`)
-          }
-        })
-      )
-    }
+    await Promise.all(
+      imageUrls.map(async (url: string, index: number) => {
+        try {
+          const ac = new AbortController()
+          const timer = setTimeout(() => ac.abort(), 30000)
+          const response = await fetch(url, { headers: FETCH_HEADERS, signal: ac.signal })
+          clearTimeout(timer)
+          if (!response.ok) throw new Error()
+          const buffer = await response.arrayBuffer()
+          const name = imageUrls.length === 1
+            ? 'savefrominternet.com-tiktok-image-1.jpg'
+            : `image-${index + 1}.jpg`
+          zip.file(name, buffer)
+        } catch {
+          zip.file(`image-${index + 1}-failed.txt`, `Failed to download: ${url}`)
+        }
+      })
+    )
 
     const zipBuffer = await zip.generateAsync({ type: 'arraybuffer' })
     const zipName = title
