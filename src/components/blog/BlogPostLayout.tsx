@@ -173,7 +173,7 @@ export default async function BlogPostLayout({ title, description, date, lastMod
         <div className="bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-100 dark:border-indigo-800/40 rounded-lg p-4 sm:p-5 mb-8 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="text-center sm:text-left">
             <p className="font-semibold text-slate-800 dark:text-slate-100 text-sm sm:text-base">Download TikTok videos — 100% free</p>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">TikTok · Instagram · YouTube · Facebook · Twitter/X · No watermark · No app</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Videos · MP3 audio · Photo carousels · No watermark · No app · No signup</p>
           </div>
           <Link
             href="/"
@@ -201,13 +201,10 @@ export default async function BlogPostLayout({ title, description, date, lastMod
         {/* Bottom CTA */}
         <div className="bg-indigo-500 rounded-lg p-8 text-center mt-10">
           <h2 className="text-2xl font-bold text-white mb-3">
-            Download Videos Without Watermark — Free
+            Download TikTok Videos Without Watermark — Free
           </h2>
-          <p className="text-indigo-100 mb-2">
-            TikTok · Instagram Reels · YouTube Shorts · Facebook · Twitter/X
-          </p>
           <p className="text-indigo-100 mb-6 text-sm">
-            Paste any link and get an HD video, MP3, or photo ZIP in seconds. No app, no sign-up.
+            Paste any TikTok link and get an HD video, MP3 audio, or photo ZIP in seconds. No app, no account, no watermark.
           </p>
           <Link
             href="/"
