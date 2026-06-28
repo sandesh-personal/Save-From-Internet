@@ -3,8 +3,8 @@ import Link from 'next/link'
 import GoogleAdSense from '@/components/GoogleAdSense'
 
 export const metadata: Metadata = {
-  title: 'About SaveFromInternet — Built by Sandy | Free TikTok Downloader',
-  description: 'SaveFromInternet.com is built by Sandy, an indie developer who created a free, no-watermark TikTok downloader used by millions. Learn the story behind the tool.',
+  title: 'About SaveFromInternet — Who Built It and Why | SaveFromInternet',
+  description: 'SaveFromInternet.com is built and maintained by Sandy, an indie developer. Read the story of why it was built, what makes it different, and how to get in touch.',
   alternates: { canonical: 'https://www.savefrominternet.com/about' },
   openGraph: {
     title: 'About SaveFromInternet — Built by Sandy',
@@ -65,13 +65,23 @@ export default function AboutPage() {
           </div>
 
           <div>
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">My Background</h2>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">How it actually works</h2>
             <div className="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed">
               <p>
-                I&apos;m an indie developer with experience in web APIs, multimedia processing, and building tools people actually use. I work across the full stack — from API design and server infrastructure to the frontend experience.
+                When you tap TikTok&apos;s own Save button, their servers don&apos;t send you the original file.
+                They run it through a transcoding pipeline that composites their logo and your username
+                into every frame, then send you that watermarked copy. The original file — the one
+                TikTok streams to your phone when you watch a video — has no watermark at all.
               </p>
               <p>
-                Everything on SaveFromInternet is built, maintained, and improved by me. When something breaks, I fix it. When a new TikTok format comes out, I update the parser. No outsourced team — just fast iteration.
+                SaveFromInternet fetches from that CDN endpoint directly, which looks identical to a
+                normal stream request. You get the original file at the original quality. That&apos;s the
+                whole trick. There&apos;s no AI removal, no cropping, no quality tradeoff.
+              </p>
+              <p>
+                Everything on this site is built and maintained by me. When TikTok changes their
+                API, I update the parser. When something breaks at 2am, I fix it. No team, no
+                outsourcing — just one developer keeping it working.
               </p>
             </div>
           </div>
@@ -95,9 +105,9 @@ export default function AboutPage() {
           <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 text-center">What SaveFromInternet Stands For</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
             {[
-              { title: 'Free — Always', desc: 'No paywalls, no subscriptions, no account required. Every feature is free.' },
-              { title: 'No Watermarks', desc: 'The video you download is the original file. Clean, no TikTok branding added.' },
-              { title: 'Privacy First', desc: 'We don\'t store your URLs or downloads. Nothing is logged or sold.' },
+              { title: 'Free — no catch', desc: 'No subscription, no account, no "premium" tier to unlock HD. Every feature works for free, always.' },
+              { title: 'Original file, always', desc: 'You get the same file TikTok streams to phones — not a re-encoded copy, not a cropped version. The original.' },
+              { title: 'Nothing is stored', desc: 'Your URL is processed and the file is returned. We don\'t log URLs, save files, or sell any data.' },
             ].map(({ title, desc }) => (
               <div key={title} className="bg-slate-50 dark:bg-slate-800 rounded-lg p-5 border border-slate-100 dark:border-slate-700/50 text-center">
                 <div className="font-bold text-slate-900 dark:text-white mb-2">{title}</div>

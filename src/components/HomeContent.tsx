@@ -17,14 +17,14 @@ import {
 type FeatureIconComponent = React.ComponentType<{ className?: string }>
 
 const features: { Icon: FeatureIconComponent; title: string; desc: string }[] = [
-  { Icon: ShieldCheckIcon, title: 'No Watermark',    desc: 'Get the original clean video — no TikTok logo, no username overlay.' },
-  { Icon: FilmIcon,        title: 'HD Quality',      desc: 'Download at the original resolution — 720p, 1080p, or higher.' },
-  { Icon: MusicIcon,       title: 'MP3 Extraction',  desc: 'Pull the audio track from any TikTok video as a high-quality MP3.' },
-  { Icon: PhotoIcon,       title: 'Image Galleries', desc: 'Save TikTok photo carousels — individual files or a single ZIP.' },
-  { Icon: BoltIcon,        title: 'Instant & Fast',  desc: 'No waiting, no queues. Processing takes just a few seconds.' },
-  { Icon: LockIcon,        title: 'Private & Secure',desc: 'We never store your videos. Downloads are processed in real time.' },
-  { Icon: DevicePhoneIcon, title: 'All Devices',     desc: 'Works on iPhone, Android, Windows PC, Mac — any browser.' },
-  { Icon: CheckIcon,       title: 'Unlimited',       desc: 'No daily caps. Download as many TikTok videos as you need.' },
+  { Icon: ShieldCheckIcon, title: 'No Watermark',       desc: 'Fetches the original CDN file — the one TikTok streams to your phone, before their watermark pipeline runs. The logo is never added.' },
+  { Icon: FilmIcon,        title: 'Original Quality',   desc: 'Downloads at whatever resolution TikTok stored the video — typically 720p or 1080p. No re-encoding, no quality loss.' },
+  { Icon: MusicIcon,       title: 'MP3 Audio',          desc: 'Pulls just the audio track as an MP3. Useful for ringtones, background music, voiceovers, or sound clips.' },
+  { Icon: PhotoIcon,       title: 'Photo Carousels',    desc: 'Handles TikTok\'s photo carousel format, which most downloaders ignore. Download images one at a time or all as a ZIP.' },
+  { Icon: BoltIcon,        title: 'Done in 3–5 Seconds',desc: 'Most TikTok links resolve and start downloading in under 5 seconds. No queue, no spinner spinning forever.' },
+  { Icon: LockIcon,        title: 'Nothing Stored',     desc: 'Your URL is sent, the file is fetched and returned, done. We don\'t log requests or keep copies of your videos.' },
+  { Icon: DevicePhoneIcon, title: 'Every Device',       desc: 'Works in Safari, Chrome, Firefox, and Edge — on iPhone, Android, Mac, and PC. No extension, no app.' },
+  { Icon: CheckIcon,       title: 'No Account, No Cap', desc: 'No daily limit, no account, no rate throttle. Paste and download as often as you need to.' },
 ]
 
 const faqs = [
@@ -39,9 +39,9 @@ const faqs = [
 ]
 
 const steps = [
-  { n: '01', title: 'Copy TikTok URL',  desc: 'Open TikTok, tap the Share button on any video, then tap "Copy Link".' },
-  { n: '02', title: 'Paste & Process', desc: 'Paste the URL on savefrominternet.com, hit Download, and wait a few seconds.' },
-  { n: '03', title: 'Save to Device',  desc: 'Download the HD video without watermark, extract MP3, or save photos.' },
+  { n: 1, title: 'Copy the TikTok link',  desc: 'Open TikTok, tap Share on any video or carousel, then tap "Copy Link". The URL goes to your clipboard.' },
+  { n: 2, title: 'Paste it here',         desc: 'Paste the URL into the box above and click Download. The original file is fetched from TikTok\'s servers in 3–5 seconds.' },
+  { n: 3, title: 'Save to your device',   desc: 'Click Download Video, Extract MP3, or download your images as a ZIP. Clean file, no watermark, original quality.' },
 ]
 
 const downloadTypes = [
@@ -106,16 +106,24 @@ export default function HomeContent() {
 
       {/* How It Works */}
       <section className="bg-slate-50 dark:bg-slate-800/50 py-16 px-4 border-t border-slate-100 dark:border-slate-700/50">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-center text-xs font-semibold uppercase tracking-widest text-indigo-500 mb-3">3 Steps</p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white text-center mb-12">How to Download TikTok Videos</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {steps.map(({ n, title, desc }) => (
-              <div key={n} className="bg-white dark:bg-slate-800 rounded-lg p-6 border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow">
-                <div className="mb-4">
-                  <span className="text-5xl font-black text-indigo-100 dark:text-slate-700 leading-none select-none">{n}</span>
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white text-center mb-3">How to download a TikTok video</h2>
+          <p className="text-center text-slate-500 dark:text-slate-400 mb-12">Works on iPhone, Android, PC, and Mac — no app required</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {steps.map(({ n, title, desc }, i) => (
+              <div key={n} className="relative bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-100 dark:border-slate-700 shadow-sm">
+                {/* connector arrow between cards on desktop */}
+                {i < steps.length - 1 && (
+                  <div className="hidden md:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10 w-6 h-6 items-center justify-center">
+                    <svg className="w-4 h-4 text-slate-300 dark:text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                )}
+                <div className="w-8 h-8 rounded-full bg-indigo-500 text-white text-sm font-bold flex items-center justify-center mb-4">
+                  {n}
                 </div>
-                <h3 className="text-slate-900 dark:text-white font-semibold text-lg mb-2">{title}</h3>
+                <h3 className="text-slate-900 dark:text-white font-semibold text-base mb-2">{title}</h3>
                 <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{desc}</p>
               </div>
             ))}
