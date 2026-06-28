@@ -1,7 +1,6 @@
 ﻿import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
 import { headers } from 'next/headers'
-import { Analytics } from '@vercel/analytics/react'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Footer from '@/components/layout/footer'
@@ -120,7 +119,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
           <Footer />
           <StickyFooterAd />
-          <Analytics />
           <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'WebSite',
