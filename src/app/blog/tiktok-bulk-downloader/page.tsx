@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'How to Bulk Download TikTok Videos — Multiple Videos at Once (2026) | SaveFromInternet',
   description: 'Need to download many TikTok videos at once? This guide covers every bulk download method that actually works in 2026 — from tools to manual batching.',
   keywords: ['tiktok bulk downloader', 'download multiple tiktok videos', 'batch download tiktok', 'tiktok video bulk save 2026'],
-  robots: { index: false, follow: true },
+  robots: { index: true, follow: true },
   alternates: { canonical: 'https://www.savefrominternet.com/blog/tiktok-bulk-downloader' },
   openGraph: {
     title: 'How to Bulk Download TikTok Videos — Multiple Videos at Once (2026)',

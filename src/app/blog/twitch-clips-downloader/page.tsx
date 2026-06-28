@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'How to Download Twitch Clips & VODs — Free Online Guide 2026 | SaveFromInternet',
   description: 'Save any Twitch clip or VOD for offline viewing. Free, browser-based guide that works without a Twitch account. Download Twitch clips in HD.',
   keywords: ['twitch clips downloader', 'download twitch clips', 'save twitch vods', 'twitch video downloader 2026', 'download twitch clips free'],
-  robots: { index: false, follow: true },
+  robots: { index: true, follow: true },
   alternates: { canonical: 'https://www.savefrominternet.com/blog/twitch-clips-downloader' },
   openGraph: {
     title: 'How to Download Twitch Clips & VODs — Free Online Guide 2026',
