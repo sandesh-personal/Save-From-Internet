@@ -1,6 +1,6 @@
 ﻿'use client'
 
-import { useReducer, useRef, useState, useEffect, useCallback } from 'react'
+import { useReducer, useRef, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { useSearchParams } from 'next/navigation'
 import { appReducer, initialState } from '@/lib/appReducer'
@@ -28,16 +28,6 @@ export default function DownloaderTool() {
   const containerRef = useRef<HTMLDivElement>(null)
   const { t } = useLanguage()
   const searchParams = useSearchParams()
-  const [downloadCount, setDownloadCount] = useState(0)
-
-  useEffect(() => {
-    const now = new Date()
-    const dayOfYear = Math.floor((now.getTime() - new Date(now.getFullYear(), 0, 0).getTime()) / 86400000)
-    const base = 72000 + dayOfYear * 312 + now.getHours() * 18
-    setDownloadCount(base)
-    const interval = setInterval(() => setDownloadCount((c) => c + 1), 9000)
-    return () => clearInterval(interval)
-  }, [])
 
   const handleProcess = useCallback(async (overrideUrl?: string) => {
     const urlToProcess = overrideUrl ?? state.url
@@ -219,23 +209,9 @@ export default function DownloaderTool() {
           ))}
         </div>
 
-        {/* Social proof counter — fixed height prevents CLS when count hydrates */}
-        <div className="mt-5 h-6 flex items-center justify-center">
-        {downloadCount > 0 && (
-          <div className="inline-flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
-            <span className="flex gap-0.5">
-              {[...Array(5)].map((_, i) => (
-                <svg key={i} className="w-3.5 h-3.5 text-amber-400" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-              ))}
-            </span>
-            <span>
-              <strong className="text-slate-700 dark:text-slate-200">{downloadCount.toLocaleString()}</strong> videos downloaded today
-            </span>
-          </div>
-        )}
-        </div>
+        <p className="mt-5 text-sm text-slate-400 dark:text-slate-500">
+          Free forever · No signup · No file size limit
+        </p>
       </section>
 
       {/* ── Input Card ── */}

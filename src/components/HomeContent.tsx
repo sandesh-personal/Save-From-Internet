@@ -179,14 +179,28 @@ export default function HomeContent() {
 
       {/* About */}
       <section className="bg-slate-50 dark:bg-slate-800/50 py-14 px-4 border-t border-slate-100 dark:border-slate-700/50">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">About SaveFromInternet.com</h2>
-          <p className="text-slate-500 dark:text-slate-400 leading-relaxed text-base">
-            SaveFromInternet.com is a free, browser-based TikTok video downloader. No installs, no accounts, no watermarks.
-            Paste a link and download your content. We support videos, audio, and image galleries from any public TikTok.
-            Your downloads are never stored on our servers.
+        <div className="max-w-2xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-5">Built by a developer, kept simple on purpose</h2>
+          <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-base mb-4">
+            I built SaveFromInternet because every TikTok downloader I tried either broke after a week,
+            buried you in pop-ups, or quietly re-encoded your video at lower quality. This one fetches the
+            original file directly from TikTok&apos;s CDN — the same file your phone streams — before their
+            watermark pipeline touches it. You get the actual original, not a compressed copy.
           </p>
-          <p className="text-slate-400 dark:text-slate-500 text-sm mt-3">contact@savefrominternet.com</p>
+          <p className="text-slate-500 dark:text-slate-400 leading-relaxed text-base mb-6">
+            No account required. No app to install. Your files are never stored on our servers — downloads
+            are processed and delivered in real time, then discarded. If something breaks or you have a
+            question, email me directly.
+          </p>
+          <a
+            href="mailto:contact@savefrominternet.com"
+            className="inline-flex items-center gap-2 text-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium text-sm transition-colors"
+          >
+            <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            contact@savefrominternet.com
+          </a>
         </div>
       </section>
 
