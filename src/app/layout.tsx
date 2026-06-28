@@ -92,11 +92,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <link rel="dns-prefetch" href="https://www.tiktok.com" />
         <Script
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8190424610367988"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           crossOrigin="anonymous"
         />
-        <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} strategy="afterInteractive" />
-        <Script id="gtag-init" strategy="afterInteractive">{`
+        <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} strategy="lazyOnload" />
+        <Script id="gtag-init" strategy="lazyOnload">{`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());

@@ -81,52 +81,28 @@ export default function DownloaderTool() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const handleVideoDownload = async () => {
+  const handleVideoDownload = () => {
     if (!state.downloadUrl) return
-    dispatch({ type: 'SET_DOWNLOADING', payload: true })
-    try {
-      const response = await fetch(state.downloadUrl)
-      if (!response.ok) throw new Error()
-      const blob = await response.blob()
-      const blobUrl = URL.createObjectURL(blob)
-      const link = document.createElement('a')
-      link.href = blobUrl
-      link.download = `savefrominternet.com-tiktok-${Date.now()}.mp4`
-      document.body.appendChild(link)
-      link.click()
-      document.body.removeChild(link)
-      URL.revokeObjectURL(blobUrl)
-      dispatch({ type: 'SET_MESSAGE', payload: t('msgSuccess') })
-      dispatch({ type: 'SET_URL', payload: '' })
-    } catch {
-      dispatch({ type: 'SET_MESSAGE', payload: t('msgError') })
-    } finally {
-      dispatch({ type: 'SET_DOWNLOADING', payload: false })
-    }
+    const link = document.createElement('a')
+    link.href = state.downloadUrl
+    link.download = `savefrominternet.com-tiktok-${Date.now()}.mp4`
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+    dispatch({ type: 'SET_MESSAGE', payload: t('msgSuccess') })
+    dispatch({ type: 'SET_URL', payload: '' })
   }
 
-  const handleAudioDownload = async () => {
+  const handleAudioDownload = () => {
     if (!state.audioUrl) return
-    dispatch({ type: 'SET_DOWNLOADING_AUDIO', payload: true })
-    try {
-      const response = await fetch(state.audioUrl)
-      if (!response.ok) throw new Error()
-      const blob = await response.blob()
-      const blobUrl = URL.createObjectURL(blob)
-      const link = document.createElement('a')
-      link.href = blobUrl
-      link.download = `savefrominternet.com-tiktok-audio-${Date.now()}.mp3`
-      document.body.appendChild(link)
-      link.click()
-      document.body.removeChild(link)
-      URL.revokeObjectURL(blobUrl)
-      dispatch({ type: 'SET_MESSAGE', payload: t('msgAudioSuccess') })
-      dispatch({ type: 'SET_URL', payload: '' })
-    } catch {
-      dispatch({ type: 'SET_MESSAGE', payload: t('msgError') })
-    } finally {
-      dispatch({ type: 'SET_DOWNLOADING_AUDIO', payload: false })
-    }
+    const link = document.createElement('a')
+    link.href = state.audioUrl
+    link.download = `savefrominternet.com-tiktok-audio-${Date.now()}.mp3`
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+    dispatch({ type: 'SET_MESSAGE', payload: t('msgAudioSuccess') })
+    dispatch({ type: 'SET_URL', payload: '' })
   }
 
   const handleImageDownload = async () => {
@@ -243,9 +219,10 @@ export default function DownloaderTool() {
           ))}
         </div>
 
-        {/* Social proof counter */}
+        {/* Social proof counter — fixed height prevents CLS when count hydrates */}
+        <div className="mt-5 h-6 flex items-center justify-center">
         {downloadCount > 0 && (
-          <div className="mt-5 inline-flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+          <div className="inline-flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
             <span className="flex gap-0.5">
               {[...Array(5)].map((_, i) => (
                 <svg key={i} className="w-3.5 h-3.5 text-amber-400" viewBox="0 0 20 20" fill="currentColor">
@@ -258,6 +235,7 @@ export default function DownloaderTool() {
             </span>
           </div>
         )}
+        </div>
       </section>
 
       {/* ── Input Card ── */}
@@ -319,7 +297,7 @@ export default function DownloaderTool() {
         </div>
 
         {/* Mobile ad — auto format, shown only on small screens */}
-        <div className="md:hidden mt-4">
+        <div className="md:hidden mt-4" style={{ minHeight: '120px' }}>
           <GoogleAdSense
             adSlot="5309301802"
             adFormat="auto"

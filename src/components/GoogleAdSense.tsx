@@ -40,10 +40,10 @@ export default function GoogleAdSense({
       : 'rounded-lg overflow-hidden'
 
   return (
-    <div className={`${containerClass} ${className}`} style={style}>
+    <div className={`${containerClass} ${className}`} style={{ minHeight: '100px', ...style }}>
       <ins
         className="adsbygoogle"
-        style={{ display: 'block', width: '100%' }}
+        style={{ display: 'block', width: '100%', minHeight: '100px' }}
         data-ad-client="ca-pub-8190424610367988"
         data-ad-slot={adSlot}
         data-ad-format={adFormat}
