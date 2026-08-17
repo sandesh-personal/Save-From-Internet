@@ -1,11 +1,10 @@
 import Link from 'next/link';
 import Script from 'next/script';
-import Image from 'next/image';
 import GoogleAdSense from '@/components/GoogleAdSense';
 
 export const metadata = {
-  title: 'How to Download TikTok Videos Without Watermark (2026 Guide)',
-  description: 'Step-by-step guide to download TikTok videos without watermark in HD or MP4. Use our free TikTok downloader for PC, iPhone, Android. No app required!',
+  title: 'How to Download TikTok Videos Without Watermark (2026 Step-by-Step Guide)',
+  description: 'Complete step-by-step tutorial to download TikTok videos without watermark in Full HD 1080p MP4 or MP3 audio. Works on iPhone, Android, PC, and Mac.',
   keywords: [
     'tiktok downloader',
     'download tiktok videos',
@@ -20,15 +19,10 @@ export const metadata = {
     'tiktok downloader android',
     'tiktok to mp3',
     'tiktok video saver',
-    'tiktok video download online',
-    'tiktok downloader no watermark',
-    'tiktok video download instructions',
-    'tiktok video downloader tutorial',
-    'tiktok video downloader how to use'
   ],
   openGraph: {
-    title: 'How to Download TikTok Videos Without Watermark (2026 Guide)',
-    description: 'Step-by-step guide to download TikTok videos without watermark in HD or MP4. Use our free TikTok downloader for PC, iPhone, Android. No app required!',
+    title: 'How to Download TikTok Videos Without Watermark (2026 Step-by-Step Guide)',
+    description: 'Complete step-by-step tutorial to download TikTok videos without watermark in Full HD 1080p MP4 or MP3 audio. Works on iPhone, Android, PC, and Mac.',
     type: 'article',
     url: 'https://www.savefrominternet.com/how-to-download-tiktok-videos',
   },
@@ -58,70 +52,65 @@ export default function HowToDownloadPage() {
       { "@type": "HowToTool", "name": "SaveFromInternet TikTok Video Downloader" }
     ],
     "step": [
-      { "@type": "HowToStep", "name": "Copy TikTok URL", "text": "Open TikTok and copy the URL of the video you want to download", "image": "https://www.savefrominternet.com/images/step1.jpg" },
-      { "@type": "HowToStep", "name": "Paste URL", "text": "Visit SaveFromInternet.com and paste the TikTok URL in the input box", "image": "https://www.savefrominternet.com/images/step2.jpg" },
-      { "@type": "HowToStep", "name": "Process Video", "text": "Click the 'Process TikTok URL' button to analyze the video", "image": "https://www.savefrominternet.com/images/step3.jpg" },
-      { "@type": "HowToStep", "name": "Download", "text": "Click the download button to save the video without watermark", "image": "https://www.savefrominternet.com/images/step4.jpg" }
+      { "@type": "HowToStep", "name": "Copy TikTok URL", "text": "Open the TikTok app and tap the Share button, then tap Copy Link" },
+      { "@type": "HowToStep", "name": "Paste URL", "text": "Go to SaveFromInternet.com and paste the URL into the search box" },
+      { "@type": "HowToStep", "name": "Process Video", "text": "Click the Download button to analyze the video and fetch direct CDN streams" },
+      { "@type": "HowToStep", "name": "Download", "text": "Select HD MP4 Video, MP3 Audio, or Photo ZIP to save the file without watermark" }
     ]
   };
 
   const steps = [
     {
       number: 1,
-      title: "Copy TikTok Video URL",
-      description: "Open TikTok and find the video you want to download. Tap the 'Share' button and select 'Copy Link' to get the video URL.",
-      image: "/images/step1.jpg"
+      title: "Copy TikTok Video Link",
+      description: "Open the TikTok app on your smartphone or go to tiktok.com in your computer browser. Find the video you wish to save, tap the Share icon (arrow) at the bottom right, and tap 'Copy Link'.",
     },
     {
       number: 2,
-      title: "Visit SaveFromInternet.com",
-      description: "Open your web browser and go to SaveFromInternet.com. Our TikTok video downloader works on all devices - mobile, tablet, or desktop.",
-      image: "/images/step2.jpg"
+      title: "Open SaveFromInternet.com",
+      description: "Launch any web browser (Safari on iPhone, Chrome on Android/PC, or Edge/Firefox on Mac) and navigate to SaveFromInternet.com.",
     },
     {
       number: 3,
-      title: "Paste the TikTok URL",
-      description: "Paste the copied TikTok URL into the input box on our website. You can also use the 'Paste' button to automatically paste from your clipboard.",
-      image: "/images/step3.jpg"
+      title: "Paste the Copied URL",
+      description: "Tap or click into the search box and paste your TikTok link. You can also tap our instant 'Paste from Clipboard' button.",
     },
     {
       number: 4,
-      title: "Process the Video",
-      description: "Click the 'Process TikTok URL' button. Our system will analyze the video and prepare it for download. This usually takes just a few seconds.",
-      image: "/images/step4.jpg"
+      title: "Process & Fetch Media",
+      description: "Click the blue 'Download' button. Our server immediately retrieves the clean, original CDN stream without applying any TikTok watermark overlays.",
     },
     {
       number: 5,
-      title: "Download Your Video",
-      description: "Once processing is complete, click the 'Download Video' button to save the TikTok video without watermark to your device.",
-      image: "/images/step5.jpg"
+      title: "Save in Full HD or MP3",
+      description: "Choose your preferred download option: 'Download MP4 (No Watermark HD)', 'Extract MP3 (Audio)', or 'Download All Images (ZIP)' for photo carousels.",
     }
   ];
 
   const features = [
     {
-      title: "No Watermark Downloads",
-      description: "Download TikTok videos in their original quality without any watermarks or logos"
+      title: "100% Free & Unlimited",
+      description: "Download as many TikTok videos and audio tracks as you want with zero daily quotas or premium paywalls."
     },
     {
-      title: "Audio Extraction",
-      description: "Extract MP3 audio from TikTok videos for music, ringtones, or audio content"
+      title: "No Watermark or Logos",
+      description: "Get clean, original video files without the bouncing TikTok watermark and username overlay."
     },
     {
-      title: "Image Downloads",
-      description: "Download TikTok photos and image carousels in high quality"
+      title: "High Quality (1080p HD & MP3)",
+      description: "Downloads the highest available resolution uploaded by the creator and extracts crisp 320kbps MP3 audio."
     },
     {
-      title: "Mobile Friendly",
-      description: "Works perfectly on iPhone, Android, and all mobile devices"
+      title: "All Devices & Browsers",
+      description: "Works smoothly on iPhone Safari, iPad, Android Chrome, Windows PC, Mac, and Linux with zero app installations."
     },
     {
-      title: "No Registration",
-      description: "Use our TikTok video downloader without creating an account or providing personal information"
+      title: "No Account or Software Needed",
+      description: "Operates 100% in your browser. No registration, no passwords, and no extensions required."
     },
     {
-      title: "Unlimited Downloads",
-      description: "Download as many TikTok videos as you want without any limits or restrictions"
+      title: "Safe & Privacy-Focused",
+      description: "We do not store your downloaded files or track personal identifiers. All processing occurs in real time."
     }
   ];
 
@@ -139,131 +128,148 @@ export default function HowToDownloadPage() {
           '@context': 'https://schema.org',
           '@type': 'FAQPage',
           mainEntity: [
-            { '@type': 'Question', name: 'How do I download TikTok videos without a watermark?', acceptedAnswer: { '@type': 'Answer', text: 'Copy the TikTok URL, paste it on savefrominternet.com, click Download TikTok Video, then click Download. The MP4 has no watermark.' } },
-            { '@type': 'Question', name: 'Can I download TikTok videos on iPhone?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Open Safari, go to savefrominternet.com, paste the URL and tap Download. When the video opens, tap and hold and select Save Video to save to Camera Roll.' } },
-            { '@type': 'Question', name: 'Can I download TikTok videos on Android?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Open Chrome on Android, go to savefrominternet.com, paste the URL and tap Download. The MP4 saves to your Downloads folder.' } },
-            { '@type': 'Question', name: 'Is there a limit to how many TikTok videos I can download?', acceptedAnswer: { '@type': 'Answer', text: 'No. SaveFromInternet is completely free with no download limits.' } },
-            { '@type': 'Question', name: 'Do I need to install an app or software?', acceptedAnswer: { '@type': 'Answer', text: 'No. SaveFromInternet works entirely in your browser — no app, no extension, no account required.' } },
+            { '@type': 'Question', name: 'How do I download TikTok videos without a watermark?', acceptedAnswer: { '@type': 'Answer', text: 'Copy the TikTok URL, paste it on savefrominternet.com, click Download, then select Download MP4 (No Watermark HD).' } },
+            { '@type': 'Question', name: 'Can I download TikTok videos on iPhone?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Open Safari on iPhone, go to savefrominternet.com, paste the link, and tap Download. Save directly to your Camera Roll via the Safari share menu.' } },
+            { '@type': 'Question', name: 'Can I download TikTok videos on Android?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Open Chrome on Android, visit savefrominternet.com, paste the URL, and tap Download. The file saves directly to your Downloads directory.' } },
+            { '@type': 'Question', name: 'Is there a limit to how many TikTok videos I can download?', acceptedAnswer: { '@type': 'Answer', text: 'No. SaveFromInternet is completely free with no daily or monthly limits.' } },
+            { '@type': 'Question', name: 'Do I need to install an app or software?', acceptedAnswer: { '@type': 'Answer', text: 'No. SaveFromInternet works 100% in your browser — no app, no extension, no registration.' } },
           ],
         }) }}
       />
       
-      <div className="flex flex-col flex-grow min-h-[calc(100vh-4rem)] p-8 bg-white dark:bg-slate-900 text-black dark:text-white">
-        <div className="max-w-4xl mx-auto flex flex-col">
-          <h1 className="text-4xl font-bold mb-4">How to Download TikTok Videos - Complete Guide (2025)</h1>
-          <p className="text-lg text-black/70 dark:text-slate-400 mb-8">
-            Learn how to download TikTok videos step by step using our free TikTok video downloader. Download videos without watermark, extract audio, and save images easily.
-          </p>
-
-          {/* Top Ad */}
-          <div className="mb-8">
-            <GoogleAdSense
-              adSlot="5309301802"
-              adFormat="auto"
-              className="flex justify-center"
-              containerStyle="default"
-            />
+      <div className="bg-white min-h-screen">
+        {/* Hero */}
+        <section className="bg-gradient-to-b from-blue-50/50 via-white to-white py-12 sm:py-16 px-4 text-center border-b border-slate-100">
+          <div className="max-w-3xl mx-auto">
+            <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 text-xs font-bold px-4 py-1.5 rounded-full mb-4 border border-blue-100 shadow-xs">
+              📖 Step-by-Step Tutorial
+            </div>
+            <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight leading-tight">
+              How to Download TikTok Videos <span className="text-blue-600">Without Watermark</span>
+            </h1>
+            <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+              Learn how to save high-quality TikTok videos, extract MP3 audio, and download photo slideshows to your iPhone, Android, PC, or Mac in 5 simple steps.
+            </p>
           </div>
+        </section>
 
-          {/* Step by Step Guide */}
-          <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">Step-by-Step Guide to Download TikTok Videos</h2>
-            <div className="space-y-8">
-              {steps.map((step, index) => (
-                <div key={index} className="bg-gray-50 dark:bg-slate-800 rounded-lg p-6 border border-gray-200 dark:border-slate-700/50">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-gradient-to-r from-pink-500 to-violet-500 rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
-                      {step.number}
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-black dark:text-white font-semibold text-xl mb-2">{step.title}</h3>
-                      <p className="text-black/70 dark:text-slate-400 text-sm leading-relaxed mb-4">{step.description}</p>
-                      {step.image && (
-                        <div className="relative w-full h-48 rounded-lg overflow-hidden">
-                          <Image
-                            src={step.image}
-                            alt={`Step ${step.number}: ${step.title}`}
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
-                      )}
-                    </div>
+        {/* Top Leaderboard Ad */}
+        <div className="flex justify-center py-6 px-4 max-w-5xl mx-auto">
+          <GoogleAdSense
+            adSlot="5309301802"
+            adFormat="auto"
+            className="flex justify-center w-full"
+            containerStyle="default"
+          />
+        </div>
+
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 space-y-12">
+          {/* Step-by-Step Guide */}
+          <div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-8 text-center sm:text-left">
+              Step-by-Step Instructions
+            </h2>
+            <div className="space-y-4">
+              {steps.map((step) => (
+                <div
+                  key={step.number}
+                  className="flex items-start gap-4 sm:gap-6 bg-white rounded-2xl border border-slate-200/90 p-5 sm:p-7 shadow-xs hover:border-blue-300 transition-all"
+                >
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-[#195fd7] to-[#1e6fe8] text-white font-extrabold text-lg sm:text-xl flex items-center justify-center flex-shrink-0 shadow-md shadow-blue-500/20">
+                    {step.number}
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-slate-900 font-bold text-lg sm:text-xl mb-1.5">
+                      {step.title}
+                    </h3>
+                    <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+                      {step.description}
+                    </p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Middle Ad */}
-          <div className="my-8">
+          {/* Middle Native Ad */}
+          <div className="py-4">
             <GoogleAdSense
               adSlot="3804648444"
               adFormat="auto"
-              className="flex justify-center"
+              className="flex justify-center w-full"
               containerStyle="default"
             />
           </div>
 
-          {/* Features Section */}
-          <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">Why Choose Our TikTok Video Downloader?</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {features.map((feature, index) => (
-                <div key={index} className="bg-gray-50 dark:bg-slate-800 rounded-lg p-4 border border-gray-200 dark:border-slate-700/50">
-                  <h3 className="text-black dark:text-white font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-black/70 dark:text-slate-400 text-sm">{feature.description}</p>
+          {/* Features Grid */}
+          <div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-6 text-center sm:text-left">
+              Why Choose SaveFromInternet?
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {features.map((feature) => (
+                <div key={feature.title} className="bg-slate-50 rounded-2xl p-5 sm:p-6 border border-slate-100">
+                  <h3 className="text-slate-900 font-bold text-base sm:text-lg mb-1.5 flex items-center gap-2">
+                    <span className="text-blue-600">✓</span> {feature.title}
+                  </h3>
+                  <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                    {feature.description}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* CTA Section */}
-          <div className="text-center bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-8 border border-indigo-100 dark:border-indigo-900/30">
-            <h2 className="text-2xl font-bold mb-4">Ready to Download TikTok Videos?</h2>
-            <p className="text-black/70 dark:text-slate-400 mb-6">
-              Start downloading TikTok videos without watermark right now. It's free, fast, and easy to use!
+          {/* Device-Specific Guides Links */}
+          <div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-6 text-center sm:text-left">
+              Dedicated Device Guides
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <Link
+                href="/tiktok-video-downloader-iphone"
+                className="block bg-white hover:bg-blue-50/40 rounded-2xl p-5 border border-slate-200 hover:border-blue-300 transition-all shadow-xs group"
+              >
+                <div className="text-2xl mb-2">📱</div>
+                <h3 className="font-bold text-slate-900 group-hover:text-blue-600 text-base mb-1">iPhone &amp; iPad</h3>
+                <p className="text-slate-500 text-xs leading-relaxed">Save directly to Camera Roll using Safari.</p>
+              </Link>
+              <Link
+                href="/tiktok-video-downloader-android"
+                className="block bg-white hover:bg-blue-50/40 rounded-2xl p-5 border border-slate-200 hover:border-blue-300 transition-all shadow-xs group"
+              >
+                <div className="text-2xl mb-2">🤖</div>
+                <h3 className="font-bold text-slate-900 group-hover:text-blue-600 text-base mb-1">Android Phones</h3>
+                <p className="text-slate-500 text-xs leading-relaxed">Fast Chrome download to Downloads folder.</p>
+              </Link>
+              <Link
+                href="/tiktok-video-downloader-pc"
+                className="block bg-white hover:bg-blue-50/40 rounded-2xl p-5 border border-slate-200 hover:border-blue-300 transition-all shadow-xs group"
+              >
+                <div className="text-2xl mb-2">💻</div>
+                <h3 className="font-bold text-slate-900 group-hover:text-blue-600 text-base mb-1">PC &amp; Mac</h3>
+                <p className="text-slate-500 text-xs leading-relaxed">Full HD 1080p MP4 download in any browser.</p>
+              </Link>
+            </div>
+          </div>
+
+          {/* Bottom CTA Card */}
+          <div className="bg-gradient-to-r from-[#195fd7] to-[#1e6fe8] rounded-3xl p-8 sm:p-12 text-center text-white shadow-xl shadow-blue-600/20">
+            <h2 className="text-2xl sm:text-4xl font-extrabold mb-3">
+              Ready to Download TikTok Videos?
+            </h2>
+            <p className="text-blue-100 text-sm sm:text-base max-w-xl mx-auto mb-6">
+              Start downloading TikTok videos without watermark right now. Free, fast, and easy to use on any device!
             </p>
             <Link 
               href="/"
-              className="inline-block bg-indigo-500 hover:bg-indigo-600 text-white font-semibold px-8 py-4 rounded-lg transition-all duration-200 text-lg"
+              className="inline-block bg-white text-blue-700 font-extrabold px-8 py-4 rounded-2xl text-base sm:text-lg shadow-lg hover:bg-blue-50 hover:scale-105 transition-all active:scale-95 cursor-pointer"
             >
               Download TikTok Videos Now
             </Link>
-          </div>
-
-          {/* Bottom Ad */}
-          <div className="mt-8">
-            <GoogleAdSense
-              adSlot="2491566773"
-              adFormat="auto"
-              className="flex justify-center"
-              containerStyle="default"
-            />
-          </div>
-
-          {/* Additional Resources */}
-          <div className="mt-12">
-            <h2 className="text-2xl font-bold mb-6">Additional Resources</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Link
-                href="/faq"
-                className="bg-gray-50 dark:bg-slate-800 rounded-lg p-4 border border-gray-200 dark:border-slate-700/50 hover:bg-gray-100 dark:hover:bg-slate-700 transition-all duration-200"
-              >
-                <h3 className="text-black dark:text-white font-semibold mb-2">Frequently Asked Questions</h3>
-                <p className="text-black/70 dark:text-slate-400 text-sm">Get answers to common questions about TikTok video downloading</p>
-              </Link>
-              <Link
-                href="/blog"
-                className="bg-gray-50 dark:bg-slate-800 rounded-lg p-4 border border-gray-200 dark:border-slate-700/50 hover:bg-gray-100 dark:hover:bg-slate-700 transition-all duration-200"
-              >
-                <h3 className="text-black dark:text-white font-semibold mb-2">TikTok Downloader Blog</h3>
-                <p className="text-black/70 dark:text-slate-400 text-sm">Read guides and tips for downloading TikTok content</p>
-              </Link>
-            </div>
           </div>
         </div>
       </div>
     </>
   );
-} 
+}

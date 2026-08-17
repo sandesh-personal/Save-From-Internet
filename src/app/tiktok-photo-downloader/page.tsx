@@ -1,5 +1,6 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import Link from 'next/link'
+import GoogleAdSense from '@/components/GoogleAdSense'
 import ToolSchema from '@/components/ToolSchema'
 import ToolRelatedGuides from '@/components/ToolRelatedGuides'
 import { FilmIcon, MusicIcon, PhotoIcon } from '@/components/icons'
@@ -16,20 +17,8 @@ export const metadata: Metadata = {
     'tiktok image downloader',
     'tiktok picture downloader',
     'tiktok picture download',
-    'tiktok pic download',
-    'tiktok pic downloader',
-    'download tiktok photos',
-    'download tiktok images',
-    'download tiktok pictures',
-    'save tiktok photo',
-    'save tiktok photos',
-    'tiktok photos download',
-    'tiktok pictures download',
-    'tiktok photo download hd',
-    'tiktok photo downloader hd',
     'tiktok carousel downloader',
     'savefrominternet tiktok photo',
-    'savefrom tiktok photo',
   ],
   alternates: { canonical: 'https://www.savefrominternet.com/tiktok-photo-downloader' },
   openGraph: {
@@ -50,7 +39,7 @@ const faqSchema = {
       name: 'How do I download TikTok photos?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Copy the TikTok photo post URL, paste it on savefrominternet.com, and click Download TikTok Video. The images will be detected automatically. You can then download them individually or all at once as a ZIP file.',
+        text: 'Copy the TikTok photo post URL, paste it on savefrominternet.com, and click Download. The images will be detected automatically. You can then download them individually or all at once as a ZIP file.',
       },
     },
     {
@@ -66,7 +55,7 @@ const faqSchema = {
       name: 'What quality are the downloaded TikTok images?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'We download TikTok images in their original quality with no compression added.',
+        text: 'We download TikTok images in their original full resolution with no compression added.',
       },
     },
     {
@@ -75,22 +64,6 @@ const faqSchema = {
       acceptedAnswer: {
         '@type': 'Answer',
         text: 'Yes. Completely free — no account, no app, no limits.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Can I download TikTok images in HD quality?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes. We fetch TikTok images at their original resolution with no compression — full HD quality, exactly as uploaded by the creator.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'How do I save TikTok pictures to my phone?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Paste the TikTok photo post URL into savefrominternet.com, tap Show Images, select the pictures you want, and tap Download. On iPhone the file saves to Files; on Android it goes to your Downloads folder.',
       },
     },
   ],
@@ -103,43 +76,52 @@ const howToSchema = {
   totalTime: 'PT1M',
   step: [
     { '@type': 'HowToStep', position: 1, name: 'Copy the TikTok photo post URL', text: 'Open TikTok and find a photo or carousel post. Tap Share → Copy Link.' },
-    { '@type': 'HowToStep', position: 2, name: 'Paste on SaveFromInternet.com', text: 'Go to savefrominternet.com, paste the URL, and click Download TikTok Video.' },
+    { '@type': 'HowToStep', position: 2, name: 'Paste on SaveFromInternet.com', text: 'Go to savefrominternet.com, paste the URL, and click Download.' },
     { '@type': 'HowToStep', position: 3, name: 'Select and download images', text: 'Tap "Show Images" to see the gallery. Select individual photos or tap All, then download individually or as a ZIP.' },
   ],
 }
 
 export default function TikTokPhotoDownloaderPage() {
   return (
-    <div className="bg-white dark:bg-slate-900">
+    <div className="bg-white min-h-screen">
+      <ToolSchema
+        name="TikTok Photo Downloader"
+        description="Download TikTok photos and image carousels in HD quality."
+        url="https://www.savefrominternet.com/tiktok-photo-downloader"
+        howTo={howToSchema}
+        faq={faqSchema}
+      />
 
       {/* Hero */}
-      <section className="bg-gradient-to-b from-indigo-50/50 dark:from-slate-800 to-white dark:to-slate-900 py-14 px-4 text-center border-b border-slate-100 dark:border-slate-700/50">
+      <section className="bg-gradient-to-b from-blue-50/50 via-white to-white py-12 sm:py-16 px-4 text-center border-b border-slate-100">
         <div className="max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-white dark:bg-slate-800 text-indigo-500 text-xs font-semibold px-4 py-1.5 rounded-full mb-5 border border-indigo-100 dark:border-indigo-900/40 shadow-sm">
-            Photo &amp; Carousel Downloader · Free
+          <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 text-xs font-bold px-4 py-1.5 rounded-full mb-4 border border-blue-100 shadow-xs">
+            🖼️ Photo &amp; Carousel Downloader · Free
           </div>
-          <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-4 leading-tight">
-            TikTok Photo &amp;{' '}
-            <span className="text-indigo-500">
-              Image Downloader
-            </span>
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight leading-tight">
+            TikTok Photo &amp; <span className="text-blue-600">Image Downloader</span>
           </h1>
-          <p className="text-lg text-slate-500 dark:text-slate-400 mb-8 max-w-xl mx-auto">
-            Download TikTok photos, images, and picture carousels in original HD quality. Save TikTok pics individually or download all as a ZIP. Free, no app needed.
+          <p className="text-base sm:text-lg text-slate-600 mb-8 max-w-xl mx-auto leading-relaxed">
+            Download TikTok photos, images, and picture slideshows in original HD resolution. Save individual pics or download all as a ZIP file. Free, no app needed.
           </p>
           <Link
             href="/"
-            className="inline-block bg-indigo-500 hover:bg-indigo-600 text-white font-semibold px-8 py-4 rounded-lg text-lg shadow-lg shadow-indigo-500/25 transition-all"
+            className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-2xl text-base sm:text-lg shadow-lg shadow-blue-500/25 hover:scale-105 transition-all cursor-pointer"
           >
             Download TikTok Photos
           </Link>
         </div>
       </section>
 
+      {/* Ad */}
+      <div className="flex justify-center py-6 px-4 max-w-5xl mx-auto">
+        <GoogleAdSense adSlot="5309301802" adFormat="auto" className="flex justify-center w-full" containerStyle="default" />
+      </div>
+
       {/* How it works */}
-      <section className="bg-slate-50 dark:bg-slate-800/50 py-14 px-4 border-b border-slate-100 dark:border-slate-700/50">
+      <section className="bg-slate-50 py-12 sm:py-16 px-4 border-b border-slate-100">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white text-center mb-10">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 text-center mb-10">
             How to Download TikTok Photos
           </h2>
           <div className="space-y-4">
@@ -152,26 +134,26 @@ export default function TikTokPhotoDownloaderPage() {
               {
                 n: '2',
                 title: 'Paste on SaveFromInternet.com',
-                desc: 'Go to savefrominternet.com, paste the URL into the input box, and click "Download TikTok Video". Our tool will detect the images automatically.',
+                desc: 'Go to savefrominternet.com, paste the URL into the input box, and click Download. Our tool detects all images automatically.',
               },
               {
                 n: '3',
                 title: 'Show the Image Gallery',
-                desc: 'Tap "Show Images" to see all photos in the post. You can tap individual images to select or deselect them.',
+                desc: 'Tap "Show Images" to view all photos in the post. Tap individual photos to select or unselect them.',
               },
               {
                 n: '4',
-                title: 'Download Images',
-                desc: 'Tap "All" to select every image, then click Download. Choose to save them individually or as a single ZIP archive.',
+                title: 'Download Images or ZIP Archive',
+                desc: 'Tap "All" to select every image, then click Download. You can also tick "Download as ZIP" to get a clean archive.',
               },
             ].map(({ n, title, desc }) => (
-              <div key={n} className="bg-white dark:bg-slate-800 rounded-lg p-5 border border-slate-100 dark:border-slate-700/50 shadow-sm flex items-start gap-4">
-                <div className="w-11 h-11 bg-indigo-500 rounded-lg flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
+              <div key={n} className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-xs flex items-start gap-4">
+                <div className="w-11 h-11 bg-blue-600 rounded-2xl flex items-center justify-center text-white font-bold text-lg flex-shrink-0 shadow-md shadow-blue-500/20">
                   {n}
                 </div>
                 <div>
-                  <h3 className="text-slate-900 dark:text-white font-bold text-lg mb-1">{title}</h3>
-                  <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{desc}</p>
+                  <h3 className="text-slate-900 font-bold text-lg mb-1">{title}</h3>
+                  <p className="text-slate-600 text-sm leading-relaxed">{desc}</p>
                 </div>
               </div>
             ))}
@@ -179,148 +161,34 @@ export default function TikTokPhotoDownloaderPage() {
         </div>
       </section>
 
-      {/* Features */}
-      <section className="bg-white dark:bg-slate-900 py-14 px-4 border-b border-slate-100 dark:border-slate-700/50">
-        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-slate-50 dark:bg-slate-800 rounded-lg p-6 border border-slate-100 dark:border-slate-700/50">
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-5">Key Features</h3>
-            <ul className="space-y-3 text-sm text-slate-600 dark:text-slate-300">
-              {[
-                'Download all images from TikTok carousels',
-                'Save photos in original quality — no compression',
-                'Select individual images or download all',
-                'ZIP download option for multiple images',
-                'Works on iPhone, Android, PC, and Mac',
-                'No app, no sign-up, completely free',
-              ].map((f) => (
-                <li key={f} className="flex items-start gap-2">
-                  <span className="text-indigo-500 font-bold mt-0.5">✓</span>
-                  <span>{f}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="bg-slate-50 dark:bg-slate-800 rounded-lg p-6 border border-slate-100 dark:border-slate-700/50">
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-5">Download Options</h3>
-            <div className="space-y-4">
-              <div className="bg-white dark:bg-slate-900 rounded-lg p-4 border border-slate-100 dark:border-slate-700/50">
-                <h4 className="text-slate-900 dark:text-white font-semibold mb-1">Individual Images</h4>
-                <p className="text-slate-500 dark:text-slate-400 text-sm">Select specific photos from the carousel and download them one by one.</p>
-              </div>
-              <div className="bg-white dark:bg-slate-900 rounded-lg p-4 border border-slate-100 dark:border-slate-700/50">
-                <h4 className="text-slate-900 dark:text-white font-semibold mb-1">ZIP Archive</h4>
-                <p className="text-slate-500 dark:text-slate-400 text-sm">Select all images and download everything as a single ZIP file — perfect for carousels.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Also supports */}
-      <section className="bg-slate-50 dark:bg-slate-800/50 py-14 px-4 border-b border-slate-100 dark:border-slate-700/50">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white text-center mb-10">
-            Also Download TikTok Videos &amp; Audio
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {([
-              { Icon: FilmIcon, title: 'TikTok Video', desc: 'Download TikTok videos in HD without watermark as MP4.', href: '/tiktok-video-downloader', linkText: 'Download videos →' },
-              { Icon: MusicIcon, title: 'TikTok to MP3', desc: 'Extract audio from any TikTok video as a high-quality MP3.', href: '/tiktok-to-mp3', linkText: 'Extract audio →' },
-              { Icon: PhotoIcon, title: 'TikTok Photos', desc: 'You are here — save TikTok image carousels instantly.', href: '/tiktok-photo-downloader', linkText: 'Current page' },
-            ] as const).map(({ Icon, title, desc, href, linkText }) => (
-              <div key={title} className="bg-white dark:bg-slate-800 rounded-lg p-6 border border-slate-100 dark:border-slate-700/50 shadow-sm text-center">
-                <div className="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Icon className="w-6 h-6 text-indigo-500" />
-                </div>
-                <h3 className="text-slate-900 dark:text-white font-bold text-lg mb-2">{title}</h3>
-                <p className="text-slate-500 dark:text-slate-400 text-sm mb-4 leading-relaxed">{desc}</p>
-                <Link href={href} className="text-indigo-500 text-sm font-semibold hover:underline">{linkText}</Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="bg-white dark:bg-slate-900 py-14 px-4 border-b border-slate-100 dark:border-slate-700/50">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white text-center mb-10">
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-4">
-            {[
-              {
-                q: 'How do I download TikTok photos?',
-                a: 'Copy the TikTok photo post URL, paste it on savefrominternet.com, and click Download. Tap "Show Images" to view the gallery, select the photos you want, and download.',
-              },
-              {
-                q: 'Can I download TikTok image carousels?',
-                a: 'Yes. All images in a TikTok carousel are detected automatically. You can download them individually or as a ZIP archive.',
-              },
-              {
-                q: 'What quality are the downloaded images?',
-                a: 'Original quality — we do not compress or resize the images.',
-              },
-              {
-                q: 'Does it work on iPhone and Android?',
-                a: 'Yes. Open the site in Safari (iPhone) or Chrome (Android), paste the TikTok URL, and download the images.',
-              },
-              {
-                q: 'Is the TikTok photo downloader free?',
-                a: 'Yes, completely free. No account, no app, no download limits.',
-              },
-              {
-                q: 'Can I download TikTok images in HD quality?',
-                a: 'Yes. We fetch TikTok images at their original resolution with no compression — full HD quality, exactly as uploaded by the creator.',
-              },
-              {
-                q: 'How do I save TikTok pictures to my phone?',
-                a: 'Paste the TikTok photo post URL into savefrominternet.com, tap Show Images, select the pictures you want, and tap Download. On iPhone the file saves to Files; on Android it goes to your Downloads folder. Then move it to your Gallery.',
-              },
-            ].map(({ q, a }) => (
-              <div key={q} className="bg-slate-50 dark:bg-slate-800 rounded-lg p-5 border border-slate-100 dark:border-slate-700/50">
-                <h3 className="text-slate-900 dark:text-white font-bold mb-2">{q}</h3>
-                <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{a}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="bg-indigo-500 py-14 px-4 text-center">
-        <h2 className="text-3xl font-bold text-white mb-4">
-          Download TikTok Photos Now — Free
-        </h2>
-        <p className="text-indigo-100 mb-8 text-lg">
-          Original quality · No compression · No sign-up
-        </p>
-        <Link
-          href="/"
-          className="inline-block bg-white text-indigo-600 font-semibold px-8 py-4 rounded-lg text-lg shadow-xl hover:scale-105 transition-all"
-        >
-          Download TikTok Photos
-        </Link>
-      </section>
-
-      <ToolRelatedGuides guides={[
-        { label: 'How to Download TikTok Photos & Carousels', href: '/blog/how-to-download-tiktok-photos-and-image-carousels' },
-        { label: 'Download TikTok Carousel — All Images', href: '/blog/download-tiktok-carousel-all-images' },
-        { label: 'TikTok Image Carousel ZIP Download', href: '/blog/tiktok-image-carousel-zip' },
-        { label: 'TikTok Photo vs Video Download', href: '/blog/tiktok-photo-vs-video-download' },
-        { label: 'Save TikTok Slideshow', href: '/blog/save-tiktok-slideshow' },
-        { label: 'Best TikTok Photo Downloader', href: '/blog/best-tiktok-photo-downloader' },
-      ]} />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+      {/* Related Guides */}
+      <ToolRelatedGuides
+        guides={[
+          { label: 'Download Carousel as ZIP', href: '/blog/tiktok-image-carousel-zip' },
+          { label: 'TikTok Photos vs Video', href: '/blog/tiktok-photo-vs-video-download' },
+          { label: 'Photo Downloader Guide', href: '/blog/how-to-download-tiktok-photos-and-image-carousels' },
+          { label: 'TikTok to MP3 Converter', href: '/tiktok-to-mp3' },
+          { label: 'TikTok Video Downloader', href: '/tiktok-video-downloader' },
+        ]}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <ToolSchema name="TikTok Photo Downloader" url="https://www.savefrominternet.com/tiktok-photo-downloader" description="Free TikTok photo and image carousel downloader. Save photos individually or as a ZIP. No app required." ratingCount="1893" />
+
+      {/* Bottom CTA */}
+      <section className="py-12 px-4 max-w-5xl mx-auto mb-12">
+        <div className="bg-gradient-to-r from-[#195fd7] to-[#1e6fe8] rounded-3xl p-8 sm:p-12 text-center text-white shadow-xl shadow-blue-600/20">
+          <h2 className="text-2xl sm:text-4xl font-extrabold mb-3">
+            Download TikTok Photos in Original Quality
+          </h2>
+          <p className="text-blue-100 text-sm sm:text-base max-w-xl mx-auto mb-6">
+            Paste any photo slideshow link and download all photos at once. Free forever, no app required.
+          </p>
+          <Link
+            href="/"
+            className="inline-block bg-white text-blue-700 font-extrabold px-8 py-4 rounded-2xl text-base sm:text-lg shadow-lg hover:bg-blue-50 hover:scale-105 transition-all active:scale-95 cursor-pointer"
+          >
+            Start Downloading Photos
+          </Link>
+        </div>
+      </section>
     </div>
   )
 }

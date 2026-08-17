@@ -42,7 +42,7 @@ export default function LanguageSwitcher() {
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        className="flex items-center gap-1.5 h-10 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-sm font-semibold transition-all cursor-pointer active:scale-95 touch-manipulation focus-visible:ring-2 focus-visible:ring-blue-500 select-none"
+        className="flex items-center gap-1.5 h-10 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-semibold transition-all cursor-pointer active:scale-95 touch-manipulation focus-visible:ring-2 focus-visible:ring-blue-500 select-none"
         aria-label="Select language"
         aria-expanded={open}
       >
@@ -59,16 +59,16 @@ export default function LanguageSwitcher() {
       </button>
 
       {open && (
-        <div className="absolute right-0 top-full mt-2 z-50 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-2xl overflow-hidden w-48 max-h-80 overflow-y-auto py-1 animate-in fade-in slide-in-from-top-2 duration-150">
+        <div className="absolute right-0 top-full mt-2 z-50 bg-white border border-slate-200 rounded-2xl shadow-2xl overflow-hidden w-48 max-h-80 overflow-y-auto py-1 animate-in fade-in slide-in-from-top-2 duration-150">
           {languages.map((l) => (
             <button
               type="button"
               key={l.code}
               onClick={() => handleSelect(l.code as LangCode)}
-              className={`w-full flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors hover:bg-slate-50 dark:hover:bg-slate-700/80 cursor-pointer touch-manipulation active:bg-blue-50 ${
+              className={`w-full flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors hover:bg-slate-50 cursor-pointer touch-manipulation active:bg-blue-50 ${
                 lang === l.code
-                  ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold'
-                  : 'text-slate-700 dark:text-slate-200'
+                  ? 'bg-blue-50 text-blue-600 font-bold'
+                  : 'text-slate-700'
               }`}
             >
               <span className="text-lg leading-none">{l.flag}</span>

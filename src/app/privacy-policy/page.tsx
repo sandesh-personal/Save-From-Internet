@@ -11,83 +11,66 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="flex flex-col flex-grow min-h-[calc(100vh-4rem)] p-8 bg-white dark:bg-slate-900 text-black dark:text-white">
-      <div className="max-w-4xl mx-auto flex flex-col">
-
-        <h1 className="text-4xl font-bold mb-6">Privacy Policy</h1>
-        <p className="text-black/80 dark:text-slate-300 leading-relaxed text-lg mb-6">
-          <strong>Save From Internet</strong> respects your privacy and is committed to protecting your personal information.
-          This Privacy Policy explains how we collect, use, and safeguard any data you provide when using our services.
-          We do not collect personal data unless you voluntarily provide it via contact or support requests.
-        </p>
+    <div className="bg-white min-h-[calc(100vh-4rem)] px-4 py-12">
+      <div className="max-w-4xl mx-auto space-y-8">
+        <div>
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">Privacy Policy</h1>
+          <p className="text-slate-600 leading-relaxed text-base sm:text-lg">
+            <strong>Save From Internet</strong> respects your privacy and is committed to protecting your personal information.
+            This Privacy Policy explains how we collect, use, and safeguard any data you provide when using our services.
+            We do not collect personal data unless you voluntarily provide it via contact or support requests.
+          </p>
+        </div>
 
         {/* Top Ad */}
-        <div className="mb-8">
+        <div className="py-2">
           <GoogleAdSense
             adSlot="5309301802"
             adFormat="auto"
-            className="flex justify-center"
+            className="flex justify-center w-full"
             containerStyle="default"
           />
         </div>
 
-        <h2 className="text-2xl font-semibold mb-4 dark:text-white">Information We Collect</h2>
-        <p className="text-black/80 dark:text-slate-300 leading-relaxed text-lg mb-4">
-          Our website does not require registration or collect personal information to download content.
-          However, to improve user experience and support services, we may collect non-personal data such as:
-        </p>
-        <ul className="list-disc list-inside mb-6 text-black/80 dark:text-slate-300">
-          <li>IP addresses for security and abuse prevention</li>
-          <li>Usage data to analyze and optimize site performance</li>
-          <li>Cookies to enhance site functionality (if applicable)</li>
-        </ul>
+        <div className="space-y-6 text-slate-700">
+          <section>
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-3">Information We Collect</h2>
+            <p className="leading-relaxed mb-3">
+              Our website does not require registration or collect personal information to download content.
+              However, to maintain security and optimize performance, we may log non-personal technical telemetry:
+            </p>
+            <ul className="list-disc list-inside space-y-1.5 pl-2 text-slate-600">
+              <li>IP addresses for server security and rate limiting</li>
+              <li>Browser type, device model, and OS version</li>
+              <li>Essential cookies for interface language preferences</li>
+            </ul>
+          </section>
 
-        <h2 className="text-2xl font-semibold mb-4 dark:text-white">How We Use Your Information</h2>
-        <p className="text-black/80 dark:text-slate-300 leading-relaxed text-lg mb-6">
-          The data collected is used solely to maintain and improve the service, prevent fraudulent use,
-          and respond to user inquiries. We do not share, sell, or rent your personal information to third parties.
-        </p>
+          <section>
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-3">How We Use Your Information</h2>
+            <p className="leading-relaxed">
+              The data collected is used solely to maintain and improve the service, prevent automated abuse,
+              and respond to user inquiries. We do not sell, rent, or trade your personal data with third parties.
+            </p>
+          </section>
 
-        {/* Middle Ad */}
-        <div className="my-8">
-          <GoogleAdSense
-            adSlot="3804648444"
-            adFormat="auto"
-            className="flex justify-center"
-            containerStyle="default"
-          />
-        </div>
+          <section>
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-3">Third-Party Services &amp; Advertising</h2>
+            <p className="leading-relaxed">
+              Our platform does not host copyrighted multimedia and does not control external services like TikTok.
+              We partner with Google AdSense to serve non-intrusive advertisements that keep this tool 100% free for all users.
+            </p>
+          </section>
 
-        <h2 className="text-2xl font-semibold mb-4 dark:text-white">Third-Party Services</h2>
-        <p className="text-black/80 dark:text-slate-300 leading-relaxed text-lg mb-6">
-          Our platform does not host any content and does not control third-party platforms like TikTok.
-          We are not responsible for the privacy policies or practices of these external services.
-        </p>
-
-        <h2 className="text-2xl font-semibold mb-4 dark:text-white">Contact for Support</h2>
-        <p className="text-black/80 dark:text-slate-300 leading-relaxed text-lg mb-2">
-          If you experience any issues or problems while downloading content, please contact our support team at{' '}
-          <a href="mailto:support@savefrominternet.com" className="underline hover:text-blue-600">
-            support@savefrominternet.com
-          </a>. We are committed to helping resolve any difficulties promptly.
-        </p>
-
-        <h2 className="text-2xl font-semibold mb-4 dark:text-white">Business Inquiries</h2>
-        <p className="text-black/80 dark:text-slate-300 leading-relaxed text-lg">
-          For partnership opportunities or other general questions, please reach out to{' '}
-          <a href="mailto:contact@savefrominternet.com" className="underline hover:text-blue-600">
-            contact@savefrominternet.com
-          </a>.
-        </p>
-
-        {/* Bottom Ad */}
-        <div className="mt-8">
-          <GoogleAdSense
-            adSlot="2491566773"
-            adFormat="auto"
-            className="flex justify-center"
-            containerStyle="default"
-          />
+          <section className="bg-slate-50 rounded-2xl p-6 border border-slate-100 space-y-3">
+            <h2 className="text-lg font-bold text-slate-900">Contact Us</h2>
+            <p className="text-sm text-slate-600">
+              If you have any questions or privacy requests, please reach out to our team at{' '}
+              <a href="mailto:support@savefrominternet.com" className="text-blue-600 font-bold hover:underline">
+                support@savefrominternet.com
+              </a>.
+            </p>
+          </section>
         </div>
       </div>
     </div>

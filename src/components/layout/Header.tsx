@@ -104,8 +104,8 @@ export default function Header() {
               </svg>
             </a>
 
-            <Link href="/#how-to" onClick={() => setDesktopTiktokOpen(false)} className="px-3 py-2 text-sm text-slate-600 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all font-semibold">How to Use</Link>
-            <Link href="/#faq" onClick={() => setDesktopTiktokOpen(false)} className="px-3 py-2 text-sm text-slate-600 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all font-semibold">FAQ</Link>
+            <Link href="/how-to-download-tiktok-videos" onClick={() => setDesktopTiktokOpen(false)} className="px-3 py-2 text-sm text-slate-600 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all font-semibold">How to Use</Link>
+            <Link href="/faq" onClick={() => setDesktopTiktokOpen(false)} className="px-3 py-2 text-sm text-slate-600 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all font-semibold">FAQ</Link>
             <Link href="/blog" onClick={() => setDesktopTiktokOpen(false)} className="px-3 py-2 text-sm text-slate-600 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all font-semibold">Blog</Link>
           </nav>
 
@@ -225,7 +225,7 @@ export default function Header() {
 
               {/* How to Use */}
               <Link
-                href="/#how-to"
+                href="/how-to-download-tiktok-videos"
                 onClick={closeAll}
                 className="flex items-center px-3.5 py-3 text-sm font-bold text-slate-800 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-colors cursor-pointer touch-manipulation"
               >
@@ -234,7 +234,7 @@ export default function Header() {
 
               {/* FAQ */}
               <Link
-                href="/#faq"
+                href="/faq"
                 onClick={closeAll}
                 className="flex items-center px-3.5 py-3 text-sm font-bold text-slate-800 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-colors cursor-pointer touch-manipulation"
               >

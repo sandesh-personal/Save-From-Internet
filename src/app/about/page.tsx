@@ -15,28 +15,27 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="bg-white dark:bg-slate-900">
-
+    <div className="bg-white min-h-screen">
       {/* Hero */}
-      <section className="bg-gradient-to-b from-indigo-50/50 dark:from-slate-800 to-white dark:to-slate-900 py-16 px-4 text-center border-b border-slate-100 dark:border-slate-700/50">
+      <section className="bg-gradient-to-b from-blue-50/50 via-white to-white py-16 px-4 text-center border-b border-slate-100">
         <div className="max-w-3xl mx-auto">
-          <div className="w-20 h-20 rounded-full bg-indigo-500 flex items-center justify-center text-white font-bold text-3xl mx-auto mb-6 shadow-lg shadow-indigo-500/25">
+          <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#195fd7] to-[#1e6fe8] flex items-center justify-center text-white font-extrabold text-3xl mx-auto mb-6 shadow-lg shadow-blue-500/25">
             S
           </div>
-          <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-3">Hi, I&apos;m Sandy</h1>
-          <p className="text-indigo-500 font-semibold mb-4">Founder &amp; Developer, SaveFromInternet.com</p>
-          <p className="text-lg text-slate-500 dark:text-slate-400 max-w-xl mx-auto leading-relaxed">
-            I built SaveFromInternet because I was frustrated that every TikTok downloader was either covered in ads, broken, or added a watermark. So I made one that just works.
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-3 tracking-tight">Hi, I&apos;m Sandy</h1>
+          <p className="text-blue-600 font-bold mb-4 text-sm sm:text-base">Founder &amp; Developer, SaveFromInternet.com</p>
+          <p className="text-base sm:text-lg text-slate-600 max-w-xl mx-auto leading-relaxed">
+            I built SaveFromInternet because I was frustrated that every TikTok downloader was either covered in intrusive popups, broken, or added a watermark. So I made one that just works.
           </p>
         </div>
       </section>
 
       {/* Story */}
-      <section className="py-14 px-4 border-b border-slate-100 dark:border-slate-700/50">
+      <section className="py-14 px-4 border-b border-slate-100">
         <div className="max-w-3xl mx-auto space-y-8">
           <div>
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">The Story</h2>
-            <div className="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed">
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">The Story</h2>
+            <div className="space-y-4 text-slate-600 leading-relaxed">
               <p>
                 I started SaveFromInternet.com in 2024 as a side project. I needed to download a TikTok video for a presentation and spent 20 minutes clicking through sketchy sites full of fake download buttons and pop-ups. I thought — this should take 10 seconds, not 20 minutes.
               </p>
@@ -44,29 +43,29 @@ export default function AboutPage() {
                 So I built it myself. A clean, fast downloader that handles TikTok videos, audio, and photo carousels without watermarks, without an app, and without making you click through five fake buttons.
               </p>
               <p>
-                Since then it&apos;s grown to serve users across the world daily. I also built <a href="https://www.grabreels.com" target="_blank" rel="noopener noreferrer" className="text-indigo-500 hover:underline font-semibold">GrabReels.com</a> — the same idea but for Instagram Reels and carousels.
+                Since then it&apos;s grown to serve users across the world daily. I also built <a href="https://www.grabreels.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-bold">GrabReels.com</a> — the same idea but for Instagram Reels and carousels.
               </p>
             </div>
           </div>
 
           <div>
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">What I Built</h2>
-            <ul className="space-y-3 text-slate-600 dark:text-slate-400">
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">What I Built</h2>
+            <ul className="space-y-3 text-slate-600">
               {[
                 { name: 'SaveFromInternet.com', desc: 'Free TikTok downloader — videos, MP3 audio, photo carousels, no watermark' },
                 { name: 'GrabReels.com', desc: 'Free Instagram Reel and carousel downloader' },
               ].map(({ name, desc }) => (
                 <li key={name} className="flex items-start gap-3">
-                  <span className="text-indigo-500 font-bold mt-0.5">→</span>
-                  <span><strong className="text-slate-800 dark:text-slate-200">{name}</strong> — {desc}</span>
+                  <span className="text-blue-600 font-bold mt-0.5">→</span>
+                  <span><strong className="text-slate-900 font-bold">{name}</strong> — {desc}</span>
                 </li>
               ))}
             </ul>
           </div>
 
           <div>
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">How it actually works</h2>
-            <div className="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed">
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">How it actually works</h2>
+            <div className="space-y-4 text-slate-600 leading-relaxed">
               <p>
                 When you tap TikTok&apos;s own Save button, their servers don&apos;t send you the original file.
                 They run it through a transcoding pipeline that composites their logo and your username
@@ -89,11 +88,11 @@ export default function AboutPage() {
       </section>
 
       {/* Ad */}
-      <div className="py-8 px-4 border-b border-slate-100">
+      <div className="py-8 px-4 border-b border-slate-100 max-w-5xl mx-auto flex justify-center">
         <GoogleAdSense
           adSlot="3804648444"
           adFormat="auto"
-          className="flex justify-center"
+          className="flex justify-center w-full"
           containerStyle="default"
         />
       </div>
@@ -124,13 +123,13 @@ export default function AboutPage() {
           <div className="space-y-4 text-slate-600">
             <p>
               <strong className="text-slate-800">Technical issues or bug reports:</strong>{' '}
-              <a href="mailto:support@savefrominternet.com" className="text-blue-600 hover:underline">
+              <a href="mailto:support@savefrominternet.com" className="text-blue-600 hover:underline font-bold">
                 support@savefrominternet.com
               </a>
             </p>
             <p>
               <strong className="text-slate-800">Business &amp; partnerships:</strong>{' '}
-              <a href="mailto:contact@savefrominternet.com" className="text-blue-600 hover:underline">
+              <a href="mailto:contact@savefrominternet.com" className="text-blue-600 hover:underline font-bold">
                 contact@savefrominternet.com
               </a>
             </p>
@@ -145,17 +144,17 @@ export default function AboutPage() {
           <p className="text-slate-500 mb-6">Paste any TikTok link and download in seconds — free, no watermark, no app.</p>
           <Link
             href="/"
-            className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-2xl text-lg shadow-lg shadow-blue-500/25 hover:scale-105 transition-all"
+            className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-2xl text-lg shadow-lg shadow-blue-500/25 hover:scale-105 transition-all cursor-pointer"
           >
             Download TikTok Videos Free
           </Link>
         </div>
 
-        <div className="mt-10">
+        <div className="mt-10 max-w-5xl mx-auto flex justify-center">
           <GoogleAdSense
             adSlot="2491566773"
             adFormat="auto"
-            className="flex justify-center"
+            className="flex justify-center w-full"
             containerStyle="default"
           />
         </div>

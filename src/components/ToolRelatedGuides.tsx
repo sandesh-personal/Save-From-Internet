@@ -12,15 +12,15 @@ interface Props {
 export default function ToolRelatedGuides({ guides }: Props) {
   if (!guides.length) return null
   return (
-    <section className="bg-slate-50 dark:bg-slate-800/50 py-10 px-4 border-t border-slate-100 dark:border-slate-700/50">
+    <section className="bg-slate-50 py-10 px-4 border-t border-slate-100">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Related Guides</h2>
-        <ul className="flex flex-wrap gap-2">
+        <h2 className="text-lg font-bold text-slate-900 mb-4">Related Guides</h2>
+        <ul className="flex flex-wrap gap-2.5">
           {guides.map(({ label, href }) => (
             <li key={href}>
               <Link
                 href={href}
-                className="inline-block bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-indigo-500 hover:border-indigo-300 dark:hover:border-indigo-700 text-sm font-medium px-4 py-2 rounded-full transition-colors"
+                className="inline-block bg-white border border-slate-200 text-slate-700 hover:text-blue-600 hover:border-blue-300 hover:bg-blue-50/40 text-sm font-medium px-4 py-2 rounded-full transition-all shadow-xs"
               >
                 {label}
               </Link>

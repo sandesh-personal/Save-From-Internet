@@ -2,8 +2,6 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import GoogleAdSense from '@/components/GoogleAdSense'
 
-const baseUrl = 'https://www.savefrominternet.com'
-
 export const metadata: Metadata = {
   title: 'Disclaimer - TikTok Video Downloader | Save From Internet',
   description: 'Legal disclaimer for Save From Internet TikTok video downloader. Learn about our terms of service, user responsibilities, and copyright information.',
@@ -15,80 +13,56 @@ export const metadata: Metadata = {
     type: 'website',
     siteName: 'Save From Internet',
   },
-  twitter: {
-    card: 'summary',
-    title: 'Disclaimer - TikTok Video Downloader | Save From Internet',
-    description: 'Legal disclaimer for Save From Internet TikTok video downloader. Learn about our terms of service, user responsibilities, and copyright information.',
-  },
 }
 
 export default function DisclaimerPage() {
   return (
-    <div className="flex flex-col flex-grow min-h-[calc(100vh-4rem)] p-8 bg-white dark:bg-slate-900 text-black dark:text-white">
-      <div className="max-w-4xl mx-auto flex flex-col">
-
-        <h1 className="text-4xl font-bold mb-6">Disclaimer</h1>
-        <p className="text-black/80 dark:text-slate-300 leading-relaxed text-lg mb-6">
-          Welcome to <strong>Save From Internet</strong>! We are dedicated to providing a free, user-friendly tool for downloading TikTok videos, audio, and images for personal use. Please read this disclaimer carefully before using our website or services.
-        </p>
-        <h2 className="text-2xl font-semibold mb-4 mt-6 dark:text-white">General Information</h2>
-        <p className="text-black/80 dark:text-slate-300 leading-relaxed mb-4">
-          <strong>Save From Internet</strong> is an independent platform and is <strong>not affiliated, associated, authorized, endorsed by, or in any way officially connected</strong> with TikTok, ByteDance Ltd., or any of its subsidiaries or affiliates. All product and company names are trademarks™ or registered® trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.
-        </p>
-        <h2 className="text-2xl font-semibold mb-4 mt-6 dark:text-white">Copyright & Content Ownership</h2>
-        <p className="text-black/80 dark:text-slate-300 leading-relaxed mb-4">
-          We do <strong>not host or store</strong> any video, audio, or image files on our servers. All downloadable content remains the property of its respective copyright owners. Our service simply provides a way for users to access publicly available content for personal, non-commercial use. <br />
-          <span className="font-semibold">If you are a copyright owner and believe your rights have been infringed, please contact us at <a href="mailto:copyright@savefrominternet.com" className="underline text-blue-600">copyright@savefrominternet.com</a> and we will promptly address your concerns.</span>
-        </p>
-        <h2 className="text-2xl font-semibold mb-4 mt-6 dark:text-white">User Responsibilities</h2>
-        <p className="text-black/80 dark:text-slate-300 leading-relaxed mb-4">
-          Users are solely responsible for how they use the content downloaded from our website. Downloading copyrighted material without permission may violate copyright laws in your country. <strong>Save From Internet</strong> is intended for personal use only, such as downloading your own TikTok videos or content you have permission to use.
-        </p>
-        <h2 className="text-2xl font-semibold mb-4 mt-6 dark:text-white">No Guarantee of Service</h2>
-        <p className="text-black/80 dark:text-slate-300 leading-relaxed mb-4">
-          We strive to keep our service available and up-to-date, but we do not guarantee uninterrupted access or that all TikTok content will be downloadable at all times. TikTok may change its platform or restrict access at any time.
-        </p>
-        <h2 className="text-2xl font-semibold mb-4 mt-6 dark:text-white">Related Resources</h2>
-        <ul className="list-disc list-inside text-black/80 dark:text-slate-300 mb-6">
-          <li><Link href="/privacy-policy" className="underline text-blue-600">Privacy Policy</Link></li>
-          <li><Link href="/faq" className="underline text-blue-600">Frequently Asked Questions</Link></li>
-          <li><Link href="/tiktok-video-downloader" className="underline text-blue-600">TikTok Video Downloader</Link></li>
-          <li><Link href="/tiktok-to-mp3" className="underline text-blue-600">TikTok to MP3 Converter</Link></li>
-        </ul>
-        <h2 className="text-2xl font-semibold mb-4 mt-6 dark:text-white">Disclaimer FAQ</h2>
-        <div className="space-y-4 mb-6">
-          <div>
-            <h3 className="font-semibold dark:text-white">Is it legal to download TikTok videos or audio?</h3>
-            <p className="text-black/70 dark:text-slate-400">Downloading your own TikTok videos or public content for personal use is generally legal. However, you should always respect copyright laws and the rights of content creators. Do not use downloaded content for commercial purposes without permission.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold dark:text-white">Does Save From Internet store any files?</h3>
-            <p className="text-black/70 dark:text-slate-400">No, we do not store or host any media files. All downloads are processed directly from TikTok’s public servers.</p>
-          </div>
-          <div>
-            <h3 className="font-semibold dark:text-white">How can I report copyright infringement?</h3>
-            <p className="text-black/70 dark:text-slate-400">If you believe your copyright has been violated, please email us at <a href="mailto:copyright@savefrominternet.com" className="underline text-blue-600">copyright@savefrominternet.com</a> and we will investigate and take appropriate action.</p>
-          </div>
+    <div className="bg-white min-h-[calc(100vh-4rem)] px-4 py-12">
+      <div className="max-w-4xl mx-auto space-y-8">
+        <div>
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">Disclaimer &amp; Legal Notice</h1>
+          <p className="text-slate-600 leading-relaxed text-base sm:text-lg">
+            Welcome to <strong>Save From Internet</strong>. We provide a free, browser-based web utility for downloading TikTok videos, audio, and photo carousels for personal and offline use. Please review this legal notice carefully.
+          </p>
         </div>
 
-        {/* Middle Ad */}
-        <div className="my-8">
-          <GoogleAdSense
-            adSlot="3804648444"
-            adFormat="auto"
-            className="flex justify-center"
-            containerStyle="default"
-          />
-        </div>
+        <div className="space-y-6 text-slate-700">
+          <section>
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-3">General Trademark Disclaimer</h2>
+            <p className="leading-relaxed text-slate-600">
+              <strong>Save From Internet</strong> is an independent software tool and is <strong>not affiliated, associated, authorized, endorsed by, or in any way officially connected</strong> with TikTok, ByteDance Ltd., Instagram, Meta, or any of their subsidiaries or affiliates. All product and company names are trademarks™ or registered® trademarks of their respective holders.
+            </p>
+          </section>
 
-        {/* Bottom Ad */}
-        <div className="mt-8">
-          <GoogleAdSense
-            adSlot="2491566773"
-            adFormat="auto"
-            className="flex justify-center"
-            containerStyle="default"
-          />
+          <section>
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-3">Copyright &amp; Content Ownership</h2>
+            <p className="leading-relaxed text-slate-600 mb-2">
+              We do <strong>not host, store, or archive</strong> any multimedia files on our servers. All downloads are executed directly from publicly accessible CDN streams. All intellectual property remains the property of the original copyright owners.
+            </p>
+            <p className="text-sm text-slate-500">
+              If you are a copyright owner and have inquiries, please contact us at{' '}
+              <a href="mailto:copyright@savefrominternet.com" className="text-blue-600 font-bold hover:underline">
+                copyright@savefrominternet.com
+              </a>.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-3">User Responsibilities</h2>
+            <p className="leading-relaxed text-slate-600">
+              Users are solely responsible for compliance with applicable copyright laws and platform terms of service. This tool is designed strictly for fair use, personal study, and offline backup.
+            </p>
+          </section>
+
+          <section className="bg-slate-50 rounded-2xl p-6 border border-slate-100">
+            <h2 className="text-lg font-bold text-slate-900 mb-3">Helpful Resources</h2>
+            <div className="flex flex-wrap gap-3">
+              <Link href="/privacy-policy" className="text-sm font-bold text-blue-600 hover:underline">Privacy Policy →</Link>
+              <Link href="/faq" className="text-sm font-bold text-blue-600 hover:underline">FAQ →</Link>
+              <Link href="/how-to-download-tiktok-videos" className="text-sm font-bold text-blue-600 hover:underline">How to Download →</Link>
+              <Link href="/tiktok-video-downloader" className="text-sm font-bold text-blue-600 hover:underline">TikTok Downloader →</Link>
+            </div>
+          </section>
         </div>
       </div>
     </div>

@@ -13,9 +13,6 @@ export const metadata: Metadata = {
     'save instagram reels',
     'instagram carousel downloader',
     'download instagram photos',
-    'instagram reel downloader online',
-    'grabreels',
-    'grab reels instagram',
   ],
   alternates: { canonical: 'https://www.savefrominternet.com/instagram-reel-downloader' },
   openGraph: {
@@ -68,32 +65,30 @@ const howToSchema = {
 
 export default function InstagramReelDownloaderPage() {
   return (
-    <div className="bg-white dark:bg-slate-900">
-
+    <div className="bg-white min-h-screen">
       {/* Hero */}
-      <section className="bg-gradient-to-b from-pink-50/60 dark:from-slate-800 to-white dark:to-slate-900 py-16 px-4 text-center border-b border-slate-100 dark:border-slate-700/50">
+      <section className="bg-gradient-to-b from-pink-50/60 via-white to-white py-14 px-4 text-center border-b border-slate-100">
         <div className="max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-white dark:bg-slate-800 text-pink-500 text-xs font-semibold px-4 py-1.5 rounded-full mb-5 border border-pink-100 dark:border-pink-900/40 shadow-sm">
+          <div className="inline-flex items-center gap-2 bg-pink-50 text-pink-600 text-xs font-bold px-4 py-1.5 rounded-full mb-4 border border-pink-100 shadow-xs">
             Instagram · Reels &amp; Carousels · No Watermark
           </div>
-          <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-4 leading-tight">
-            Instagram Reel{' '}
-            <span className="text-pink-500">Downloader</span>
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight leading-tight">
+            Instagram Reel <span className="text-pink-600">Downloader</span>
           </h1>
-          <p className="text-lg text-slate-500 dark:text-slate-400 mb-8 max-w-xl mx-auto">
+          <p className="text-base sm:text-lg text-slate-600 mb-8 max-w-xl mx-auto leading-relaxed">
             Download Instagram Reels and photo carousels without watermark — free, no app, works on iPhone, Android, and PC.
           </p>
           <a
             href="https://www.grabreels.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-semibold px-10 py-4 rounded-lg text-lg shadow-lg shadow-pink-500/25 transition-all hover:scale-105"
+            className="inline-block bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold px-10 py-4 rounded-2xl text-base sm:text-lg shadow-lg shadow-pink-500/25 transition-all hover:scale-105"
           >
             Download Instagram Reels — Free
           </a>
-          <p className="mt-3 text-sm text-slate-400 dark:text-slate-500">
+          <p className="mt-3 text-xs text-slate-400">
             Powered by{' '}
-            <a href="https://www.grabreels.com" target="_blank" rel="noopener noreferrer" className="text-pink-500 hover:underline font-semibold">
+            <a href="https://www.grabreels.com" target="_blank" rel="noopener noreferrer" className="text-pink-600 hover:underline font-bold">
               GrabReels.com
             </a>
           </p>
@@ -101,9 +96,9 @@ export default function InstagramReelDownloaderPage() {
       </section>
 
       {/* Steps */}
-      <section className="bg-slate-50 dark:bg-slate-800/50 py-14 px-4 border-b border-slate-100 dark:border-slate-700/50">
+      <section className="bg-slate-50 py-12 sm:py-16 px-4 border-b border-slate-100">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white text-center mb-10">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 text-center mb-10">
             How to Download Instagram Reels
           </h2>
           <div className="space-y-4">
@@ -113,11 +108,11 @@ export default function InstagramReelDownloaderPage() {
               { n: '3', title: 'Paste and process', desc: 'Paste the Instagram link into the input box and tap Download. GrabReels fetches the original video in seconds.' },
               { n: '4', title: 'Save to your device', desc: 'Tap Download Video to save the MP4 without any watermark to your phone or computer. For carousels, download all photos as a ZIP.' },
             ].map(({ n, title, desc }) => (
-              <div key={n} className="bg-white dark:bg-slate-800 rounded-lg p-5 border border-slate-100 dark:border-slate-700/50 shadow-sm flex items-start gap-4">
-                <div className="w-11 h-11 bg-gradient-to-br from-pink-500 to-rose-500 rounded-lg flex items-center justify-center text-white font-bold text-lg flex-shrink-0">{n}</div>
+              <div key={n} className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-xs flex items-start gap-4">
+                <div className="w-11 h-11 bg-gradient-to-br from-pink-500 to-rose-500 rounded-2xl flex items-center justify-center text-white font-bold text-lg flex-shrink-0 shadow-md shadow-pink-500/20">{n}</div>
                 <div>
-                  <h3 className="text-slate-900 dark:text-white font-bold text-lg mb-1">{title}</h3>
-                  <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{desc}</p>
+                  <h3 className="text-slate-900 font-bold text-lg mb-1">{title}</h3>
+                  <p className="text-slate-600 text-sm leading-relaxed">{desc}</p>
                 </div>
               </div>
             ))}
@@ -126,9 +121,9 @@ export default function InstagramReelDownloaderPage() {
       </section>
 
       {/* Features */}
-      <section className="bg-white dark:bg-slate-900 py-14 px-4 border-b border-slate-100 dark:border-slate-700/50">
+      <section className="py-12 sm:py-16 px-4 border-b border-slate-100">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white text-center mb-10">What You Can Download</h2>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 text-center mb-10">What You Can Download</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {[
               { title: 'Instagram Reels (MP4)', desc: 'Full-quality Reels without the Instagram watermark badge. Original resolution.' },
@@ -138,49 +133,9 @@ export default function InstagramReelDownloaderPage() {
               { title: 'IGTV Videos', desc: 'Long-form IGTV content saved as MP4 at original quality.' },
               { title: 'Audio from Reels', desc: 'Extract the audio track from any Reel and save as MP3.' },
             ].map(({ title, desc }) => (
-              <div key={title} className="bg-slate-50 dark:bg-slate-800 rounded-lg p-5 border border-slate-100 dark:border-slate-700/50">
-                <div className="text-pink-500 font-bold mb-1">✓ {title}</div>
-                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* About GrabReels */}
-      <section className="bg-slate-50 dark:bg-slate-800/50 py-14 px-4 border-b border-slate-100 dark:border-slate-700/50">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">About GrabReels</h2>
-          <p className="text-slate-500 dark:text-slate-400 text-lg mb-6 leading-relaxed">
-            GrabReels is the dedicated Instagram downloader from the same team behind SaveFromInternet.com. Built specifically for Instagram Reels and carousels, it delivers the fastest and cleanest downloads available — no sign-up, no limits, no watermark.
-          </p>
-          <a
-            href="https://www.grabreels.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-semibold px-8 py-3 rounded-lg text-base shadow-lg hover:scale-105 transition-all"
-          >
-            Visit GrabReels.com
-          </a>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="bg-white dark:bg-slate-900 py-14 px-4 border-b border-slate-100 dark:border-slate-700/50">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white text-center mb-10">Frequently Asked Questions</h2>
-          <div className="space-y-6">
-            {[
-              { q: 'How do I download Instagram Reels?', a: 'Go to GrabReels.com, paste the Instagram Reel URL, and click Download. The MP4 saves to your device without any watermark.' },
-              { q: 'Can I download an entire Instagram carousel?', a: 'Yes. GrabReels detects photo carousels automatically and lets you download all images individually or as a single ZIP file.' },
-              { q: 'Does it work on iPhone?', a: 'Yes. Open GrabReels.com in Safari on your iPhone. After downloading, the video saves to your Files app. To move it to your Camera Roll, long-press in Files and tap Save to Photos.' },
-              { q: 'Does it work on Android?', a: 'Yes. Open GrabReels.com in Chrome on Android. Downloads go directly to your Downloads folder and are accessible from the Gallery app.' },
-              { q: 'Is GrabReels free?', a: 'Yes, completely free. No account, no subscription, no hidden charges.' },
-              { q: 'Does the downloaded Reel have a watermark?', a: 'No. GrabReels fetches the original source file from Instagram servers, which does not include the watermark badge that Instagram adds when you use their built-in Share feature.' },
-            ].map(({ q, a }) => (
-              <div key={q}>
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-1">{q}</h3>
-                <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{a}</p>
+              <div key={title} className="bg-slate-50 rounded-2xl p-5 border border-slate-100">
+                <div className="text-pink-600 font-bold mb-1">✓ {title}</div>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
@@ -188,23 +143,25 @@ export default function InstagramReelDownloaderPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-gradient-to-r from-pink-500 to-rose-500 py-14 px-4 text-center">
-        <h2 className="text-3xl font-bold text-white mb-4">Ready to Download Instagram Reels?</h2>
-        <p className="text-pink-100 mb-8 text-lg">No watermark. No app. No sign-up. Open your browser and start.</p>
-        <a
-          href="https://www.grabreels.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block bg-white text-pink-600 font-semibold px-10 py-4 rounded-lg text-lg shadow-xl hover:scale-105 transition-all"
-        >
-          Download Reels on GrabReels.com
-        </a>
+      <section className="py-12 px-4 max-w-5xl mx-auto mb-12">
+        <div className="bg-gradient-to-r from-pink-500 to-rose-500 rounded-3xl p-8 sm:p-12 text-center text-white shadow-xl shadow-pink-500/20">
+          <h2 className="text-2xl sm:text-4xl font-extrabold mb-3">Ready to Download Instagram Reels?</h2>
+          <p className="text-pink-100 text-sm sm:text-base max-w-xl mx-auto mb-6">No watermark. No app. No sign-up. Open your browser and start.</p>
+          <a
+            href="https://www.grabreels.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-white text-pink-600 font-extrabold px-10 py-4 rounded-2xl text-base sm:text-lg shadow-xl hover:scale-105 transition-all"
+          >
+            Download Reels on GrabReels.com
+          </a>
+        </div>
       </section>
 
       {/* Related tools */}
-      <section className="bg-white dark:bg-slate-900 py-10 px-4 text-center border-t border-slate-100 dark:border-slate-700/50">
-        <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">Looking for TikTok downloads?</p>
-        <Link href="/" className="inline-block bg-indigo-500 hover:bg-indigo-600 text-white font-semibold px-6 py-3 rounded-lg text-sm transition-colors">
+      <section className="py-10 px-4 text-center border-t border-slate-100">
+        <p className="text-sm text-slate-500 mb-4">Looking for TikTok downloads?</p>
+        <Link href="/" className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3 rounded-xl text-sm transition-colors shadow-md">
           TikTok Downloader — SaveFromInternet.com
         </Link>
       </section>

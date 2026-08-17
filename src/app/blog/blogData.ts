@@ -31,6 +31,18 @@ export const categoryMeta: Record<BlogCategory, { label: string }> = {
   legal:             { label: 'Legal & Privacy' },
 }
 
+export const categoryLabels: Record<BlogCategory, string> = {
+  'how-to':          'How-To Guides',
+  'no-watermark':    'No Watermark',
+  device:            'Device Guides',
+  audio:             'Audio & MP3',
+  photos:            'Photos & Carousels',
+  troubleshooting:   'Troubleshooting',
+  comparison:        'Tool Comparisons',
+  'other-platforms': 'Other Platforms',
+  legal:             'Legal & Privacy',
+}
+
 // Unsplash photo IDs used as blog thumbnails (matching topics already used in blog post content)
 // Phone/TikTok: 1611162617213-7d7a39e9b1d7 | Smartphone in hand: 1512941937669-90a1b58e7e9c
 // Audio/headphones: 1505740420928-5e560c06d30e | Camera/photos: 1031587-90946 (local)

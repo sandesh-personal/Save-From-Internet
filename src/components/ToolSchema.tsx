@@ -4,6 +4,8 @@ interface ToolSchemaProps {
   description: string
   ratingValue?: string
   ratingCount?: string
+  howTo?: object
+  faq?: object
 }
 
 export default function ToolSchema({
@@ -12,6 +14,8 @@ export default function ToolSchema({
   description,
   ratingValue = '4.8',
   ratingCount = '3142',
+  howTo,
+  faq,
 }: ToolSchemaProps) {
   const schema = {
     '@context': 'https://schema.org',
@@ -37,9 +41,23 @@ export default function ToolSchema({
   }
 
   return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+      {howTo && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(howTo) }}
+        />
+      )}
+      {faq && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faq) }}
+        />
+      )}
+    </>
   )
 }

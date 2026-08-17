@@ -1,80 +1,59 @@
 import Link from 'next/link'
-import { headers } from 'next/headers'
-import GoogleAdSense from '@/components/GoogleAdSense'
-import BackToTopButton from './BackToTopButton'
-import MidArticleAd from './MidArticleAd'
 import ArticleSchema from './ArticleSchema'
+import BackToTopButton from './BackToTopButton'
+import GoogleAdSense from '@/components/GoogleAdSense'
+import MidArticleAd from './MidArticleAd'
 import RelatedPosts from './RelatedPosts'
-import type { ReactNode } from 'react'
-import type { BlogCategory } from '@/app/blog/blogData'
+import { type BlogCategory, categoryLabels } from '@/app/blog/blogData'
 
-interface BlogPostLayoutProps {
+interface HowToStep {
+  title: string
+  text: string
+}
+
+interface Props {
   title: string
   description: string
   date: string
   lastModified?: string
+  readingTime?: number
   category: BlogCategory
-  children: ReactNode
+  currentSlug?: string
+  howToSteps?: HowToStep[]
+  children: React.ReactNode
 }
 
-function extractText(node: ReactNode): string {
-  if (typeof node === 'string') return node
-  if (typeof node === 'number') return String(node)
-  if (!node) return ''
-  if (Array.isArray(node)) return node.map(extractText).join(' ')
-  if (typeof node === 'object' && node !== null && 'props' in node)
-    return extractText((node as { props: { children?: ReactNode } }).props.children)
-  return ''
-}
-
-const categoryLabels: Record<string, string> = {
-  'how-to': 'How-To Guide',
-  'no-watermark': 'No Watermark',
-  device: 'Device Guide',
-  audio: 'Audio & MP3',
-  photos: 'Photos & Carousels',
-  troubleshooting: 'Troubleshooting',
-  comparison: 'Comparison',
-  'other-platforms': 'Other Platforms',
-  legal: 'Legal & Privacy',
-}
-
-export default async function BlogPostLayout({ title, description, date, lastModified, category, children }: BlogPostLayoutProps) {
-  const headersList = await headers()
-  const pathname = headersList.get('x-pathname') ?? ''
-  const url = `https://www.savefrominternet.com${pathname}`
-  const currentSlug = pathname.split('/').filter(Boolean).pop() ?? ''
-
+export default function BlogPostLayout({
+  title,
+  description,
+  date,
+  lastModified,
+  readingTime = 5,
+  category,
+  currentSlug = '',
+  howToSteps,
+  children,
+}: Props) {
   const label = categoryLabels[category] ?? category
-  const wordCount = extractText(children).split(/\s+/).filter(Boolean).length
-  const readingTime = Math.max(1, Math.round(wordCount / 200))
+  const url = currentSlug
+    ? `https://www.savefrominternet.com/blog/${currentSlug}`
+    : 'https://www.savefrominternet.com/blog'
 
-  const howToSchema = category === 'how-to' ? {
-    '@context': 'https://schema.org',
-    '@type': 'HowTo',
-    name: title,
-    description,
-    step: [
-      {
-        '@type': 'HowToStep',
-        position: 1,
-        name: 'Copy the TikTok URL',
-        text: "Open TikTok, tap the Share button on the video, then tap 'Copy Link'. On desktop, copy the URL from the address bar.",
-      },
-      {
-        '@type': 'HowToStep',
-        position: 2,
-        name: 'Paste on SaveFromInternet.com',
-        text: "Open savefrominternet.com in your browser, paste the link into the input field, and click 'Download TikTok Video'.",
-      },
-      {
-        '@type': 'HowToStep',
-        position: 3,
-        name: 'Download and Save',
-        text: "Click 'Download MP4' for a watermark-free video, 'Extract MP3' for audio only, or select photos from a carousel and download as a ZIP.",
-      },
-    ],
-  } : null
+  const howToSchema = howToSteps?.length
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'HowTo',
+        name: title,
+        description,
+        totalTime: `PT${readingTime}M`,
+        step: howToSteps.map((step, idx) => ({
+          '@type': 'HowToStep',
+          position: idx + 1,
+          name: step.title,
+          text: step.text,
+        })),
+      }
+    : null
 
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
@@ -82,12 +61,13 @@ export default async function BlogPostLayout({ title, description, date, lastMod
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.savefrominternet.com' },
       { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://www.savefrominternet.com/blog' },
-      { '@type': 'ListItem', position: 3, name: label, item: url },
+      { '@type': 'ListItem', position: 3, name: 'Category: ' + label, item: 'https://www.savefrominternet.com/blog' },
+      { '@type': 'ListItem', position: 4, name: title, item: url },
     ],
   }
 
   return (
-    <div className="bg-white dark:bg-slate-900" id="top">
+    <div className="bg-white min-h-screen" id="top">
       <ArticleSchema title={title} description={description} date={date} lastModified={lastModified} url={url} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       {howToSchema && (
@@ -95,18 +75,18 @@ export default async function BlogPostLayout({ title, description, date, lastMod
       )}
 
       {/* Sticky breadcrumb */}
-      <div className="bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-700/50 px-4 py-3 sticky top-16 z-40 shadow-sm">
+      <div className="bg-white border-b border-slate-100 px-4 py-3 sticky top-16 z-40 shadow-xs">
         <div className="max-w-3xl mx-auto flex items-center justify-between gap-2">
           <div className="flex items-center gap-2 text-sm">
-            <Link href="/blog" className="text-indigo-500 hover:underline font-semibold flex items-center gap-1">
+            <Link href="/blog" className="text-blue-600 hover:underline font-bold flex items-center gap-1">
               ← Blog
             </Link>
-            <span className="text-slate-300 dark:text-slate-600">/</span>
-            <span className="text-slate-400 dark:text-slate-500 truncate max-w-[140px] sm:max-w-none">{label}</span>
+            <span className="text-slate-300">/</span>
+            <span className="text-slate-500 truncate max-w-[140px] sm:max-w-none">{label}</span>
           </div>
           <Link
             href="/"
-            className="inline-flex items-center gap-1.5 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold px-4 py-1.5 rounded-full text-xs shadow-sm hover:scale-105 transition-all whitespace-nowrap"
+            className="inline-flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 py-1.5 rounded-full text-xs shadow-sm hover:scale-105 transition-all whitespace-nowrap"
           >
             Download Now
           </Link>
@@ -117,15 +97,15 @@ export default async function BlogPostLayout({ title, description, date, lastMod
       <article className="max-w-3xl mx-auto px-4 py-10">
         {/* Category badge + heading */}
         <header className="mb-8">
-          <div className="inline-block bg-indigo-50 dark:bg-indigo-900/30 text-indigo-500 dark:text-indigo-400 text-xs font-semibold px-3 py-1 rounded-full mb-4">
+          <div className="inline-block bg-blue-50 text-blue-600 text-xs font-bold px-3.5 py-1.5 rounded-full mb-4 border border-blue-100">
             {label}
           </div>
-          <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white leading-tight mb-4">
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight mb-4 tracking-tight">
             {title}
           </h1>
-          <p className="text-slate-500 dark:text-slate-400 text-base leading-relaxed mb-3">{description}</p>
-          <div className="flex items-center gap-4 text-xs text-slate-400 dark:text-slate-500">
-            <span>By <span className="font-medium text-slate-500 dark:text-slate-400">Sandy</span></span>
+          <p className="text-slate-600 text-base leading-relaxed mb-3">{description}</p>
+          <div className="flex items-center gap-3 text-xs text-slate-500">
+            <span>By <span className="font-semibold text-slate-700">Sandy</span></span>
             <span>·</span>
             <span>
               Updated:{' '}
@@ -138,32 +118,32 @@ export default async function BlogPostLayout({ title, description, date, lastMod
             <span>·</span>
             <span>{readingTime} min read</span>
             <span>·</span>
-            <Link href="/" className="text-indigo-400 hover:underline font-medium">
+            <Link href="/" className="text-blue-600 hover:underline font-semibold">
               SaveFromInternet.com
             </Link>
           </div>
 
           {/* Author bio */}
-          <div className="flex items-start gap-4 mt-6 p-4 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-100 dark:border-slate-700/50">
-            <div className="w-11 h-11 rounded-full bg-indigo-500 flex items-center justify-center text-white font-bold text-base flex-shrink-0">
+          <div className="flex items-start gap-4 mt-6 p-4 bg-slate-50 rounded-2xl border border-slate-100">
+            <div className="w-11 h-11 rounded-2xl bg-blue-600 flex items-center justify-center text-white font-bold text-base flex-shrink-0 shadow-md shadow-blue-500/20">
               S
             </div>
             <div>
-              <div className="text-sm font-semibold text-slate-900 dark:text-white">Sandy</div>
-              <div className="text-xs text-indigo-500 mb-1.5">Founder, SaveFromInternet.com</div>
-              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              <div className="text-sm font-bold text-slate-900">Sandy</div>
+              <div className="text-xs text-blue-600 font-semibold mb-1">Founder, SaveFromInternet.com</div>
+              <p className="text-xs text-slate-600 leading-relaxed">
                 Building free video-download tools since 2024. Expert in web APIs, TikTok extractors, and multimedia processing across all major platforms.
               </p>
             </div>
           </div>
         </header>
 
-        {/* Above-fold ad — Blog Top of Article */}
+        {/* Above-fold ad */}
         <div className="mb-8">
           <GoogleAdSense
             adSlot="9402513184"
             adFormat="auto"
-            className="flex justify-center"
+            className="flex justify-center w-full"
             containerStyle="default"
           />
         </div>
@@ -176,7 +156,7 @@ export default async function BlogPostLayout({ title, description, date, lastMod
           </div>
           <Link
             href="/"
-            className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3 rounded-xl text-sm shadow-md hover:scale-105 transition-all whitespace-nowrap active:scale-95"
+            className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3 rounded-xl text-sm shadow-md hover:scale-105 transition-all whitespace-nowrap active:scale-95 cursor-pointer"
           >
             Download Now
           </Link>
@@ -191,13 +171,13 @@ export default async function BlogPostLayout({ title, description, date, lastMod
           <GoogleAdSense
             adSlot="3804648444"
             adFormat="auto"
-            className="flex justify-center"
+            className="flex justify-center w-full"
             containerStyle="default"
           />
         </div>
 
         {/* Bottom CTA */}
-        <div className="bg-gradient-to-r from-[#195fd7] to-[#1e6fe8] rounded-2xl p-8 text-center mt-10 shadow-xl shadow-blue-600/20">
+        <div className="bg-gradient-to-r from-[#195fd7] to-[#1e6fe8] rounded-3xl p-8 text-center mt-10 shadow-xl shadow-blue-600/20">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">
             Download TikTok Videos Without Watermark — Free
           </h2>
@@ -206,7 +186,7 @@ export default async function BlogPostLayout({ title, description, date, lastMod
           </p>
           <Link
             href="/"
-            className="inline-block bg-white text-blue-700 font-extrabold px-8 py-4 rounded-2xl text-lg shadow-xl hover:bg-blue-50 hover:scale-105 transition-all active:scale-95"
+            className="inline-block bg-white text-blue-700 font-extrabold px-8 py-4 rounded-2xl text-lg shadow-xl hover:bg-blue-50 hover:scale-105 transition-all active:scale-95 cursor-pointer"
           >
             Download Now
           </Link>
@@ -217,7 +197,7 @@ export default async function BlogPostLayout({ title, description, date, lastMod
           <GoogleAdSense
             adSlot="2491566773"
             adFormat="auto"
-            className="flex justify-center"
+            className="flex justify-center w-full"
             containerStyle="default"
           />
         </div>

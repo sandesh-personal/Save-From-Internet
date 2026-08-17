@@ -1,6 +1,8 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import Link from 'next/link'
+import GoogleAdSense from '@/components/GoogleAdSense'
 import ToolSchema from '@/components/ToolSchema'
+import ToolRelatedGuides from '@/components/ToolRelatedGuides'
 
 export const metadata: Metadata = {
   title: 'TikTok Downloader for PC & Windows — Free Video Saver, No Software 2026 | SaveFromInternet',
@@ -15,10 +17,6 @@ export const metadata: Metadata = {
     'tiktok video saver pc',
     'tiktok downloader mac',
     'tiktok downloader macbook',
-    'tiktok downloader app for pc',
-    'download tiktok videos on pc',
-    'download tiktok video on pc',
-    'tiktok downloader for mac',
     'download tiktok on pc without watermark',
   ],
   alternates: { canonical: 'https://www.savefrominternet.com/tiktok-video-downloader-pc' },
@@ -38,7 +36,6 @@ const faqSchema = {
     { '@type': 'Question', name: 'Can I download TikTok videos on Windows PC?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Open Chrome, Firefox, or Edge on Windows, go to savefrominternet.com, paste the TikTok URL, and click Download. The MP4 saves to your Downloads folder.' } },
     { '@type': 'Question', name: 'Does the TikTok downloader work on Mac?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Open Safari or Chrome on Mac, go to savefrominternet.com, paste the URL, and download. Works on macOS.' } },
     { '@type': 'Question', name: 'Do I need to install software to download TikTok on PC?', acceptedAnswer: { '@type': 'Answer', text: 'No. SaveFromInternet is entirely browser-based — no software, no extension, no account required.' } },
-    { '@type': 'Question', name: 'Can I download TikTok in HD on PC?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. We download the original quality — typically 720p or 1080p HD with no compression.' } },
   ],
 }
 
@@ -50,46 +47,49 @@ const howToSchema = {
   step: [
     { '@type': 'HowToStep', position: 1, name: 'Copy the TikTok link', text: 'Open TikTok in your browser or phone app. Click Share → Copy Link.' },
     { '@type': 'HowToStep', position: 2, name: 'Open SaveFromInternet.com on your PC', text: 'Open Chrome, Firefox, Edge, or Safari and go to savefrominternet.com.' },
-    { '@type': 'HowToStep', position: 3, name: 'Paste and process', text: 'Paste the TikTok URL and click Download TikTok Video.' },
-    { '@type': 'HowToStep', position: 4, name: 'Download the MP4', text: 'Click Download — the MP4 saves to your Downloads folder. No watermark.' },
+    { '@type': 'HowToStep', position: 3, name: 'Paste and process', text: 'Paste the TikTok URL and click Download.' },
+    { '@type': 'HowToStep', position: 4, name: 'Download the MP4', text: 'Click Download — the MP4 saves to your Downloads folder with zero watermark.' },
   ],
 }
 
 export default function TikTokDownloaderPCPage() {
   return (
-    <div className="bg-white dark:bg-slate-900">
-
+    <div className="bg-white min-h-screen">
       {/* Hero */}
-      <section className="bg-gradient-to-b from-indigo-50/50 dark:from-slate-800 to-white dark:to-slate-900 py-14 px-4 text-center border-b border-slate-100 dark:border-slate-700/50">
+      <section className="bg-gradient-to-b from-blue-50/50 via-white to-white py-12 sm:py-16 px-4 text-center border-b border-slate-100">
         <div className="max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-white dark:bg-slate-800 text-indigo-500 text-xs font-semibold px-4 py-1.5 rounded-full mb-5 border border-indigo-100 dark:border-indigo-900/40 shadow-sm">Windows 10/11 &amp; Mac · No Software</div>
-          <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-4 leading-tight">
-            TikTok Downloader for{' '}
-            <span className="text-indigo-500">PC &amp; Windows</span>
+          <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 text-xs font-bold px-4 py-1.5 rounded-full mb-4 border border-blue-100 shadow-xs">Windows 10/11 &amp; Mac · No Software</div>
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight leading-tight">
+            TikTok Downloader for <span className="text-blue-600">PC &amp; Windows</span>
           </h1>
-          <p className="text-lg text-slate-500 dark:text-slate-400 mb-8 max-w-xl mx-auto">Free TikTok video saver for Windows 10/11 and Mac — download TikTok videos without watermark in any browser. No software, no app to install.</p>
-          <Link href="/" className="inline-block bg-indigo-500 hover:bg-indigo-600 text-white font-semibold px-8 py-4 rounded-lg text-lg shadow-lg shadow-indigo-500/25 transition-all">
+          <p className="text-base sm:text-lg text-slate-600 mb-8 max-w-xl mx-auto leading-relaxed">Free TikTok video saver for Windows 10/11 and Mac — download TikTok videos without watermark in any desktop browser. No software, no app to install.</p>
+          <Link href="/" className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-2xl text-base sm:text-lg shadow-lg shadow-blue-500/25 hover:scale-105 transition-all cursor-pointer">
             Download TikTok on PC
           </Link>
         </div>
       </section>
 
+      {/* Ad */}
+      <div className="flex justify-center py-6 px-4 max-w-5xl mx-auto">
+        <GoogleAdSense adSlot="5309301802" adFormat="auto" className="flex justify-center w-full" containerStyle="default" />
+      </div>
+
       {/* Steps */}
-      <section className="bg-slate-50 dark:bg-slate-800/50 py-14 px-4 border-b border-slate-100 dark:border-slate-700/50">
+      <section className="bg-slate-50 py-12 sm:py-16 px-4 border-b border-slate-100">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white text-center mb-10">How to Download TikTok on PC / Windows</h2>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 text-center mb-10">How to Download TikTok on PC / Windows</h2>
           <div className="space-y-4">
             {[
-              { n: '1', title: 'Copy the TikTok Video Link', desc: 'Open TikTok in your browser (tiktok.com) or on your phone. Click Share → Copy Link. On PC browser, you can also copy the URL from the address bar directly.' },
-              { n: '2', title: 'Open SaveFromInternet.com', desc: 'On your Windows or Mac, open Chrome, Firefox, Edge, or Safari and go to savefrominternet.com.' },
-              { n: '3', title: 'Paste and Process (Ctrl+V / Cmd+V)', desc: 'Click the input box, press Ctrl+V (Windows) or Cmd+V (Mac) to paste, then click Download TikTok Video.' },
-              { n: '4', title: 'Download the MP4', desc: 'Click Download Video. The MP4 file saves to your PC Downloads folder automatically — no watermark, original HD quality.' },
+              { n: '1', title: 'Copy the TikTok Video Link', desc: 'Open TikTok in your desktop browser (tiktok.com) or on your phone. Click Share → Copy Link. You can also copy the URL directly from the browser address bar.' },
+              { n: '2', title: 'Open SaveFromInternet.com', desc: 'On your Windows PC or Mac, open Chrome, Firefox, Edge, or Safari and go to savefrominternet.com.' },
+              { n: '3', title: 'Paste and Process (Ctrl+V / Cmd+V)', desc: 'Click the input box, press Ctrl+V (Windows) or Cmd+V (Mac) to paste, then click Download.' },
+              { n: '4', title: 'Save the MP4 File', desc: 'Click Download Video. The MP4 file saves directly to your computer Downloads folder with zero watermark and original Full HD quality.' },
             ].map(({ n, title, desc }) => (
-              <div key={n} className="bg-white dark:bg-slate-800 rounded-lg p-5 border border-slate-100 dark:border-slate-700/50 shadow-sm flex items-start gap-4">
-                <div className="w-11 h-11 bg-indigo-500 rounded-lg flex items-center justify-center text-white font-bold text-lg flex-shrink-0">{n}</div>
+              <div key={n} className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-xs flex items-start gap-4">
+                <div className="w-11 h-11 bg-blue-600 rounded-2xl flex items-center justify-center text-white font-bold text-lg flex-shrink-0 shadow-md shadow-blue-500/20">{n}</div>
                 <div>
-                  <h3 className="text-slate-900 dark:text-white font-bold text-lg mb-1">{title}</h3>
-                  <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{desc}</p>
+                  <h3 className="text-slate-900 font-bold text-lg mb-1">{title}</h3>
+                  <p className="text-slate-600 text-sm leading-relaxed">{desc}</p>
                 </div>
               </div>
             ))}
@@ -97,45 +97,30 @@ export default function TikTokDownloaderPCPage() {
         </div>
       </section>
 
-      {/* Browser + Options */}
-      <section className="bg-white dark:bg-slate-900 py-14 px-4 border-b border-slate-100 dark:border-slate-700/50">
-        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-slate-50 dark:bg-slate-800 rounded-lg p-6 border border-slate-100 dark:border-slate-700/50">
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-5">Supported Browsers</h3>
-            <ul className="space-y-3 text-sm text-slate-600 dark:text-slate-300">
-              {['Google Chrome — best experience','Microsoft Edge — Windows default','Mozilla Firefox — fully supported','Safari — Mac and iPhone','Opera, Brave, Chromium-based browsers'].map((b) => (
-                <li key={b} className="flex gap-2"><span className="text-indigo-500 font-bold">✓</span><span>{b}</span></li>
-              ))}
-            </ul>
-          </div>
-          <div className="bg-slate-50 dark:bg-slate-800 rounded-lg p-6 border border-slate-100 dark:border-slate-700/50">
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-5">What You Can Download</h3>
-            <ul className="space-y-3 text-sm text-slate-600 dark:text-slate-300">
-              {[
-                'HD MP4 video — no watermark',
-                'MP3 audio — saved as audio file',
-                'Image gallery — ZIP or individual files',
-                'Unlimited, no software, no account',
-              ].map((d) => (
-                <li key={d} className="flex gap-2"><span className="text-blue-500 font-bold">•</span><span>{d}</span></li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
+      {/* Related Guides */}
+      <ToolRelatedGuides
+        guides={[
+          { label: 'Download on Mac Safari Guide', href: '/blog/download-tiktok-mac-safari' },
+          { label: 'Download on Chromebook', href: '/blog/download-tiktok-chromebook' },
+          { label: 'Download on iPhone Guide', href: '/tiktok-video-downloader-iphone' },
+          { label: 'Download on Android Guide', href: '/tiktok-video-downloader-android' },
+        ]}
+      />
 
       {/* CTA */}
-      <section className="bg-indigo-500 py-14 px-4 text-center">
-        <h2 className="text-3xl font-bold text-white mb-4">Download TikTok on Your PC Now</h2>
-        <p className="text-indigo-100 mb-8 text-lg">No software. No watermark. Open browser and start.</p>
-        <Link href="/" className="inline-block bg-white text-indigo-600 font-semibold px-8 py-4 rounded-lg text-lg shadow-xl hover:scale-105 transition-all">
-          Download TikTok on PC
-        </Link>
+      <section className="py-12 px-4 max-w-5xl mx-auto mb-12">
+        <div className="bg-gradient-to-r from-[#195fd7] to-[#1e6fe8] rounded-3xl p-8 sm:p-12 text-center text-white shadow-xl shadow-blue-600/20">
+          <h2 className="text-2xl sm:text-4xl font-extrabold mb-3">Download TikTok on PC / Mac Free</h2>
+          <p className="text-blue-100 text-sm sm:text-base max-w-xl mx-auto mb-6">Original HD quality · No watermark · Works on all desktop browsers</p>
+          <Link href="/" className="inline-block bg-white text-blue-700 font-extrabold px-8 py-4 rounded-2xl text-base sm:text-lg shadow-lg hover:bg-blue-50 hover:scale-105 transition-all active:scale-95 cursor-pointer">
+            Open Downloader
+          </Link>
+        </div>
       </section>
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <ToolSchema name="TikTok Downloader for PC" url="https://www.savefrominternet.com/tiktok-video-downloader-pc" description="Download TikTok videos on PC and Windows. Free, no software install, works in Chrome, Firefox and Edge." ratingCount="1654" />
+      <ToolSchema name="TikTok Downloader for PC" url="https://www.savefrominternet.com/tiktok-video-downloader-pc" description="Free TikTok downloader for PC Windows 10/11 and Mac without watermark." ratingCount="1940" />
     </div>
   )
 }

@@ -15,16 +15,16 @@ export default function RelatedPosts({ category, currentSlug }: Props) {
   if (related.length === 0) return null
 
   return (
-    <div className="mt-10 border-t border-slate-100 dark:border-slate-700/50 pt-8">
-      <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-5">Related Guides</h2>
+    <div className="mt-10 border-t border-slate-100 pt-8">
+      <h2 className="text-xl font-bold text-slate-900 mb-5">Related Guides</h2>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {related.map((post) => (
           <Link
             key={post.slug}
             href={`/blog/${post.slug}`}
-            className="group block bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700/50 rounded-lg overflow-hidden hover:border-indigo-200 dark:hover:border-indigo-700/50 transition-all"
+            className="group block bg-white border border-slate-200/90 rounded-2xl overflow-hidden hover:border-blue-300 hover:shadow-md transition-all duration-200"
           >
-            <div className="relative h-32 overflow-hidden">
+            <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">
               <Image
                 src={post.image}
                 alt={post.title}
@@ -33,8 +33,8 @@ export default function RelatedPosts({ category, currentSlug }: Props) {
                 sizes="(max-width: 640px) 100vw, 33vw"
               />
             </div>
-            <div className="p-3">
-              <p className="text-sm font-semibold text-slate-800 dark:text-slate-100 leading-snug line-clamp-2 group-hover:text-indigo-500 transition-colors">
+            <div className="p-3.5">
+              <p className="text-sm font-bold text-slate-800 leading-snug line-clamp-2 group-hover:text-blue-600 transition-colors">
                 {post.title}
               </p>
             </div>
