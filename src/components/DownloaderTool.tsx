@@ -294,28 +294,14 @@ export default function DownloaderTool() {
         </div>
       </section>
 
-      {/* ── Ads Section ── */}
-      <div className="max-w-2xl mx-auto px-4 mt-6">
-        {/* Desktop leaderboard (728×90) */}
-        <div className="hidden md:block">
-          <GoogleAdSense
-            adSlot="9402513184"
-            adFormat="auto"
-            style={{ minHeight: 90 }}
-            className="flex justify-center w-full"
-            containerStyle="default"
-          />
-        </div>
-
-        {/* Mobile ad */}
-        <div className="md:hidden" style={{ minHeight: '100px' }}>
-          <GoogleAdSense
-            adSlot="5309301802"
-            adFormat="auto"
-            className="flex justify-center w-full"
-            containerStyle="default"
-          />
-        </div>
+      {/* ── Ads Section (Directly Below Blue Box) ── */}
+      <div className="max-w-4xl mx-auto px-4 py-6 sm:py-8 flex justify-center">
+        <GoogleAdSense
+          adSlot="5309301802"
+          adFormat="auto"
+          className="flex justify-center w-full"
+          containerStyle="default"
+        />
       </div>
 
       {/* ── Results Section ── */}

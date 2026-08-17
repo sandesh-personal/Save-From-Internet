@@ -51,9 +51,9 @@ export default function Header() {
       >
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 select-none flex-shrink-0" onClick={closeAll}>
-            <img src="/logo-final.png" alt="Save From Internet Logo" className="h-8 w-auto object-contain" draggable={false} />
-            <span className="font-bold text-slate-900 text-sm sm:text-lg tracking-tight">
+          <Link href="/" className="flex items-center gap-2.5 sm:gap-3 select-none flex-shrink-0" onClick={closeAll}>
+            <img src="/logo-final.png" alt="Save From Internet Logo" className="h-9 sm:h-11 w-auto object-contain" draggable={false} />
+            <span className="font-extrabold text-slate-900 text-lg sm:text-2xl tracking-tight leading-none">
               Save From <span className="text-blue-600">Internet</span>
             </span>
           </Link>
