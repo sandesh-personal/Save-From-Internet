@@ -58,8 +58,9 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
-  if (!(VALID_LOCALES as string[]).includes(locale)) return {}
+  if (!locale || !(VALID_LOCALES as string[]).includes(locale)) return {}
   const meta = localeMeta[locale]
+  if (!meta) return {}
   const baseUrl = 'https://www.savefrominternet.com'
   return {
     title: meta.title,
@@ -91,6 +92,8 @@ export default async function LocalePage({
   params: Promise<{ locale: string }>
 }) {
   const { locale } = await params
-  if (!(VALID_LOCALES as string[]).includes(locale)) notFound()
+  if (!locale || !(VALID_LOCALES as string[]).includes(locale)) {
+    notFound()
+  }
   return <HomeContent />
 }
