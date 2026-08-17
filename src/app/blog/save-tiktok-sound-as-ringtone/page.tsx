@@ -16,7 +16,7 @@ export default function Page() {
       <h2>Step 1 — Download the TikTok Audio as MP3</h2>
       <ol>
         <li>Copy the TikTok video URL (Share → Copy Link)</li>
-        <li>Go to <a href="https://savefrominternet.com">savefrominternet.com</a> in your browser</li>
+        <li>Go to <a href="https://www.savefrominternet.com">savefrominternet.com</a> in your browser</li>
         <li>Paste the URL and click <strong>Download TikTok Video</strong></li>
         <li>Click <strong>Extract Audio</strong> — the MP3 downloads to your device</li>
       </ol>

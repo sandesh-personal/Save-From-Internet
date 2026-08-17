@@ -34,7 +34,7 @@ export default function Page() {
       <p>The watermark is only applied on-demand when the Save endpoint is hit.</p>
 
       <h2>How Browser-Based Downloaders Avoid the Watermark</h2>
-      <p><a href="https://savefrominternet.com">SaveFromInternet.com</a> bypasses TikTok's download endpoint entirely. Instead, it fetches the video directly from TikTok's CDN — the same source your TikTok app uses when you stream a video. Since this file is the original pre-watermark version, the download contains no watermark, logo, or username overlay.</p>
+      <p><a href="https://www.savefrominternet.com">SaveFromInternet.com</a> bypasses TikTok's download endpoint entirely. Instead, it fetches the video directly from TikTok's CDN — the same source your TikTok app uses when you stream a video. Since this file is the original pre-watermark version, the download contains no watermark, logo, or username overlay.</p>
       <p>To TikTok's servers, a CDN fetch looks identical to streaming. There is no flag or signal indicating that the file was saved rather than just played.</p>
 
       <h2>Does TikTok Know You Downloaded It This Way?</h2>
@@ -48,7 +48,7 @@ export default function Page() {
       <ol>
         <li>Open TikTok and find the video you want</li>
         <li>Tap <strong>Share</strong> → <strong>Copy Link</strong></li>
-        <li>Open your browser and go to <a href="https://savefrominternet.com">savefrominternet.com</a></li>
+        <li>Open your browser and go to <a href="https://www.savefrominternet.com">savefrominternet.com</a></li>
         <li>Paste the URL and click <strong>Download TikTok Video</strong></li>
         <li>Click <strong>Download Video</strong> — the file is the original, watermark-free MP4</li>
       </ol>

@@ -33,7 +33,7 @@ export default function Page() {
         <li><strong>Using a lower-quality API endpoint:</strong> Some tools fetch a preview version of the video rather than the full quality stream</li>
       </ul>
       <h2>How SaveFromInternet Handles Audio Quality</h2>
-      <p><a href="https://savefrominternet.com">SaveFromInternet.com</a> extracts audio directly from the original TikTok stream — no additional re-encoding that could degrade quality. You get what TikTok has, at the quality TikTok stored it.</p>
+      <p><a href="https://www.savefrominternet.com">SaveFromInternet.com</a> extracts audio directly from the original TikTok stream — no additional re-encoding that could degrade quality. You get what TikTok has, at the quality TikTok stored it.</p>
       <h2>Tips for Best Audio Quality</h2>
       <ul>
         <li>Use a tool that fetches the original file (like SaveFromInternet) rather than one that re-encodes</li>

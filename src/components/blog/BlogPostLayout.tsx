@@ -160,7 +160,6 @@ export default async function BlogPostLayout({ title, description, date, lastMod
 
         {/* Above-fold ad — Blog Top of Article */}
         <div className="mb-8">
-          <p className="text-[10px] text-center text-slate-400 uppercase tracking-wider mb-1.5">Advertisement</p>
           <GoogleAdSense
             adSlot="9402513184"
             adFormat="auto"
@@ -170,14 +169,14 @@ export default async function BlogPostLayout({ title, description, date, lastMod
         </div>
 
         {/* Top CTA Banner */}
-        <div className="bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-100 dark:border-indigo-800/40 rounded-lg p-4 sm:p-5 mb-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="bg-blue-50 border border-blue-100 rounded-2xl p-4 sm:p-5 mb-8 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="text-center sm:text-left">
-            <p className="font-semibold text-slate-800 dark:text-slate-100 text-sm sm:text-base">Download TikTok videos — 100% free</p>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Videos · MP3 audio · Photo carousels · No watermark · No app · No signup</p>
+            <p className="font-bold text-slate-900 text-sm sm:text-base">Download TikTok videos — 100% free</p>
+            <p className="text-xs text-slate-500 mt-0.5">Videos · MP3 audio · Photo carousels · No watermark · No app · No signup</p>
           </div>
           <Link
             href="/"
-            className="inline-flex items-center gap-2 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold px-6 py-3 rounded-lg text-sm shadow-lg hover:scale-105 transition-all whitespace-nowrap"
+            className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3 rounded-xl text-sm shadow-md hover:scale-105 transition-all whitespace-nowrap active:scale-95"
           >
             Download Now
           </Link>
@@ -189,7 +188,6 @@ export default async function BlogPostLayout({ title, description, date, lastMod
 
         {/* Mid Ad */}
         <div className="my-10">
-          <p className="text-[10px] text-center text-slate-400 uppercase tracking-wider mb-1.5">Advertisement</p>
           <GoogleAdSense
             adSlot="3804648444"
             adFormat="auto"
@@ -199,16 +197,16 @@ export default async function BlogPostLayout({ title, description, date, lastMod
         </div>
 
         {/* Bottom CTA */}
-        <div className="bg-indigo-500 rounded-lg p-8 text-center mt-10">
-          <h2 className="text-2xl font-bold text-white mb-3">
+        <div className="bg-gradient-to-r from-[#195fd7] to-[#1e6fe8] rounded-2xl p-8 text-center mt-10 shadow-xl shadow-blue-600/20">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">
             Download TikTok Videos Without Watermark — Free
           </h2>
-          <p className="text-indigo-100 mb-6 text-sm">
+          <p className="text-blue-100 mb-6 text-sm sm:text-base max-w-xl mx-auto">
             Paste any TikTok link and get an HD video, MP3 audio, or photo ZIP in seconds. No app, no account, no watermark.
           </p>
           <Link
             href="/"
-            className="inline-block bg-white text-indigo-600 font-semibold px-8 py-4 rounded-lg text-lg shadow-xl hover:scale-105 transition-all"
+            className="inline-block bg-white text-blue-700 font-extrabold px-8 py-4 rounded-2xl text-lg shadow-xl hover:bg-blue-50 hover:scale-105 transition-all active:scale-95"
           >
             Download Now
           </Link>
@@ -216,7 +214,6 @@ export default async function BlogPostLayout({ title, description, date, lastMod
 
         {/* Bottom Ad */}
         <div className="mt-10 mb-4">
-          <p className="text-[10px] text-center text-slate-400 uppercase tracking-wider mb-1.5">Advertisement</p>
           <GoogleAdSense
             adSlot="2491566773"
             adFormat="auto"
@@ -228,13 +225,13 @@ export default async function BlogPostLayout({ title, description, date, lastMod
         <RelatedPosts category={category} currentSlug={currentSlug} />
 
         {/* Navigation */}
-        <div className="mt-8 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50 pt-6">
-          <Link href="/blog" className="text-indigo-500 hover:underline font-semibold text-sm flex items-center gap-1">
+        <div className="mt-8 flex items-center justify-between border-t border-slate-100 pt-6">
+          <Link href="/blog" className="text-blue-600 hover:underline font-bold text-sm flex items-center gap-1">
             ← Back to All Posts
           </Link>
           <a
             href="#top"
-            className="text-slate-400 dark:text-slate-500 hover:text-indigo-500 font-semibold text-sm flex items-center gap-1 transition-colors"
+            className="text-slate-400 hover:text-blue-600 font-semibold text-sm flex items-center gap-1 transition-colors"
           >
             ↑ Back to Top
           </a>

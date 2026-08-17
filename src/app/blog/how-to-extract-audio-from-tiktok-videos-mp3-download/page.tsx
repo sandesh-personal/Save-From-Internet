@@ -26,7 +26,7 @@ export default function Page() {
       lastModified="2026-04-30T08:00:00.000Z"
       category="audio"
     >
-      <p>TikTok&apos;s audio library is a goldmine — trending songs, original sounds, viral clips, and creator voiceovers. But TikTok does not give you a direct way to save that audio as a standalone file. <a href="https://savefrominternet.com">SaveFromInternet.com</a> lets you extract MP3 audio from any public TikTok video instantly, for free, on any device.</p>
+      <p>TikTok&apos;s audio library is a goldmine — trending songs, original sounds, viral clips, and creator voiceovers. But TikTok does not give you a direct way to save that audio as a standalone file. <a href="https://www.savefrominternet.com">SaveFromInternet.com</a> lets you extract MP3 audio from any public TikTok video instantly, for free, on any device.</p>
 
       <div className="warn-box">⚠️ Extract audio for personal use only. Respect copyright and creator rights when using audio you did not create. Trending songs on TikTok are often licensed music — downloading them for personal listening is generally acceptable, but redistribution or commercial use is not.</div>
 
@@ -46,7 +46,7 @@ export default function Page() {
 
       <h2>Step 2 — Open SaveFromInternet.com</h2>
       <Image src="/images/step2.jpg" alt="Open SaveFromInternet" width={800} height={400} />
-      <p>Go to <a href="https://savefrominternet.com">savefrominternet.com</a> in any browser on any device. Paste the TikTok URL into the input box and click <strong>Download TikTok Video</strong>. The tool processes the URL and retrieves the video information.</p>
+      <p>Go to <a href="https://www.savefrominternet.com">savefrominternet.com</a> in any browser on any device. Paste the TikTok URL into the input box and click <strong>Download TikTok Video</strong>. The tool processes the URL and retrieves the video information.</p>
 
       <h2>Step 3 — Click Extract Audio</h2>
       <Image src="/images/step3.jpg" alt="Extract audio button" width={800} height={400} />

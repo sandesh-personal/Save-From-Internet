@@ -29,7 +29,7 @@ export default function Page() {
       <p>Tap the <strong>Share</strong> button (the curved arrow icon) on the video, then tap <strong>Copy Link</strong>. On desktop, you can copy the URL directly from the browser address bar.</p>
       <h2>Step 3 — Paste on SaveFromInternet.com</h2>
       <Image src="/images/step3.jpg" alt="Paste TikTok URL on SaveFromInternet" width={800} height={400} />
-      <p>Open a new browser tab and go to <a href="https://savefrominternet.com">savefrominternet.com</a>. Tap the input box, paste the URL (long-press → Paste on mobile, or Ctrl+V/Cmd+V on desktop), and click <strong>Download TikTok Video</strong>.</p>
+      <p>Open a new browser tab and go to <a href="https://www.savefrominternet.com">savefrominternet.com</a>. Tap the input box, paste the URL (long-press → Paste on mobile, or Ctrl+V/Cmd+V on desktop), and click <strong>Download TikTok Video</strong>.</p>
       <h2>Step 4 — Choose What to Download</h2>
       <Image src="/images/step4.jpg" alt="Download options" width={800} height={400} />
       <p>You will see three options:</p>

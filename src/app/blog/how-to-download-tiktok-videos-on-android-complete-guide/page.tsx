@@ -19,7 +19,7 @@ export default function Page() {
       lastModified="2026-04-30T08:00:00.000Z"
       category="device"
     >
-      <p>Android&apos;s open ecosystem gives you more options for downloading TikTok videos than iPhone — but it also means navigating unreliable apps, intrusive ads, and security risks. The safest and cleanest method is browser-based, and <a href="https://savefrominternet.com">SaveFromInternet.com</a> works on every Android device in any browser.</p>
+      <p>Android&apos;s open ecosystem gives you more options for downloading TikTok videos than iPhone — but it also means navigating unreliable apps, intrusive ads, and security risks. The safest and cleanest method is browser-based, and <a href="https://www.savefrominternet.com">SaveFromInternet.com</a> works on every Android device in any browser.</p>
 
       <h2>Why Web-Based Is Better Than Play Store Apps</h2>
       <ul>
@@ -36,7 +36,7 @@ export default function Page() {
 
       <h2>Step 2 — Open a Browser and Go to SaveFromInternet.com</h2>
       <Image src="/images/step2.jpg" alt="Open Chrome on Android" width={800} height={400} />
-      <p>Open any browser — Chrome, Firefox, Samsung Internet, or Edge. Type or paste <a href="https://savefrominternet.com">savefrominternet.com</a> into the address bar and navigate to the site.</p>
+      <p>Open any browser — Chrome, Firefox, Samsung Internet, or Edge. Type or paste <a href="https://www.savefrominternet.com">savefrominternet.com</a> into the address bar and navigate to the site.</p>
 
       <h2>Step 3 — Paste the URL and Download</h2>
       <Image src="/images/step3.jpg" alt="Download TikTok on Android" width={800} height={400} />

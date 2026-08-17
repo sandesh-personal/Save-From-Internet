@@ -12,11 +12,11 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <BlogPostLayout title="How to Download TikTok Videos on a Chromebook — Step-by-Step 2026" description="Yes, you can download TikTok videos on a Chromebook — here is exactly how to do it in Chrome, no software needed." date="2026-04-13T08:00:00.000Z" category="device">
-      <p>Chromebooks run Chrome OS, which means you can not install most desktop software. But since <a href="https://savefrominternet.com">SaveFromInternet.com</a> runs entirely in Chrome, it works perfectly on any Chromebook.</p>
+      <p>Chromebooks run Chrome OS, which means you can not install most desktop software. But since <a href="https://www.savefrominternet.com">SaveFromInternet.com</a> runs entirely in Chrome, it works perfectly on any Chromebook.</p>
       <h2>How to Download TikTok on Chromebook</h2>
       <ol>
         <li>Open TikTok in Chrome (<strong>tiktok.com</strong>) or on your phone — copy the video URL</li>
-        <li>Open a new tab in Chrome and go to <a href="https://savefrominternet.com">savefrominternet.com</a></li>
+        <li>Open a new tab in Chrome and go to <a href="https://www.savefrominternet.com">savefrominternet.com</a></li>
         <li>Paste the TikTok URL (Ctrl+V) and click <strong>Download TikTok Video</strong></li>
         <li>Click <strong>Download Video</strong></li>
         <li>Chrome downloads the MP4 to your <strong>Downloads folder</strong></li>

@@ -31,10 +31,7 @@ export default function StickyFooterAd() {
       >
         ✕
       </button>
-      <p className="text-[9px] text-center text-slate-400 uppercase tracking-wider pt-1">
-        Advertisement
-      </p>
-      <div className="flex justify-center pb-1">
+      <div className="flex justify-center py-1">
         <GoogleAdSense
           adSlot="3804648444"
           adFormat="auto"

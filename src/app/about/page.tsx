@@ -89,8 +89,7 @@ export default function AboutPage() {
       </section>
 
       {/* Ad */}
-      <div className="py-8 px-4 border-b border-slate-100 dark:border-slate-700/50">
-        <p className="text-[10px] text-center text-slate-400 uppercase tracking-wider mb-2">Advertisement</p>
+      <div className="py-8 px-4 border-b border-slate-100">
         <GoogleAdSense
           adSlot="3804648444"
           adFormat="auto"
@@ -100,18 +99,18 @@ export default function AboutPage() {
       </div>
 
       {/* Values */}
-      <section className="py-14 px-4 border-b border-slate-100 dark:border-slate-700/50">
+      <section className="py-14 px-4 border-b border-slate-100">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 text-center">What SaveFromInternet Stands For</h2>
+          <h2 className="text-2xl font-bold text-slate-900 mb-8 text-center">What SaveFromInternet Stands For</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
             {[
               { title: 'Free — no catch', desc: 'No subscription, no account, no "premium" tier to unlock HD. Every feature works for free, always.' },
               { title: 'Original file, always', desc: 'You get the same file TikTok streams to phones — not a re-encoded copy, not a cropped version. The original.' },
               { title: 'Nothing is stored', desc: 'Your URL is processed and the file is returned. We don\'t log URLs, save files, or sell any data.' },
             ].map(({ title, desc }) => (
-              <div key={title} className="bg-slate-50 dark:bg-slate-800 rounded-lg p-5 border border-slate-100 dark:border-slate-700/50 text-center">
-                <div className="font-bold text-slate-900 dark:text-white mb-2">{title}</div>
-                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{desc}</p>
+              <div key={title} className="bg-slate-50 rounded-2xl p-5 border border-slate-100 text-center">
+                <div className="font-bold text-slate-900 mb-2">{title}</div>
+                <p className="text-sm text-slate-500 leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
@@ -119,19 +118,19 @@ export default function AboutPage() {
       </section>
 
       {/* Contact */}
-      <section className="py-14 px-4 border-b border-slate-100 dark:border-slate-700/50">
+      <section className="py-14 px-4 border-b border-slate-100">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Get in Touch</h2>
-          <div className="space-y-4 text-slate-600 dark:text-slate-400">
+          <h2 className="text-2xl font-bold text-slate-900 mb-6">Get in Touch</h2>
+          <div className="space-y-4 text-slate-600">
             <p>
-              <strong className="text-slate-800 dark:text-slate-200">Technical issues or bug reports:</strong>{' '}
-              <a href="mailto:support@savefrominternet.com" className="text-indigo-500 hover:underline">
+              <strong className="text-slate-800">Technical issues or bug reports:</strong>{' '}
+              <a href="mailto:support@savefrominternet.com" className="text-blue-600 hover:underline">
                 support@savefrominternet.com
               </a>
             </p>
             <p>
-              <strong className="text-slate-800 dark:text-slate-200">Business &amp; partnerships:</strong>{' '}
-              <a href="mailto:contact@savefrominternet.com" className="text-indigo-500 hover:underline">
+              <strong className="text-slate-800">Business &amp; partnerships:</strong>{' '}
+              <a href="mailto:contact@savefrominternet.com" className="text-blue-600 hover:underline">
                 contact@savefrominternet.com
               </a>
             </p>
@@ -142,13 +141,13 @@ export default function AboutPage() {
       {/* CTA */}
       <section className="py-14 px-4 text-center">
         <div className="max-w-xl mx-auto">
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">Try the Tool</h2>
-          <p className="text-slate-500 dark:text-slate-400 mb-6">Paste any TikTok link and download in seconds — free, no watermark, no app.</p>
+          <h2 className="text-2xl font-bold text-slate-900 mb-3">Try the Tool</h2>
+          <p className="text-slate-500 mb-6">Paste any TikTok link and download in seconds — free, no watermark, no app.</p>
           <Link
             href="/"
-            className="inline-block bg-indigo-500 hover:bg-indigo-600 text-white font-semibold px-8 py-4 rounded-lg text-lg shadow-lg shadow-indigo-500/25 hover:scale-105 transition-all"
+            className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-2xl text-lg shadow-lg shadow-blue-500/25 hover:scale-105 transition-all"
           >
-            Download TikTok Videos — Free
+            Download TikTok Videos Free
           </Link>
         </div>
 

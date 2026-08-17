@@ -12,11 +12,11 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <BlogPostLayout title="Download TikTok Image Carousel as a ZIP File — Step-by-Step (2026)" description="Get every image from a TikTok carousel in one ZIP file — fast, free, original quality." date="2026-04-13T08:00:00.000Z" category="photos">
-      <p>Downloading all images from a TikTok carousel one by one is tedious. The ZIP download feature on <a href="https://savefrominternet.com">SaveFromInternet.com</a> bundles all carousel images into a single compressed archive — one tap, everything downloaded.</p>
+      <p>Downloading all images from a TikTok carousel one by one is tedious. The ZIP download feature on <a href="https://www.savefrominternet.com">SaveFromInternet.com</a> bundles all carousel images into a single compressed archive — one tap, everything downloaded.</p>
       <h2>How to Download TikTok Carousel as ZIP</h2>
       <ol>
         <li>Find a TikTok photo carousel post and copy the URL (Share → Copy Link)</li>
-        <li>Go to <a href="https://savefrominternet.com">savefrominternet.com</a> and paste the URL</li>
+        <li>Go to <a href="https://www.savefrominternet.com">savefrominternet.com</a> and paste the URL</li>
         <li>Click <strong>Download TikTok Video</strong></li>
         <li>Click <strong>Show Images</strong> — thumbnail previews of all carousel photos appear</li>
         <li>Tap <strong>All</strong> to select every image</li>

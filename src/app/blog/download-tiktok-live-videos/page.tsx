@@ -20,7 +20,7 @@ export default function Page() {
       <ol>
         <li>Find the replay on the creator's TikTok profile</li>
         <li>Copy its URL (tap Share → Copy Link)</li>
-        <li>Paste into <a href="https://savefrominternet.com">SaveFromInternet.com</a></li>
+        <li>Paste into <a href="https://www.savefrominternet.com">SaveFromInternet.com</a></li>
         <li>Download as a regular MP4</li>
       </ol>
       <p>Published live replays download exactly like regular TikTok videos.</p>
@@ -39,7 +39,7 @@ export default function Page() {
         <li>Pasting a TikTok LIVE URL into a downloader while the stream is still live — live streams do not have a downloadable file, they are streamed in real-time HLS segments</li>
         <li>Downloading an unpublished live replay — if the creator did not save it, TikTok deletes it after the stream ends</li>
       </ul>
-      <div className="tip-box">💡 The fastest approach: after a live ends, check the creator's profile. If the replay appears as a video post, copy the URL and download it immediately on <a href="https://savefrominternet.com">SaveFromInternet.com</a> before TikTok removes it after 90 days.</div>
+      <div className="tip-box">💡 The fastest approach: after a live ends, check the creator's profile. If the replay appears as a video post, copy the URL and download it immediately on <a href="https://www.savefrominternet.com">SaveFromInternet.com</a> before TikTok removes it after 90 days.</div>
       <h2>Related Guides</h2>
       <ul>
         <li><Link href="/blog/save-tiktok-duet-stitch-videos">Download TikTok Duet & Stitch Videos</Link></li>

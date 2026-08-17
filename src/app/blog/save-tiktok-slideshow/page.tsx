@@ -18,7 +18,7 @@ export default function Page() {
       <h2>Method 1 — Save Individual Original Images</h2>
       <ol>
         <li>Copy the TikTok slideshow post URL (Share → Copy Link)</li>
-        <li>Go to <a href="https://savefrominternet.com">savefrominternet.com</a> and paste the URL</li>
+        <li>Go to <a href="https://www.savefrominternet.com">savefrominternet.com</a> and paste the URL</li>
         <li>Click <strong>Download TikTok Video</strong> → tool detects it is a photo post</li>
         <li>Click <strong>Show Images</strong> → see each original photo</li>
         <li>Download individually or tap All → download as ZIP</li>

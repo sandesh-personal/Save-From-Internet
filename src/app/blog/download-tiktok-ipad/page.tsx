@@ -16,7 +16,7 @@ export default function Page() {
       <h2>Method 1 — Safari (Recommended for Camera Roll)</h2>
       <ol>
         <li>Open TikTok on your iPad (app or browser) and copy the video link (Share → Copy Link)</li>
-        <li>Open <strong>Safari</strong> and go to <a href="https://savefrominternet.com">savefrominternet.com</a></li>
+        <li>Open <strong>Safari</strong> and go to <a href="https://www.savefrominternet.com">savefrominternet.com</a></li>
         <li>Paste the URL and tap <strong>Download TikTok Video</strong></li>
         <li>Tap <strong>Download Video</strong> — the video opens in Safari</li>
         <li>Tap and hold the video → select <strong>Save Video</strong></li>
@@ -24,7 +24,7 @@ export default function Page() {
       </ol>
       <h2>Method 2 — Chrome (Files App Download)</h2>
       <ol>
-        <li>Open Chrome on your iPad and go to <a href="https://savefrominternet.com">savefrominternet.com</a></li>
+        <li>Open Chrome on your iPad and go to <a href="https://www.savefrominternet.com">savefrominternet.com</a></li>
         <li>Paste the TikTok URL and tap Download TikTok Video</li>
         <li>Tap Download Video — the file saves to <strong>Files → Downloads</strong></li>
       </ol>

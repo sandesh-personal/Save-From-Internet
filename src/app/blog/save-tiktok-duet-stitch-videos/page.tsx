@@ -22,7 +22,7 @@ export default function Page() {
       <ol>
         <li>Open the Duet or Stitch video in TikTok</li>
         <li>Tap <strong>Share → Copy Link</strong></li>
-        <li>Go to <a href="https://savefrominternet.com">SaveFromInternet.com</a></li>
+        <li>Go to <a href="https://www.savefrominternet.com">SaveFromInternet.com</a></li>
         <li>Paste the link and tap Download</li>
         <li>Download the MP4</li>
       </ol>

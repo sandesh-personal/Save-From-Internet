@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { useReducer, useRef, useEffect, useCallback } from 'react'
 import Image from 'next/image'
@@ -173,96 +173,131 @@ export default function DownloaderTool() {
 
   return (
     <div ref={containerRef}>
-      {/* ── Hero ── */}
-      <section className="bg-gradient-to-b from-indigo-50/50 dark:from-indigo-950/20 via-white dark:via-slate-900 to-white dark:to-slate-900 text-center pt-14 pb-8 px-4">
-        <div className="inline-flex items-center gap-1.5 bg-white dark:bg-slate-800 text-indigo-500 text-xs font-semibold px-4 py-1.5 rounded-full mb-5 border border-indigo-100 dark:border-indigo-900/50 shadow-sm">
-          <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 inline-block" />
-          {t('heroBadge')}
+      {/* ── SnapTik-Style Hero ── */}
+      <section
+        style={{ background: 'linear-gradient(135deg, #195fd7 0%, #1e6fe8 50%, #2563eb 100%)' }}
+        className="relative overflow-hidden py-10 sm:py-14 lg:py-18 text-white"
+      >
+        <div className="absolute inset-0 overflow-hidden hidden sm:block pointer-events-none">
+          <div className="absolute -left-20 -top-20 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
+          <div className="absolute -bottom-32 -right-20 h-96 w-96 rounded-full bg-cyan-400/20 blur-3xl" />
+          <div className="absolute left-1/2 top-1/4 h-48 w-48 -translate-x-1/2 rounded-full bg-blue-300/10 blur-2xl" />
         </div>
 
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-4 leading-tight tracking-tight">
-          {t('heroTitle1')}{' '}
-          <span className="text-indigo-500">
-            {t('heroTitle2')}
-          </span>
-        </h1>
+        <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight text-white drop-shadow-md">
+            {t('heroTitle1')} {t('heroTitle2')}
+          </h1>
+          <p className="mx-auto mt-3 sm:mt-4 max-w-2xl text-base sm:text-lg text-blue-100 leading-relaxed font-normal">
+            {t('heroSubtitle')}
+          </p>
 
-        <h2 className="text-base sm:text-lg text-slate-500 dark:text-slate-400 max-w-xl mx-auto mb-7 font-normal leading-relaxed">
-          {t('heroSubtitle')}
-        </h2>
-
-        {/* Trust badges */}
-        <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-slate-500 dark:text-slate-400">
-          {([
-            t('badgeNoWatermark'),
-            t('badgeHD'),
-            t('badgeFree'),
-            t('badgeNoApp'),
-            t('badgeUnlimited'),
-          ]).map((badge) => (
-            <span key={badge} className="flex items-center gap-1.5">
-              <svg className="w-4 h-4 text-indigo-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-              </svg>
-              {badge}
-            </span>
-          ))}
-        </div>
-
-        <p className="mt-5 text-sm text-slate-400 dark:text-slate-500">
-          Free forever · No signup · No file size limit
-        </p>
-      </section>
-
-      {/* ── Input Card ── */}
-      <div className="max-w-2xl mx-auto px-4 -mt-2 mb-8">
-        <div className="bg-white dark:bg-slate-800 rounded-lg shadow-xl shadow-slate-200/60 dark:shadow-slate-900/60 border border-slate-100 dark:border-slate-700 p-5">
-          {/* URL row */}
-          <div className="flex gap-2 mb-3">
-            <input
-              type="text"
-              placeholder={t('inputPlaceholder')}
-              value={state.url}
-              onChange={(e) => dispatch({ type: 'SET_URL', payload: e.target.value })}
-              onKeyDown={(e) => e.key === 'Enter' && !isBusy && handleProcess()}
-              className="flex-1 min-w-0 px-4 py-3.5 rounded-lg bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent text-base transition-all"
-            />
-            <button
-              onClick={async () => {
-                try {
-                  const text = await navigator.clipboard.readText()
-                  dispatch({ type: 'SET_URL', payload: text })
-                } catch {
-                  alert('Failed to paste. Please paste manually.')
-                }
+          {/* Unified SnapTik-Style Input & Download Form */}
+          <div className="mx-auto w-full max-w-2xl mt-6 sm:mt-8">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault()
+                if (!isBusy) handleProcess()
               }}
-              className="shrink-0 px-4 py-3 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-300 font-semibold rounded-lg transition-all text-sm border border-slate-200 dark:border-slate-600 active:scale-95"
+              className="flex flex-col sm:flex-row gap-2.5 sm:gap-3"
             >
-              {t('btnPaste')}
-            </button>
+              <label htmlFor="tiktok-url-input" className="sr-only">
+                TikTok Video URL
+              </label>
+
+              {/* White Input Pill with Paste/Clear button inside */}
+              <div className="relative flex-1 flex items-center bg-white rounded-2xl shadow-2xl border border-white/40 p-1 transition-all focus-within:ring-4 focus-within:ring-white/40">
+                <input
+                  id="tiktok-url-input"
+                  type="url"
+                  inputMode="url"
+                  placeholder={t('inputPlaceholder')}
+                  value={state.url}
+                  onChange={(e) => dispatch({ type: 'SET_URL', payload: e.target.value })}
+                  className="w-full h-12 sm:h-13 bg-transparent pl-4 sm:pl-5 pr-24 text-base sm:text-lg text-slate-900 outline-none placeholder:text-slate-400 font-normal"
+                  autoComplete="off"
+                  aria-label="TikTok Video URL"
+                />
+                {state.url ? (
+                  <button
+                    type="button"
+                    onClick={() => dispatch({ type: 'SET_URL', payload: '' })}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-slate-400 hover:text-slate-600 transition cursor-pointer"
+                    title="Clear input"
+                    aria-label="Clear input"
+                  >
+                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={async () => {
+                      try {
+                        const text = await navigator.clipboard.readText()
+                        if (text && text.trim()) {
+                          dispatch({ type: 'SET_URL', payload: text.trim() })
+                          if (text.includes('tiktok.com')) {
+                            handleProcess(text.trim())
+                          }
+                        }
+                      } catch {
+                        const input = containerRef.current?.querySelector('input')
+                        input?.focus()
+                      }
+                    }}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 px-3.5 py-2 text-xs sm:text-sm font-bold rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-600 transition flex items-center gap-1.5 shadow-sm cursor-pointer active:scale-95"
+                    title="Paste from clipboard"
+                    aria-label="Paste TikTok URL from clipboard"
+                  >
+                    <svg className="h-4 w-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                    </svg>
+                    {t('btnPaste')}
+                  </button>
+                )}
+              </div>
+
+              {/* Primary CTA Button */}
+              <button
+                type="submit"
+                disabled={isBusy}
+                className="h-14 rounded-2xl bg-white text-blue-700 hover:bg-blue-50 font-extrabold px-8 text-base sm:text-lg shadow-2xl transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-75 cursor-pointer active:scale-95 whitespace-nowrap shrink-0 border border-white/60 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/50"
+              >
+                {state.loading ? (
+                  <><SpinnerIcon className="h-5 w-5 text-blue-700" /> {t('btnProcessing')}</>
+                ) : (
+                  <><DownloadIcon className="h-5 w-5 text-blue-700" /> {t('btnDownload')}</>
+                )}
+              </button>
+            </form>
           </div>
 
-          {/* Main CTA */}
-          <button
-            onClick={() => handleProcess()}
-            disabled={isBusy}
-            className="w-full py-4 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold rounded-lg transition-all duration-200 text-base sm:text-lg shadow-lg shadow-indigo-500/25 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2 active:scale-[0.99]"
-          >
-            {state.loading ? (
-              <><SpinnerIcon className="h-5 w-5" /> {t('btnProcessing')}</>
-            ) : (
-              <><DownloadIcon className="h-5 w-5" /> {t('btnDownload')}</>
-            )}
-          </button>
-
-          <p className="text-center text-xs text-slate-400 dark:text-slate-500 mt-3">
-            {t('inputNote')}
-          </p>
+          {/* Trust Badges */}
+          <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 mt-6 text-xs sm:text-sm text-blue-100 font-medium">
+            {([
+              t('badgeNoWatermark'),
+              t('badgeHD'),
+              t('badgeFree'),
+              t('badgeNoApp'),
+              t('badgeUnlimited'),
+            ]).map((badge) => (
+              <span key={badge} className="flex items-center gap-1.5">
+                <svg className="w-4 h-4 text-cyan-300 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                {badge}
+              </span>
+            ))}
+          </div>
         </div>
+      </section>
 
-        {/* Desktop leaderboard (728×90) — hidden on mobile */}
-        <div className="hidden md:block mt-4">
-          <p className="text-[10px] text-center text-slate-400 uppercase tracking-wider mb-1.5">Advertisement</p>
+      {/* ── Ads Section ── */}
+      <div className="max-w-2xl mx-auto px-4 mt-6">
+        {/* Desktop leaderboard (728×90) */}
+        <div className="hidden md:block">
           <GoogleAdSense
             adSlot="9402513184"
             adFormat="auto"
@@ -272,8 +307,8 @@ export default function DownloaderTool() {
           />
         </div>
 
-        {/* Mobile ad — auto format, shown only on small screens */}
-        <div className="md:hidden mt-4" style={{ minHeight: '120px' }}>
+        {/* Mobile ad */}
+        <div className="md:hidden" style={{ minHeight: '100px' }}>
           <GoogleAdSense
             adSlot="5309301802"
             adFormat="auto"
@@ -283,73 +318,62 @@ export default function DownloaderTool() {
         </div>
       </div>
 
-      {/* ── Results / Empty State ── */}
+      {/* ── Results Section ── */}
       <div className="results-section max-w-2xl mx-auto px-4 pb-4">
         {/* Status message */}
         {state.message && (
-          <div className={`p-4 rounded-lg text-center text-sm mb-4 font-medium ${
+          <div className={`p-4 rounded-xl text-center text-sm mb-4 font-medium ${
             state.message.includes('success') || state.message.includes('🎉') || state.message.includes('🎵')
-              ? 'bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800'
-              : 'bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 border border-red-200 dark:border-red-800'
+              ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+              : 'bg-red-50 text-red-600 border border-red-200'
           }`}>
             {state.message}
           </div>
         )}
 
-        {/* Empty state — 3-step guide */}
-        {!state.videoMetadata && !state.message && (
-          <div className="grid grid-cols-3 gap-2 mt-2 mb-6">
-            {[
-              { n: '1', step: t('step1'), hint: t('step1hint') },
-              { n: '2', step: t('step2'), hint: t('step2hint') },
-              { n: '3', step: t('step3'), hint: t('step3hint') },
-            ].map(({ n, step, hint }) => (
-              <div key={step} className="text-center p-3 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-100 dark:border-slate-700">
-                <div className="text-xs font-bold text-indigo-500 mb-1">{n}</div>
-                <p className="text-xs font-semibold text-slate-700 dark:text-slate-200">{step}</p>
-                <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5 hidden sm:block">{hint}</p>
-              </div>
-            ))}
-          </div>
-        )}
-
         {/* Video metadata + download */}
         {state.videoMetadata && (
-          <div className="bg-white dark:bg-slate-800 rounded-lg border border-slate-100 dark:border-slate-700 shadow-md p-5 space-y-4">
+          <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-100 shadow-2xl p-5 sm:p-7 space-y-5">
             {/* Metadata row */}
-            <div className="flex items-start gap-3">
+            <div className="flex items-start gap-4">
               {state.videoMetadata.thumbnail && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={state.videoMetadata.thumbnail}
-                  alt="TikTok video thumbnail"
-                  width={72}
-                  height={72}
-                  className="rounded-lg object-cover flex-shrink-0 border border-slate-100 dark:border-slate-700"
-                  onError={(e) => { e.currentTarget.style.display = 'none' }}
-                />
+                <div className="relative w-20 h-28 shrink-0 overflow-hidden rounded-xl bg-slate-100 shadow-sm">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={state.videoMetadata.thumbnail}
+                    alt="TikTok video thumbnail"
+                    className="w-full h-full object-cover"
+                    onError={(e) => { e.currentTarget.style.display = 'none' }}
+                  />
+                  {state.videoMetadata.duration > 0 && (
+                    <span className="absolute bottom-1.5 right-1.5 bg-black/70 text-white text-[11px] px-1.5 py-0.5 rounded font-mono font-medium">
+                      {Math.floor(state.videoMetadata.duration / 60)}:{(state.videoMetadata.duration % 60).toString().padStart(2, '0')}
+                    </span>
+                  )}
+                </div>
               )}
-              <div className="flex-1 min-w-0">
-                <p className="text-slate-900 dark:text-slate-100 font-semibold text-sm line-clamp-2 leading-snug">{state.videoMetadata.title}</p>
-                <p className="text-slate-500 dark:text-slate-400 text-xs mt-1">@{state.videoMetadata.author}</p>
-                {state.videoMetadata.duration > 0 && (
-                  <p className="text-slate-400 dark:text-slate-500 text-xs mt-0.5">
-                    {Math.floor(state.videoMetadata.duration / 60)}:{(state.videoMetadata.duration % 60).toString().padStart(2, '0')}
-                  </p>
-                )}
+              <div className="flex-1 min-w-0 flex flex-col justify-center">
+                <p className="text-slate-900 font-bold text-sm sm:text-base line-clamp-2 leading-snug">{state.videoMetadata.title}</p>
+                <p className="text-slate-500 text-xs sm:text-sm mt-1.5 font-medium">@{state.videoMetadata.author}</p>
+                <span className="inline-flex items-center gap-1.5 text-xs text-emerald-600 font-medium mt-2">
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                  Ready to download in Full HD
+                </span>
               </div>
             </div>
 
             {/* Preview toggle */}
             {state.downloadUrl && (
-              <button onClick={togglePreview} className="w-full py-2.5 px-4 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition-all text-sm border border-slate-200 dark:border-slate-600">
+              <button onClick={togglePreview} className="w-full py-2.5 px-4 bg-slate-50 hover:bg-slate-100 text-slate-600 font-medium rounded-xl transition-all text-xs sm:text-sm border border-slate-200">
                 {state.showPreview ? t('btnHidePreview') : t('btnShowPreview')}
               </button>
             )}
 
             {/* Video player */}
             {state.showPreview && state.downloadUrl && (
-              <div className="rounded-lg overflow-hidden bg-slate-900 border border-slate-200 dark:border-slate-700">
+              <div className="rounded-xl overflow-hidden bg-slate-900 border border-slate-200">
                 <video
                   src={state.downloadUrl}
                   controls
@@ -365,16 +389,16 @@ export default function DownloaderTool() {
             {/* Image gallery */}
             {state.videoMetadata?.images && state.videoMetadata.images.length > 0 && (
               <div className="space-y-3">
-                <button onClick={toggleImageGallery} className="w-full py-2.5 px-4 bg-indigo-50 dark:bg-indigo-900/20 hover:bg-indigo-100 dark:hover:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400 font-semibold rounded-lg transition-all text-sm border border-indigo-200 dark:border-indigo-800">
+                <button onClick={toggleImageGallery} className="w-full py-3 px-4 bg-blue-50 hover:bg-blue-100 text-blue-600 font-semibold rounded-xl transition-all text-sm border border-blue-200">
                   {state.showImageGallery ? t('btnHideImages') : `${t('btnShowImages')} (${state.videoMetadata.images.length})`}
                 </button>
                 {state.showImageGallery && (
                   <div className="space-y-3">
-                    <div className="flex items-center justify-between bg-slate-50 dark:bg-slate-700/50 rounded-lg p-3 border border-slate-100 dark:border-slate-600">
-                      <span className="text-slate-700 dark:text-slate-300 text-sm font-medium">{t('labelSelectImages')}</span>
+                    <div className="flex items-center justify-between bg-slate-50 rounded-xl p-3 border border-slate-100">
+                      <span className="text-slate-700 text-sm font-medium">{t('labelSelectImages')}</span>
                       <div className="flex gap-2">
-                        <button onClick={() => selectAllImages(true)} className="px-3 py-1.5 bg-indigo-500 hover:bg-indigo-600 text-white text-xs font-semibold rounded-lg">{t('btnAll')}</button>
-                        <button onClick={() => selectAllImages(false)} className="px-3 py-1.5 bg-slate-200 dark:bg-slate-600 hover:bg-slate-300 dark:hover:bg-slate-500 text-slate-700 dark:text-slate-300 text-xs font-semibold rounded-lg">{t('btnNone')}</button>
+                        <button onClick={() => selectAllImages(true)} className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg">{t('btnAll')}</button>
+                        <button onClick={() => selectAllImages(false)} className="px-3 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-semibold rounded-lg">{t('btnNone')}</button>
                       </div>
                     </div>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -382,34 +406,34 @@ export default function DownloaderTool() {
                         <div
                           key={image.id}
                           onClick={() => toggleImageSelection(image.id)}
-                          className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-150 ${image.selected ? 'ring-2 ring-indigo-500 ring-offset-1' : 'hover:ring-2 hover:ring-slate-300'}`}
+                          className={`relative rounded-xl overflow-hidden cursor-pointer transition-all duration-150 ${image.selected ? 'ring-2 ring-blue-600 ring-offset-1' : 'hover:ring-2 hover:ring-slate-300'}`}
                         >
                           <Image src={image.thumbnail} alt={`Image ${index + 1}`} width={200} height={128} className="object-cover w-full aspect-square"
                             onError={(e) => { e.currentTarget.src = getImagePlaceholderBase64() }} />
-                          <div className={`absolute inset-0 transition-all ${image.selected ? 'bg-indigo-500/15' : 'hover:bg-black/10'}`} />
-                          <div className={`absolute top-1.5 right-1.5 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${image.selected ? 'bg-indigo-500 border-indigo-500' : 'border-white/70 bg-black/20'}`}>
+                          <div className={`absolute inset-0 transition-all ${image.selected ? 'bg-blue-600/15' : 'hover:bg-black/10'}`} />
+                          <div className={`absolute top-1.5 right-1.5 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${image.selected ? 'bg-blue-600 border-blue-600' : 'border-white/70 bg-black/20'}`}>
                             {image.selected && <CheckIcon className="w-3 h-3 text-white" />}
                           </div>
                           <span className="absolute top-1.5 left-1.5 bg-black/50 text-white text-xs px-1.5 py-0.5 rounded font-medium">{index + 1}</span>
                         </div>
                       ))}
                     </div>
-                    <div className="flex items-center gap-3 bg-slate-50 dark:bg-slate-700/50 rounded-lg p-3 border border-slate-100 dark:border-slate-600">
+                    <div className="flex items-center gap-3 bg-slate-50 rounded-xl p-3 border border-slate-100">
                       <input
                         type="checkbox"
                         id="downloadAsZip"
                         checked={state.downloadImagesAsZip}
                         onChange={(e) => dispatch({ type: 'SET_DOWNLOAD_IMAGES_AS_ZIP', payload: e.target.checked })}
-                        className="w-4 h-4 accent-indigo-500 rounded"
+                        className="w-4 h-4 accent-blue-600 rounded"
                       />
-                      <label htmlFor="downloadAsZip" className="text-slate-700 dark:text-slate-300 text-sm cursor-pointer">
+                      <label htmlFor="downloadAsZip" className="text-slate-700 text-sm cursor-pointer font-medium">
                         {t('labelDownloadZip')}
                       </label>
                     </div>
                     <button
                       onClick={handleImageDownload}
                       disabled={state.downloadingImages || !state.videoMetadata?.images?.some((img) => img.selected)}
-                      className="w-full py-3 px-4 bg-indigo-500 hover:bg-indigo-600 text-white font-bold rounded-lg transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full py-3.5 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
                     >
                       {state.downloadingImages ? (
                         <><SpinnerIcon className="h-4 w-4" /> {t('btnDownloadingImages')}</>
@@ -422,37 +446,48 @@ export default function DownloaderTool() {
               </div>
             )}
 
-            {/* Download buttons */}
+            {/* Main Action Download Buttons */}
             {(state.downloadUrl || state.audioUrl) && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="space-y-3 pt-1">
                 {state.downloadUrl && (
                   <button
                     onClick={handleVideoDownload}
                     disabled={state.downloading || state.downloadingImages}
-                    className="py-3.5 px-4 bg-indigo-500 hover:bg-indigo-600 text-white font-bold rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg shadow-indigo-500/20 disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.99]"
+                    className="w-full py-4 px-6 bg-gradient-to-r from-[#195fd7] to-[#1e6fe8] hover:from-[#154fb3] hover:to-[#195fd7] text-white font-bold rounded-xl sm:rounded-2xl transition-all flex items-center justify-center gap-2.5 shadow-xl shadow-blue-600/25 text-base active:scale-[0.99] disabled:opacity-50 cursor-pointer"
                   >
-                    {state.downloading ? <><SpinnerIcon className="h-4 w-4" /> {t('btnDownloading')}</> : <><DownloadIcon className="h-4 w-4" /> {t('btnDownloadMP4')}</>}
+                    {state.downloading ? <><SpinnerIcon className="h-5 w-5" /> {t('btnDownloading')}</> : <><DownloadIcon className="h-5 w-5" /> {t('btnDownloadMP4')} (No Watermark HD)</>}
                   </button>
                 )}
                 {state.audioUrl && (
                   <button
                     onClick={handleAudioDownload}
                     disabled={state.downloadingAudio || state.downloadingImages}
-                    className="py-3.5 px-4 bg-indigo-400 hover:bg-indigo-500 text-white font-bold rounded-lg transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.99]"
+                    className="w-full py-3.5 px-6 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold rounded-xl sm:rounded-2xl transition-all flex items-center justify-center gap-2.5 border border-slate-200/80 active:scale-[0.99] text-sm sm:text-base disabled:opacity-50 cursor-pointer"
                   >
-                    {state.downloadingAudio ? <><SpinnerIcon className="h-4 w-4" /> {t('btnExtracting')}</> : <><MusicIcon className="h-4 w-4" /> {t('btnExtractMP3')}</>}
+                    {state.downloadingAudio ? <><SpinnerIcon className="h-5 w-5" /> {t('btnExtracting')}</> : <><MusicIcon className="h-5 w-5 text-blue-600" /> {t('btnExtractMP3')} (High Quality Audio)</>}
                   </button>
                 )}
               </div>
             )}
 
+            {/* Download Another Video Link */}
+            <button
+              onClick={handleReset}
+              type="button"
+              className="w-full pt-2 flex items-center justify-center gap-2 text-sm font-semibold text-slate-500 hover:text-blue-600 transition-colors py-2 cursor-pointer"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+              Download Another Video
+            </button>
+
             {isBusy && (
-              <p className="text-center text-xs text-slate-400 dark:text-slate-500">{t('msgPreparing')}</p>
+              <p className="text-center text-xs text-slate-400">{t('msgPreparing')}</p>
             )}
           </div>
         )}
       </div>
-
     </div>
   )
 }

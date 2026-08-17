@@ -31,7 +31,7 @@ export default function Page() {
       </ol>
       <p>This saves the original quality video directly to your phone.</p>
       <h2>Method 3 — Try SaveFromInternet With the Story URL</h2>
-      <p>Some TikTok Stories generate a shareable link. If you tap Share on a Story and get a URL, paste it into <a href="https://savefrominternet.com">SaveFromInternet.com</a> — some story formats are downloadable when a direct URL is available.</p>
+      <p>Some TikTok Stories generate a shareable link. If you tap Share on a Story and get a URL, paste it into <a href="https://www.savefrominternet.com">SaveFromInternet.com</a> — some story formats are downloadable when a direct URL is available.</p>
       <h2>Important: Act Fast</h2>
       <p>TikTok Stories disappear after exactly 24 hours. If a Story you want to save is visible now, do not wait — use screen recording immediately. Once the 24 hours pass, there is no way to retrieve a deleted Story.</p>
       <div className="tip-box">💡 For your own TikTok content: always save Stories to your Camera Roll before they expire. TikTok sends a notification when a Story is about to disappear — use that as your reminder to save.</div>

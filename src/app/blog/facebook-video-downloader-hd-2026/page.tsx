@@ -18,7 +18,7 @@ export default function Page() {
         <li>Open Facebook and find the video you want to download</li>
         <li>Click the <strong>three dots (···)</strong> on the video post</li>
         <li>Select <strong>Copy Link</strong> (the URL will contain facebook.com/watch or facebook.com/video)</li>
-        <li>Go to <a href="https://savefrominternet.com">SaveFromInternet.com</a></li>
+        <li>Go to <a href="https://www.savefrominternet.com">SaveFromInternet.com</a></li>
         <li>Paste the link in the URL box and click Download</li>
         <li>Choose <strong>HD</strong> quality and click Download Video</li>
       </ol>
@@ -26,14 +26,14 @@ export default function Page() {
       <ol>
         <li>Tap the video in the Facebook app</li>
         <li>Tap the share icon → <strong>Copy Link</strong></li>
-        <li>Open Safari → go to <a href="https://savefrominternet.com">savefrominternet.com</a></li>
+        <li>Open Safari → go to <a href="https://www.savefrominternet.com">savefrominternet.com</a></li>
         <li>Paste the URL and tap Download</li>
         <li>Tap and hold the video to save to Files or Camera Roll</li>
       </ol>
       <h2>How to Download Facebook Videos on Android</h2>
       <ol>
         <li>Tap the three dots on the video → Copy Link</li>
-        <li>Open Chrome → go to <a href="https://savefrominternet.com">savefrominternet.com</a></li>
+        <li>Open Chrome → go to <a href="https://www.savefrominternet.com">savefrominternet.com</a></li>
         <li>Paste the URL and tap Download</li>
         <li>The video downloads directly to your Downloads folder</li>
       </ol>
@@ -52,7 +52,7 @@ export default function Page() {
         <li><strong>Facebook Reels that have expired</strong> — some Reels are temporary. If the link no longer opens in Facebook, the content is unavailable.</li>
         <li><strong>Live streams (while active)</strong> — Facebook Live cannot be downloaded while streaming, only after it ends and appears as a replay.</li>
       </ul>
-      <div className="tip-box">💡 Facebook video URLs come in multiple formats (fb.watch/..., facebook.com/watch/..., facebook.com/video/...) — all are supported on <a href="https://savefrominternet.com">SaveFromInternet.com</a>.</div>
+      <div className="tip-box">💡 Facebook video URLs come in multiple formats (fb.watch/..., facebook.com/watch/..., facebook.com/video/...) — all are supported on <a href="https://www.savefrominternet.com">SaveFromInternet.com</a>.</div>
       <h2>Related Guides</h2>
       <ul>
         <li><Link href="/blog/instagram-reel-downloader-2026">Download Instagram Reels</Link></li>

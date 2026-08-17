@@ -18,7 +18,7 @@ export default function Page() {
         <li>Open Instagram and find the Reel you want to download</li>
         <li>Click the <strong>three dots (···)</strong> menu on the Reel</li>
         <li>Select <strong>Copy Link</strong></li>
-        <li>Go to <a href="https://savefrominternet.com">SaveFromInternet.com</a></li>
+        <li>Go to <a href="https://www.savefrominternet.com">SaveFromInternet.com</a></li>
         <li>Paste the link in the URL box and click Download</li>
         <li>Click <strong>Download Video</strong> to save the MP4 to your computer</li>
       </ol>
@@ -26,14 +26,14 @@ export default function Page() {
       <ol>
         <li>Open the Instagram app and find the Reel</li>
         <li>Tap <strong>Share (arrow icon) → Copy Link</strong></li>
-        <li>Open Safari and go to <a href="https://savefrominternet.com">savefrominternet.com</a></li>
+        <li>Open Safari and go to <a href="https://www.savefrominternet.com">savefrominternet.com</a></li>
         <li>Paste the link and tap Download</li>
         <li>Tap and hold the video → <strong>Save to Files</strong> or use the share sheet to save to Camera Roll</li>
       </ol>
       <h2>How to Download Instagram Reels on Android</h2>
       <ol>
         <li>Open Instagram, tap the Reel's share button → Copy Link</li>
-        <li>Open Chrome and go to <a href="https://savefrominternet.com">savefrominternet.com</a></li>
+        <li>Open Chrome and go to <a href="https://www.savefrominternet.com">savefrominternet.com</a></li>
         <li>Paste the link and tap Download</li>
         <li>The video downloads directly to your Downloads folder</li>
       </ol>

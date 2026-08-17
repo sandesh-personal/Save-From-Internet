@@ -2,7 +2,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import GoogleAdSense from '@/components/GoogleAdSense'
 
-const baseUrl = 'https://savefrominternet.com'
+const baseUrl = 'https://www.savefrominternet.com'
 
 export const metadata: Metadata = {
   title: 'Disclaimer - TikTok Video Downloader | Save From Internet',

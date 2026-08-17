@@ -57,23 +57,6 @@ const devices: { Icon: FeatureIconComponent; label: string; href: string }[] = [
   { Icon: GlobeIcon,       label: 'Any Browser',   href: '/tiktok-video-downloader' },
 ]
 
-const websiteSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: 'SaveFromInternet',
-  url: 'https://www.savefrominternet.com',
-}
-
-const organizationSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: 'SaveFromInternet',
-  url: 'https://www.savefrominternet.com',
-  logo: 'https://www.savefrominternet.com/og-final.jpg',
-  description: 'Free TikTok video downloader. Download TikTok videos without watermark, extract MP3 audio, and save image galleries. No app required.',
-  contactPoint: { '@type': 'ContactPoint', email: 'contact@savefrominternet.com', contactType: 'customer support' },
-}
-
 const webAppSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
@@ -99,153 +82,301 @@ const faqSchema = {
 
 export default function HomeContent() {
   return (
-    <div className="bg-white dark:bg-slate-900">
+    <div className="bg-white">
       <Suspense fallback={null}>
         <DownloaderTool />
       </Suspense>
 
-      {/* How It Works */}
-      <section className="bg-slate-50 dark:bg-slate-800/50 py-16 px-4 border-t border-slate-100 dark:border-slate-700/50">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white text-center mb-3">How to download a TikTok video</h2>
-          <p className="text-center text-slate-500 dark:text-slate-400 mb-12">Works on iPhone, Android, PC, and Mac — no app required</p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {steps.map(({ n, title, desc }, i) => (
-              <div key={n} className="relative bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-100 dark:border-slate-700 shadow-sm">
-                {/* connector arrow between cards on desktop */}
-                {i < steps.length - 1 && (
-                  <div className="hidden md:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10 w-6 h-6 items-center justify-center">
-                    <svg className="w-4 h-4 text-slate-300 dark:text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                )}
-                <div className="w-8 h-8 rounded-full bg-indigo-500 text-white text-sm font-bold flex items-center justify-center mb-4">
-                  {n}
-                </div>
-                <h3 className="text-slate-900 dark:text-white font-semibold text-base mb-2">{title}</h3>
-                <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{desc}</p>
+      {/* ── Section 1: Intro About Card (SnapTik Style) ── */}
+      <section className="py-12 sm:py-16 bg-gradient-to-b from-white to-slate-50">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-white border border-slate-100 shadow-sm p-6 sm:p-10">
+            <div className="absolute -top-10 -right-10 w-36 h-36 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-10 -left-10 w-36 h-36 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+
+            <div className="relative text-center">
+              <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-blue-500/10 to-cyan-500/10 text-blue-600 mb-4 sm:mb-5 shadow-sm">
+                <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
               </div>
-            ))}
+
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight text-slate-900">
+                <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+                  Download TikTok Videos Without Watermark FREE
+                </span>
+              </h2>
+
+              <div className="mx-auto mt-4 sm:mt-5 w-16 h-1 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500" />
+
+              <p className="mt-6 text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
+                <strong>SaveFromInternet.com</strong> is one of the best online HD TikTok Downloaders. We help you download TikTok videos without any watermark in original MP4 format and Full HD quality. You are not required to install any software or extensions — simply paste the TikTok link and save your video instantly.
+              </p>
+              <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
+                SaveFromInternet also allows you to extract crystal-clear MP3 audio and download TikTok photo slideshows with one tap. Fast, unlimited, and 100% free forever.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Features */}
-      <section className="bg-white dark:bg-slate-900 py-16 px-4">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-center text-xs font-semibold uppercase tracking-widest text-indigo-500 mb-3">Features</p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white text-center mb-12">Everything You Need to Save TikTok Content</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {features.map(({ Icon, title, desc }) => (
-              <div key={title} className="bg-slate-50 dark:bg-slate-800 rounded-lg p-5 border border-slate-100 dark:border-slate-700 hover:border-indigo-200 dark:hover:border-indigo-800 hover:bg-indigo-50/30 dark:hover:bg-indigo-900/10 transition-all group">
-                <div className="w-8 h-8 rounded-md bg-indigo-100 dark:bg-indigo-900/40 flex items-center justify-center mb-3">
-                  <Icon className="w-4 h-4 text-indigo-500" />
+      {/* ── Section 2: How It Works (Numbered Stepper) ── */}
+      <section id="how-to" className="bg-slate-50 py-12 sm:py-16 lg:py-20 border-t border-slate-100">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10 sm:mb-14">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900">
+              How to Download TikTok Videos Without Watermarks
+            </h2>
+            <p className="mt-2 text-sm sm:text-base text-slate-500">
+              Save any TikTok video to your iPhone, Android, or PC in 3 simple steps
+            </p>
+          </div>
+
+          <ol className="flex flex-col sm:flex-row sm:justify-center gap-8 sm:gap-6 lg:gap-8 list-none p-0 m-0">
+            {/* Step 1 */}
+            <li className="relative flex flex-row sm:flex-col items-center sm:text-center gap-4 sm:gap-0 sm:flex-1">
+              <div className="absolute left-[60%] top-10 hidden h-0.5 w-full bg-gradient-to-r from-blue-600 to-cyan-500 sm:block pointer-events-none" />
+              <div className="relative flex-shrink-0 flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center sm:mb-5">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-600 to-cyan-500 opacity-10" />
+                <div className="relative flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-white shadow-lg border border-slate-100">
+                  <span className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-blue-600 to-cyan-500 text-xs font-bold text-white shadow-sm">
+                    1
+                  </span>
+                  <svg className="h-6 w-6 sm:h-7 sm:w-7 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                  </svg>
                 </div>
-                <h3 className="text-slate-900 dark:text-white font-semibold mb-1.5 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">{title}</h3>
-                <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{desc}</p>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+              <div className="flex-1 sm:flex-none text-left sm:text-center">
+                <h3 className="mb-1 text-base sm:text-lg font-bold text-slate-900">
+                  Copy Video Link
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                  Open TikTok app, find your video, tap <strong>Share</strong> and tap <strong>Copy Link</strong>.
+                </p>
+              </div>
+            </li>
 
-      {/* Download Types */}
-      <section className="bg-slate-50 dark:bg-slate-800/50 py-16 px-4 border-t border-slate-100 dark:border-slate-700/50">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-center text-xs font-semibold uppercase tracking-widest text-indigo-500 mb-3">Supported Formats</p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white text-center mb-12">What Can You Download?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {downloadTypes.map(({ Icon, title, desc, link, linkLabel }) => (
-              <div key={title} className="bg-white dark:bg-slate-800 rounded-lg p-6 border border-slate-100 dark:border-slate-700 shadow-sm text-center">
-                <div className="w-14 h-14 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Icon className="w-7 h-7 text-indigo-500" />
+            {/* Step 2 */}
+            <li className="relative flex flex-row sm:flex-col items-center sm:text-center gap-4 sm:gap-0 sm:flex-1">
+              <div className="absolute left-[60%] top-10 hidden h-0.5 w-full bg-gradient-to-r from-blue-600 to-cyan-500 sm:block pointer-events-none" />
+              <div className="relative flex-shrink-0 flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center sm:mb-5">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-600 to-cyan-500 opacity-10" />
+                <div className="relative flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-white shadow-lg border border-slate-100">
+                  <span className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-blue-600 to-cyan-500 text-xs font-bold text-white shadow-sm">
+                    2
+                  </span>
+                  <svg className="h-6 w-6 sm:h-7 sm:w-7 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                  </svg>
                 </div>
-                <h3 className="text-slate-900 dark:text-white font-semibold text-xl mb-2">{title}</h3>
-                <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4">{desc}</p>
-                <Link href={link} className="text-indigo-500 text-sm font-semibold hover:underline">{linkLabel} →</Link>
               </div>
-            ))}
+              <div className="flex-1 sm:flex-none text-left sm:text-center">
+                <h3 className="mb-1 text-base sm:text-lg font-bold text-slate-900">
+                  Paste Link
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                  Paste the copied TikTok URL into the search box above.
+                </p>
+              </div>
+            </li>
+
+            {/* Step 3 */}
+            <li className="relative flex flex-row sm:flex-col items-center sm:text-center gap-4 sm:gap-0 sm:flex-1">
+              <div className="relative flex-shrink-0 flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center sm:mb-5">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-600 to-cyan-500 opacity-10" />
+                <div className="relative flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-white shadow-lg border border-slate-100">
+                  <span className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-blue-600 to-cyan-500 text-xs font-bold text-white shadow-sm">
+                    3
+                  </span>
+                  <svg className="h-6 w-6 sm:h-7 sm:w-7 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                  </svg>
+                </div>
+              </div>
+              <div className="flex-1 sm:flex-none text-left sm:text-center">
+                <h3 className="mb-1 text-base sm:text-lg font-bold text-slate-900">
+                  Download
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                  Click Download and choose HD MP4 Video, MP3 Audio, or Photo ZIP.
+                </p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      {/* ── Section 3: Features Grid (SnapTik Style 6 Cards) ── */}
+      <section id="features" className="py-12 sm:py-16 lg:py-20 bg-white border-t border-slate-100">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10 sm:mb-14">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900">
+              TikTok Download Features
+            </h2>
+            <p className="mt-2 text-sm sm:text-base text-slate-500">
+              The fastest and most reliable way to save TikTok media
+            </p>
+          </div>
+
+          <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+            {/* Card 1 */}
+            <div className="group relative rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm transition-all duration-200 hover:border-blue-300 hover:shadow-lg hover:bg-blue-50/30">
+              <div className="mb-3.5 inline-flex rounded-xl bg-gradient-to-br from-blue-500/10 to-cyan-500/10 p-3 text-blue-600">
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="mb-1.5 text-base sm:text-lg font-bold text-slate-900">
+                No Watermarks
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                Removes all watermarks and creator username overlays for clean, crystal-clear playback.
+              </p>
+            </div>
+
+            {/* Card 2 */}
+            <div className="group relative rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm transition-all duration-200 hover:border-blue-300 hover:shadow-lg hover:bg-blue-50/30">
+              <div className="mb-3.5 inline-flex rounded-xl bg-gradient-to-br from-blue-500/10 to-cyan-500/10 p-3 text-blue-600">
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <h3 className="mb-1.5 text-base sm:text-lg font-bold text-slate-900">
+                All Devices Supported
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                Seamlessly works on iPhone, iPad, Android phones, tablets, Windows PC, and Mac Safari.
+              </p>
+            </div>
+
+            {/* Card 3 */}
+            <div className="group relative rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm transition-all duration-200 hover:border-blue-300 hover:shadow-lg hover:bg-blue-50/30">
+              <div className="mb-3.5 inline-flex rounded-xl bg-gradient-to-br from-blue-500/10 to-cyan-500/10 p-3 text-blue-600">
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                </svg>
+              </div>
+              <h3 className="mb-1.5 text-base sm:text-lg font-bold text-slate-900">
+                Browser Only (No App)
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                Runs 100% in your browser. No suspicious third-party apps, plugins, or software installations needed.
+              </p>
+            </div>
+
+            {/* Card 4 */}
+            <div className="group relative rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm transition-all duration-200 hover:border-blue-300 hover:shadow-lg hover:bg-blue-50/30">
+              <div className="mb-3.5 inline-flex rounded-xl bg-gradient-to-br from-blue-500/10 to-cyan-500/10 p-3 text-blue-600">
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="mb-1.5 text-base sm:text-lg font-bold text-slate-900">
+                Always Free & Unlimited
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                No subscription, no registration, and no daily download quotas. Download as much as you like.
+              </p>
+            </div>
+
+            {/* Card 5 */}
+            <div className="group relative rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm transition-all duration-200 hover:border-blue-300 hover:shadow-lg hover:bg-blue-50/30">
+              <div className="mb-3.5 inline-flex rounded-xl bg-gradient-to-br from-blue-500/10 to-cyan-500/10 p-3 text-blue-600">
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <h3 className="mb-1.5 text-base sm:text-lg font-bold text-slate-900">
+                Photo Carousels & ZIP
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                Easily download every image from TikTok photo slideshows individually or packed as a convenient ZIP file.
+              </p>
+            </div>
+
+            {/* Card 6 */}
+            <div className="group relative rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm transition-all duration-200 hover:border-blue-300 hover:shadow-lg hover:bg-blue-50/30">
+              <div className="mb-3.5 inline-flex rounded-xl bg-gradient-to-br from-blue-500/10 to-cyan-500/10 p-3 text-blue-600">
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <h3 className="mb-1.5 text-base sm:text-lg font-bold text-slate-900">
+                Full HD Original Quality
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                Fetches original video bitrates up to 1080p without server-side compression or quality degradation.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Devices */}
-      <section className="bg-white dark:bg-slate-900 py-14 px-4 border-t border-slate-100 dark:border-slate-700/50">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white text-center mb-8">Works on Every Device</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            {devices.map(({ Icon, label, href }) => (
-              <Link key={label} href={href} className="flex flex-col items-center gap-2 bg-slate-50 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 border border-slate-100 dark:border-slate-700 hover:border-indigo-200 dark:hover:border-indigo-800 rounded-lg py-5 px-3 transition-all group">
-                <Icon className="w-6 h-6 text-slate-400 group-hover:text-indigo-500 transition-colors" />
-                <span className="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 text-center transition-colors">{label}</span>
-              </Link>
-            ))}
+      {/* ── Section 4: Interactive FAQ Accordions (SnapTik Style) ── */}
+      <section id="faq" className="py-12 sm:py-16 lg:py-20 bg-slate-50 border-t border-slate-100">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900">
+              Frequently Asked Questions
+            </h2>
+            <p className="mt-2 text-sm sm:text-base text-slate-500">
+              Everything you need to know about SaveFromInternet
+            </p>
           </div>
-        </div>
-      </section>
 
-      {/* About */}
-      <section className="bg-slate-50 dark:bg-slate-800/50 py-14 px-4 border-t border-slate-100 dark:border-slate-700/50">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-5">Built by a developer, kept simple on purpose</h2>
-          <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-base mb-4">
-            I built SaveFromInternet because every TikTok downloader I tried either broke after a week,
-            buried you in pop-ups, or quietly re-encoded your video at lower quality. This one fetches the
-            original file directly from TikTok&apos;s CDN — the same file your phone streams — before their
-            watermark pipeline touches it. You get the actual original, not a compressed copy.
-          </p>
-          <p className="text-slate-500 dark:text-slate-400 leading-relaxed text-base mb-6">
-            No account required. No app to install. Your files are never stored on our servers — downloads
-            are processed and delivered in real time, then discarded. If something breaks or you have a
-            question, email me directly.
-          </p>
-          <a
-            href="mailto:contact@savefrominternet.com"
-            className="inline-flex items-center gap-2 text-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium text-sm transition-colors"
-          >
-            <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-            contact@savefrominternet.com
-          </a>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="bg-white dark:bg-slate-900 py-16 px-4 border-t border-slate-100 dark:border-slate-700/50">
-        <div className="max-w-3xl mx-auto">
-          <p className="text-center text-xs font-semibold uppercase tracking-widest text-indigo-500 mb-3">FAQ</p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white text-center mb-12">Frequently Asked Questions</h2>
-          <div className="space-y-3">
+          <div className="space-y-3 sm:space-y-3.5">
             {faqs.map(({ q, a }) => (
-              <div key={q} className="bg-slate-50 dark:bg-slate-800 rounded-lg p-5 border border-slate-100 dark:border-slate-700">
-                <h3 className="text-slate-900 dark:text-white font-semibold mb-2">{q}</h3>
-                <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{a}</p>
-              </div>
+              <details
+                key={q}
+                className="group overflow-hidden rounded-xl sm:rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-200"
+              >
+                <summary className="flex w-full cursor-pointer items-center justify-between px-5 sm:px-6 py-4 text-left transition hover:bg-slate-50 min-h-[48px] list-none [&::-webkit-details-marker]:hidden select-none">
+                  <h3 className="text-sm sm:text-base font-semibold text-slate-900 pr-4 leading-snug">
+                    {q}
+                  </h3>
+                  <svg
+                    className="h-5 w-5 flex-shrink-0 text-slate-400 transition-transform duration-200 group-open:rotate-180"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="border-t border-slate-100 px-5 sm:px-6 py-4 text-sm text-slate-600 leading-relaxed">
+                  {a}
+                </div>
+              </details>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Related Tools */}
-      <section className="bg-slate-50 dark:bg-slate-800/50 py-12 px-4 border-t border-slate-100 dark:border-slate-700/50">
+      {/* ── Section 5: Related Tools & Explore Links ── */}
+      <section className="bg-white py-12 px-4 border-t border-slate-100">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-xl font-semibold text-slate-900 dark:text-white text-center mb-6">More TikTok Downloader Tools</h2>
-          <div className="flex flex-wrap justify-center gap-2">
+          <h2 className="text-lg sm:text-xl font-bold text-slate-900 text-center mb-6">
+            Popular TikTok Downloader Tools & Guides
+          </h2>
+          <div className="flex flex-wrap justify-center gap-2.5">
             {[
-              { label: 'TikTok to MP3',    href: '/tiktok-to-mp3' },
+              { label: 'TikTok to MP3', href: '/tiktok-to-mp3' },
               { label: 'Photo Downloader', href: '/tiktok-photo-downloader' },
-              { label: 'iPhone Guide',     href: '/tiktok-video-downloader-iphone' },
-              { label: 'Android Guide',    href: '/tiktok-video-downloader-android' },
-              { label: 'PC / Mac Guide',   href: '/tiktok-video-downloader-pc' },
-              { label: 'No Watermark',     href: '/tiktok-downloader-without-watermark' },
-              { label: 'Save TikTok Video',href: '/save-tiktok-video' },
-              { label: 'How to Download',  href: '/how-to-download-tiktok-videos' },
-              { label: 'FAQ',              href: '/faq' },
-              { label: 'Blog',             href: '/blog' },
+              { label: 'No Watermark Download', href: '/tiktok-downloader-without-watermark' },
+              { label: 'Save TikTok Video', href: '/save-tiktok-video' },
+              { label: 'iPhone Guide', href: '/tiktok-video-downloader-iphone' },
+              { label: 'Android Guide', href: '/tiktok-video-downloader-android' },
+              { label: 'PC & Mac Guide', href: '/tiktok-video-downloader-pc' },
+              { label: 'How to Download', href: '/how-to-download-tiktok-videos' },
+              { label: 'Blog', href: '/blog' },
+              { label: 'FAQ', href: '/faq' },
             ].map(({ label, href }) => (
-              <Link key={href} href={href} className="px-4 py-2 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 border border-slate-200 dark:border-slate-700 hover:border-indigo-200 dark:hover:border-indigo-800 rounded-full text-sm font-medium transition-all hover:shadow-sm">
+              <Link
+                key={href}
+                href={href}
+                className="px-4 py-2 bg-slate-50 text-slate-700 hover:text-blue-600 border border-slate-200 hover:border-blue-300 rounded-full text-xs sm:text-sm font-medium transition-all hover:shadow-sm"
+              >
                 {label}
               </Link>
             ))}
@@ -253,8 +384,6 @@ export default function HomeContent() {
         </div>
       </section>
 
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
     </div>

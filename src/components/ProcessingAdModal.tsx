@@ -75,14 +75,13 @@ export default function ProcessingAdModal({ isOpen, isReady, hasError, onClose }
         {/* Progress bar */}
         <div className="h-1 bg-slate-100">
           <div
-            className="h-full bg-indigo-500 transition-all duration-1000 ease-linear"
+            className="h-full bg-blue-600 transition-all duration-1000 ease-linear"
             style={{ width: `${Math.min(progress, bothDone ? 100 : 95)}%` }}
           />
         </div>
 
         {/* Ad area */}
         <div className="px-4 pt-3 pb-3 bg-slate-50 border-b border-slate-100">
-          <p className="text-[10px] text-center text-slate-400 uppercase tracking-wider mb-1.5">Advertisement</p>
           <div className="min-h-[250px] flex items-center justify-center">
             <GoogleAdSense
               adSlot="3804648444"
@@ -98,9 +97,9 @@ export default function ProcessingAdModal({ isOpen, isReady, hasError, onClose }
           <button
             onClick={onClose}
             disabled={!bothDone}
-            className={`w-full py-3.5 rounded-lg font-semibold text-base transition-all duration-200 flex items-center justify-center gap-2 ${
+            className={`w-full py-3.5 rounded-xl font-bold text-base transition-all duration-200 flex items-center justify-center gap-2 ${
               bothDone && !hasError
-                ? 'bg-indigo-500 hover:bg-indigo-600 text-white shadow-lg shadow-indigo-500/30 hover:scale-[1.02] active:scale-[0.99]'
+                ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-500/30 hover:scale-[1.02] active:scale-[0.99] cursor-pointer'
                 : bothDone && hasError
                 ? 'bg-slate-200 text-slate-600 cursor-pointer'
                 : 'bg-slate-100 text-slate-400 cursor-not-allowed'
@@ -119,9 +118,6 @@ export default function ProcessingAdModal({ isOpen, isReady, hasError, onClose }
               `Please wait — ${countdown}s`
             )}
           </button>
-          <p className="text-center text-xs text-slate-400 mt-2">
-            Ad helps keep this tool free
-          </p>
         </div>
       </div>
     </div>

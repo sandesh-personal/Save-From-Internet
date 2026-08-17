@@ -17,7 +17,7 @@ export default function Page() {
       <ol>
         <li>Copy the TikTok video link (Share → Copy Link)</li>
         <li>Open <strong>Safari</strong> (important — not Chrome) on your iPhone</li>
-        <li>Go to <a href="https://savefrominternet.com">savefrominternet.com</a> and paste the URL</li>
+        <li>Go to <a href="https://www.savefrominternet.com">savefrominternet.com</a> and paste the URL</li>
         <li>Tap <strong>Download TikTok Video</strong>, then <strong>Download Video</strong></li>
         <li>The video opens in Safari's video player — <strong>tap and hold the video</strong></li>
         <li>Select <strong>Save Video</strong> from the menu</li>
@@ -28,7 +28,7 @@ export default function Page() {
       <ol>
         <li>Copy the TikTok video link</li>
         <li>Open <strong>Chrome</strong> on your Android device</li>
-        <li>Go to <a href="https://savefrominternet.com">savefrominternet.com</a> and paste the URL</li>
+        <li>Go to <a href="https://www.savefrominternet.com">savefrominternet.com</a> and paste the URL</li>
         <li>Tap <strong>Download TikTok Video</strong>, then <strong>Download Video</strong></li>
         <li>The MP4 downloads to your <strong>Downloads folder</strong></li>
         <li>Open the <strong>Gallery app</strong> → it appears in the Downloads album</li>

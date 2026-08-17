@@ -20,11 +20,6 @@ export default function MidArticleAd() {
     wrap.dataset.midAd = 'true'
     wrap.style.cssText = 'margin: 2rem 0;'
 
-    const label = document.createElement('p')
-    label.style.cssText =
-      'font-size: 0.65rem; color: #94a3b8; text-align: center; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem;'
-    label.textContent = 'Advertisement'
-
     const ins = document.createElement('ins')
     ins.className = 'adsbygoogle'
     ins.style.cssText = 'display: block;'
@@ -33,7 +28,6 @@ export default function MidArticleAd() {
     ins.setAttribute('data-ad-format', 'auto')
     ins.setAttribute('data-full-width-responsive', 'true')
 
-    wrap.appendChild(label)
     wrap.appendChild(ins)
     target.before(wrap)
 

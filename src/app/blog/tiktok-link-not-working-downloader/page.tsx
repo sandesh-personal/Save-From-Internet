@@ -27,7 +27,7 @@ export default function Page() {
       <h2>Fix 4 — Check If the Video Is Still Accessible</h2>
       <p>Open the TikTok link in an incognito browser window (logged out). If the video shows "This video is unavailable" or the account is private, no downloader can access it — the link itself is not the problem.</p>
       <h2>Fix 5 — Try savefrominternet.com Instead</h2>
-      <p>Different downloaders use different API methods. If one fails, <a href="https://savefrominternet.com">SaveFromInternet.com</a> may succeed. Paste the same link and try again.</p>
+      <p>Different downloaders use different API methods. If one fails, <a href="https://www.savefrominternet.com">SaveFromInternet.com</a> may succeed. Paste the same link and try again.</p>
       <h2>Common Error Messages and What They Mean</h2>
       <table>
         <thead><tr><th>Error Message</th><th>Likely Cause</th><th>Fix</th></tr></thead>

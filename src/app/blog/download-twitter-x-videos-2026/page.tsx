@@ -18,7 +18,7 @@ export default function Page() {
         <li>Find the tweet containing the video on X.com or Twitter.com</li>
         <li>Click the <strong>share icon</strong> on the tweet → <strong>Copy Link to Tweet</strong></li>
         <li>The URL will look like: <code>x.com/username/status/123456789</code></li>
-        <li>Go to <a href="https://savefrominternet.com">SaveFromInternet.com</a></li>
+        <li>Go to <a href="https://www.savefrominternet.com">SaveFromInternet.com</a></li>
         <li>Paste the URL and click Download</li>
         <li>Select your preferred quality and download the MP4</li>
       </ol>
@@ -26,14 +26,14 @@ export default function Page() {
       <ol>
         <li>Open the X app and tap the share icon on the tweet</li>
         <li>Tap <strong>Copy Link to Tweet</strong></li>
-        <li>Open Safari → go to <a href="https://savefrominternet.com">savefrominternet.com</a></li>
+        <li>Open Safari → go to <a href="https://www.savefrominternet.com">savefrominternet.com</a></li>
         <li>Paste the link and tap Download</li>
         <li>Tap and hold the video → Save to Files or use Documents by Readdle to save to Camera Roll</li>
       </ol>
       <h2>How to Download Twitter/X Videos on Android</h2>
       <ol>
         <li>Long-press the tweet → Share → Copy Link</li>
-        <li>Open Chrome → go to <a href="https://savefrominternet.com">savefrominternet.com</a></li>
+        <li>Open Chrome → go to <a href="https://www.savefrominternet.com">savefrominternet.com</a></li>
         <li>Paste the URL and tap Download</li>
         <li>The video saves directly to your Downloads folder</li>
       </ol>

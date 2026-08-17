@@ -42,7 +42,7 @@ export default function Page() {
         <li><strong>VidMate</strong> — requires app installation; the app requests excessive device permissions</li>
         <li><strong>Any browser extension</strong> — requests full browser access, significant privacy risk (see our <Link href="/blog/tiktok-downloader-chrome-extension-vs-website">extension vs website comparison</Link>)</li>
       </ul>
-      <div className="tip-box">💡 The simplest approach that works every time: paste any TikTok URL into <a href="https://savefrominternet.com">SaveFromInternet.com</a>, choose your format, and download. No account, no installation, no pop-ups.</div>
+      <div className="tip-box">💡 The simplest approach that works every time: paste any TikTok URL into <a href="https://www.savefrominternet.com">SaveFromInternet.com</a>, choose your format, and download. No account, no installation, no pop-ups.</div>
       <h2>Related Guides</h2>
       <ul>
         <li><Link href="/blog/savefrominternet-vs-ssstik">SaveFromInternet vs SSSTik</Link></li>

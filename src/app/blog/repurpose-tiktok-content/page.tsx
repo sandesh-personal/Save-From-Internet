@@ -65,7 +65,7 @@ export default function Page() {
       <ol>
         <li>Post your TikTok as normal (or set it to "Only Me" temporarily to get the URL)</li>
         <li>Tap Share → Copy Link on the TikTok</li>
-        <li>Open <a href="https://savefrominternet.com">savefrominternet.com</a> in your browser</li>
+        <li>Open <a href="https://www.savefrominternet.com">savefrominternet.com</a> in your browser</li>
         <li>Paste the URL and click Download TikTok Video</li>
         <li>Click Download Video — you get the clean, watermark-free MP4</li>
       </ol>

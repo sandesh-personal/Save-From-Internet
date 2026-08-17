@@ -1,9 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+  allowedDevOrigins: [
+    "192.168.1.97",
+    "192.168.1.111",
+    "192.168.1.*",
+    "localhost:3000",
+    "127.0.0.1:3000",
+  ],
   images: {
     remotePatterns: [
       {

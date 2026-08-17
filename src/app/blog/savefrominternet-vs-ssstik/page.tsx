@@ -35,7 +35,7 @@ export default function Page() {
       <h2>Photo Carousel Support</h2>
       <p>TikTok photo posts (carousels with multiple images) are a newer feature. SaveFromInternet supports full carousel downloads — you can download all images as individual files or as a ZIP. SSSTik's photo post support is inconsistent; some carousels download as a slideshow video rather than individual images.</p>
       <h2>Which Should You Use?</h2>
-      <div className="tip-box">💡 For the cleanest experience with original quality video and photo carousels, use <a href="https://savefrominternet.com">SaveFromInternet.com</a>. SSSTik is a viable backup when one service is temporarily down.</div>
+      <div className="tip-box">💡 For the cleanest experience with original quality video and photo carousels, use <a href="https://www.savefrominternet.com">SaveFromInternet.com</a>. SSSTik is a viable backup when one service is temporarily down.</div>
       <h2>Related Guides</h2>
       <ul>
         <li><Link href="/blog/savefrominternet-vs-snaptik">SaveFromInternet vs SnapTik</Link></li>

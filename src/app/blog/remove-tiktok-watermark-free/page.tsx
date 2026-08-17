@@ -17,7 +17,7 @@ export default function Page() {
       <p>This fetches the original video before TikTok applies the watermark. Result: a clean HD MP4, no logos, no branding.</p>
       <ol>
         <li>Copy the TikTok video URL (Share → Copy Link)</li>
-        <li>Go to <a href="https://savefrominternet.com">savefrominternet.com</a></li>
+        <li>Go to <a href="https://www.savefrominternet.com">savefrominternet.com</a></li>
         <li>Paste the URL and click Download TikTok Video</li>
         <li>Click Download Video — done. Watermark-free.</li>
       </ol>

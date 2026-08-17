@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <BlogPostLayout title="TikTok Video Downloader for PC — Windows & Mac Complete Guide 2026" description="Download TikTok videos on Windows or Mac without watermark. Works in any browser — no software to install." date="2025-08-22T08:00:00.000Z" lastModified="2026-06-01T08:00:00.000Z" category="device">
-      <p>Downloading TikTok videos on PC is the easiest way to get HD quality with zero watermark. No software, no Chrome extensions — just open your browser, paste the TikTok link, and click Download. <a href="https://savefrominternet.com">SaveFromInternet.com</a> works on Chrome, Firefox, Edge, and Safari on both Windows and Mac.</p>
+      <p>Downloading TikTok videos on PC is the easiest way to get HD quality with zero watermark. No software, no Chrome extensions — just open your browser, paste the TikTok link, and click Download. <a href="https://www.savefrominternet.com">SaveFromInternet.com</a> works on Chrome, Firefox, Edge, and Safari on both Windows and Mac.</p>
 
       <h2>Step 1 — Copy the TikTok Link</h2>
       <Image src="/images/step1.jpg" alt="Copy TikTok link on PC" width={800} height={400} className="rounded-lg w-full my-4" />
@@ -36,7 +36,7 @@ export default function Page() {
       <Image src="/images/step2.jpg" alt="Open SaveFromInternet on PC browser" width={800} height={400} className="rounded-lg w-full my-4" />
       <ol>
         <li>Open a new browser tab</li>
-        <li>Go to <a href="https://savefrominternet.com">savefrominternet.com</a></li>
+        <li>Go to <a href="https://www.savefrominternet.com">savefrominternet.com</a></li>
         <li>Click the input field and press <strong>Ctrl+V</strong> (Windows) or <strong>Cmd+V</strong> (Mac) to paste the URL</li>
         <li>Click <strong>Download TikTok Video</strong></li>
         <li>Wait 2–5 seconds for the server to process the link</li>

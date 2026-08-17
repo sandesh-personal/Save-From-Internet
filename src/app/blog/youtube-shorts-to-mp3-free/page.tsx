@@ -17,7 +17,7 @@ export default function Page() {
       <ol>
         <li>Open YouTube and find the Short you want to convert</li>
         <li>Tap <strong>Share → Copy Link</strong> (the URL will look like youtube.com/shorts/XXXX)</li>
-        <li>Go to <a href="https://savefrominternet.com">SaveFromInternet.com</a></li>
+        <li>Go to <a href="https://www.savefrominternet.com">SaveFromInternet.com</a></li>
         <li>Paste the link in the URL box</li>
         <li>Select <strong>MP3</strong> as the output format</li>
         <li>Click Download — your MP3 starts downloading immediately</li>

@@ -35,7 +35,7 @@ export default function Page() {
       </ul>
       <h2>How to Use Any Downloader More Safely</h2>
       <p>Even the cleanest downloaders benefit from a basic ad blocker. uBlock Origin (free, open source) blocks most downloader ads before they load. Install it in Chrome or Firefox and the experience on any downloader improves significantly.</p>
-      <div className="tip-box">💡 <a href="https://savefrominternet.com">SaveFromInternet.com</a> is designed to have the download button be the most prominent element on the page — there are no fake buttons or redirect loops.</div>
+      <div className="tip-box">💡 <a href="https://www.savefrominternet.com">SaveFromInternet.com</a> is designed to have the download button be the most prominent element on the page — there are no fake buttons or redirect loops.</div>
       <h2>Related Guides</h2>
       <ul>
         <li><Link href="/blog/savefrominternet-vs-ssstik">SaveFromInternet vs SSSTik</Link></li>

@@ -1,4 +1,4 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import BlogPostLayout from '@/components/blog/BlogPostLayout'
@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'How to Download Snapchat Videos & Spotlight — Free Guide 2026 | SaveFromInternet',
   description: 'Save Snapchat videos, Snaps, and Spotlight clips before they disappear. Complete step-by-step guide for iPhone and Android users in 2026.',
   keywords: ['snapchat video downloader', 'save snapchat videos', 'download snapchat snaps 2026', 'snapchat spotlight downloader'],
-  robots: { index: false, follow: true },
+  robots: { index: true, follow: true },
   alternates: { canonical: 'https://www.savefrominternet.com/blog/snapchat-video-downloader' },
   openGraph: {
     title: 'How to Download Snapchat Videos & Spotlight — Free 2026',

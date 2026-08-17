@@ -19,7 +19,7 @@ export default function Page() {
       lastModified="2026-04-30T08:00:00.000Z"
       category="how-to"
     >
-      <p>You do not need to install a single app to download TikTok videos. <a href="https://savefrominternet.com">SaveFromInternet.com</a> runs entirely in your browser — Safari, Chrome, Firefox, Edge, or any browser on any device — with no installation, no account, and no limits.</p>
+      <p>You do not need to install a single app to download TikTok videos. <a href="https://www.savefrominternet.com">SaveFromInternet.com</a> runs entirely in your browser — Safari, Chrome, Firefox, Edge, or any browser on any device — with no installation, no account, and no limits.</p>
 
       <h2>Why Apps Are Often the Wrong Choice</h2>
       <p>The app stores are flooded with TikTok downloader apps. Most of them have serious problems:</p>
@@ -48,7 +48,7 @@ export default function Page() {
       <p>Safari is the recommended browser for TikTok downloads on iPhone because it handles file saving most reliably.</p>
       <ol>
         <li>Open TikTok and tap <strong>Share → Copy Link</strong> on the video</li>
-        <li>Open <strong>Safari</strong> and go to <a href="https://savefrominternet.com">savefrominternet.com</a></li>
+        <li>Open <strong>Safari</strong> and go to <a href="https://www.savefrominternet.com">savefrominternet.com</a></li>
         <li>Tap the URL field, paste, and tap <strong>Download TikTok Video</strong></li>
         <li>After processing, tap <strong>Download Video</strong></li>
         <li>Safari opens the video in a browser player — tap and hold the video to get a context menu</li>
@@ -63,7 +63,7 @@ export default function Page() {
       <ol>
         <li>Open TikTok and tap <strong>Share → Copy Link</strong></li>
         <li>Open <strong>Chrome</strong> (or Samsung Internet, or Firefox)</li>
-        <li>Navigate to <a href="https://savefrominternet.com">savefrominternet.com</a></li>
+        <li>Navigate to <a href="https://www.savefrominternet.com">savefrominternet.com</a></li>
         <li>Paste the URL and tap <strong>Download TikTok Video</strong></li>
         <li>After processing, tap <strong>Download Video</strong></li>
         <li>Chrome downloads the file directly — find it in the Files app → Downloads</li>
@@ -74,7 +74,7 @@ export default function Page() {
       <ol>
         <li>Open TikTok in your browser (tiktok.com) or the TikTok app</li>
         <li>Click the Share icon → <strong>Copy Link</strong></li>
-        <li>Open a new tab and go to <a href="https://savefrominternet.com">savefrominternet.com</a></li>
+        <li>Open a new tab and go to <a href="https://www.savefrominternet.com">savefrominternet.com</a></li>
         <li>Paste the URL and click <strong>Download TikTok Video</strong></li>
         <li>Click <strong>Download Video</strong> — the MP4 saves to your Downloads folder</li>
       </ol>

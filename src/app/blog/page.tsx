@@ -73,6 +73,7 @@ export default async function BlogPage({
                   <a
                     key={key}
                     href={`/blog?cat=${key}`}
+                    rel="nofollow"
                     className={`flex-shrink-0 text-xs font-semibold px-4 py-2 rounded-full border transition-all whitespace-nowrap ${
                       activeCategory === key
                         ? 'bg-indigo-500 text-white border-indigo-500'

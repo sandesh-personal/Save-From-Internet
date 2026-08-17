@@ -28,7 +28,7 @@ export default function Page() {
       <ol>
         <li>Open TikTok and tap <strong>Share → Copy Link</strong> on any video</li>
         <li>Open your browser (Safari, Chrome, Firefox — any)</li>
-        <li>Go to <a href="https://savefrominternet.com">savefrominternet.com</a></li>
+        <li>Go to <a href="https://www.savefrominternet.com">savefrominternet.com</a></li>
         <li>Paste the URL and click <strong>Download TikTok Video</strong></li>
         <li>Choose Video, Audio, or Images and download</li>
       </ol>

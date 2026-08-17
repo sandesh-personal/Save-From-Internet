@@ -55,7 +55,7 @@ export default function Page() {
         </tbody>
       </table>
       <div className="warn-box">⚠️ If you install a Chrome extension, check its permissions carefully. Any extension asking to "read and change all your data on all websites" has access far beyond what is needed to download TikTok videos. That level of access is a significant security risk.</div>
-      <div className="tip-box">💡 For most users, a website downloader like <a href="https://savefrominternet.com">SaveFromInternet.com</a> is the safer choice — no installation, no ongoing browser access, works on any device.</div>
+      <div className="tip-box">💡 For most users, a website downloader like <a href="https://www.savefrominternet.com">SaveFromInternet.com</a> is the safer choice — no installation, no ongoing browser access, works on any device.</div>
       <h2>Related Guides</h2>
       <ul>
         <li><Link href="/blog/is-savefrominternet-safe-2026">Is SaveFromInternet Safe? (2026 Review)</Link></li>

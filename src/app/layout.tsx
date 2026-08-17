@@ -1,4 +1,4 @@
-﻿import type { Metadata, Viewport } from 'next'
+import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
 import { headers } from 'next/headers'
 import { Inter } from 'next/font/google'
@@ -8,8 +8,6 @@ import Header from '@/components/layout/Header'
 import StickyFooterAd from '@/components/StickyFooterAd'
 import { GA_TRACKING_ID } from '@/lib/ga'
 import { Providers } from '@/components/Providers'
-
-const LOCALE_PATHS = ['es', 'pt', 'id', 'fr', 'de', 'ar', 'vi', 'zh', 'ja', 'ru']
 
 const inter = Inter({
   variable: '--font-inter',
@@ -21,9 +19,9 @@ const baseUrl = 'https://www.savefrominternet.com'
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
-  title: 'SaveFromInternet — Free TikTok Downloader, Photo & MP3 | Save From Internet',
+  title: 'TikTok Downloader Without Watermark (2026) — Free HD MP4 & MP3 | SaveFromInternet',
   description:
-    'SaveFromInternet — the free savefrom.net alternative for TikTok. Download TikTok videos without watermark, save TikTok photos, and extract MP3 audio. Works on PC, iPhone, Android. No app needed.',
+    'Download TikTok videos without watermark in HD MP4, extract MP3 audio, and save photo carousels for free. Fast, unlimited, no app needed on iPhone, Android & PC.',
   keywords: [
     'savefrominternet',
     'save from internet',
@@ -41,11 +39,10 @@ export const metadata: Metadata = {
     'save tiktok without watermark',
     'save from tiktok',
   ],
-  alternates: { canonical: baseUrl },
   openGraph: {
-    title: 'SaveFromInternet — Free TikTok Downloader, Photo & MP3 | Save From Internet',
+    title: 'TikTok Downloader Without Watermark (2026) — Free HD MP4 & MP3 | SaveFromInternet',
     description:
-      'SaveFromInternet — free TikTok downloader without watermark. Save TikTok videos, photos, and MP3 audio. Works on PC, iPhone, Android. No app required.',
+      'Download TikTok videos without watermark in HD MP4, extract MP3 audio, and save photo carousels for free. Fast, unlimited, no app needed on iPhone, Android & PC.',
     url: baseUrl,
     type: 'website',
     siteName: 'Save From Internet',
@@ -54,8 +51,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SaveFromInternet — Free TikTok Downloader, Photo & MP3 | Save From Internet',
-    description: 'SaveFromInternet — free TikTok downloader without watermark. Save TikTok videos, photos, and MP3 audio. Works on PC, iPhone, Android. No app required.',
+    title: 'TikTok Downloader Without Watermark (2026) — Free HD MP4 & MP3 | SaveFromInternet',
+    description: 'Download TikTok videos without watermark in HD MP4, extract MP3 audio, and save photo carousels for free. Fast, unlimited, no app needed on iPhone, Android & PC.',
     site: '@savefrominternet',
     images: [`${baseUrl}/og-final.jpg`],
   },
@@ -67,26 +64,15 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#0f172a' },
-  ],
+  themeColor: '#195fd7',
   width: 'device-width',
   initialScale: 1,
 }
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const headersList = await headers()
-  const locale = headersList.get('x-locale') ?? 'en'
-
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang={locale} className={inter.variable} suppressHydrationWarning>
+    <html lang="en" className={inter.variable} suppressHydrationWarning>
       <head>
-        <link rel="alternate" hrefLang="x-default" href={baseUrl} />
-        <link rel="alternate" hrefLang="en" href={baseUrl} />
-        {LOCALE_PATHS.map((loc) => (
-          <link key={loc} rel="alternate" hrefLang={loc} href={`${baseUrl}/${loc}`} />
-        ))}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
         <link rel="dns-prefetch" href="https://www.tiktok.com" />
@@ -106,7 +92,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <meta name="msvalidate.01" content="3040BFA752B13D1315F7D0433AD753E1" />
       </head>
       <body
-        className="antialiased flex flex-col min-h-screen bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 font-sans transition-colors duration-200"
+        className="antialiased flex flex-col min-h-screen bg-white text-slate-900 font-sans"
         suppressHydrationWarning
       >
         <Providers>

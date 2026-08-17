@@ -1,4 +1,4 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import BlogPostLayout from '@/components/blog/BlogPostLayout'
@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'How to Download Telegram Videos to Your Phone (2026 Guide) | SaveFromInternet',
   description: "Save Telegram videos and media files directly to your phone's gallery. Complete guide for iPhone and Android users in 2026.",
   keywords: ['telegram video downloader', 'download telegram videos', 'save telegram media 2026', 'telegram video to phone'],
-  robots: { index: false, follow: true },
+  robots: { index: true, follow: true },
   alternates: { canonical: 'https://www.savefrominternet.com/blog/telegram-video-downloader' },
   openGraph: {
     title: 'How to Download Telegram Videos to Your Phone (2026 Guide)',

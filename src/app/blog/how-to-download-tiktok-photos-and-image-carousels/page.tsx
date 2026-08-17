@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <BlogPostLayout title="How to Download TikTok Photos and Image Carousels — Complete Guide 2026" description="Save TikTok photos and image carousels in original quality. Download individually or as a ZIP file." date="2025-07-18T08:00:00.000Z" lastModified="2026-02-05T08:00:00.000Z" category="photos">
-      <p>TikTok photo posts and image carousels are increasingly popular — but TikTok's in-app save often compresses images or blocks downloads entirely. <a href="https://savefrominternet.com">SaveFromInternet.com</a> downloads all images from any TikTok carousel in original quality, individually or as a ZIP.</p>
+      <p>TikTok photo posts and image carousels are increasingly popular — but TikTok's in-app save often compresses images or blocks downloads entirely. <a href="https://www.savefrominternet.com">SaveFromInternet.com</a> downloads all images from any TikTok carousel in original quality, individually or as a ZIP.</p>
       <h2>What Is a TikTok Photo Carousel?</h2>
       <p>A TikTok carousel is a post containing multiple images that users swipe through. The standard TikTok save converts the carousel into a video — our tool saves each original image file.</p>
       <h2>Step 1 — Copy the TikTok Photo Post URL</h2>
@@ -21,7 +21,7 @@ export default function Page() {
       <p>Open TikTok, find a photo or carousel post, and tap <strong>Share → Copy Link</strong>.</p>
       <h2>Step 2 — Paste on SaveFromInternet.com</h2>
       <Image src="/images/step2.jpg" alt="Paste TikTok URL" width={800} height={400} />
-      <p>Go to <a href="https://savefrominternet.com">savefrominternet.com</a>, paste the URL, and click <strong>Download TikTok Video</strong>. Our tool auto-detects photo posts.</p>
+      <p>Go to <a href="https://www.savefrominternet.com">savefrominternet.com</a>, paste the URL, and click <strong>Download TikTok Video</strong>. Our tool auto-detects photo posts.</p>
       <h2>Step 3 — Show the Image Gallery</h2>
       <Image src="/images/step3.jpg" alt="Show images gallery" width={800} height={400} />
       <p>Tap <strong>Show Images</strong> to expand the gallery and see all photos in the carousel.</p>

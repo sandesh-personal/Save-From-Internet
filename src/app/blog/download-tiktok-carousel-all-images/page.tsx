@@ -12,12 +12,12 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <BlogPostLayout title="How to Download ALL Images From a TikTok Carousel at Once (2026)" description="Get every image from a TikTok carousel in one click — ZIP download, original quality." date="2026-04-15T08:00:00.000Z" category="photos">
-      <p>TikTok carousels can contain up to 35 images. Downloading them one by one would take forever. <a href="https://savefrominternet.com">SaveFromInternet.com</a> lets you select all images and download them as a single ZIP file — original quality, one click.</p>
+      <p>TikTok carousels can contain up to 35 images. Downloading them one by one would take forever. <a href="https://www.savefrominternet.com">SaveFromInternet.com</a> lets you select all images and download them as a single ZIP file — original quality, one click.</p>
       <h2>How to Download All Carousel Images</h2>
       <ol>
         <li>Open TikTok and find a photo carousel post</li>
         <li>Tap <strong>Share → Copy Link</strong></li>
-        <li>Go to <a href="https://savefrominternet.com">savefrominternet.com</a> and paste the URL</li>
+        <li>Go to <a href="https://www.savefrominternet.com">savefrominternet.com</a> and paste the URL</li>
         <li>Click <strong>Download TikTok Video</strong> — our tool detects the carousel</li>
         <li>Click <strong>Show Images</strong> to expand the image gallery</li>
         <li>Tap <strong>All</strong> to select every image</li>

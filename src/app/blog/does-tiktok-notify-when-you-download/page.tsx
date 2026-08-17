@@ -33,7 +33,7 @@ export default function Page() {
       </ul>
       <h2>Can TikTok Tell If You Use a Third-Party Downloader?</h2>
       <p>TikTok cannot distinguish a third-party download request from a normal video view. The HTTP request to access the video's CDN file looks identical. TikTok does not track or log which users used external downloaders.</p>
-      <div className="tip-box">💡 In short: using TikTok's built-in Save button quietly increments the creator's save count (no name attached). Using a third-party downloader like <a href="https://savefrominternet.com">SaveFromInternet.com</a> leaves no trace visible to the creator or TikTok's analytics.</div>
+      <div className="tip-box">💡 In short: using TikTok's built-in Save button quietly increments the creator's save count (no name attached). Using a third-party downloader like <a href="https://www.savefrominternet.com">SaveFromInternet.com</a> leaves no trace visible to the creator or TikTok's analytics.</div>
       <h2>Related Guides</h2>
       <ul>
         <li><Link href="/blog/tiktok-download-for-personal-use-legal">Is Downloading TikTok Videos Legal?</Link></li>

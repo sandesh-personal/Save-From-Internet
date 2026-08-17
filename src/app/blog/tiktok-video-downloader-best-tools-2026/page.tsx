@@ -49,7 +49,7 @@ export default function Page() {
         </tbody>
       </table>
       <h2>Our Pick</h2>
-      <p><a href="https://savefrominternet.com">SaveFromInternet.com</a> wins on every metric that matters: no ads, no watermark, full feature set, works on every device, and it is Google AdSense-approved — meaning Google has independently verified it is safe and legitimate.</p>
+      <p><a href="https://www.savefrominternet.com">SaveFromInternet.com</a> wins on every metric that matters: no ads, no watermark, full feature set, works on every device, and it is Google AdSense-approved — meaning Google has independently verified it is safe and legitimate.</p>
       <h2>Related Guides</h2>
       <ul>
         <li><Link href="/blog/savefrominternet-vs-ssstik">SaveFromInternet vs SSSTik</Link></li>

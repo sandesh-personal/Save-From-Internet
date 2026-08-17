@@ -17,7 +17,7 @@ export default function Page() {
       <ol>
         <li>Open TikTok and tap <strong>Share → Copy Link</strong> on the video you want</li>
         <li>Open <strong>Chrome</strong> on your Android device</li>
-        <li>Go to <a href="https://savefrominternet.com">savefrominternet.com</a></li>
+        <li>Go to <a href="https://www.savefrominternet.com">savefrominternet.com</a></li>
         <li>Paste the URL and tap <strong>Download TikTok Video</strong></li>
         <li>Tap <strong>Extract Audio</strong></li>
         <li>Chrome downloads the MP3 — you will see a download notification</li>

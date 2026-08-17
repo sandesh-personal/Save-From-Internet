@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <BlogPostLayout title="Downloading TikTok Photos vs Videos — Key Differences You Need to Know" description="TikTok photo posts and video posts download differently. The right method for each." date="2026-04-11T08:00:00.000Z" category="photos">
-      <p>TikTok has two distinct post types — video posts and photo posts (carousels). They look similar in the feed, but the download process is different. <a href="https://savefrominternet.com">SaveFromInternet.com</a> handles both, but here is what changes.</p>
+      <p>TikTok has two distinct post types — video posts and photo posts (carousels). They look similar in the feed, but the download process is different. <a href="https://www.savefrominternet.com">SaveFromInternet.com</a> handles both, but here is what changes.</p>
       <h2>Key Differences</h2>
       <table>
         <thead><tr><th>Feature</th><th>TikTok Video Post</th><th>TikTok Photo Post (Carousel)</th></tr></thead>

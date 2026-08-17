@@ -40,7 +40,7 @@ export default function Page() {
           <tr><td>Fake download buttons</td><td>❌ None</td><td>⚠️ Very common</td></tr>
         </tbody>
       </table>
-      <div className="tip-box">💡 The safest TikTok downloader is one that requires no login, no installation, and has no fake buttons or redirects. <a href="https://savefrominternet.com">SaveFromInternet.com</a> meets all three criteria.</div>
+      <div className="tip-box">💡 The safest TikTok downloader is one that requires no login, no installation, and has no fake buttons or redirects. <a href="https://www.savefrominternet.com">SaveFromInternet.com</a> meets all three criteria.</div>
       <h2>Related Guides</h2>
       <ul>
         <li><Link href="/blog/tiktok-downloader-chrome-extension-vs-website">Chrome Extension vs Website — Which Is Safer?</Link></li>

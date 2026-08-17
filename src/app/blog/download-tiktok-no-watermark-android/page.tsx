@@ -18,7 +18,7 @@ export default function Page() {
         <li>Open TikTok and find the video you want</li>
         <li>Tap the <strong>Share</strong> button → <strong>Copy Link</strong></li>
         <li>Open <strong>Chrome</strong> on your Android device</li>
-        <li>Go to <a href="https://savefrominternet.com">savefrominternet.com</a></li>
+        <li>Go to <a href="https://www.savefrominternet.com">savefrominternet.com</a></li>
         <li>Tap the input box and paste the URL (long-press → Paste)</li>
         <li>Tap <strong>Download TikTok Video</strong></li>
         <li>Tap <strong>Download Video</strong></li>

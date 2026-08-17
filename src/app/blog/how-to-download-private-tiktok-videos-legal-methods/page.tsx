@@ -18,7 +18,7 @@ export default function Page() {
       lastModified="2026-04-30T08:00:00.000Z"
       category="legal"
     >
-      <p>Third-party TikTok downloaders — including <a href="https://savefrominternet.com">SaveFromInternet.com</a> — only work with <strong>public</strong> TikTok videos. Private videos require authentication that only TikTok&apos;s own servers can provide. But if you are trying to download your <em>own</em> private TikTok videos, there are completely legal and effective methods.</p>
+      <p>Third-party TikTok downloaders — including <a href="https://www.savefrominternet.com">SaveFromInternet.com</a> — only work with <strong>public</strong> TikTok videos. Private videos require authentication that only TikTok&apos;s own servers can provide. But if you are trying to download your <em>own</em> private TikTok videos, there are completely legal and effective methods.</p>
 
       <div className="warn-box">⚠️ Downloading someone else's private TikTok video without permission violates TikTok's Terms of Service and likely copyright law in your jurisdiction. This guide covers only legal methods for your own content or content you have explicit permission to save.</div>
 

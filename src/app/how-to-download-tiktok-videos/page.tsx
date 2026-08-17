@@ -1,10 +1,10 @@
-﻿import Link from 'next/link';
+import Link from 'next/link';
 import Script from 'next/script';
 import Image from 'next/image';
 import GoogleAdSense from '@/components/GoogleAdSense';
 
 export const metadata = {
-  title: 'How to Download TikTok Videos Without Watermark (2025 Guide)',
+  title: 'How to Download TikTok Videos Without Watermark (2026 Guide)',
   description: 'Step-by-step guide to download TikTok videos without watermark in HD or MP4. Use our free TikTok downloader for PC, iPhone, Android. No app required!',
   keywords: [
     'tiktok downloader',
@@ -14,7 +14,7 @@ export const metadata = {
     'tiktok mp4 download',
     'how to download tiktok videos',
     'tiktok video download guide',
-    'tiktok video downloader 2025',
+    'tiktok video downloader 2026',
     'tiktok downloader for pc',
     'tiktok downloader iphone',
     'tiktok downloader android',
@@ -27,13 +27,13 @@ export const metadata = {
     'tiktok video downloader how to use'
   ],
   openGraph: {
-    title: 'How to Download TikTok Videos Without Watermark (2025 Guide)',
+    title: 'How to Download TikTok Videos Without Watermark (2026 Guide)',
     description: 'Step-by-step guide to download TikTok videos without watermark in HD or MP4. Use our free TikTok downloader for PC, iPhone, Android. No app required!',
     type: 'article',
-    url: 'https://savefrominternet.com/how-to-download-tiktok-videos',
+    url: 'https://www.savefrominternet.com/how-to-download-tiktok-videos',
   },
   alternates: {
-    canonical: 'https://savefrominternet.com/how-to-download-tiktok-videos',
+    canonical: 'https://www.savefrominternet.com/how-to-download-tiktok-videos',
   },
 };
 
@@ -41,9 +41,9 @@ export default function HowToDownloadPage() {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "HowTo",
-    "name": "How to Download TikTok Videos Without Watermark (2025 Guide)",
+    "name": "How to Download TikTok Videos Without Watermark (2026 Guide)",
     "description": "Step-by-step guide to download TikTok videos without watermark in HD or MP4 using SaveFromInternet.com. Works on PC, iPhone, Android.",
-    "image": "https://savefrominternet.com/og.jpg",
+    "image": "https://www.savefrominternet.com/og-final.jpg",
     "totalTime": "PT2M",
     "estimatedCost": {
       "@type": "MonetaryAmount",
@@ -58,10 +58,10 @@ export default function HowToDownloadPage() {
       { "@type": "HowToTool", "name": "SaveFromInternet TikTok Video Downloader" }
     ],
     "step": [
-      { "@type": "HowToStep", "name": "Copy TikTok URL", "text": "Open TikTok and copy the URL of the video you want to download", "image": "https://savefrominternet.com/images/step1.jpg" },
-      { "@type": "HowToStep", "name": "Paste URL", "text": "Visit SaveFromInternet.com and paste the TikTok URL in the input box", "image": "https://savefrominternet.com/images/step2.jpg" },
-      { "@type": "HowToStep", "name": "Process Video", "text": "Click the 'Process TikTok URL' button to analyze the video", "image": "https://savefrominternet.com/images/step3.jpg" },
-      { "@type": "HowToStep", "name": "Download", "text": "Click the download button to save the video without watermark", "image": "https://savefrominternet.com/images/step4.jpg" }
+      { "@type": "HowToStep", "name": "Copy TikTok URL", "text": "Open TikTok and copy the URL of the video you want to download", "image": "https://www.savefrominternet.com/images/step1.jpg" },
+      { "@type": "HowToStep", "name": "Paste URL", "text": "Visit SaveFromInternet.com and paste the TikTok URL in the input box", "image": "https://www.savefrominternet.com/images/step2.jpg" },
+      { "@type": "HowToStep", "name": "Process Video", "text": "Click the 'Process TikTok URL' button to analyze the video", "image": "https://www.savefrominternet.com/images/step3.jpg" },
+      { "@type": "HowToStep", "name": "Download", "text": "Click the download button to save the video without watermark", "image": "https://www.savefrominternet.com/images/step4.jpg" }
     ]
   };
 

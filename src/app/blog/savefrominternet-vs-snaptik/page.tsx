@@ -38,7 +38,7 @@ export default function Page() {
       <p>SnapTik does not support TikTok photo carousels. When you paste a photo post URL, SnapTik either returns an error or converts the carousel into a video slideshow (with music). This means individual images are not downloadable at their original resolution.</p>
       <p>SaveFromInternet detects photo posts automatically and lets you download each image individually or as a ZIP at full resolution.</p>
       <h2>Which Should You Use?</h2>
-      <div className="tip-box">💡 If you only download TikTok videos and do not need carousel support, SnapTik is acceptable. For photo carousels, original video quality, and fewer ads, <a href="https://savefrominternet.com">SaveFromInternet.com</a> is the better choice.</div>
+      <div className="tip-box">💡 If you only download TikTok videos and do not need carousel support, SnapTik is acceptable. For photo carousels, original video quality, and fewer ads, <a href="https://www.savefrominternet.com">SaveFromInternet.com</a> is the better choice.</div>
       <h2>Related Guides</h2>
       <ul>
         <li><Link href="/blog/savefrominternet-vs-ssstik">SaveFromInternet vs SSSTik</Link></li>

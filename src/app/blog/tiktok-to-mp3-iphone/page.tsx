@@ -18,7 +18,7 @@ export default function Page() {
         <li>Open TikTok and find the video with the audio you want</li>
         <li>Tap <strong>Share → Copy Link</strong></li>
         <li>Open <strong>Safari</strong> on your iPhone</li>
-        <li>Go to <a href="https://savefrominternet.com">savefrominternet.com</a></li>
+        <li>Go to <a href="https://www.savefrominternet.com">savefrominternet.com</a></li>
         <li>Paste the URL and tap <strong>Download TikTok Video</strong></li>
         <li>Tap <strong>Extract Audio</strong></li>
         <li>Safari downloads the MP3 — check <strong>Files → Downloads</strong></li>

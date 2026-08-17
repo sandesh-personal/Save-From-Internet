@@ -46,7 +46,7 @@ export default function Page() {
 
       <h2>Step 3 — Visit SaveFromInternet.com</h2>
       <Image src="/images/step3.jpg" alt="Visit SaveFromInternet.com and paste the TikTok link" width={800} height={400} className="rounded-lg w-full my-4" />
-      <p>Open any browser and go to <a href="https://savefrominternet.com">savefrominternet.com</a>. Paste the copied link into the input box:</p>
+      <p>Open any browser and go to <a href="https://www.savefrominternet.com">savefrominternet.com</a>. Paste the copied link into the input box:</p>
       <ul>
         <li><strong>iPhone/Android:</strong> tap and hold the input field → Paste</li>
         <li><strong>Windows:</strong> Ctrl+V</li>

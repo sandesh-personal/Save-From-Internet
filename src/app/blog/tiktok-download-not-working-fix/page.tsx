@@ -29,7 +29,7 @@ export default function Page() {
       <h2>Fix 6 — Disable VPN</h2>
       <p>VPNs can interfere with TikTok's CDN routing — the download request goes through a different region than expected. Disable your VPN temporarily and try the download again.</p>
       <h2>Fix 7 — Try savefrominternet.com Instead of Other Tools</h2>
-      <p>Many TikTok downloader tools are poorly maintained and break when TikTok updates its API. <a href="https://savefrominternet.com">SaveFromInternet.com</a> is regularly updated — if another tool is failing, switch here.</p>
+      <p>Many TikTok downloader tools are poorly maintained and break when TikTok updates its API. <a href="https://www.savefrominternet.com">SaveFromInternet.com</a> is regularly updated — if another tool is failing, switch here.</p>
       <h2>Quick Diagnostic Table</h2>
       <table>
         <thead><tr><th>Symptom</th><th>Most Likely Fix</th></tr></thead>

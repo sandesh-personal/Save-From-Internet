@@ -1,24 +1,13 @@
 @import 'tailwindcss';
 
-/* Enable class-based dark mode for Tailwind v4 */
-@custom-variant dark (&:where(.dark, .dark *));
-
-/* Design tokens */
+/* Design tokens - Clean Light Theme */
 :root {
   --background: #ffffff;
-  --foreground: #000000;
-  --muted: #6b7280;
-  --primary: #6366f1;
-  --accent: #4f46e5;
-  --radius: 8px;
-}
-
-.dark {
-  --background: #0f172a;
-  --foreground: #f1f5f9;
-  --muted: #94a3b8;
-  --primary: #818cf8;
-  --accent: #a5b4fc;
+  --foreground: #0f172a;
+  --muted: #64748b;
+  --primary: #195fd7;
+  --accent: #1e6fe8;
+  --radius: 12px;
 }
 
 /* Apply theme globally */

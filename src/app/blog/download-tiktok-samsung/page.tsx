@@ -17,7 +17,7 @@ export default function Page() {
       <ol>
         <li>Open TikTok and tap <strong>Share → Copy Link</strong> on any video</li>
         <li>Open <strong>Google Chrome</strong> on your Samsung device</li>
-        <li>Go to <a href="https://savefrominternet.com">savefrominternet.com</a></li>
+        <li>Go to <a href="https://www.savefrominternet.com">savefrominternet.com</a></li>
         <li>Tap the input field and paste the URL (long-press → Paste)</li>
         <li>Tap <strong>Download TikTok Video</strong></li>
         <li>Tap <strong>Download Video</strong></li>

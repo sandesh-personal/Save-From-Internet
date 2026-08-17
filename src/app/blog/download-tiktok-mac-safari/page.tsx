@@ -16,13 +16,13 @@ export default function Page() {
       <h2>Method 1 — Chrome on Mac (Simplest)</h2>
       <ol>
         <li>Copy the TikTok video URL from tiktok.com or from your phone</li>
-        <li>Open Chrome on your Mac and go to <a href="https://savefrominternet.com">savefrominternet.com</a></li>
+        <li>Open Chrome on your Mac and go to <a href="https://www.savefrominternet.com">savefrominternet.com</a></li>
         <li>Paste the URL (Cmd+V) and click <strong>Download TikTok Video</strong></li>
         <li>Click <strong>Download Video</strong> — the MP4 saves to <strong>~/Downloads</strong></li>
       </ol>
       <h2>Method 2 — Safari on Mac</h2>
       <ol>
-        <li>Open Safari and go to <a href="https://savefrominternet.com">savefrominternet.com</a></li>
+        <li>Open Safari and go to <a href="https://www.savefrominternet.com">savefrominternet.com</a></li>
         <li>Paste the TikTok URL and click <strong>Download TikTok Video</strong></li>
         <li>Click <strong>Download Video</strong></li>
         <li>Safari may ask where to save — choose a location or let it go to Downloads</li>
