@@ -4,30 +4,33 @@ import { useState, useEffect } from 'react'
 import GoogleAdSense from '@/components/GoogleAdSense'
 
 export default function StickyFooterAd() {
-  const [visible, setVisible] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const [dismissed, setDismissed] = useState(false)
 
-  // Delay appearance by 4s so it doesn't fire on initial page load (CLS impact)
   useEffect(() => {
     const already = sessionStorage.getItem('sfi-footer-ad-dismissed')
-    if (already) return
-    const t = setTimeout(() => setVisible(true), 4000)
-    return () => clearTimeout(t)
+    if (already) {
+      setDismissed(true)
+    }
+    setMounted(true)
   }, [])
 
-  if (!visible || dismissed) return null
+  if (!mounted || dismissed) return null
 
   return (
-    // Mobile-only (md:hidden), fixed bottom, full width, z above content
-    <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-slate-200 shadow-lg">
-      {/* Close button — required for AdSense anchor-ad compliance */}
+    <aside
+      aria-label="Advertisement"
+      className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm border-t border-slate-200 shadow-xl"
+      style={{ minHeight: '52px' }}
+    >
+      {/* Close button */}
       <button
         onClick={() => {
           setDismissed(true)
           sessionStorage.setItem('sfi-footer-ad-dismissed', '1')
         }}
-        aria-label="Close ad"
-        className="absolute -top-6 right-2 bg-white border border-slate-200 rounded-full w-6 h-6 flex items-center justify-center text-slate-400 hover:text-slate-600 text-xs shadow-sm"
+        aria-label="Close bottom advertisement"
+        className="absolute -top-7 right-3 bg-white border border-slate-200 rounded-full w-7 h-7 flex items-center justify-center text-slate-500 hover:text-slate-800 text-xs shadow-md transition-transform active:scale-95"
       >
         ✕
       </button>
@@ -35,10 +38,11 @@ export default function StickyFooterAd() {
         <GoogleAdSense
           adSlot="3804648444"
           adFormat="auto"
-          style={{ minHeight: 50, width: 320 }}
+          minHeight={50}
+          style={{ minHeight: 50, maxWidth: 320 }}
           containerStyle="none"
         />
       </div>
-    </div>
+    </aside>
   )
 }

@@ -31,8 +31,8 @@ export default function Footer() {
 
           {/* Brand */}
           <div>
-            <Link href="/" className="flex items-center gap-2.5 mb-4 select-none">
-              <img src="/logo-final.png" alt="Save From Internet" className="h-8 w-auto object-contain" />
+            <Link href="/" className="flex items-center gap-2.5 mb-4 select-none" aria-label="Save From Internet Home">
+              <img src="/logo-final.png" width="32" height="32" alt="" aria-hidden="true" className="h-8 w-auto object-contain" />
               <span className="font-bold text-slate-900 text-base tracking-tight">
                 Save From <span className="text-blue-600">Internet</span>
               </span>
@@ -40,7 +40,7 @@ export default function Footer() {
             <p className="text-slate-500 text-sm leading-relaxed">
               Free TikTok video downloader. Download without watermark in HD — no app, no account, unlimited downloads.
             </p>
-            <p className="text-slate-400 text-xs mt-4">contact@savefrominternet.com</p>
+            <p className="text-slate-600 text-xs mt-4 font-medium">contact@savefrominternet.com</p>
           </div>
 
           {/* Downloaders */}

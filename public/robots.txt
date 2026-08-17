@@ -1,13 +1,7 @@
 User-agent: *
-Disallow: /api/
-Disallow: /_next/
-Disallow: /api/download
-Disallow: /api/video
-Disallow: /api/audio
-Disallow: /api/images
-
-User-agent: Googlebot
 Allow: /
 Disallow: /api/
+Disallow: /_next/
 
 Sitemap: https://www.savefrominternet.com/sitemap.xml
+Host: https://www.savefrominternet.com
