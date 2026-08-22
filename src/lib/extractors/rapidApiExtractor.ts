@@ -36,6 +36,12 @@ export async function extractViaRapidAPI(
     return null
   }
 
+  // Try dedicated Instagram API first for Instagram URLs
+  if (platform === 'instagram' || url.includes('instagram.com')) {
+    const igResult = await tryInstagramSpecificApi(url)
+    if (igResult) return igResult
+  }
+
   // Try primary API first, then fallback
   const result =
     (await trySocialMediaDownloader(url, platform)) ??
@@ -257,6 +263,51 @@ async function tryAutoDownloader(
     }
   } catch (err) {
     console.warn('[RapidAPI] Auto Download failed:', err)
+    return null
+  }
+}
+
+async function tryInstagramSpecificApi(url: string): Promise<VideoData | null> {
+  try {
+    const res = await fetch(
+      'https://instagram-downloader-download-instagram-videos-stories1.p.rapidapi.com/index?' +
+        new URLSearchParams({ url }),
+      {
+        method: 'GET',
+        headers: {
+          'x-rapidapi-key': RAPIDAPI_KEY,
+          'x-rapidapi-host': 'instagram-downloader-download-instagram-videos-stories1.p.rapidapi.com',
+        },
+        signal: AbortSignal.timeout(15000),
+      }
+    )
+    if (!res.ok) return null
+    const data = await res.json()
+    const mediaUrl = data.media || data.download_url || data.video_url || data.url
+    if (!mediaUrl) return null
+
+    const isVideo = String(mediaUrl).includes('.mp4') || data.type === 'video'
+    const cleanMedia = String(mediaUrl).replace(/\\/g, '')
+
+    return {
+      id: `ig_rapid_${Date.now()}`,
+      title: data.title || 'Instagram Reel',
+      url,
+      thumbnail: data.thumbnail || '',
+      duration: 0,
+      author: data.author || 'Instagram Creator',
+      description: data.title || '',
+      downloadUrl: cleanMedia,
+      qualities: isVideo
+        ? [
+            { quality: 'Best (4K Quality) / 1080p Full HD', url: cleanMedia, resolution: '1080p' },
+            { quality: '720p HD Standard', url: cleanMedia, resolution: '720p' },
+          ]
+        : undefined,
+      platform: 'instagram',
+    }
+  } catch (err) {
+    console.warn('[RapidAPI] Instagram Specific API failed:', err)
     return null
   }
 }
