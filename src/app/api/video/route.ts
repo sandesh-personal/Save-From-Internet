@@ -4,12 +4,6 @@ import fs from 'fs'
 
 const PRIMARY_API_KEY = process.env.TIKWM_API_KEY ?? ''
 
-const ALLOWED_ORIGINS = [
-  'https://savefrominternet.com',
-  'https://www.savefrominternet.com',
-  'http://localhost:3000',
-]
-
 function getFfmpegPath(): string {
   if (process.env.FFMPEG_PATH && fs.existsSync(process.env.FFMPEG_PATH)) {
     return process.env.FFMPEG_PATH
@@ -20,6 +14,16 @@ function getFfmpegPath(): string {
     return wingetFfmpeg
   }
   return 'ffmpeg'
+}
+
+function isFfmpegExecutable(): boolean {
+  try {
+    const path = getFfmpegPath()
+    if (fs.existsSync(path)) return true
+    return false
+  } catch {
+    return false
+  }
 }
 
 function isAllowedVideoHost(url: string): boolean {
@@ -92,28 +96,6 @@ function isJsonContentType(response: Response): boolean {
   return ct.includes('application/json') || ct.includes('text/plain')
 }
 
-async function fetchViaApiFallback(tiktokUrl: string): Promise<Response | null> {
-  try {
-    const apiResp = await fetch(
-      `https://www.tikwm.com/api/?url=${encodeURIComponent(tiktokUrl)}&hd=1&api_key=${PRIMARY_API_KEY}`,
-      { headers: { Referer: 'https://www.tikwm.com/' } }
-    )
-    const apiData = await apiResp.json()
-    if (apiData?.code !== 0 || !apiData?.data) return null
-
-    let dlUrl: string = apiData.data.play || apiData.data.hdplay || apiData.data.wmplay
-    if (!dlUrl) return null
-    if (dlUrl.startsWith('/')) dlUrl = 'https://www.tikwm.com' + dlUrl
-    if (!isAllowedVideoHost(dlUrl)) return null
-
-    const videoResp = await fetch(dlUrl, { headers: getPlatformHeaders(dlUrl, 'tiktok') })
-    if (!videoResp.ok || isJsonContentType(videoResp)) return null
-    return videoResp
-  } catch {
-    return null
-  }
-}
-
 function streamProcessedVideo(
   videoUrl: string,
   audioUrl: string | undefined,
@@ -121,6 +103,8 @@ function streamProcessedVideo(
   corsOrigin: string,
   platform: string = 'video'
 ): NextResponse | null {
+  if (!isFfmpegExecutable()) return null
+
   const ffmpegExe = getFfmpegPath()
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-')
   const filename = `savefrominternet-${platform}-${quality}-${timestamp}.mp4`
@@ -141,9 +125,7 @@ function streamProcessedVideo(
     )
   }
 
-  // Quality-specific processing rules
   if (quality === '720p') {
-    // 720p HD Standard: Scaled to 720p with capped 600k bitrate so it is guaranteed smaller than 1080p & 4K
     args.push(
       '-vf',
       'scale=-2:min(ih\\,720)',
@@ -163,7 +145,6 @@ function streamProcessedVideo(
       '96k'
     )
   } else {
-    // 1080p Full HD & Best (4K Quality): Untouched stream copy for highest original master fidelity & maximum size
     args.push('-c', 'copy')
   }
 
@@ -186,7 +167,9 @@ function streamProcessedVideo(
         })
       },
       cancel() {
-        ffmpegProc.kill()
+        try {
+          ffmpegProc.kill()
+        } catch { /* ignore */ }
       },
     })
 
@@ -194,7 +177,7 @@ function streamProcessedVideo(
       'Content-Type': 'video/mp4',
       'Content-Disposition': `attachment; filename="${filename}"; filename*=UTF-8''${encodeURIComponent(filename)}`,
       'Cache-Control': 'public, max-age=3600',
-      'Access-Control-Allow-Origin': corsOrigin,
+      'Access-Control-Allow-Origin': corsOrigin || '*',
       'Access-Control-Allow-Methods': 'GET',
       'Access-Control-Allow-Headers': 'Content-Type, Range',
       'Access-Control-Expose-Headers': 'Content-Disposition, Accept-Ranges',
@@ -208,8 +191,8 @@ function streamProcessedVideo(
 }
 
 export async function GET(request: NextRequest) {
-  const origin = request.headers.get('origin') || ''
-  const corsOrigin = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[1]
+  const origin = request.headers.get('origin') || '*'
+  const corsOrigin = origin
 
   try {
     const { searchParams } = new URL(request.url)
@@ -240,7 +223,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Video source host not allowed' }, { status: 403 })
     }
 
-    // When audio needs muxing OR when 720p downscaling is requested:
+    // Try FFmpeg if available and needed
     if (audioUrl || quality === '720p') {
       const processedResp = streamProcessedVideo(videoUrl, audioUrl, quality, corsOrigin, platform)
       if (processedResp) {
@@ -253,7 +236,6 @@ export async function GET(request: NextRequest) {
 
     const fetchHeaders = getPlatformHeaders(videoUrl, platform)
 
-    // Forward range requests if client sent one
     const rangeHeader = request.headers.get('range')
     if (rangeHeader) {
       fetchHeaders['Range'] = rangeHeader
@@ -270,18 +252,8 @@ export async function GET(request: NextRequest) {
       clearTimeout(timeout)
     }
 
-    if (videoUrl.includes('robotilab.online') && (!response.ok || isJsonContentType(response))) {
-      try {
-        const inner = new URL(videoUrl).searchParams.get('videoUrl')
-        if (inner && isAllowedVideoHost(inner)) {
-          const fallbackResp = await fetchViaApiFallback(inner)
-          if (fallbackResp) return streamVideoResponse(fallbackResp, corsOrigin, platform, quality)
-        }
-      } catch { /* fall through */ }
-    }
-
     if (!response.ok) {
-      // Try secondary attempt without Referer header in case CDN rejects referer
+      // Secondary attempt without Referer header
       try {
         const retryResp = await fetch(videoUrl, {
           headers: {
@@ -326,7 +298,7 @@ function streamVideoResponse(
     'Content-Disposition': `attachment; filename="${filename}"; filename*=UTF-8''${encodeURIComponent(filename)}`,
     'Accept-Ranges': 'bytes',
     'Cache-Control': 'public, max-age=3600',
-    'Access-Control-Allow-Origin': corsOrigin,
+    'Access-Control-Allow-Origin': corsOrigin || '*',
     'Access-Control-Allow-Methods': 'GET',
     'Access-Control-Allow-Headers': 'Content-Type, Range',
     'Access-Control-Expose-Headers': 'Content-Disposition, Accept-Ranges, Content-Length, Content-Range',

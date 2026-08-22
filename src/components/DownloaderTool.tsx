@@ -258,43 +258,35 @@ export default function DownloaderTool({
     if (!targetUrl) return
 
     setIsDownloadingMedia(true)
-    setDownloadProgress(20)
-    setDownloadStage('Preparing & rendering your Full HD media...')
+    setDownloadProgress(50)
+    setDownloadStage('Delivering file to your browser...')
 
-    const dlTimer = setInterval(() => {
-      setDownloadProgress((prev) => {
-        if (prev < 50) {
-          setDownloadStage('Synchronizing high quality video & audio...')
-          return prev + 12
-        } else if (prev < 88) {
-          setDownloadStage('Delivering file to your browser...')
-          return prev + 8
-        } else if (prev < 96) {
-          return prev + 2
-        }
-        return prev
-      })
-    }, 250)
-
-    setTimeout(() => {
+    try {
       const link = document.createElement('a')
       link.href = targetUrl
-      link.download = filename
+      link.setAttribute('download', filename)
+      link.setAttribute('target', '_blank')
+      link.setAttribute('rel', 'noopener noreferrer')
       document.body.appendChild(link)
       link.click()
-      document.body.removeChild(link)
-
-      clearInterval(dlTimer)
-      setDownloadProgress(100)
-      setDownloadStage('Download started!')
-
       setTimeout(() => {
-        setIsDownloadingMedia(false)
-        setDownloadProgress(0)
-        setDownloadStage('')
-        dispatch({ type: 'SET_MESSAGE', payload: t('msgSuccess') })
-      }, 1500)
-    }, 900)
+        try {
+          document.body.removeChild(link)
+        } catch { /* ignore */ }
+      }, 500)
+    } catch {
+      window.location.href = targetUrl
+    }
+
+    setDownloadProgress(100)
+    setDownloadStage('Download started!')
+
+    setTimeout(() => {
+      setIsDownloadingMedia(false)
+      setDownloadProgress(0)
+      setDownloadStage('')
+      dispatch({ type: 'SET_MESSAGE', payload: t('msgSuccess') })
+    }, 1500)
   }
 
   const resolveTargetUrlByQuality = (tier: VideoQualityTier): string => {
@@ -342,15 +334,7 @@ export default function DownloaderTool({
       targetUrl += `&quality=${selectedVideoQuality}`
     }
 
-    // Gated options (1080p, Best): Request GPT Rewarded Ad
-    if (selectedVideoQuality === 'best' || selectedVideoQuality === '1080p') {
-      gptRewardedAd.requestRewardedDownload(() => {
-        triggerActualDownload(targetUrl, filename)
-      })
-    } else {
-      // Standard options (720p, 360p): Download immediately
-      triggerActualDownload(targetUrl, filename)
-    }
+    triggerActualDownload(targetUrl, filename)
   }
 
   const handleAudioDownload = () => {
@@ -372,15 +356,7 @@ export default function DownloaderTool({
     const filename = `savefrominternet.com-${platform}-audio-${selectedAudioQuality}-${Date.now()}.mp3`
     const targetUrl = `/api/audio?url=${encodeURIComponent(rawAudio)}&quality=${selectedAudioQuality}&platform=${platform}`
 
-    // Gated options (Best 320kbps, High 192kbps): Request GPT Rewarded Ad
-    if (selectedAudioQuality === 'best' || selectedAudioQuality === '192kbps') {
-      gptRewardedAd.requestRewardedDownload(() => {
-        triggerActualDownload(targetUrl, filename)
-      })
-    } else {
-      // Standard options (128kbps): Download immediately
-      triggerActualDownload(targetUrl, filename)
-    }
+    triggerActualDownload(targetUrl, filename)
   }
 
   const handleImageDownload = async () => {

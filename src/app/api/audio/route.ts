@@ -14,6 +14,16 @@ function getFfmpegPath(): string {
   return 'ffmpeg'
 }
 
+function isFfmpegExecutable(): boolean {
+  try {
+    const path = getFfmpegPath()
+    if (fs.existsSync(path)) return true
+    return false
+  } catch {
+    return false
+  }
+}
+
 function isAllowedAudioHost(url: string): boolean {
   try {
     const { hostname } = new URL(url)
@@ -84,54 +94,58 @@ export async function GET(request: NextRequest) {
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-')
     const filename = `savefrominternet-${platform}-audio-${quality}-${timestamp}.mp3`
 
-    // Try FFmpeg MP3 transcoding for crystal-clear MP3 audio extraction
-    try {
-      const ffmpegExe = getFfmpegPath()
-      const ffmpegProc = spawn(ffmpegExe, [
-        '-headers',
-        'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\r\n',
-        '-i',
-        audioUrl,
-        '-vn',
-        '-c:a',
-        'libmp3lame',
-        '-b:a',
-        bitrate,
-        '-f',
-        'mp3',
-        'pipe:1',
-      ])
+    // Try FFmpeg MP3 transcoding if available
+    if (isFfmpegExecutable()) {
+      try {
+        const ffmpegExe = getFfmpegPath()
+        const ffmpegProc = spawn(ffmpegExe, [
+          '-headers',
+          'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\r\n',
+          '-i',
+          audioUrl,
+          '-vn',
+          '-c:a',
+          'libmp3lame',
+          '-b:a',
+          bitrate,
+          '-f',
+          'mp3',
+          'pipe:1',
+        ])
 
-      const nodeStream = ffmpegProc.stdout
-      const webStream = new ReadableStream({
-        start(controller) {
-          nodeStream.on('data', (chunk) => {
-            controller.enqueue(new Uint8Array(chunk))
-          })
-          nodeStream.on('end', () => {
-            controller.close()
-          })
-          nodeStream.on('error', (err) => {
-            controller.error(err)
-          })
-        },
-        cancel() {
-          ffmpegProc.kill()
-        },
-      })
+        const nodeStream = ffmpegProc.stdout
+        const webStream = new ReadableStream({
+          start(controller) {
+            nodeStream.on('data', (chunk) => {
+              controller.enqueue(new Uint8Array(chunk))
+            })
+            nodeStream.on('end', () => {
+              controller.close()
+            })
+            nodeStream.on('error', (err) => {
+              controller.error(err)
+            })
+          },
+          cancel() {
+            try {
+              ffmpegProc.kill()
+            } catch { /* ignore */ }
+          },
+        })
 
-      const headers: Record<string, string> = {
-        'Content-Type': 'audio/mpeg',
-        'Content-Disposition': `attachment; filename="${filename}"; filename*=UTF-8''${encodeURIComponent(filename)}`,
-        'Cache-Control': 'public, max-age=3600',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET',
-        'Access-Control-Expose-Headers': 'Content-Disposition',
+        const headers: Record<string, string> = {
+          'Content-Type': 'audio/mpeg',
+          'Content-Disposition': `attachment; filename="${filename}"; filename*=UTF-8''${encodeURIComponent(filename)}`,
+          'Cache-Control': 'public, max-age=3600',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET',
+          'Access-Control-Expose-Headers': 'Content-Disposition',
+        }
+
+        return new NextResponse(webStream, { status: 200, headers })
+      } catch {
+        // Fall through to direct fetch if FFmpeg fails
       }
-
-      return new NextResponse(webStream, { status: 200, headers })
-    } catch {
-      // Fall through to direct fetch if FFmpeg fails
     }
 
     const controller = new AbortController()
