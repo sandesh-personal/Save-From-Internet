@@ -348,7 +348,8 @@ async function tryInstagramGraphQL(shortcode: string, originalUrl: string): Prom
       }
     }
 
-    if (thumbnail) {
+    const isReelUrl = originalUrl.includes('/reel/') || originalUrl.includes('/reels/') || originalUrl.includes('/tv/')
+    if (thumbnail && !isReelUrl) {
       const cleaned = cleanUrl(thumbnail)
       return {
         id: shortcode,
@@ -459,7 +460,8 @@ async function tryInstagramEmbed(
       }
     }
 
-    if (imageUrl) {
+    const isReelUrl = originalUrl.includes('/reel/') || originalUrl.includes('/reels/') || originalUrl.includes('/tv/')
+    if (imageUrl && !isReelUrl) {
       const cleanedImageUrl = cleanUrl(imageUrl)
       return {
         id: shortcode,

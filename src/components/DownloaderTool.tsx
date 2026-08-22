@@ -629,68 +629,35 @@ export default function DownloaderTool({
               </h2>
             </div>
 
-            {/* 2. Metadata Grid: Title, Uploader, Duration, Views/Quality */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm bg-slate-50 p-4 sm:p-5 rounded-xl border border-slate-200">
-              {/* Left Column */}
-              <div className="space-y-3">
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-1">
-                    <span className="block text-slate-900 font-bold">{t('labelTitle')}</span>
-                    {state.videoMetadata.title && (
-                      <button
-                        type="button"
-                        onClick={() => handleCopyCaption(state.videoMetadata?.title || '')}
-                        className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-bold text-white bg-black hover:bg-slate-800 rounded-lg transition-all cursor-pointer shadow-sm hover:shadow active:scale-95 select-none shrink-0"
-                        title="Copy Caption / Title"
-                      >
-                        {isCaptionCopied ? (
-                          <>
-                            <CheckIcon className="w-3.5 h-3.5 text-emerald-400" />
-                            <span className="text-emerald-400 font-bold">Copied!</span>
-                          </>
-                        ) : (
-                          <>
-                            <CopyIcon className="w-3.5 h-3.5 text-white" />
-                            <span>Copy Caption</span>
-                          </>
-                        )}
-                      </button>
+            {/* 2. Caption / Title Card with Copy Caption Button */}
+            <div className="text-xs sm:text-sm bg-slate-50 p-4 sm:p-5 rounded-xl border border-slate-200">
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <span className="block text-slate-900 font-bold text-sm">{t('labelTitle')}</span>
+                {state.videoMetadata.title && (
+                  <button
+                    type="button"
+                    onClick={() => handleCopyCaption(state.videoMetadata?.title || '')}
+                    className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-bold text-white bg-black hover:bg-slate-800 rounded-lg transition-all cursor-pointer shadow-sm hover:shadow active:scale-95 select-none shrink-0"
+                    title="Copy Caption / Title"
+                  >
+                    {isCaptionCopied ? (
+                      <>
+                        <CheckIcon className="w-3.5 h-3.5 text-emerald-400" />
+                        <span className="text-emerald-400 font-bold">Copied!</span>
+                      </>
+                    ) : (
+                      <>
+                        <CopyIcon className="w-3.5 h-3.5 text-white" />
+                        <span>Copy Caption</span>
+                      </>
                     )}
-                  </div>
-                  <div className="max-h-44 overflow-y-auto pr-1 select-text">
-                    <p className="text-slate-700 font-normal leading-relaxed text-xs sm:text-sm whitespace-pre-line">
-                      {state.videoMetadata.title || 'Social Video Post'}
-                    </p>
-                  </div>
-                </div>
-                <div>
-                  <span className="block text-slate-900 font-bold mb-0.5">{t('labelAuthor')}</span>
-                  <p className="text-slate-600 font-normal">
-                    {state.videoMetadata.author || 'Creator'}
-                  </p>
-                </div>
+                  </button>
+                )}
               </div>
-
-              {/* Right Column */}
-              <div className="space-y-3">
-                <div>
-                  <span className="block text-slate-900 font-bold mb-0.5">{t('labelDuration')}</span>
-                  <p className="text-slate-700 font-normal">
-                    {state.videoMetadata.duration > 0
-                      ? `${Math.floor(state.videoMetadata.duration / 60)}m ${state.videoMetadata.duration % 60}s`
-                      : 'Standard'}
-                  </p>
-                </div>
-                <div>
-                  <span className="block text-slate-900 font-bold mb-0.5">{t('labelQuality')}</span>
-                  <p className={`${isBlackTheme ? 'text-black' : 'text-[#195fd7]'} font-semibold`}>
-                    {selectedVideoQuality === 'best'
-                      ? 'Best (4K Quality)'
-                      : selectedVideoQuality === '1080p'
-                      ? '1080p Full HD'
-                      : '720p HD'}
-                  </p>
-                </div>
+              <div className="max-h-56 overflow-y-auto pr-1 select-text">
+                <p className="text-slate-700 font-normal leading-relaxed text-xs sm:text-sm whitespace-pre-line">
+                  {state.videoMetadata.title || 'Social Video Post'}
+                </p>
               </div>
             </div>
 
@@ -707,13 +674,13 @@ export default function DownloaderTool({
                 <div className="absolute inset-0 bg-black/20 pointer-events-none" />
                 <div className="absolute bottom-2.5 left-3 text-xs text-white font-medium flex items-center gap-1.5 drop-shadow-sm">
                   <CheckIcon className="w-4 h-4 text-white" />
-                  Verified Video Stream
+                  Verified Media Ready
                 </div>
               </div>
             )}
 
-            {/* 3. Video Quality Options & Download Button (Only for Video Posts) */}
-            {(!state.videoMetadata?.images || state.videoMetadata.images.length === 0) && (
+            {/* 3. Video Quality Options & Download Button (For Video Posts and Reels) */}
+            {(Boolean(state.downloadUrl && (state.downloadUrl.includes('.mp4') || state.downloadUrl.includes('/api/video') || (state.qualities && state.qualities.length > 0))) || (!state.videoMetadata?.images || state.videoMetadata.images.length === 0)) && (
               <div className="space-y-3 pt-2">
                 <label className="block text-sm font-bold text-slate-900">
                   {t('labelQuality')}
@@ -766,8 +733,8 @@ export default function DownloaderTool({
               </div>
             )}
 
-            {/* 4. Audio Options Section (Extract MP3 from Instagram Reels & Videos) */}
-            {(state.audioUrl || state.downloadUrl) && (!state.videoMetadata?.images || state.videoMetadata.images.length === 0) && (
+            {/* 4. Audio Options Section (Extract MP3 from Instagram Reels, TikTok & Facebook Videos) */}
+            {(state.audioUrl || state.downloadUrl) && (
               <div className="space-y-3 pt-4 border-t border-slate-200">
                 <label className="block text-sm font-bold text-slate-900">
                   {t('labelAudioQuality')}
@@ -820,8 +787,8 @@ export default function DownloaderTool({
               </div>
             )}
 
-            {/* Photo Carousel Support (if images post) */}
-            {state.videoMetadata?.images && state.videoMetadata.images.length > 0 && (
+            {/* Photo Carousel Support (Only for pure Photo / Carousel posts) */}
+            {state.videoMetadata?.images && state.videoMetadata.images.length > 0 && (!state.downloadUrl || !state.downloadUrl.includes('.mp4')) && (
               <div className="space-y-4 pt-2">
                 <div className="flex items-center justify-between bg-slate-50 rounded-xl p-3 border border-slate-200">
                   <span className="text-slate-900 text-sm font-bold">

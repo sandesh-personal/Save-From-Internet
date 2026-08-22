@@ -53,7 +53,15 @@ export class Downloader {
         result = (await extractFacebook(trimmed)) ?? (await extractViaYtDlp(trimmed, 'facebook'))
         break
       case 'instagram': {
+        const isReelOrVideo = trimmed.includes('/reel/') || trimmed.includes('/reels/') || trimmed.includes('/tv/')
         const directResult = await extractInstagram(trimmed)
+        
+        // If it's a Reel/Video and direct extraction didn't find an MP4 video stream:
+        if (isReelOrVideo && directResult && (!directResult.downloadUrl || !directResult.downloadUrl.includes('.mp4')) && (!directResult.qualities || directResult.qualities.length === 0)) {
+          result = (await extractViaYtDlp(trimmed, 'instagram')) ?? (await extractViaRapidAPI(trimmed, 'instagram')) ?? directResult
+          break
+        }
+
         // If direct extraction found only 1 image on a photo/carousel post, check RapidAPI for full multi-slide carousel
         if (directResult && directResult.images && directResult.images.length === 1 && (!directResult.downloadUrl || !directResult.downloadUrl.includes('.mp4'))) {
           const rapidCarousel = await extractViaRapidAPI(trimmed, 'instagram')
