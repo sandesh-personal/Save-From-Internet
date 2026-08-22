@@ -17,6 +17,8 @@ export interface BlogPost {
   lastModified: string
   description: string
   category: BlogCategory
+  readTime?: string
+  date?: string
 }
 
 export const categoryMeta: Record<BlogCategory, { label: string }> = {

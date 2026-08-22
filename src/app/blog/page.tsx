@@ -39,16 +39,16 @@ export default async function BlogPage({
   return (
     <div className="bg-white min-h-screen">
       {/* Hero */}
-      <section className="bg-gradient-to-b from-blue-50/50 via-white to-white py-12 sm:py-16 px-4 text-center border-b border-slate-100">
+      <section className="bg-black py-12 sm:py-16 px-4 text-center text-white">
         <div className="max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 text-xs font-bold px-4 py-1.5 rounded-full mb-4 border border-blue-100 shadow-xs">
+          <div className="inline-flex items-center gap-2 bg-slate-900 text-slate-200 text-xs font-bold px-4 py-1.5 rounded-full mb-4 border border-slate-800 shadow-xs">
             📚 Guides, Tips &amp; Tutorials
           </div>
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight leading-tight">
-            TikTok Downloader <span className="text-blue-600">Blog</span>
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-white mb-4 tracking-tight leading-tight">
+            Video &amp; Media Downloader <span className="text-white underline decoration-slate-600">Blog</span>
           </h1>
-          <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            Explore {blogPosts.length} step-by-step guides on downloading TikTok videos without watermark, extracting MP3 audio, saving photo carousels, and troubleshooting on every device.
+          <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
+            Explore {blogPosts.length} step-by-step guides on downloading TikTok, Instagram, Twitter, and Facebook videos without watermark, extracting MP3 audio, and saving photo carousels.
           </p>
         </div>
       </section>
@@ -70,8 +70,8 @@ export default async function BlogPage({
             href="/blog"
             className={`text-xs sm:text-sm font-bold px-4 py-2 rounded-xl transition-all ${
               activeCategory === 'all'
-                ? 'bg-blue-600 text-white shadow-md shadow-blue-600/25 scale-[1.02]'
-                : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200/80 hover:border-blue-200'
+                ? 'bg-black text-white shadow-sm scale-[1.02]'
+                : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 hover:border-black'
             }`}
           >
             All ({blogPosts.length})
@@ -86,8 +86,8 @@ export default async function BlogPage({
                 href={`/blog?cat=${key}`}
                 className={`text-xs sm:text-sm font-semibold px-3.5 py-2 rounded-xl transition-all ${
                   activeCategory === key
-                    ? 'bg-blue-600 text-white shadow-md shadow-blue-600/25 font-bold scale-[1.02]'
-                    : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200/80 hover:border-blue-200'
+                    ? 'bg-black text-white shadow-sm font-bold scale-[1.02]'
+                    : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 hover:border-black'
                 }`}
               >
                 {label} ({count})
@@ -97,12 +97,12 @@ export default async function BlogPage({
         </div>
       </section>
 
-      {/* Posts Grid — Modern 3-Column Card Layout (imgeditkit style) */}
+      {/* Posts Grid — Modern 3-Column Card Layout */}
       <section className="py-8 px-4 sm:px-6 max-w-6xl mx-auto">
         {filtered.length === 0 ? (
-          <div className="text-center py-16 bg-slate-50 rounded-2xl border border-slate-100">
+          <div className="text-center py-16 bg-slate-50 rounded-2xl border border-slate-200">
             <p className="text-slate-500 font-medium">No posts found in this category.</p>
-            <Link href="/blog" className="inline-block mt-3 text-sm font-bold text-blue-600 hover:underline">
+            <Link href="/blog" className="inline-block mt-3 text-sm font-bold text-black hover:underline">
               View all posts →
             </Link>
           </div>
@@ -111,7 +111,7 @@ export default async function BlogPage({
             {filtered.map((post, index) => (
               <article
                 key={post.slug}
-                className="group flex flex-col bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-xs hover:shadow-xl hover:border-blue-300 transition-all duration-200 hover:-translate-y-0.5"
+                className="group flex flex-col bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs hover:shadow-md hover:border-black transition-all duration-200 hover:-translate-y-0.5"
               >
                 <Link href={`/blog/${post.slug}`} className="block relative aspect-[16/9] overflow-hidden bg-slate-100">
                   <Image
@@ -123,14 +123,14 @@ export default async function BlogPage({
                     priority={index < 6}
                     unoptimized={post.image.startsWith('http')}
                   />
-                  <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-xs text-blue-600 text-[11px] font-bold px-2.5 py-1 rounded-lg shadow-sm border border-slate-100">
+                  <div className="absolute top-3 left-3 bg-black/80 backdrop-blur-xs text-white text-[11px] font-bold px-2.5 py-1 rounded-lg shadow-sm">
                     {categoryMeta[post.category]?.label || 'Guide'}
                   </div>
                 </Link>
 
                 <div className="p-5 flex-1 flex flex-col justify-between">
                   <div>
-                    <h2 className="text-slate-900 font-bold text-base sm:text-lg leading-snug group-hover:text-blue-600 transition-colors line-clamp-2">
+                    <h2 className="text-slate-900 font-bold text-base sm:text-lg leading-snug group-hover:text-black transition-colors line-clamp-2">
                       <Link href={`/blog/${post.slug}`}>
                         {post.title}
                       </Link>
@@ -148,7 +148,7 @@ export default async function BlogPage({
                         day: 'numeric',
                       })}
                     </span>
-                    <span className="font-bold text-blue-600 group-hover:translate-x-0.5 transition-transform flex items-center gap-1">
+                    <span className="font-bold text-slate-900 group-hover:translate-x-0.5 transition-transform flex items-center gap-1">
                       Read Guide →
                     </span>
                   </div>
@@ -171,18 +171,18 @@ export default async function BlogPage({
 
       {/* Bottom CTA Card */}
       <section className="py-12 px-4 max-w-5xl mx-auto mb-12">
-        <div className="bg-gradient-to-r from-[#195fd7] to-[#1e6fe8] rounded-3xl p-8 sm:p-12 text-center text-white shadow-xl shadow-blue-600/20">
-          <h2 className="text-2xl sm:text-4xl font-extrabold mb-3">
-            Ready to Download TikTok Videos Without Watermark?
+        <div className="bg-black rounded-3xl p-8 sm:p-12 text-center text-white shadow-lg">
+          <h2 className="text-2xl sm:text-4xl font-extrabold mb-3 text-white">
+            Ready to Download Videos &amp; Media Without Watermark?
           </h2>
-          <p className="text-blue-100 text-sm sm:text-base max-w-xl mx-auto mb-6">
-            Paste any public TikTok link and get your original HD MP4 video, MP3 audio, or photo ZIP in seconds. 100% free forever.
+          <p className="text-slate-300 text-sm sm:text-base max-w-xl mx-auto mb-6">
+            Paste any social media link and get your original HD MP4 video, MP3 audio, or photo ZIP in seconds. 100% free forever.
           </p>
           <Link
             href="/"
-            className="inline-block bg-white text-blue-700 font-extrabold px-8 py-4 rounded-2xl text-base sm:text-lg shadow-lg hover:bg-blue-50 hover:scale-105 transition-all active:scale-95 cursor-pointer"
+            className="inline-block bg-white text-black font-extrabold px-8 py-4 rounded-2xl text-base sm:text-lg shadow-md hover:bg-slate-100 hover:scale-105 transition-all active:scale-95 cursor-pointer"
           >
-            Download TikTok Videos Free
+            Download Videos Free
           </Link>
         </div>
       </section>

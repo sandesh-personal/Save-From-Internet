@@ -5,6 +5,18 @@ const WWW_HOST = 'www.savefrominternet.com'
 const BASE_DOMAIN = 'savefrominternet.com'
 const LOCALES = ['es', 'pt', 'id', 'fr', 'de', 'ar', 'vi', 'zh', 'ja', 'ru']
 
+const MULTILINGUAL_PATHS = [
+  '/',
+  '/tiktok-video-downloader',
+  '/tiktok-to-mp3',
+  '/tiktok-photo-downloader',
+  '/facebook-video-downloader',
+  '/twitter-video-downloader',
+  '/instagram-reel-downloader',
+  '/instagram-video-downloader',
+  '/instagram-post-downloader',
+]
+
 function setMeta(response: NextResponse, pathname: string) {
   const segment = pathname.split('/')[1]
   response.headers.set('x-pathname', pathname)
@@ -13,6 +25,16 @@ function setMeta(response: NextResponse, pathname: string) {
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
+
+  // Cookie-based locale default redirection for supported multilingual paths
+  const localeCookie = request.cookies.get('NEXT_LOCALE')?.value
+  if (localeCookie && LOCALES.includes(localeCookie) && MULTILINGUAL_PATHS.includes(pathname)) {
+    const url = request.nextUrl.clone()
+    url.pathname = pathname === '/' ? `/${localeCookie}` : `/${localeCookie}${pathname}`
+    const response = NextResponse.redirect(url, 307)
+    setMeta(response, url.pathname)
+    return response
+  }
 
   if (process.env.NODE_ENV !== 'production') {
     const response = NextResponse.next()
@@ -30,7 +52,13 @@ export function middleware(request: NextRequest) {
   }
 
   const isLocal =
-    host.includes('localhost') || host.includes('127.0.0.1') || host.includes('0.0.0.0')
+    host.includes('localhost') ||
+    host.includes('127.0.0.1') ||
+    host.includes('0.0.0.0') ||
+    host.includes('192.168.') ||
+    host.includes('10.') ||
+    host.includes('172.') ||
+    host.includes(':3000')
 
   if (isLocal) {
     const response = NextResponse.next()
@@ -62,6 +90,14 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/((?!api|_next/static|_next/image|.*\\.(?:ico|png|jpg|jpeg|svg|webp|avif|json|xml|txt)$).*)',
+    /*
+     * Match all request paths except for:
+     * - api routes
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico, sitemap.xml, robots.txt, manifest.json
+     * - static image/font assets (.png, .jpg, .svg, .webp, .ico, etc.)
+     */
+    '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|manifest.json|.*\\.(?:png|jpg|jpeg|gif|webp|svg|ico|ttf|woff|woff2)).*)',
   ],
 }

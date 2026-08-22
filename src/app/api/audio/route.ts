@@ -1,10 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { spawn } from 'child_process'
+import fs from 'fs'
 
-const PRIMARY_API_KEY = process.env.TIKWM_API_KEY ?? ''
-
-const FETCH_HEADERS = {
-  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-  Referer: 'https://www.tiktok.com/',
+function getFfmpegPath(): string {
+  if (process.env.FFMPEG_PATH && fs.existsSync(process.env.FFMPEG_PATH)) {
+    return process.env.FFMPEG_PATH
+  }
+  const wingetFfmpeg =
+    'C:\\Users\\sande\\AppData\\Local\\Microsoft\\WinGet\\Packages\\yt-dlp.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-N-125875-g5d4d3bdc61-win64-gpl\\bin\\ffmpeg.exe'
+  if (fs.existsSync(wingetFfmpeg)) {
+    return wingetFfmpeg
+  }
+  return 'ffmpeg'
 }
 
 function isAllowedAudioHost(url: string): boolean {
@@ -17,7 +24,19 @@ function isAllowedAudioHost(url: string): boolean {
       hostname.endsWith('.tiktokcdn.com') ||
       hostname.endsWith('.tiktokcdn-eu.com') ||
       hostname.endsWith('.tiktokcdn-us.com') ||
-      hostname.endsWith('.muscdn.com')
+      hostname.endsWith('.muscdn.com') ||
+      hostname.includes('tiktok') ||
+      hostname.endsWith('.fbcdn.net') ||
+      hostname.endsWith('.facebook.com') ||
+      hostname.endsWith('.fbsbx.com') ||
+      hostname.includes('fbcdn') ||
+      hostname.endsWith('.cdninstagram.com') ||
+      hostname.endsWith('.instagram.com') ||
+      hostname.includes('instagram') ||
+      hostname.endsWith('.twimg.com') ||
+      hostname.endsWith('.twitter.com') ||
+      hostname.endsWith('.x.com') ||
+      hostname.endsWith('.cloudfront.net')
     )
   } catch {
     return false
@@ -29,72 +48,137 @@ function isJsonContentType(response: Response): boolean {
   return ct.includes('application/json') || ct.includes('text/plain')
 }
 
-async function fetchAudioViaApiFallback(tiktokUrl: string): Promise<Response | null> {
-  try {
-    const apiResp = await fetch(
-      `https://www.tikwm.com/api/?url=${encodeURIComponent(tiktokUrl)}&hd=1&api_key=${PRIMARY_API_KEY}`,
-      { headers: { Referer: 'https://www.tikwm.com/' } }
-    )
-    const apiData = await apiResp.json()
-    if (apiData?.code !== 0 || !apiData?.data) return null
-
-    let audioUrl: string = apiData.data.music || apiData.data.play || apiData.data.hdplay || ''
-    if (!audioUrl) return null
-    if (audioUrl.startsWith('/')) audioUrl = 'https://www.tikwm.com' + audioUrl
-    if (!isAllowedAudioHost(audioUrl)) return null
-
-    const audioResp = await fetch(audioUrl, { headers: FETCH_HEADERS })
-    if (!audioResp.ok || isJsonContentType(audioResp)) return null
-    return audioResp
-  } catch {
-    return null
-  }
-}
-
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
-    const audioUrl = searchParams.get('url')
+    const rawAudioUrl = searchParams.get('url')
+    const platform = searchParams.get('platform') || 'audio'
+    const quality = searchParams.get('quality') || 'best'
 
-    if (!audioUrl) {
+    if (!rawAudioUrl) {
       return NextResponse.json({ success: false, error: 'Audio URL is required' }, { status: 400 })
     }
 
+    let audioUrl = rawAudioUrl
+      .replace(/&amp;/gi, '&')
+      .replace(/&#038;/gi, '&')
+      .replace(/\\u0026/g, '&')
+      .trim()
+
+    // Unwrap if wrapped inside /api/video proxy or query param
+    if (audioUrl.includes('url=')) {
+      try {
+        const dummyUrl = new URL(audioUrl, 'https://savefrominternet.com')
+        const inner = dummyUrl.searchParams.get('audioUrl') || dummyUrl.searchParams.get('url')
+        if (inner) {
+          audioUrl = inner.trim()
+        }
+      } catch { /* ignore */ }
+    }
+
     if (!isAllowedAudioHost(audioUrl)) {
-      return NextResponse.json({ success: false, error: 'Audio source not allowed' }, { status: 403 })
+      return NextResponse.json({ success: false, error: 'Audio source host not allowed' }, { status: 403 })
+    }
+
+    const bitrate = quality === 'best' ? '320k' : quality === '192kbps' ? '192k' : '128k'
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-')
+    const filename = `savefrominternet-${platform}-audio-${quality}-${timestamp}.mp3`
+
+    // Try FFmpeg MP3 transcoding for crystal-clear MP3 audio extraction
+    try {
+      const ffmpegExe = getFfmpegPath()
+      const ffmpegProc = spawn(ffmpegExe, [
+        '-headers',
+        'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\r\n',
+        '-i',
+        audioUrl,
+        '-vn',
+        '-c:a',
+        'libmp3lame',
+        '-b:a',
+        bitrate,
+        '-f',
+        'mp3',
+        'pipe:1',
+      ])
+
+      const nodeStream = ffmpegProc.stdout
+      const webStream = new ReadableStream({
+        start(controller) {
+          nodeStream.on('data', (chunk) => {
+            controller.enqueue(new Uint8Array(chunk))
+          })
+          nodeStream.on('end', () => {
+            controller.close()
+          })
+          nodeStream.on('error', (err) => {
+            controller.error(err)
+          })
+        },
+        cancel() {
+          ffmpegProc.kill()
+        },
+      })
+
+      const headers: Record<string, string> = {
+        'Content-Type': 'audio/mpeg',
+        'Content-Disposition': `attachment; filename="${filename}"; filename*=UTF-8''${encodeURIComponent(filename)}`,
+        'Cache-Control': 'public, max-age=3600',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET',
+        'Access-Control-Expose-Headers': 'Content-Disposition',
+      }
+
+      return new NextResponse(webStream, { status: 200, headers })
+    } catch {
+      // Fall through to direct fetch if FFmpeg fails
     }
 
     const controller = new AbortController()
-    const timeout = setTimeout(() => controller.abort(), 30000)
+    const timeout = setTimeout(() => controller.abort(), 35000)
+
+    const headers: Record<string, string> = {
+      'User-Agent':
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+      Accept: '*/*',
+    }
+
+    if (audioUrl.includes('tiktok')) {
+      headers['Referer'] = 'https://www.tiktok.com/'
+    } else if (audioUrl.includes('instagram')) {
+      headers['Referer'] = 'https://www.instagram.com/'
+    }
 
     let response: Response
     try {
-      response = await fetch(audioUrl, { headers: FETCH_HEADERS, signal: controller.signal })
+      response = await fetch(audioUrl, { headers, signal: controller.signal, redirect: 'follow' })
     } finally {
       clearTimeout(timeout)
     }
 
     if (!response.ok || isJsonContentType(response)) {
-      const fallbackResp = await fetchAudioViaApiFallback(audioUrl)
-      if (fallbackResp) return buildAudioResponse(fallbackResp)
-      return NextResponse.json({ success: false, error: 'Failed to fetch audio' }, { status: 500 })
+      return NextResponse.json({ success: false, error: 'Failed to fetch audio stream' }, { status: 500 })
     }
 
-    return buildAudioResponse(response)
+    return buildAudioResponse(response, platform, filename)
   } catch (error) {
     console.error('Audio extraction error:', error instanceof Error ? error.message : 'Unknown')
     return NextResponse.json({ success: false, error: 'Failed to extract audio' }, { status: 500 })
   }
 }
 
-function buildAudioResponse(response: Response): NextResponse {
+function buildAudioResponse(response: Response, platform: string = 'audio', filename?: string): NextResponse {
   const contentLength = response.headers.get('content-length')
   const contentType = response.headers.get('content-type') || ''
   const isVideoSource = contentType.startsWith('video/')
+  const timestamp = new Date().toISOString().replace(/[:.]/g, '-')
+  const outFilename = filename || `savefrominternet-${platform}-audio-${timestamp}.${isVideoSource ? 'mp4' : 'mp3'}`
+
   const headers: Record<string, string> = {
     'Content-Type': isVideoSource ? 'video/mp4' : 'audio/mpeg',
-    'Content-Disposition': 'attachment; filename="savefrominternet.com-tiktok-audio.mp3"',
-    'Cache-Control': 'no-cache',
+    'Content-Disposition': `attachment; filename="${outFilename}"; filename*=UTF-8''${encodeURIComponent(outFilename)}`,
+    'Cache-Control': 'public, max-age=3600',
+    'Access-Control-Allow-Origin': '*',
   }
   if (contentLength) headers['Content-Length'] = contentLength
   return new NextResponse(response.body, { headers })

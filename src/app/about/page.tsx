@@ -17,15 +17,15 @@ export default function AboutPage() {
   return (
     <div className="bg-white min-h-screen">
       {/* Hero */}
-      <section className="bg-gradient-to-b from-blue-50/50 via-white to-white py-16 px-4 text-center border-b border-slate-100">
+      <section className="bg-black py-16 px-4 text-center text-white">
         <div className="max-w-3xl mx-auto">
-          <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#195fd7] to-[#1e6fe8] flex items-center justify-center text-white font-extrabold text-3xl mx-auto mb-6 shadow-lg shadow-blue-500/25">
+          <div className="w-20 h-20 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center text-white font-extrabold text-3xl mx-auto mb-6 shadow-sm">
             S
           </div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-3 tracking-tight">Hi, I&apos;m Sandy</h1>
-          <p className="text-blue-600 font-bold mb-4 text-sm sm:text-base">Founder &amp; Developer, SaveFromInternet.com</p>
-          <p className="text-base sm:text-lg text-slate-600 max-w-xl mx-auto leading-relaxed">
-            I built SaveFromInternet because I was frustrated that every TikTok downloader was either covered in intrusive popups, broken, or added a watermark. So I made one that just works.
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-3 tracking-tight">Hi, I&apos;m Sandy</h1>
+          <p className="text-slate-300 font-bold mb-4 text-sm sm:text-base">Founder &amp; Developer, SaveFromInternet.com</p>
+          <p className="text-base sm:text-lg text-slate-300 max-w-xl mx-auto leading-relaxed">
+            I built SaveFromInternet because I was frustrated that every video downloader was either covered in intrusive popups, broken, or added a watermark. So I made one that just works.
           </p>
         </div>
       </section>
@@ -37,13 +37,13 @@ export default function AboutPage() {
             <h2 className="text-2xl font-bold text-slate-900 mb-4">The Story</h2>
             <div className="space-y-4 text-slate-600 leading-relaxed">
               <p>
-                I started SaveFromInternet.com in 2024 as a side project. I needed to download a TikTok video for a presentation and spent 20 minutes clicking through sketchy sites full of fake download buttons and pop-ups. I thought — this should take 10 seconds, not 20 minutes.
+                I started SaveFromInternet.com in 2024 as a side project. I needed to download a video for a presentation and spent 20 minutes clicking through sketchy sites full of fake download buttons and pop-ups. I thought — this should take 10 seconds, not 20 minutes.
               </p>
               <p>
-                So I built it myself. A clean, fast downloader that handles TikTok videos, audio, and photo carousels without watermarks, without an app, and without making you click through five fake buttons.
+                So I built it myself. A clean, fast downloader that handles videos, audio, and photo carousels without watermarks, without an app, and without making you click through five fake buttons.
               </p>
               <p>
-                Since then it&apos;s grown to serve users across the world daily. I also built <a href="https://www.grabreels.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-bold">GrabReels.com</a> — the same idea but for Instagram Reels and carousels.
+                Since then it&apos;s grown to serve users across the world daily. I also built <a href="https://www.grabreels.com" target="_blank" rel="noopener noreferrer" className="text-black hover:underline font-bold">GrabReels.com</a> — the same idea but for Instagram Reels and carousels.
               </p>
             </div>
           </div>
@@ -52,11 +52,11 @@ export default function AboutPage() {
             <h2 className="text-2xl font-bold text-slate-900 mb-4">What I Built</h2>
             <ul className="space-y-3 text-slate-600">
               {[
-                { name: 'SaveFromInternet.com', desc: 'Free TikTok downloader — videos, MP3 audio, photo carousels, no watermark' },
+                { name: 'SaveFromInternet.com', desc: 'Free video downloader — TikTok, Instagram, Twitter, Facebook, MP3 audio, photo carousels, no watermark' },
                 { name: 'GrabReels.com', desc: 'Free Instagram Reel and carousel downloader' },
               ].map(({ name, desc }) => (
                 <li key={name} className="flex items-start gap-3">
-                  <span className="text-blue-600 font-bold mt-0.5">→</span>
+                  <span className="text-black font-bold mt-0.5">→</span>
                   <span><strong className="text-slate-900 font-bold">{name}</strong> — {desc}</span>
                 </li>
               ))}
@@ -67,10 +67,10 @@ export default function AboutPage() {
             <h2 className="text-2xl font-bold text-slate-900 mb-4">How it actually works</h2>
             <div className="space-y-4 text-slate-600 leading-relaxed">
               <p>
-                When you tap TikTok&apos;s own Save button, their servers don&apos;t send you the original file.
-                They run it through a transcoding pipeline that composites their logo and your username
+                When you tap a social platform&apos;s own Save button, their servers don&apos;t send you the original file.
+                They run it through a transcoding pipeline that composites their logo and creator overlay
                 into every frame, then send you that watermarked copy. The original file — the one
-                TikTok streams to your phone when you watch a video — has no watermark at all.
+                streamed to your phone when you watch a video — has no watermark at all.
               </p>
               <p>
                 SaveFromInternet fetches from that CDN endpoint directly, which looks identical to a
@@ -78,7 +78,7 @@ export default function AboutPage() {
                 whole trick. There&apos;s no AI removal, no cropping, no quality tradeoff.
               </p>
               <p>
-                Everything on this site is built and maintained by me. When TikTok changes their
+                Everything on this site is built and maintained by me. When platforms change their
                 API, I update the parser. When something breaks at 2am, I fix it. No team, no
                 outsourcing — just one developer keeping it working.
               </p>
@@ -104,7 +104,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
             {[
               { title: 'Free — no catch', desc: 'No subscription, no account, no "premium" tier to unlock HD. Every feature works for free, always.' },
-              { title: 'Original file, always', desc: 'You get the same file TikTok streams to phones — not a re-encoded copy, not a cropped version. The original.' },
+              { title: 'Original file, always', desc: 'You get the same file streamed to phones — not a re-encoded copy, not a cropped version. The original.' },
               { title: 'Nothing is stored', desc: 'Your URL is processed and the file is returned. We don\'t log URLs, save files, or sell any data.' },
             ].map(({ title, desc }) => (
               <div key={title} className="bg-slate-50 rounded-2xl p-5 border border-slate-100 text-center">
@@ -123,13 +123,13 @@ export default function AboutPage() {
           <div className="space-y-4 text-slate-600">
             <p>
               <strong className="text-slate-800">Technical issues or bug reports:</strong>{' '}
-              <a href="mailto:support@savefrominternet.com" className="text-blue-600 hover:underline font-bold">
+              <a href="mailto:support@savefrominternet.com" className="text-black hover:underline font-bold">
                 support@savefrominternet.com
               </a>
             </p>
             <p>
               <strong className="text-slate-800">Business &amp; partnerships:</strong>{' '}
-              <a href="mailto:contact@savefrominternet.com" className="text-blue-600 hover:underline font-bold">
+              <a href="mailto:contact@savefrominternet.com" className="text-black hover:underline font-bold">
                 contact@savefrominternet.com
               </a>
             </p>
@@ -141,12 +141,12 @@ export default function AboutPage() {
       <section className="py-14 px-4 text-center">
         <div className="max-w-xl mx-auto">
           <h2 className="text-2xl font-bold text-slate-900 mb-3">Try the Tool</h2>
-          <p className="text-slate-500 mb-6">Paste any TikTok link and download in seconds — free, no watermark, no app.</p>
+          <p className="text-slate-500 mb-6">Paste any link and download in seconds — free, no watermark, no app.</p>
           <Link
             href="/"
-            className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-2xl text-lg shadow-lg shadow-blue-500/25 hover:scale-105 transition-all cursor-pointer"
+            className="inline-block bg-black hover:bg-slate-800 text-white font-bold px-8 py-4 rounded-2xl text-lg shadow-md hover:scale-105 transition-all cursor-pointer"
           >
-            Download TikTok Videos Free
+            Download Videos Free
           </Link>
         </div>
 

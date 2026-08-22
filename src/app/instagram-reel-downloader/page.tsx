@@ -1,27 +1,79 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import ToolSchema from '@/components/ToolSchema'
+import InstagramReelContent from '@/components/InstagramReelContent'
 
 export const metadata: Metadata = {
-  title: 'Instagram Reel Downloader — Save Reels & Carousels Free 2026 | GrabReels',
-  description: 'Download Instagram Reels and photo carousels without watermark — free, no app needed. Works on iPhone, Android, PC. Powered by GrabReels.com.',
+  title: 'Fast Instagram Reels Downloader — Save IG Reels in HD 1080p | SaveFromInternet',
+  description:
+    'Fast Instagram Reels downloader. Download Instagram Reels and videos without watermark in Full HD 1080p MP4. Free, unlimited, no login needed on iPhone, Android & PC.',
   keywords: [
-    'instagram reel downloader',
+    'fast instagram reels downloader',
     'download instagram reels',
-    'instagram video downloader',
-    'instagram reel downloader without watermark',
+    'instagram reels downloader',
     'save instagram reels',
-    'instagram carousel downloader',
-    'download instagram photos',
+    'ig reel downloader',
+    'download ig reels without watermark',
+    'instagram reel mp4 download',
+    'instagram story downloader',
   ],
-  alternates: { canonical: 'https://www.savefrominternet.com/instagram-reel-downloader' },
+  alternates: {
+    canonical: 'https://www.savefrominternet.com/instagram-reel-downloader',
+    languages: {
+      'x-default': 'https://www.savefrominternet.com/instagram-reel-downloader',
+      en: 'https://www.savefrominternet.com/instagram-reel-downloader',
+      es: 'https://www.savefrominternet.com/es/instagram-reel-downloader',
+      pt: 'https://www.savefrominternet.com/pt/instagram-reel-downloader',
+      id: 'https://www.savefrominternet.com/id/instagram-reel-downloader',
+      fr: 'https://www.savefrominternet.com/fr/instagram-reel-downloader',
+      de: 'https://www.savefrominternet.com/de/instagram-reel-downloader',
+      ar: 'https://www.savefrominternet.com/ar/instagram-reel-downloader',
+      vi: 'https://www.savefrominternet.com/vi/instagram-reel-downloader',
+      zh: 'https://www.savefrominternet.com/zh/instagram-reel-downloader',
+      ja: 'https://www.savefrominternet.com/ja/instagram-reel-downloader',
+      ru: 'https://www.savefrominternet.com/ru/instagram-reel-downloader',
+    },
+  },
   openGraph: {
-    title: 'Instagram Reel Downloader — Save Reels Free | GrabReels',
-    description: 'Download Instagram Reels and photo carousels without watermark. Free, no app, works on any device.',
+    title: 'Fast Instagram Reels Downloader — Download IG Reels in 1080p HD',
+    description: 'Save Instagram Reels and videos in original HD quality without watermark. 100% free and fast on all devices.',
     url: 'https://www.savefrominternet.com/instagram-reel-downloader',
     type: 'website',
     images: ['/og-final.jpg'],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Fast Instagram Reels Downloader — Save Reels in HD',
+    description: 'Fast, free Instagram Reels downloader without watermark in 1080p HD.',
+    images: ['/og-final.jpg'],
+  },
+}
+
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'How to Download Instagram Reels in HD Without Watermark',
+  description: 'Download Instagram Reels to your phone or computer in high quality MP4 without watermark.',
+  totalTime: 'PT1M',
+  step: [
+    {
+      '@type': 'HowToStep',
+      position: 1,
+      name: 'Copy Instagram Reel link',
+      text: 'Open the Instagram app or website, find the Reel, tap the three-dot menu (⋯) or Share icon, and select "Copy Link".',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 2,
+      name: 'Paste the link',
+      text: 'Paste the copied URL into the SaveFromInternet search box above and click the Download button.',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 3,
+      name: 'Download HD MP4 video',
+      text: 'Click Download HD Video to save the watermark-free MP4 directly to your device gallery or downloads folder.',
+    },
+  ],
 }
 
 const faqSchema = {
@@ -30,150 +82,62 @@ const faqSchema = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'How do I download Instagram Reels?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Go to GrabReels.com, paste the Instagram Reel URL, and click Download. The video saves to your device without a watermark in seconds.' },
+      name: 'How do I download Instagram Reels without a watermark?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Copy the link of any public Instagram Reel, paste it into our downloader input box above, and click Download. SaveFromInternet will fetch the original source video in high-definition MP4 without any added watermark.',
+      },
     },
     {
       '@type': 'Question',
-      name: 'Can I download Instagram carousels (multiple photos)?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Yes. GrabReels supports Instagram photo carousels — download all images at once as individual files or in a ZIP.' },
+      name: 'Can I download Instagram photo carousels or multiple images?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. For multi-photo posts and carousels, check out our Instagram Post Downloader page or paste the link here to download all high-resolution pictures individually or as a single ZIP archive.',
+      },
     },
     {
       '@type': 'Question',
-      name: 'Does it work on iPhone and Android?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Yes. GrabReels works in Safari (iPhone), Chrome (Android), and any browser on PC. No app install required.' },
+      name: 'Do I need an Instagram account or login to use this tool?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. SaveFromInternet is completely anonymous and requires no Instagram login, password, or account registration.',
+      },
     },
     {
       '@type': 'Question',
-      name: 'Is it free to download Instagram Reels?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Yes. GrabReels is completely free — no account, no subscription, no limits.' },
+      name: 'How do I save Instagram Reels on iPhone / iOS?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Open Safari on your iPhone, paste the Instagram Reel URL into our downloader, and tap Download. When prompted by Safari, tap Download to store the file in your Files app, where you can easily save it to your Camera Roll.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is there a limit on how many Instagram Reels I can download?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No, SaveFromInternet provides 100% free and unlimited downloads with no daily caps or throttling.',
+      },
     },
   ],
 }
 
-const howToSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'HowTo',
-  name: 'How to Download Instagram Reels Without Watermark',
-  totalTime: 'PT1M',
-  step: [
-    { '@type': 'HowToStep', position: 1, name: 'Copy the Instagram Reel link', text: 'Open Instagram, tap the three-dot menu on the Reel, then tap Copy Link.' },
-    { '@type': 'HowToStep', position: 2, name: 'Open GrabReels.com', text: 'Go to grabreels.com in any browser on your phone or computer.' },
-    { '@type': 'HowToStep', position: 3, name: 'Paste and download', text: 'Paste the link, tap Download, and save the Reel to your device — no watermark.' },
-  ],
-}
-
-export default function InstagramReelDownloaderPage() {
+export default function InstagramReelsDownloaderPage() {
   return (
-    <div className="bg-white min-h-screen">
-      {/* Hero */}
-      <section className="bg-gradient-to-b from-pink-50/60 via-white to-white py-14 px-4 text-center border-b border-slate-100">
-        <div className="max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-pink-50 text-pink-600 text-xs font-bold px-4 py-1.5 rounded-full mb-4 border border-pink-100 shadow-xs">
-            Instagram · Reels &amp; Carousels · No Watermark
-          </div>
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight leading-tight">
-            Instagram Reel <span className="text-pink-600">Downloader</span>
-          </h1>
-          <p className="text-base sm:text-lg text-slate-600 mb-8 max-w-xl mx-auto leading-relaxed">
-            Download Instagram Reels and photo carousels without watermark — free, no app, works on iPhone, Android, and PC.
-          </p>
-          <a
-            href="https://www.grabreels.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold px-10 py-4 rounded-2xl text-base sm:text-lg shadow-lg shadow-pink-500/25 transition-all hover:scale-105"
-          >
-            Download Instagram Reels — Free
-          </a>
-          <p className="mt-3 text-xs text-slate-400">
-            Powered by{' '}
-            <a href="https://www.grabreels.com" target="_blank" rel="noopener noreferrer" className="text-pink-600 hover:underline font-bold">
-              GrabReels.com
-            </a>
-          </p>
-        </div>
-      </section>
-
-      {/* Steps */}
-      <section className="bg-slate-50 py-12 sm:py-16 px-4 border-b border-slate-100">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 text-center mb-10">
-            How to Download Instagram Reels
-          </h2>
-          <div className="space-y-4">
-            {[
-              { n: '1', title: 'Copy the Instagram Reel link', desc: 'Open the Instagram app or website. On a Reel, tap the three-dot menu (⋯) → Copy Link. On desktop, copy the URL from the address bar.' },
-              { n: '2', title: 'Open GrabReels.com', desc: 'Open GrabReels.com in any browser — Chrome, Safari, Firefox, Edge. Works on iPhone, Android, and PC with no app install.' },
-              { n: '3', title: 'Paste and process', desc: 'Paste the Instagram link into the input box and tap Download. GrabReels fetches the original video in seconds.' },
-              { n: '4', title: 'Save to your device', desc: 'Tap Download Video to save the MP4 without any watermark to your phone or computer. For carousels, download all photos as a ZIP.' },
-            ].map(({ n, title, desc }) => (
-              <div key={n} className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-xs flex items-start gap-4">
-                <div className="w-11 h-11 bg-gradient-to-br from-pink-500 to-rose-500 rounded-2xl flex items-center justify-center text-white font-bold text-lg flex-shrink-0 shadow-md shadow-pink-500/20">{n}</div>
-                <div>
-                  <h3 className="text-slate-900 font-bold text-lg mb-1">{title}</h3>
-                  <p className="text-slate-600 text-sm leading-relaxed">{desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Features */}
-      <section className="py-12 sm:py-16 px-4 border-b border-slate-100">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 text-center mb-10">What You Can Download</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {[
-              { title: 'Instagram Reels (MP4)', desc: 'Full-quality Reels without the Instagram watermark badge. Original resolution.' },
-              { title: 'Photo Carousels', desc: 'Download all photos from a multi-image post — individually or as a single ZIP file.' },
-              { title: 'Instagram Stories', desc: 'Save Stories before they disappear — photos and videos, no screenshot quality loss.' },
-              { title: 'Profile Photos (HD)', desc: 'Download any public Instagram profile picture in full resolution.' },
-              { title: 'IGTV Videos', desc: 'Long-form IGTV content saved as MP4 at original quality.' },
-              { title: 'Audio from Reels', desc: 'Extract the audio track from any Reel and save as MP3.' },
-            ].map(({ title, desc }) => (
-              <div key={title} className="bg-slate-50 rounded-2xl p-5 border border-slate-100">
-                <div className="text-pink-600 font-bold mb-1">✓ {title}</div>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-12 px-4 max-w-5xl mx-auto mb-12">
-        <div className="bg-gradient-to-r from-pink-500 to-rose-500 rounded-3xl p-8 sm:p-12 text-center text-white shadow-xl shadow-pink-500/20">
-          <h2 className="text-2xl sm:text-4xl font-extrabold mb-3">Ready to Download Instagram Reels?</h2>
-          <p className="text-pink-100 text-sm sm:text-base max-w-xl mx-auto mb-6">No watermark. No app. No sign-up. Open your browser and start.</p>
-          <a
-            href="https://www.grabreels.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-white text-pink-600 font-extrabold px-10 py-4 rounded-2xl text-base sm:text-lg shadow-xl hover:scale-105 transition-all"
-          >
-            Download Reels on GrabReels.com
-          </a>
-        </div>
-      </section>
-
-      {/* Related tools */}
-      <section className="py-10 px-4 text-center border-t border-slate-100">
-        <p className="text-sm text-slate-500 mb-4">Looking for TikTok downloads?</p>
-        <Link href="/" className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3 rounded-xl text-sm transition-colors shadow-md">
-          TikTok Downloader — SaveFromInternet.com
-        </Link>
-      </section>
-
+    <>
+      <ToolSchema
+        name="Instagram Reels Downloader"
+        description="Download Instagram Reels in Full HD 1080p MP4 quality without watermark."
+        url="https://www.savefrominternet.com/instagram-reel-downloader"
+        ratingValue="4.9"
+        ratingCount="5610"
+        howTo={howToSchema}
+        faq={faqSchema}
+      />
+      <InstagramReelContent />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <ToolSchema
-        name="Instagram Reel Downloader"
-        url="https://www.savefrominternet.com/instagram-reel-downloader"
-        description="Download Instagram Reels and photo carousels without watermark. Free, no app, works on any device. Powered by GrabReels.com."
-        ratingCount="2143"
-      />
-    </div>
+    </>
   )
 }

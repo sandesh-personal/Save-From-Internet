@@ -30,10 +30,26 @@ export default function LanguageSwitcher() {
     setLang(code)
     setOpen(false)
 
-    const isLocalePage = LOCALE_CODES.some((loc) => pathname === `/${loc}`)
-    const isHome = pathname === '/' || isLocalePage
-    if (isHome) {
-      router.push(code === 'en' ? '/' : `/${code}`)
+    // Parse current pathname segments
+    const segments = pathname.split('/').filter(Boolean)
+    const hasLocalePrefix = (LOCALE_CODES as readonly string[]).includes(segments[0])
+    const pathWithoutLocale = hasLocalePrefix ? segments.slice(1).join('/') : segments.join('/')
+
+    const supportedMultilingualPaths = [
+      '',
+      'tiktok-video-downloader',
+      'tiktok-to-mp3',
+      'tiktok-photo-downloader',
+      'facebook-video-downloader',
+      'twitter-video-downloader',
+      'instagram-reel-downloader',
+      'instagram-video-downloader',
+      'instagram-post-downloader',
+    ]
+
+    if (supportedMultilingualPaths.includes(pathWithoutLocale)) {
+      const targetSubPath = pathWithoutLocale ? `/${pathWithoutLocale}` : ''
+      router.push(code === 'en' ? (targetSubPath || '/') : `/${code}${targetSubPath}`)
     }
   }
 
@@ -42,7 +58,7 @@ export default function LanguageSwitcher() {
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        className="flex items-center gap-1.5 h-10 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-semibold transition-all cursor-pointer active:scale-95 touch-manipulation focus-visible:ring-2 focus-visible:ring-blue-500 select-none"
+        className="flex items-center gap-1.5 h-10 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-semibold transition-all cursor-pointer active:scale-95 touch-manipulation focus-visible:ring-2 focus-visible:ring-black select-none"
         aria-label="Select language"
         aria-expanded={open}
       >
@@ -65,9 +81,9 @@ export default function LanguageSwitcher() {
               type="button"
               key={l.code}
               onClick={() => handleSelect(l.code as LangCode)}
-              className={`w-full flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors hover:bg-slate-50 cursor-pointer touch-manipulation active:bg-blue-50 ${
+              className={`w-full flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors hover:bg-slate-100 cursor-pointer touch-manipulation active:bg-slate-100 ${
                 lang === l.code
-                  ? 'bg-blue-50 text-blue-600 font-bold'
+                  ? 'bg-slate-100 text-black font-bold'
                   : 'text-slate-700'
               }`}
             >

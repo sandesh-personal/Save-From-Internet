@@ -20,7 +20,7 @@ export default function ToolRelatedGuides({ guides }: Props) {
             <li key={href}>
               <Link
                 href={href}
-                className="inline-block bg-white border border-slate-200 text-slate-700 hover:text-blue-600 hover:border-blue-300 hover:bg-blue-50/40 text-sm font-medium px-4 py-2 rounded-full transition-all shadow-xs"
+                className="inline-block bg-white border border-slate-200 text-slate-700 hover:text-white hover:border-black hover:bg-black text-sm font-medium px-4 py-2 rounded-full transition-all shadow-xs"
               >
                 {label}
               </Link>

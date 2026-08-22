@@ -44,16 +44,16 @@ export default function TikTokDownloaderAndroidPage() {
   return (
     <div className="bg-white min-h-screen">
       {/* Hero */}
-      <section className="bg-gradient-to-b from-blue-50/50 via-white to-white py-12 sm:py-16 px-4 text-center border-b border-slate-100">
+      <section className="bg-black py-12 sm:py-16 px-4 text-center text-white">
         <div className="max-w-3xl mx-auto">
-          <span className="inline-block bg-blue-50 text-blue-600 text-xs font-bold px-3.5 py-1.5 rounded-full mb-4 border border-blue-100 shadow-xs">Android Guide · 2026</span>
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight leading-tight">
-            TikTok Video Downloader for <span className="text-blue-600">Android</span>
+          <span className="inline-block bg-slate-900 text-slate-200 text-xs font-bold px-3.5 py-1.5 rounded-full mb-4 border border-slate-800 shadow-xs">Android Guide · 2026</span>
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-white mb-4 tracking-tight leading-tight">
+            TikTok Video Downloader for <span className="text-white underline decoration-slate-600">Android</span>
           </h1>
-          <p className="text-base sm:text-lg text-slate-600 mb-8 max-w-xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-300 mb-8 max-w-xl mx-auto leading-relaxed">
             Download any TikTok video without watermark directly in Chrome, Samsung Internet, or Firefox. No app install, no account, no limits.
           </p>
-          <Link href="/" className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-2xl text-base sm:text-lg shadow-lg shadow-blue-500/25 hover:scale-105 transition-all cursor-pointer">
+          <Link href="/" className="inline-block bg-white text-black font-extrabold px-8 py-4 rounded-2xl text-base sm:text-lg shadow-md hover:bg-slate-100 hover:scale-105 transition-all cursor-pointer">
             Download TikTok on Android Now
           </Link>
         </div>
@@ -65,7 +65,7 @@ export default function TikTokDownloaderAndroidPage() {
       </div>
 
       {/* Steps */}
-      <section className="bg-slate-50 py-12 sm:py-16 px-4 border-b border-slate-100">
+      <section className="bg-slate-50 py-12 sm:py-16 px-4 border-b border-slate-200">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 text-center mb-10">How to Download on Android</h2>
           <div className="space-y-4">
@@ -76,7 +76,7 @@ export default function TikTokDownloaderAndroidPage() {
               { n: '4', title: 'Save File Automatically', desc: 'Tap Download MP4 — the file saves automatically to your Downloads folder and appears in your Gallery.' },
             ].map(({ n, title, desc }) => (
               <div key={n} className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-xs flex items-start gap-4">
-                <div className="w-11 h-11 bg-blue-600 rounded-2xl flex items-center justify-center text-white font-bold text-lg flex-shrink-0 shadow-md shadow-blue-500/20">{n}</div>
+                <div className="w-11 h-11 bg-black rounded-2xl flex items-center justify-center text-white font-bold text-lg flex-shrink-0 shadow-sm">{n}</div>
                 <div>
                   <h3 className="text-slate-900 font-bold text-lg mb-1">{title}</h3>
                   <p className="text-slate-600 text-sm leading-relaxed">{desc}</p>
@@ -88,15 +88,15 @@ export default function TikTokDownloaderAndroidPage() {
       </section>
 
       {/* Features */}
-      <section className="py-12 sm:py-16 px-4 border-b border-slate-100">
+      <section className="py-12 sm:py-16 px-4 border-b border-slate-200">
         <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4">
           {([
             { Icon: ShieldCheckIcon, title: 'No Watermark', desc: 'Clean MP4 without TikTok logos or creator overlays' },
             { Icon: DevicePhoneIcon, title: 'All Android Brands', desc: 'Samsung Galaxy, Google Pixel, OnePlus, Xiaomi, Oppo' },
             { Icon: BoltIcon, title: '100% Free', desc: 'Unlimited downloads, no subscriptions, no accounts' },
           ] as const).map(({ Icon, title, desc }) => (
-            <div key={title} className="bg-slate-50 rounded-2xl p-6 border border-slate-100 text-center">
-              <div className="w-12 h-12 bg-blue-100/70 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-3">
+            <div key={title} className="bg-slate-50 rounded-2xl p-6 border border-slate-200 text-center">
+              <div className="w-12 h-12 bg-black text-white rounded-2xl flex items-center justify-center mx-auto mb-3">
                 <Icon className="w-6 h-6" />
               </div>
               <div className="font-bold text-slate-900 text-base mb-1">{title}</div>
@@ -118,10 +118,10 @@ export default function TikTokDownloaderAndroidPage() {
 
       {/* CTA */}
       <section className="py-12 px-4 max-w-5xl mx-auto mb-12">
-        <div className="bg-gradient-to-r from-[#195fd7] to-[#1e6fe8] rounded-3xl p-8 sm:p-12 text-center text-white shadow-xl shadow-blue-600/20">
-          <h2 className="text-2xl sm:text-4xl font-extrabold mb-3">Save TikTok Videos on Android</h2>
-          <p className="text-blue-100 text-sm sm:text-base max-w-xl mx-auto mb-6">Works directly in Chrome. Clean HD MP4 with zero watermark.</p>
-          <Link href="/" className="inline-block bg-white text-blue-700 font-extrabold px-8 py-4 rounded-2xl text-base sm:text-lg shadow-lg hover:bg-blue-50 hover:scale-105 transition-all active:scale-95 cursor-pointer">
+        <div className="bg-black rounded-3xl p-8 sm:p-12 text-center text-white shadow-lg">
+          <h2 className="text-2xl sm:text-4xl font-extrabold mb-3 text-white">Save TikTok Videos on Android</h2>
+          <p className="text-slate-300 text-sm sm:text-base max-w-xl mx-auto mb-6">Works directly in Chrome. Clean HD MP4 with zero watermark.</p>
+          <Link href="/" className="inline-block bg-white text-black font-extrabold px-8 py-4 rounded-2xl text-base sm:text-lg shadow-md hover:bg-slate-100 hover:scale-105 transition-all active:scale-95 cursor-pointer">
             Start Downloading Now
           </Link>
         </div>

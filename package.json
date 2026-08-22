@@ -1,10 +1,10 @@
 {
-  "name": "tiktok-downloader",
-  "version": "0.1.0",
+  "name": "save-from-internet",
+  "version": "2026.8",
   "private": true,
   "homepage": "https://savefrominternet.com",
   "scripts": {
-    "dev": "next dev --turbo",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

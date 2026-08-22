@@ -1,33 +1,179 @@
 'use client'
 
-import { useReducer, useRef, useEffect, useCallback } from 'react'
+import { useReducer, useRef, useEffect, useCallback, useMemo, useState } from 'react'
 import Image from 'next/image'
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, useRouter } from 'next/navigation'
 import { appReducer, initialState } from '@/lib/appReducer'
 import {
   SpinnerIcon,
   DownloadIcon,
   MusicIcon,
   CheckIcon,
+  CopyIcon,
   getImagePlaceholderBase64,
 } from '@/components/icons'
 import GoogleAdSense from '@/components/GoogleAdSense'
-import type { VideoMetadata } from '@/lib/appReducer'
+import { gptRewardedAd } from '@/lib/gptRewardedAd'
+import type { VideoMetadata, VideoQualityOption } from '@/lib/appReducer'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { detectPlatform } from '@/lib/validator'
+import type { SupportedPlatform } from '@/lib/types'
+
+const PLATFORM_DESTINATIONS: Record<'tiktok' | 'instagram' | 'facebook' | 'twitter', {
+  name: string
+  route: string
+  actionLabel: string
+}> = {
+  instagram: {
+    name: 'Instagram Reel',
+    route: '/instagram-reel-downloader',
+    actionLabel: 'Go to Instagram Reels Downloader',
+  },
+  tiktok: {
+    name: 'TikTok Video',
+    route: '/tiktok-video-downloader',
+    actionLabel: 'Go to TikTok Downloader',
+  },
+  facebook: {
+    name: 'Facebook Video',
+    route: '/facebook-video-downloader',
+    actionLabel: 'Go to Facebook Downloader',
+  },
+  twitter: {
+    name: 'Twitter (X) Video',
+    route: '/twitter-video-downloader',
+    actionLabel: 'Go to Twitter Downloader',
+  },
+}
 
 interface ApiResponse {
   success: boolean
   downloadUrl?: string
   audioUrl?: string
+  qualities?: VideoQualityOption[]
+  platform?: string
   metadata?: VideoMetadata
   error?: string
 }
 
-export default function DownloaderTool() {
+type VideoQualityTier = 'best' | '1080p' | '720p'
+type AudioQualityTier = 'best' | '192kbps' | '128kbps'
+
+interface DownloaderToolProps {
+  initialPlatform?: SupportedPlatform
+  customTitle?: string
+  customSubtitle?: string
+  customPlaceholder?: string
+  themeColor?: 'blue' | 'black'
+}
+
+export default function DownloaderTool({
+  initialPlatform,
+  customTitle,
+  customSubtitle,
+  customPlaceholder,
+  themeColor,
+}: DownloaderToolProps) {
   const [state, dispatch] = useReducer(appReducer, initialState)
   const containerRef = useRef<HTMLDivElement>(null)
+  const resultsRef = useRef<HTMLDivElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
   const { t } = useLanguage()
   const searchParams = useSearchParams()
+  const router = useRouter()
+
+  // Video Quality selector state: best, 1080p, 720p, 360p
+  const [selectedVideoQuality, setSelectedVideoQuality] = useState<VideoQualityTier>('best')
+
+  // Audio Quality selector state: best (320kbps), 192kbps, 128kbps
+  const [selectedAudioQuality, setSelectedAudioQuality] = useState<AudioQualityTier>('best')
+
+  // Real-time processing progress bar state
+  const [processProgress, setProcessProgress] = useState<number>(0)
+  const [processStage, setProcessStage] = useState<string>('')
+
+  // Real-time download / rendering progress bar state
+  const [isDownloadingMedia, setIsDownloadingMedia] = useState<boolean>(false)
+  const [downloadProgress, setDownloadProgress] = useState<number>(0)
+  const [downloadStage, setDownloadStage] = useState<string>('')
+
+  // Copy caption state
+  const [isCaptionCopied, setIsCaptionCopied] = useState<boolean>(false)
+
+  const handleCopyCaption = async (text: string) => {
+    if (!text) return
+    try {
+      if (typeof navigator !== 'undefined' && navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(text)
+      } else {
+        const textarea = document.createElement('textarea')
+        textarea.value = text
+        document.body.appendChild(textarea)
+        textarea.select()
+        document.execCommand('copy')
+        document.body.removeChild(textarea)
+      }
+      setIsCaptionCopied(true)
+      setTimeout(() => setIsCaptionCopied(false), 2000)
+    } catch {
+      // ignore copy fallback
+    }
+  }
+
+  // Initialize GPT Web Rewarded Ad Slot on component mount
+  useEffect(() => {
+    gptRewardedAd.init()
+  }, [])
+
+  // Detected active platform from input URL or props
+  const currentDetectedPlatform = useMemo(() => {
+    return detectPlatform(state.url) || initialPlatform || 'tiktok'
+  }, [state.url, initialPlatform])
+
+  const isBlackTheme = themeColor !== 'blue'
+
+  const currentFamily = useMemo(() => {
+    if (!initialPlatform) return null
+    if (initialPlatform.includes('instagram') || initialPlatform.includes('instagr.am')) return 'instagram'
+    if (initialPlatform.includes('facebook') || initialPlatform.includes('fb.watch') || initialPlatform.includes('fb.me')) return 'facebook'
+    if (initialPlatform.includes('twitter') || initialPlatform.includes('x.com')) return 'twitter'
+    if (initialPlatform.includes('tiktok')) return 'tiktok'
+    return null
+  }, [initialPlatform])
+
+  const detectedFamily = useMemo(() => {
+    if (!state.url.trim()) return null
+    const p = detectPlatform(state.url)
+    if (!p) return null
+    if (p.includes('instagram') || p.includes('instagr.am')) return 'instagram'
+    if (p.includes('facebook') || p.includes('fb.watch') || p.includes('fb.me')) return 'facebook'
+    if (p.includes('twitter') || p.includes('x.com')) return 'twitter'
+    if (p.includes('tiktok')) return 'tiktok'
+    return null
+  }, [state.url])
+
+  const mismatchInfo = useMemo(() => {
+    if (!detectedFamily || !currentFamily || detectedFamily === currentFamily) return null
+    return PLATFORM_DESTINATIONS[detectedFamily]
+  }, [detectedFamily, currentFamily])
+
+  const platformDisplayName = useMemo(() => {
+    switch (currentDetectedPlatform) {
+      case 'facebook':
+        return 'Facebook'
+      case 'instagram':
+      case 'instagram-video':
+      case 'instagram-post':
+        return 'Instagram'
+      case 'twitter':
+        return 'Twitter'
+      case 'tiktok':
+      case 'tiktok-mp3':
+      case 'tiktok-photo':
+      default:
+        return 'TikTok'
+    }
+  }, [currentDetectedPlatform])
 
   const handleProcess = useCallback(async (overrideUrl?: string) => {
     const urlToProcess = overrideUrl ?? state.url
@@ -37,30 +183,67 @@ export default function DownloaderTool() {
     }
     dispatch({ type: 'SET_LOADING', payload: true })
     dispatch({ type: 'RESET_DOWNLOAD_STATE' })
+
+    setProcessProgress(15)
+    setProcessStage('Connecting to media servers...')
+    const progressTimer = setInterval(() => {
+      setProcessProgress((prev) => {
+        if (prev < 35) {
+          setProcessStage('Locating high-definition 1080p stream...')
+          return prev + 6
+        } else if (prev < 70) {
+          setProcessStage('Extracting video & audio channels...')
+          return prev + 4
+        } else if (prev < 92) {
+          setProcessStage('Processing & finalizing quality options...')
+          return prev + 2
+        }
+        return prev
+      })
+    }, 250)
+
     try {
       const data: ApiResponse = await fetch('/api/download', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url: urlToProcess, type: state.downloadType }),
+        body: JSON.stringify({ url: urlToProcess.trim(), type: state.downloadType }),
       }).then((r) => r.json())
-      if (data.success && data.downloadUrl && data.metadata) {
-        dispatch({ type: 'SET_DOWNLOAD_SUCCESS', payload: { downloadUrl: data.downloadUrl, audioUrl: data.audioUrl, metadata: data.metadata } })
-        dispatch({ type: 'SET_URL', payload: '' })
+
+      clearInterval(progressTimer)
+      setProcessProgress(100)
+      setProcessStage('Ready!')
+
+      if (data.success && (data.downloadUrl || (data.metadata?.images && data.metadata.images.length > 0)) && data.metadata) {
+        dispatch({
+          type: 'SET_DOWNLOAD_SUCCESS',
+          payload: {
+            downloadUrl: data.downloadUrl || '',
+            audioUrl: data.audioUrl,
+            qualities: data.qualities,
+            platform: data.platform || currentDetectedPlatform,
+            metadata: data.metadata,
+          },
+        })
         setTimeout(() => {
-          if (containerRef.current) {
-            const r = containerRef.current.querySelector('.results-section')
-            if (r) r.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          if (resultsRef.current) {
+            resultsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
           }
-        }, 100)
+        }, 150)
       } else {
         dispatch({ type: 'SET_MESSAGE', payload: data.error || t('msgError') })
       }
     } catch {
+      clearInterval(progressTimer)
       dispatch({ type: 'SET_MESSAGE', payload: t('msgError') })
     } finally {
+      clearInterval(progressTimer)
+      setTimeout(() => {
+        setProcessProgress(0)
+        setProcessStage('')
+      }, 500)
       dispatch({ type: 'SET_LOADING', payload: false })
     }
-  }, [state.url, state.downloadType, t])
+  }, [state.url, state.downloadType, currentDetectedPlatform, t])
 
   // Auto-fill and auto-submit when ?url= query param is present
   useEffect(() => {
@@ -71,28 +254,133 @@ export default function DownloaderTool() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  const triggerActualDownload = (targetUrl: string, filename: string) => {
+    if (!targetUrl) return
+
+    setIsDownloadingMedia(true)
+    setDownloadProgress(20)
+    setDownloadStage('Preparing & rendering your Full HD media...')
+
+    const dlTimer = setInterval(() => {
+      setDownloadProgress((prev) => {
+        if (prev < 50) {
+          setDownloadStage('Synchronizing high quality video & audio...')
+          return prev + 12
+        } else if (prev < 88) {
+          setDownloadStage('Delivering file to your browser...')
+          return prev + 8
+        } else if (prev < 96) {
+          return prev + 2
+        }
+        return prev
+      })
+    }, 250)
+
+    setTimeout(() => {
+      const link = document.createElement('a')
+      link.href = targetUrl
+      link.download = filename
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+
+      clearInterval(dlTimer)
+      setDownloadProgress(100)
+      setDownloadStage('Download started!')
+
+      setTimeout(() => {
+        setIsDownloadingMedia(false)
+        setDownloadProgress(0)
+        setDownloadStage('')
+        dispatch({ type: 'SET_MESSAGE', payload: t('msgSuccess') })
+      }, 1500)
+    }, 900)
+  }
+
+  const resolveTargetUrlByQuality = (tier: VideoQualityTier): string => {
+    if (!state.qualities || state.qualities.length === 0) {
+      return state.downloadUrl || ''
+    }
+    if (tier === 'best') {
+      const best = state.qualities.find((q) =>
+        q.quality.toLowerCase().includes('4k') ||
+        q.quality.toLowerCase().includes('best') ||
+        q.quality.toLowerCase().includes('original') ||
+        q.quality.includes('1080') ||
+        q.resolution?.includes('4k') ||
+        q.resolution?.includes('1080')
+      )
+      return best?.url || state.qualities[0]?.url || state.downloadUrl || ''
+    }
+    if (tier === '1080p') {
+      const hd = state.qualities.find((q) =>
+        q.quality.includes('1080') ||
+        q.quality.toLowerCase().includes('hd') ||
+        q.resolution?.includes('1080')
+      )
+      return hd?.url || state.qualities[0]?.url || state.downloadUrl || ''
+    }
+    if (tier === '720p') {
+      const q720 = state.qualities.find((q) =>
+        q.quality.includes('720') ||
+        q.quality.toLowerCase().includes('sd') ||
+        q.resolution?.includes('720')
+      )
+      return q720?.url || state.qualities[state.qualities.length - 1]?.url || state.downloadUrl || ''
+    }
+    return state.downloadUrl || ''
+  }
+
   const handleVideoDownload = () => {
-    if (!state.downloadUrl) return
-    const link = document.createElement('a')
-    link.href = state.downloadUrl
-    link.download = `savefrominternet.com-tiktok-${Date.now()}.mp4`
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-    dispatch({ type: 'SET_MESSAGE', payload: t('msgSuccess') })
-    dispatch({ type: 'SET_URL', payload: '' })
+    let targetUrl = resolveTargetUrlByQuality(selectedVideoQuality)
+    if (!targetUrl) return
+    const platform = state.platform || currentDetectedPlatform || 'video'
+    const filename = `savefrominternet.com-${platform}-${selectedVideoQuality}-${Date.now()}.mp4`
+
+    // Append quality parameter to /api/video proxy so backend guarantees quality scaling
+    if (targetUrl.startsWith('/api/video') && !targetUrl.includes('quality=')) {
+      targetUrl += `&quality=${selectedVideoQuality}`
+    }
+
+    // Gated options (1080p, Best): Request GPT Rewarded Ad
+    if (selectedVideoQuality === 'best' || selectedVideoQuality === '1080p') {
+      gptRewardedAd.requestRewardedDownload(() => {
+        triggerActualDownload(targetUrl, filename)
+      })
+    } else {
+      // Standard options (720p, 360p): Download immediately
+      triggerActualDownload(targetUrl, filename)
+    }
   }
 
   const handleAudioDownload = () => {
-    if (!state.audioUrl) return
-    const link = document.createElement('a')
-    link.href = state.audioUrl
-    link.download = `savefrominternet.com-tiktok-audio-${Date.now()}.mp3`
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-    dispatch({ type: 'SET_MESSAGE', payload: t('msgAudioSuccess') })
-    dispatch({ type: 'SET_URL', payload: '' })
+    let rawAudio = state.audioUrl || state.downloadUrl
+    if (!rawAudio) return
+
+    // If wrapped in /api/video?url=..., extract the inner direct CDN stream URL
+    if (rawAudio.includes('url=')) {
+      try {
+        const dummyUrl = new URL(rawAudio, window.location.origin)
+        const inner = dummyUrl.searchParams.get('audioUrl') || dummyUrl.searchParams.get('url')
+        if (inner) {
+          rawAudio = inner
+        }
+      } catch { /* ignore */ }
+    }
+
+    const platform = state.platform || currentDetectedPlatform || 'audio'
+    const filename = `savefrominternet.com-${platform}-audio-${selectedAudioQuality}-${Date.now()}.mp3`
+    const targetUrl = `/api/audio?url=${encodeURIComponent(rawAudio)}&quality=${selectedAudioQuality}&platform=${platform}`
+
+    // Gated options (Best 320kbps, High 192kbps): Request GPT Rewarded Ad
+    if (selectedAudioQuality === 'best' || selectedAudioQuality === '192kbps') {
+      gptRewardedAd.requestRewardedDownload(() => {
+        triggerActualDownload(targetUrl, filename)
+      })
+    } else {
+      // Standard options (128kbps): Download immediately
+      triggerActualDownload(targetUrl, filename)
+    }
   }
 
   const handleImageDownload = async () => {
@@ -114,42 +402,20 @@ export default function DownloaderTool() {
         if (!response.ok) throw new Error()
         const blob = await response.blob()
         const blobUrl = URL.createObjectURL(blob)
-        const link = document.createElement('a')
-        link.href = blobUrl
-        link.download = `savefrominternet.com-images-${Date.now()}.zip`
-        document.body.appendChild(link)
-        link.click()
-        document.body.removeChild(link)
-        URL.revokeObjectURL(blobUrl)
+        triggerActualDownload(blobUrl, `savefrominternet.com-images-${Date.now()}.zip`)
+        setTimeout(() => URL.revokeObjectURL(blobUrl), 60000)
         dispatch({ type: 'SET_MESSAGE', payload: `${selectedImages.length} image(s) downloaded as ZIP!` })
-        dispatch({ type: 'SET_URL', payload: '' })
       } else {
-        const response = await fetch('/api/images', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ imageUrls, asZip: false }),
-        })
-        if (!response.ok) throw new Error()
-        const data = await response.json()
-        if (!data.success || !data.images) throw new Error()
-        for (const imageData of data.images) {
-          try {
-            const r = await fetch(imageData.url)
-            if (!r.ok) continue
-            const blob = await r.blob()
-            const blobUrl = URL.createObjectURL(blob)
-            const link = document.createElement('a')
-            link.href = blobUrl
-            link.download = imageData.filename
-            document.body.appendChild(link)
-            link.click()
-            document.body.removeChild(link)
-            URL.revokeObjectURL(blobUrl)
-            await new Promise((res) => setTimeout(res, 500))
-          } catch { /* skip failed image */ }
+        for (let i = 0; i < selectedImages.length; i++) {
+          const img = selectedImages[i]
+          const filename = `savefrominternet.com-image-${i + 1}-${Date.now()}.jpg`
+          const targetUrl = `/api/images?url=${encodeURIComponent(img.url)}&filename=${encodeURIComponent(filename)}`
+          triggerActualDownload(targetUrl, filename)
+          if (selectedImages.length > 1) {
+            await new Promise((res) => setTimeout(res, 1200))
+          }
         }
         dispatch({ type: 'SET_MESSAGE', payload: `${selectedImages.length} image(s) downloaded!` })
-        dispatch({ type: 'SET_URL', payload: '' })
       }
     } catch {
       dispatch({ type: 'SET_MESSAGE', payload: t('msgError') })
@@ -161,7 +427,6 @@ export default function DownloaderTool() {
   const toggleImageGallery = () => dispatch({ type: 'TOGGLE_IMAGE_GALLERY' })
   const toggleImageSelection = (id: string) => dispatch({ type: 'TOGGLE_IMAGE_SELECTION', payload: id })
   const selectAllImages = (selected: boolean) => dispatch({ type: 'SELECT_ALL_IMAGES', payload: selected })
-  const togglePreview = () => dispatch({ type: 'TOGGLE_PREVIEW' })
 
   const handleReset = () => {
     dispatch({ type: 'RESET_DOWNLOAD_STATE' })
@@ -169,311 +434,505 @@ export default function DownloaderTool() {
     containerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
+  const handlePaste = async (e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault()
+      e.stopPropagation()
+    }
+
+    try {
+      if (typeof navigator !== 'undefined' && navigator.clipboard && typeof navigator.clipboard.readText === 'function') {
+        const clipText = await navigator.clipboard.readText()
+        if (clipText && clipText.trim()) {
+          const clean = clipText.trim()
+          dispatch({ type: 'SET_URL', payload: clean })
+          if (inputRef.current) {
+            inputRef.current.value = clean
+            inputRef.current.dispatchEvent(new Event('input', { bubbles: true }))
+            inputRef.current.focus()
+          }
+          return
+        }
+      }
+    } catch (err) {
+      console.warn('Clipboard readText error:', err)
+    }
+
+    // Direct fallback: focus input so user can paste immediately
+    if (inputRef.current) {
+      inputRef.current.focus()
+      try {
+        document.execCommand('paste')
+      } catch {}
+    }
+  }
+
   const isBusy = state.loading || state.downloading || state.downloadingAudio || state.downloadingImages
 
-  return (
-    <div ref={containerRef}>
-      {/* ── SnapTik-Style Hero ── */}
-      <section
-        style={{ background: 'linear-gradient(135deg, #195fd7 0%, #1e6fe8 50%, #2563eb 100%)' }}
-        className="relative overflow-hidden py-10 sm:py-14 lg:py-18 text-white"
-      >
-        <div className="absolute inset-0 overflow-hidden hidden sm:block pointer-events-none">
-          <div className="absolute -left-20 -top-20 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
-          <div className="absolute -bottom-32 -right-20 h-96 w-96 rounded-full bg-cyan-400/20 blur-3xl" />
-          <div className="absolute left-1/2 top-1/4 h-48 w-48 -translate-x-1/2 rounded-full bg-blue-300/10 blur-2xl" />
-        </div>
+  const resolvedPlaceholder =
+    customPlaceholder || `Paste ${platformDisplayName} video link here...`
 
-        <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight text-white drop-shadow-md">
-            {t('heroTitle1')} {t('heroTitle2')}
+  return (
+    <div ref={containerRef} className="w-full bg-white">
+      {/* ── Hero Section (Solid Flat Black on Twitter, Royal Blue on others) ── */}
+      <section className={`${isBlackTheme ? 'bg-black' : 'bg-[#195fd7]'} text-white py-12 sm:py-16 px-4 transition-colors`}>
+        <div className="mx-auto max-w-4xl text-center">
+          {/* Header Title */}
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-3">
+            {customTitle || `${t('heroTitle1')} ${t('heroTitle2')}`}
           </h1>
-          <p className="mx-auto mt-3 sm:mt-4 max-w-2xl text-base sm:text-lg text-blue-100 leading-relaxed font-normal">
-            {t('heroSubtitle')}
+          {/* Subtitle */}
+          <p className={`text-sm sm:text-base ${isBlackTheme ? 'text-slate-300' : 'text-blue-100'} font-normal max-w-2xl mx-auto mb-8 sm:mb-10`}>
+            {customSubtitle || t('heroSubtitle')}
           </p>
 
-          {/* Unified SnapTik-Style Input & Download Form */}
-          <div className="mx-auto w-full max-w-2xl mt-6 sm:mt-8">
+          {/* ── Input Bar (Solid Flat White with Paste Icon) ── */}
+          <div className="max-w-3xl mx-auto">
             <form
               onSubmit={(e) => {
                 e.preventDefault()
-                if (!isBusy) handleProcess()
+                if (isBusy) return
+                if (!state.url.trim()) {
+                  dispatch({ type: 'SET_MESSAGE', payload: t('msgEnterUrl') })
+                  return
+                }
+                if (mismatchInfo) {
+                  router.push(`${mismatchInfo.route}?url=${encodeURIComponent(state.url.trim())}`)
+                  return
+                }
+                handleProcess()
               }}
-              className="flex flex-col sm:flex-row gap-2.5 sm:gap-3"
+              className="flex flex-col sm:flex-row gap-3 items-stretch"
             >
-              <label htmlFor="tiktok-url-input" className="sr-only">
-                TikTok Video URL
-              </label>
-
-              {/* White Input Pill with Paste/Clear button inside */}
-              <div className="relative flex-1 flex items-center bg-white rounded-2xl shadow-2xl border border-white/40 p-1 transition-all focus-within:ring-4 focus-within:ring-white/40">
+              {/* White Input Bar with Integrated Paste / Clear Button */}
+              <div className="relative flex-1 flex items-center bg-white rounded-xl shadow-md border border-slate-200 h-14 sm:h-16 px-3.5 sm:px-5">
                 <input
-                  id="tiktok-url-input"
+                  ref={inputRef}
+                  id="media-url-input"
                   type="url"
                   inputMode="url"
-                  placeholder={t('inputPlaceholder')}
+                  placeholder={resolvedPlaceholder}
                   value={state.url}
                   onChange={(e) => dispatch({ type: 'SET_URL', payload: e.target.value })}
-                  className="w-full h-12 sm:h-13 bg-transparent pl-4 sm:pl-5 pr-24 text-base sm:text-lg text-slate-900 outline-none placeholder:text-slate-400 font-normal"
+                  className="w-full h-full bg-transparent pr-24 text-[16px] sm:text-base text-slate-900 placeholder:text-slate-400 font-normal outline-none"
                   autoComplete="off"
-                  aria-label="TikTok Video URL"
+                  aria-label={`${platformDisplayName} Video URL`}
                 />
+
+                {/* Paste / Clear Button with text label */}
                 {state.url ? (
                   <button
                     type="button"
-                    onClick={() => dispatch({ type: 'SET_URL', payload: '' })}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-slate-400 hover:text-slate-600 transition cursor-pointer"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      e.stopPropagation()
+                      dispatch({ type: 'SET_URL', payload: '' })
+                      if (inputRef.current) {
+                        inputRef.current.value = ''
+                        inputRef.current.focus()
+                      }
+                    }}
+                    className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 z-20 px-2.5 py-1.5 bg-slate-100 hover:bg-slate-200 active:bg-slate-300 text-slate-600 hover:text-slate-900 font-semibold text-xs sm:text-sm rounded-lg border border-slate-300 transition-all flex items-center gap-1 cursor-pointer shadow-2xs active:scale-95 select-none"
                     title="Clear input"
                     aria-label="Clear input"
                   >
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                     </svg>
+                    <span>{t('btnClear')}</span>
                   </button>
                 ) : (
                   <button
                     type="button"
-                    onClick={async () => {
-                      try {
-                        const text = await navigator.clipboard.readText()
-                        if (text && text.trim()) {
-                          dispatch({ type: 'SET_URL', payload: text.trim() })
-                          if (text.includes('tiktok.com')) {
-                            handleProcess(text.trim())
-                          }
-                        }
-                      } catch {
-                        const input = containerRef.current?.querySelector('input')
-                        input?.focus()
-                      }
-                    }}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 px-3.5 py-2 text-xs sm:text-sm font-bold rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-600 transition flex items-center gap-1.5 shadow-sm cursor-pointer active:scale-95"
-                    title="Paste from clipboard"
-                    aria-label="Paste TikTok URL from clipboard"
+                    onClick={handlePaste}
+                    className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 z-20 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 active:bg-slate-300 text-slate-900 font-bold text-xs sm:text-sm rounded-lg border border-slate-300 transition-all flex items-center gap-1.5 cursor-pointer shadow-2xs active:scale-95 select-none"
+                    title="Paste URL from clipboard"
+                    aria-label="Paste URL from clipboard"
                   >
-                    <svg className="h-4 w-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M14 11l-3 3m0 0l3 3m-3-3h6" />
                     </svg>
-                    {t('btnPaste')}
+                    <span>{t('btnPaste')}</span>
                   </button>
                 )}
               </div>
 
-              {/* Primary CTA Button */}
+              {/* White Action Download Button */}
               <button
                 type="submit"
                 disabled={isBusy}
-                className="h-14 rounded-2xl bg-white text-blue-700 hover:bg-blue-50 font-extrabold px-8 text-base sm:text-lg shadow-2xl transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-75 cursor-pointer active:scale-95 whitespace-nowrap shrink-0 border border-white/60 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/50"
+                className={`h-14 sm:h-16 px-6 sm:px-8 bg-white hover:bg-slate-100 ${isBlackTheme ? 'text-black' : 'text-[#195fd7]'} font-bold text-sm sm:text-base rounded-xl shadow-md transition-all duration-150 flex items-center justify-center gap-2 cursor-pointer active:scale-95 disabled:opacity-75 whitespace-nowrap shrink-0`}
               >
                 {state.loading ? (
-                  <><SpinnerIcon className="h-5 w-5 text-blue-700" /> {t('btnProcessing')}</>
+                  <><SpinnerIcon className={`h-5 w-5 ${isBlackTheme ? 'text-black' : 'text-[#195fd7]'}`} /> {t('btnProcessing')}</>
+                ) : mismatchInfo ? (
+                  <span className="flex items-center gap-1.5">{mismatchInfo.actionLabel} →</span>
                 ) : (
-                  <><DownloadIcon className="h-5 w-5 text-blue-700" /> {t('btnDownload')}</>
+                  t('btnDownload')
                 )}
               </button>
             </form>
-          </div>
 
-          {/* Trust Badges */}
-          <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 mt-6 text-xs sm:text-sm text-blue-100 font-medium">
-            {([
-              t('badgeNoWatermark'),
-              t('badgeHD'),
-              t('badgeFree'),
-              t('badgeNoApp'),
-              t('badgeUnlimited'),
-            ]).map((badge) => (
-              <span key={badge} className="flex items-center gap-1.5">
-                <svg className="w-4 h-4 text-cyan-300 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-                {badge}
-              </span>
-            ))}
+            {/* ── Simple Plain Black Processing Progress Bar ── */}
+            {state.loading && (
+              <div className="max-w-xl mx-auto mt-6 bg-white rounded-xl p-4 sm:p-5 text-slate-900 shadow-md border border-slate-200">
+                <div className="flex items-center justify-between text-sm font-semibold mb-2">
+                  <span className="text-slate-800">Processing video...</span>
+                  <span className="font-bold text-black font-mono text-base">{processProgress}%</span>
+                </div>
+                <div className="w-full bg-slate-200 rounded-full h-3 overflow-hidden">
+                  <div
+                    className="h-full bg-black transition-all duration-200 ease-out"
+                    style={{ width: `${processProgress}%` }}
+                  />
+                </div>
+              </div>
+            )}
+
+            {/* Feature Badges */}
+            <div className={`flex flex-wrap justify-center items-center gap-x-6 gap-y-2 mt-7 text-xs sm:text-sm ${isBlackTheme ? 'text-slate-300' : 'text-blue-100'} font-medium`}>
+              {[
+                t('badgeHD'),
+                t('badgeNoWatermark'),
+                t('badgeFree'),
+                t('badgeUnlimited'),
+              ].map((badge, idx) => (
+                <span key={idx} className="flex items-center gap-1.5">
+                  <svg className="w-4 h-4 text-white flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                  {badge}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── Ads Section (Directly Below Blue Box) ── */}
-      <div className="max-w-4xl mx-auto px-4 py-6 sm:py-8 flex justify-center">
-        <GoogleAdSense
-          adSlot="5309301802"
-          adFormat="auto"
-          className="flex justify-center w-full"
-          containerStyle="default"
-        />
-      </div>
+      {/* ── Simple Plain Black Download Progress Bar ── */}
+      {isDownloadingMedia && (
+        <div className="max-w-2xl mx-auto px-4 mt-6">
+          <div className="bg-white text-slate-900 rounded-xl border border-slate-300 p-4 sm:p-5 shadow-sm space-y-2.5">
+            <div className="flex items-center justify-between text-sm font-semibold">
+              <span className="text-slate-800">Preparing download...</span>
+              <span className="font-mono text-black font-bold text-base">{downloadProgress}%</span>
+            </div>
+            <div className="w-full bg-slate-200 rounded-full h-3 overflow-hidden">
+              <div
+                className="h-full bg-black transition-all duration-200 ease-out"
+                style={{ width: `${downloadProgress}%` }}
+              />
+            </div>
+          </div>
+        </div>
+      )}
 
-      {/* ── Results Section ── */}
-      <div className="results-section max-w-2xl mx-auto px-4 pb-4">
-        {/* Status message */}
-        {state.message && (
-          <div className={`p-4 rounded-xl text-center text-sm mb-4 font-medium ${
-            state.message.includes('success') || state.message.includes('🎉') || state.message.includes('🎵')
-              ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
-              : 'bg-red-50 text-red-600 border border-red-200'
+      {/* ── Status Message Display ── */}
+      {state.message && !isDownloadingMedia && (
+        <div className="max-w-2xl mx-auto px-4 mt-6">
+          <div className={`p-4 rounded-xl text-center text-sm font-medium border ${
+            state.message.includes('success') || state.message.includes('🎉') || state.message.includes('🎵') || state.message.includes('downloaded')
+              ? 'bg-slate-100 text-slate-900 border-slate-300'
+              : 'bg-red-50 text-red-800 border-red-200'
           }`}>
             {state.message}
           </div>
-        )}
+        </div>
+      )}
 
-        {/* Video metadata + download */}
-        {state.videoMetadata && (
-          <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-100 shadow-2xl p-5 sm:p-7 space-y-5">
-            {/* Metadata row */}
-            <div className="flex items-start gap-4">
-              {state.videoMetadata.thumbnail && (
-                <div className="relative w-20 h-28 shrink-0 overflow-hidden rounded-xl bg-slate-100 shadow-sm">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={state.videoMetadata.thumbnail}
-                    alt="TikTok video thumbnail"
-                    className="w-full h-full object-cover"
-                    onError={(e) => { e.currentTarget.style.display = 'none' }}
-                  />
-                  {state.videoMetadata.duration > 0 && (
-                    <span className="absolute bottom-1.5 right-1.5 bg-black/70 text-white text-[11px] px-1.5 py-0.5 rounded font-mono font-medium">
-                      {Math.floor(state.videoMetadata.duration / 60)}:{(state.videoMetadata.duration % 60).toString().padStart(2, '0')}
-                    </span>
-                  )}
+      {/* ── Post-Process Results (Clean White & Slate Theme, Strict Hierarchy) ── */}
+      {state.videoMetadata && (
+        <div ref={resultsRef} className="results-section max-w-3xl mx-auto px-4 py-8 sm:py-10 space-y-6">
+          {/* Main Clean White Results Card */}
+          <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 space-y-6 text-slate-900 shadow-sm">
+            {/* 1. Heading: Video Ready! */}
+            <div className="border-b border-slate-200 pb-3">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
+                {t('videoReady')}
+              </h2>
+            </div>
+
+            {/* 2. Metadata Grid: Title, Uploader, Duration, Views/Quality */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm bg-slate-50 p-4 sm:p-5 rounded-xl border border-slate-200">
+              {/* Left Column */}
+              <div className="space-y-3">
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <span className="block text-slate-900 font-bold">{t('labelTitle')}</span>
+                    {state.videoMetadata.title && (
+                      <button
+                        type="button"
+                        onClick={() => handleCopyCaption(state.videoMetadata?.title || '')}
+                        className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-bold text-white bg-black hover:bg-slate-800 rounded-lg transition-all cursor-pointer shadow-sm hover:shadow active:scale-95 select-none shrink-0"
+                        title="Copy Caption / Title"
+                      >
+                        {isCaptionCopied ? (
+                          <>
+                            <CheckIcon className="w-3.5 h-3.5 text-emerald-400" />
+                            <span className="text-emerald-400 font-bold">Copied!</span>
+                          </>
+                        ) : (
+                          <>
+                            <CopyIcon className="w-3.5 h-3.5 text-white" />
+                            <span>Copy Caption</span>
+                          </>
+                        )}
+                      </button>
+                    )}
+                  </div>
+                  <div className="max-h-44 overflow-y-auto pr-1 select-text">
+                    <p className="text-slate-700 font-normal leading-relaxed text-xs sm:text-sm whitespace-pre-line">
+                      {state.videoMetadata.title || 'Social Video Post'}
+                    </p>
+                  </div>
                 </div>
-              )}
-              <div className="flex-1 min-w-0 flex flex-col justify-center">
-                <p className="text-slate-900 font-bold text-sm sm:text-base line-clamp-2 leading-snug">{state.videoMetadata.title}</p>
-                <p className="text-slate-500 text-xs sm:text-sm mt-1.5 font-medium">@{state.videoMetadata.author}</p>
-                <span className="inline-flex items-center gap-1.5 text-xs text-emerald-600 font-medium mt-2">
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                  Ready to download in Full HD
-                </span>
+                <div>
+                  <span className="block text-slate-900 font-bold mb-0.5">{t('labelAuthor')}</span>
+                  <p className="text-slate-600 font-normal">
+                    {state.videoMetadata.author || 'Creator'}
+                  </p>
+                </div>
+              </div>
+
+              {/* Right Column */}
+              <div className="space-y-3">
+                <div>
+                  <span className="block text-slate-900 font-bold mb-0.5">{t('labelDuration')}</span>
+                  <p className="text-slate-700 font-normal">
+                    {state.videoMetadata.duration > 0
+                      ? `${Math.floor(state.videoMetadata.duration / 60)}m ${state.videoMetadata.duration % 60}s`
+                      : 'Standard'}
+                  </p>
+                </div>
+                <div>
+                  <span className="block text-slate-900 font-bold mb-0.5">{t('labelQuality')}</span>
+                  <p className={`${isBlackTheme ? 'text-black' : 'text-[#195fd7]'} font-semibold`}>
+                    {selectedVideoQuality === 'best'
+                      ? 'Best (4K Quality)'
+                      : selectedVideoQuality === '1080p'
+                      ? '1080p Full HD'
+                      : '720p HD'}
+                  </p>
+                </div>
               </div>
             </div>
 
-            {/* Preview toggle */}
-            {state.downloadUrl && (
-              <button onClick={togglePreview} className="w-full py-2.5 px-4 bg-slate-50 hover:bg-slate-100 text-slate-600 font-medium rounded-xl transition-all text-xs sm:text-sm border border-slate-200">
-                {state.showPreview ? t('btnHidePreview') : t('btnShowPreview')}
-              </button>
-            )}
-
-            {/* Video player */}
-            {state.showPreview && state.downloadUrl && (
-              <div className="rounded-xl overflow-hidden bg-slate-900 border border-slate-200">
-                <video
-                  src={state.downloadUrl}
-                  controls
-                  className="w-full max-h-72 object-contain"
-                  preload="metadata"
-                  onError={() => dispatch({ type: 'SET_MESSAGE', payload: 'Preview unavailable, but download should work' })}
-                >
-                  Your browser does not support the video tag.
-                </video>
+            {/* Thumbnail Preview (if present) */}
+            {state.videoMetadata.thumbnail && (
+              <div className="relative w-full h-44 sm:h-52 rounded-xl overflow-hidden bg-slate-100 border border-slate-200">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={state.videoMetadata.thumbnail}
+                  alt="Video thumbnail preview"
+                  className="w-full h-full object-cover"
+                  onError={(e) => { e.currentTarget.style.display = 'none' }}
+                />
+                <div className="absolute inset-0 bg-black/20 pointer-events-none" />
+                <div className="absolute bottom-2.5 left-3 text-xs text-white font-medium flex items-center gap-1.5 drop-shadow-sm">
+                  <CheckIcon className="w-4 h-4 text-white" />
+                  Verified Video Stream
+                </div>
               </div>
             )}
 
-            {/* Image gallery */}
-            {state.videoMetadata?.images && state.videoMetadata.images.length > 0 && (
-              <div className="space-y-3">
-                <button onClick={toggleImageGallery} className="w-full py-3 px-4 bg-blue-50 hover:bg-blue-100 text-blue-600 font-semibold rounded-xl transition-all text-sm border border-blue-200">
-                  {state.showImageGallery ? t('btnHideImages') : `${t('btnShowImages')} (${state.videoMetadata.images.length})`}
-                </button>
-                {state.showImageGallery && (
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between bg-slate-50 rounded-xl p-3 border border-slate-100">
-                      <span className="text-slate-700 text-sm font-medium">{t('labelSelectImages')}</span>
-                      <div className="flex gap-2">
-                        <button onClick={() => selectAllImages(true)} className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg">{t('btnAll')}</button>
-                        <button onClick={() => selectAllImages(false)} className="px-3 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-semibold rounded-lg">{t('btnNone')}</button>
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                      {state.videoMetadata.images.map((image, index) => (
-                        <div
-                          key={image.id}
-                          onClick={() => toggleImageSelection(image.id)}
-                          className={`relative rounded-xl overflow-hidden cursor-pointer transition-all duration-150 ${image.selected ? 'ring-2 ring-blue-600 ring-offset-1' : 'hover:ring-2 hover:ring-slate-300'}`}
-                        >
-                          <Image src={image.thumbnail} alt={`Image ${index + 1}`} width={200} height={128} className="object-cover w-full aspect-square"
-                            onError={(e) => { e.currentTarget.src = getImagePlaceholderBase64() }} />
-                          <div className={`absolute inset-0 transition-all ${image.selected ? 'bg-blue-600/15' : 'hover:bg-black/10'}`} />
-                          <div className={`absolute top-1.5 right-1.5 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${image.selected ? 'bg-blue-600 border-blue-600' : 'border-white/70 bg-black/20'}`}>
-                            {image.selected && <CheckIcon className="w-3 h-3 text-white" />}
-                          </div>
-                          <span className="absolute top-1.5 left-1.5 bg-black/50 text-white text-xs px-1.5 py-0.5 rounded font-medium">{index + 1}</span>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="flex items-center gap-3 bg-slate-50 rounded-xl p-3 border border-slate-100">
-                      <input
-                        type="checkbox"
-                        id="downloadAsZip"
-                        checked={state.downloadImagesAsZip}
-                        onChange={(e) => dispatch({ type: 'SET_DOWNLOAD_IMAGES_AS_ZIP', payload: e.target.checked })}
-                        className="w-4 h-4 accent-blue-600 rounded"
-                      />
-                      <label htmlFor="downloadAsZip" className="text-slate-700 text-sm cursor-pointer font-medium">
-                        {t('labelDownloadZip')}
-                      </label>
-                    </div>
-                    <button
-                      onClick={handleImageDownload}
-                      disabled={state.downloadingImages || !state.videoMetadata?.images?.some((img) => img.selected)}
-                      className="w-full py-3.5 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
+            {/* 3. Video Quality Options & Download Button (Only for Video Posts) */}
+            {(!state.videoMetadata?.images || state.videoMetadata.images.length === 0) && (
+              <div className="space-y-3 pt-2">
+                <label className="block text-sm font-bold text-slate-900">
+                  {t('labelQuality')}
+                </label>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                  {(
+                    [
+                      { id: 'best', label: 'Best (4K Quality)', isAdRequired: true },
+                      { id: '1080p', label: '1080p Full HD', isAdRequired: true },
+                      { id: '720p', label: '720p HD', isAdRequired: false },
+                    ] as const
+                  ).map((tier) => (
+                    <label
+                      key={tier.id}
+                      onClick={() => setSelectedVideoQuality(tier.id)}
+                      className={`flex flex-col items-center justify-center gap-1 py-3.5 px-3 rounded-xl border text-sm cursor-pointer transition-all select-none ${
+                        selectedVideoQuality === tier.id
+                          ? (isBlackTheme ? 'bg-slate-100 border-black text-black ring-1 ring-black font-bold shadow-xs' : 'bg-blue-50 border-[#195fd7] text-[#195fd7] ring-1 ring-[#195fd7] font-bold shadow-xs')
+                          : 'bg-white border-slate-200 text-slate-700 hover:border-slate-300 hover:bg-slate-50'
+                      }`}
                     >
-                      {state.downloadingImages ? (
-                        <><SpinnerIcon className="h-4 w-4" /> {t('btnDownloadingImages')}</>
-                      ) : (
-                        <><DownloadIcon className="h-4 w-4" /> {t('btnDownloadImages')} {state.videoMetadata?.images?.filter((img) => img.selected).length || 0} Image(s)</>
+                      <div className="flex items-center gap-2">
+                        <input
+                          type="radio"
+                          name="video-quality"
+                          value={tier.id}
+                          checked={selectedVideoQuality === tier.id}
+                          onChange={() => setSelectedVideoQuality(tier.id)}
+                          className={`w-3.5 h-3.5 ${isBlackTheme ? 'accent-black' : 'accent-[#195fd7]'} cursor-pointer`}
+                        />
+                        <span className="font-semibold">{tier.label}</span>
+                      </div>
+                      {tier.isAdRequired && (
+                        <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">
+                          {t('watchAd')}
+                        </span>
                       )}
-                    </button>
+                    </label>
+                  ))}
+                </div>
+
+                {/* Video Download CTA Button */}
+                <button
+                  onClick={handleVideoDownload}
+                  disabled={state.downloading || state.downloadingImages}
+                  className={`w-full h-13 ${isBlackTheme ? 'bg-black hover:bg-slate-800' : 'bg-[#195fd7] hover:bg-[#1550b8]'} text-white font-bold text-base rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm active:scale-[0.99] disabled:opacity-50`}
+                >
+                  <DownloadIcon className="h-5 w-5 text-white" /> {t('btnDownload')}
+                </button>
+              </div>
+            )}
+
+            {/* 4. Audio Options Section (Extract MP3 from Instagram Reels & Videos) */}
+            {(state.audioUrl || state.downloadUrl) && (!state.videoMetadata?.images || state.videoMetadata.images.length === 0) && (
+              <div className="space-y-3 pt-4 border-t border-slate-200">
+                <label className="block text-sm font-bold text-slate-900">
+                  {t('labelAudioQuality')}
+                </label>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                  {(
+                    [
+                      { id: 'best', label: 'Best Audio (320kbps)', isAdRequired: true },
+                      { id: '192kbps', label: 'High Quality (192kbps)', isAdRequired: true },
+                      { id: '128kbps', label: 'Standard (128kbps)', isAdRequired: false },
+                    ] as const
+                  ).map((tier) => (
+                    <label
+                      key={tier.id}
+                      onClick={() => setSelectedAudioQuality(tier.id)}
+                      className={`flex flex-col items-center justify-center gap-1 py-3 px-3 rounded-xl border text-sm cursor-pointer transition-all select-none ${
+                        selectedAudioQuality === tier.id
+                          ? (isBlackTheme ? 'bg-slate-100 border-black text-black ring-1 ring-black font-bold shadow-xs' : 'bg-blue-50 border-[#195fd7] text-[#195fd7] ring-1 ring-[#195fd7] font-bold shadow-xs')
+                          : 'bg-white border-slate-200 text-slate-700 hover:border-slate-300 hover:bg-slate-50'
+                      }`}
+                    >
+                      <div className="flex items-center gap-2">
+                        <input
+                          type="radio"
+                          name="audio-quality"
+                          value={tier.id}
+                          checked={selectedAudioQuality === tier.id}
+                          onChange={() => setSelectedAudioQuality(tier.id)}
+                          className={`w-3.5 h-3.5 ${isBlackTheme ? 'accent-black' : 'accent-[#195fd7]'} cursor-pointer`}
+                        />
+                        <span>{tier.label}</span>
+                      </div>
+                      {tier.isAdRequired && (
+                        <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">
+                          {t('watchAd')}
+                        </span>
+                      )}
+                    </label>
+                  ))}
+                </div>
+
+                {/* Audio Download Button */}
+                <button
+                  onClick={handleAudioDownload}
+                  disabled={state.downloadingAudio || state.downloadingImages}
+                  className="w-full h-12 bg-black hover:bg-slate-800 text-white font-bold text-sm sm:text-base rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm active:scale-[0.99] disabled:opacity-50"
+                >
+                  <MusicIcon className="h-4 w-4 text-white" /> {t('btnExtractMP3')}
+                </button>
+              </div>
+            )}
+
+            {/* Photo Carousel Support (if images post) */}
+            {state.videoMetadata?.images && state.videoMetadata.images.length > 0 && (
+              <div className="space-y-4 pt-2">
+                <div className="flex items-center justify-between bg-slate-50 rounded-xl p-3 border border-slate-200">
+                  <span className="text-slate-900 text-sm font-bold">
+                    {t('labelSelectImages')} ({state.videoMetadata.images.length} {state.videoMetadata.images.length === 1 ? 'Photo' : 'Photos'})
+                  </span>
+                  <div className="flex gap-2">
+                    <button onClick={() => selectAllImages(true)} className="px-3 py-1 bg-black text-white text-xs font-semibold rounded-lg hover:bg-slate-800 transition cursor-pointer">{t('btnAll')}</button>
+                    <button onClick={() => selectAllImages(false)} className="px-3 py-1 bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg hover:bg-slate-300 transition cursor-pointer">{t('btnNone')}</button>
                   </div>
-                )}
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                  {state.videoMetadata.images.map((image, index) => (
+                    <div
+                      key={image.id}
+                      onClick={() => toggleImageSelection(image.id)}
+                      className={`relative rounded-xl overflow-hidden cursor-pointer transition-all ${image.selected ? `ring-2 ${isBlackTheme ? 'ring-black' : 'ring-[#195fd7]'} ring-offset-2 ring-offset-white` : 'opacity-80 hover:opacity-100'}`}
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={image.thumbnail}
+                        alt={`Image ${index + 1}`}
+                        loading="lazy"
+                        className="object-cover w-full aspect-square bg-slate-100"
+                        onError={(e) => { e.currentTarget.src = getImagePlaceholderBase64() }}
+                      />
+                      <div className={`absolute top-1.5 right-1.5 w-5 h-5 rounded-full border flex items-center justify-center transition-all ${image.selected ? (isBlackTheme ? 'bg-black border-black' : 'bg-[#195fd7] border-[#195fd7]') : 'border-white/60 bg-black/40'}`}>
+                        {image.selected && <CheckIcon className="w-3 h-3 text-white" />}
+                      </div>
+                      <span className="absolute top-1.5 left-1.5 bg-black/70 text-white text-[11px] px-1.5 py-0.5 rounded font-medium">{index + 1}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex items-center gap-3 bg-slate-50 rounded-xl p-3 border border-slate-200">
+                  <input
+                    type="checkbox"
+                    id="downloadAsZip"
+                    checked={state.downloadImagesAsZip}
+                    onChange={(e) => dispatch({ type: 'SET_DOWNLOAD_IMAGES_AS_ZIP', payload: e.target.checked })}
+                    className={`w-4 h-4 ${isBlackTheme ? 'accent-black' : 'accent-[#195fd7]'} rounded cursor-pointer`}
+                  />
+                  <label htmlFor="downloadAsZip" className="text-slate-700 text-sm cursor-pointer font-medium">
+                    {t('labelDownloadZip')}
+                  </label>
+                </div>
+                <button
+                  onClick={handleImageDownload}
+                  disabled={state.downloadingImages || !state.videoMetadata?.images?.some((img) => img.selected)}
+                  className={`w-full h-13 ${isBlackTheme ? 'bg-black hover:bg-slate-800' : 'bg-[#195fd7] hover:bg-[#1550b8]'} text-white font-bold text-base rounded-xl transition-all flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer shadow-sm active:scale-[0.99]`}
+                >
+                  {state.downloadingImages ? (
+                    <><SpinnerIcon className="h-5 w-5 text-white" /> {t('btnDownloadingImages')}</>
+                  ) : (
+                    <><DownloadIcon className="h-5 w-5 text-white" /> {state.downloadImagesAsZip ? 'Download All as ZIP' : 'Download Selected'}</>
+                  )}
+                </button>
               </div>
             )}
 
-            {/* Main Action Download Buttons */}
-            {(state.downloadUrl || state.audioUrl) && (
-              <div className="space-y-3 pt-1">
-                {state.downloadUrl && (
-                  <button
-                    onClick={handleVideoDownload}
-                    disabled={state.downloading || state.downloadingImages}
-                    className="w-full py-4 px-6 bg-gradient-to-r from-[#195fd7] to-[#1e6fe8] hover:from-[#154fb3] hover:to-[#195fd7] text-white font-bold rounded-xl sm:rounded-2xl transition-all flex items-center justify-center gap-2.5 shadow-xl shadow-blue-600/25 text-base active:scale-[0.99] disabled:opacity-50 cursor-pointer"
-                  >
-                    {state.downloading ? <><SpinnerIcon className="h-5 w-5" /> {t('btnDownloading')}</> : <><DownloadIcon className="h-5 w-5" /> {t('btnDownloadMP4')} (No Watermark HD)</>}
-                  </button>
-                )}
-                {state.audioUrl && (
-                  <button
-                    onClick={handleAudioDownload}
-                    disabled={state.downloadingAudio || state.downloadingImages}
-                    className="w-full py-3.5 px-6 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold rounded-xl sm:rounded-2xl transition-all flex items-center justify-center gap-2.5 border border-slate-200/80 active:scale-[0.99] text-sm sm:text-base disabled:opacity-50 cursor-pointer"
-                  >
-                    {state.downloadingAudio ? <><SpinnerIcon className="h-5 w-5" /> {t('btnExtracting')}</> : <><MusicIcon className="h-5 w-5 text-blue-600" /> {t('btnExtractMP3')} (High Quality Audio)</>}
-                  </button>
-                )}
-              </div>
-            )}
+            {/* Standard Google AdSense Advertisement Unit */}
+            <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 min-h-[250px] flex flex-col items-center justify-center">
+              <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-2">Advertisement</span>
+              <GoogleAdSense
+                adSlot="5309301802"
+                adFormat="auto"
+                className="flex justify-center w-full"
+                containerStyle="default"
+                minHeight={250}
+              />
+            </div>
 
-            {/* Download Another Video Link */}
+            {/* 5. Download Another Button */}
             <button
               onClick={handleReset}
               type="button"
-              className="w-full pt-2 flex items-center justify-center gap-2 text-sm font-semibold text-slate-500 hover:text-blue-600 transition-colors py-2 cursor-pointer"
+              className="w-full py-3 px-6 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold rounded-xl transition-all flex items-center justify-center gap-2 text-sm border border-slate-300 active:scale-[0.99] cursor-pointer"
             >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              <svg className="w-4 h-4 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
               </svg>
-              Download Another Video
+              {t('btnDownloadAnother')}
             </button>
-
-            {isBusy && (
-              <p className="text-center text-xs text-slate-400">{t('msgPreparing')}</p>
-            )}
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   )
 }
+
+
+

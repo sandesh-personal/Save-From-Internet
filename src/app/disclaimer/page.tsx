@@ -41,7 +41,7 @@ export default function DisclaimerPage() {
             </p>
             <p className="text-sm text-slate-500">
               If you are a copyright owner and have inquiries, please contact us at{' '}
-              <a href="mailto:copyright@savefrominternet.com" className="text-blue-600 font-bold hover:underline">
+              <a href="mailto:copyright@savefrominternet.com" className="text-black font-bold hover:underline">
                 copyright@savefrominternet.com
               </a>.
             </p>
@@ -57,10 +57,10 @@ export default function DisclaimerPage() {
           <section className="bg-slate-50 rounded-2xl p-6 border border-slate-100">
             <h2 className="text-lg font-bold text-slate-900 mb-3">Helpful Resources</h2>
             <div className="flex flex-wrap gap-3">
-              <Link href="/privacy-policy" className="text-sm font-bold text-blue-600 hover:underline">Privacy Policy →</Link>
-              <Link href="/faq" className="text-sm font-bold text-blue-600 hover:underline">FAQ →</Link>
-              <Link href="/how-to-download-tiktok-videos" className="text-sm font-bold text-blue-600 hover:underline">How to Download →</Link>
-              <Link href="/tiktok-video-downloader" className="text-sm font-bold text-blue-600 hover:underline">TikTok Downloader →</Link>
+              <Link href="/privacy-policy" className="text-sm font-bold text-black hover:underline">Privacy Policy →</Link>
+              <Link href="/faq" className="text-sm font-bold text-black hover:underline">FAQ →</Link>
+              <Link href="/how-to-download-tiktok-videos" className="text-sm font-bold text-black hover:underline">How to Download →</Link>
+              <Link href="/tiktok-video-downloader" className="text-sm font-bold text-black hover:underline">TikTok Downloader →</Link>
             </div>
           </section>
         </div>

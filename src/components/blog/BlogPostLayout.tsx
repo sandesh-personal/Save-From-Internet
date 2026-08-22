@@ -75,10 +75,10 @@ export default function BlogPostLayout({
       )}
 
       {/* Sticky breadcrumb */}
-      <div className="bg-white border-b border-slate-100 px-4 py-3 sticky top-16 z-40 shadow-xs">
+      <div className="bg-white border-b border-slate-200 px-4 py-3 sticky top-16 z-40 shadow-xs">
         <div className="max-w-3xl mx-auto flex items-center justify-between gap-2">
           <div className="flex items-center gap-2 text-sm">
-            <Link href="/blog" className="text-blue-600 hover:underline font-bold flex items-center gap-1">
+            <Link href="/blog" className="text-slate-900 hover:text-black font-bold flex items-center gap-1">
               ← Blog
             </Link>
             <span className="text-slate-300">/</span>
@@ -86,7 +86,7 @@ export default function BlogPostLayout({
           </div>
           <Link
             href="/"
-            className="inline-flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 py-1.5 rounded-full text-xs shadow-sm hover:scale-105 transition-all whitespace-nowrap"
+            className="inline-flex items-center gap-1.5 bg-black hover:bg-slate-800 text-white font-bold px-4 py-1.5 rounded-full text-xs shadow-sm hover:scale-105 transition-all whitespace-nowrap"
           >
             Download Now
           </Link>
@@ -97,7 +97,7 @@ export default function BlogPostLayout({
       <article className="max-w-3xl mx-auto px-4 py-10">
         {/* Category badge + heading */}
         <header className="mb-8">
-          <div className="inline-block bg-blue-50 text-blue-600 text-xs font-bold px-3.5 py-1.5 rounded-full mb-4 border border-blue-100">
+          <div className="inline-block bg-slate-100 text-slate-800 text-xs font-bold px-3.5 py-1.5 rounded-full mb-4 border border-slate-200">
             {label}
           </div>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight mb-4 tracking-tight">
@@ -118,21 +118,21 @@ export default function BlogPostLayout({
             <span>·</span>
             <span>{readingTime} min read</span>
             <span>·</span>
-            <Link href="/" className="text-blue-600 hover:underline font-semibold">
+            <Link href="/" className="text-slate-900 hover:underline font-semibold">
               SaveFromInternet.com
             </Link>
           </div>
 
           {/* Author bio */}
-          <div className="flex items-start gap-4 mt-6 p-4 bg-slate-50 rounded-2xl border border-slate-100">
-            <div className="w-11 h-11 rounded-2xl bg-blue-600 flex items-center justify-center text-white font-bold text-base flex-shrink-0 shadow-md shadow-blue-500/20">
+          <div className="flex items-start gap-4 mt-6 p-4 bg-slate-50 rounded-2xl border border-slate-200">
+            <div className="w-11 h-11 rounded-2xl bg-black flex items-center justify-center text-white font-bold text-base flex-shrink-0 shadow-sm">
               S
             </div>
             <div>
               <div className="text-sm font-bold text-slate-900">Sandy</div>
-              <div className="text-xs text-blue-600 font-semibold mb-1">Founder, SaveFromInternet.com</div>
+              <div className="text-xs text-slate-500 font-semibold mb-1">Founder, SaveFromInternet.com</div>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Building free video-download tools since 2024. Expert in web APIs, TikTok extractors, and multimedia processing across all major platforms.
+                Building free video-download tools since 2024. Expert in web APIs, extractors, and multimedia processing across all major platforms.
               </p>
             </div>
           </div>
@@ -149,14 +149,14 @@ export default function BlogPostLayout({
         </div>
 
         {/* Top CTA Banner */}
-        <div className="bg-blue-50 border border-blue-100 rounded-2xl p-4 sm:p-5 mb-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5 mb-8 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="text-center sm:text-left">
-            <p className="font-bold text-slate-900 text-sm sm:text-base">Download TikTok videos — 100% free</p>
+            <p className="font-bold text-slate-900 text-sm sm:text-base">Download videos &amp; media — 100% free</p>
             <p className="text-xs text-slate-500 mt-0.5">Videos · MP3 audio · Photo carousels · No watermark · No app · No signup</p>
           </div>
           <Link
             href="/"
-            className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3 rounded-xl text-sm shadow-md hover:scale-105 transition-all whitespace-nowrap active:scale-95 cursor-pointer"
+            className="inline-flex items-center gap-2 bg-black hover:bg-slate-800 text-white font-bold px-6 py-3 rounded-xl text-sm shadow-sm hover:scale-105 transition-all whitespace-nowrap active:scale-95 cursor-pointer"
           >
             Download Now
           </Link>
@@ -177,16 +177,16 @@ export default function BlogPostLayout({
         </div>
 
         {/* Bottom CTA */}
-        <div className="bg-gradient-to-r from-[#195fd7] to-[#1e6fe8] rounded-3xl p-8 text-center mt-10 shadow-xl shadow-blue-600/20">
+        <div className="bg-black rounded-3xl p-8 sm:p-10 text-center mt-10 shadow-lg text-white">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">
-            Download TikTok Videos Without Watermark — Free
+            Download Videos &amp; Media Without Watermark — Free
           </h2>
-          <p className="text-blue-100 mb-6 text-sm sm:text-base max-w-xl mx-auto">
-            Paste any TikTok link and get an HD video, MP3 audio, or photo ZIP in seconds. No app, no account, no watermark.
+          <p className="text-slate-300 mb-6 text-sm sm:text-base max-w-xl mx-auto">
+            Paste any social media link and get an HD video, MP3 audio, or photo ZIP in seconds. No app, no account, no watermark.
           </p>
           <Link
             href="/"
-            className="inline-block bg-white text-blue-700 font-extrabold px-8 py-4 rounded-2xl text-lg shadow-xl hover:bg-blue-50 hover:scale-105 transition-all active:scale-95 cursor-pointer"
+            className="inline-block bg-white text-black font-extrabold px-8 py-4 rounded-2xl text-base sm:text-lg shadow-md hover:bg-slate-100 hover:scale-105 transition-all active:scale-95 cursor-pointer"
           >
             Download Now
           </Link>
@@ -205,13 +205,13 @@ export default function BlogPostLayout({
         <RelatedPosts category={category} currentSlug={currentSlug} />
 
         {/* Navigation */}
-        <div className="mt-8 flex items-center justify-between border-t border-slate-100 pt-6">
-          <Link href="/blog" className="text-blue-600 hover:underline font-bold text-sm flex items-center gap-1">
+        <div className="mt-8 flex items-center justify-between border-t border-slate-200 pt-6">
+          <Link href="/blog" className="text-slate-900 hover:text-black font-bold text-sm flex items-center gap-1">
             ← Back to All Posts
           </Link>
           <a
             href="#top"
-            className="text-slate-400 hover:text-blue-600 font-semibold text-sm flex items-center gap-1 transition-colors"
+            className="text-slate-400 hover:text-black font-semibold text-sm flex items-center gap-1 transition-colors"
           >
             ↑ Back to Top
           </a>

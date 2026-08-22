@@ -63,7 +63,7 @@ const faqs: { question: string; answer: React.ReactNode }[] = [
     answer: (
       <>
         Yes. After pasting a TikTok link, you can click &quot;Extract MP3&quot; to download the audio track in crystal-clear high quality. Perfect for ringtones, background music, or offline listening. You can also use our dedicated{' '}
-        <Link href="/tiktok-to-mp3" className="text-blue-600 font-bold hover:underline">
+        <Link href="/tiktok-to-mp3" className="text-black font-bold hover:underline">
           TikTok to MP3 converter
         </Link>.
       </>
@@ -74,7 +74,7 @@ const faqs: { question: string; answer: React.ReactNode }[] = [
     answer: (
       <>
         Yes. Open Safari on your iPhone, go to savefrominternet.com, paste the TikTok link, and tap Download. When the video opens in Safari, tap the share icon and select &quot;Save Video&quot; to save directly to your Camera Roll. Check out our detailed{' '}
-        <Link href="/tiktok-video-downloader-iphone" className="text-blue-600 font-bold hover:underline">
+        <Link href="/tiktok-video-downloader-iphone" className="text-black font-bold hover:underline">
           iPhone TikTok download guide
         </Link>.
       </>
@@ -85,7 +85,7 @@ const faqs: { question: string; answer: React.ReactNode }[] = [
     answer: (
       <>
         Yes. Open Chrome on your Android phone or tablet, go to savefrominternet.com, paste the TikTok URL, and tap Download. The video or MP3 audio saves automatically to your Downloads folder. See our{' '}
-        <Link href="/tiktok-video-downloader-android" className="text-blue-600 font-bold hover:underline">
+        <Link href="/tiktok-video-downloader-android" className="text-black font-bold hover:underline">
           Android TikTok download tutorial
         </Link>.
       </>
@@ -106,7 +106,7 @@ const faqs: { question: string; answer: React.ReactNode }[] = [
     answer: (
       <>
         Paste the TikTok photo post link on savefrominternet.com and click Download. Tap &quot;Show Images&quot; to preview all photos, then select specific images or download all of them at once in a convenient ZIP archive. See our{' '}
-        <Link href="/tiktok-photo-downloader" className="text-blue-600 font-bold hover:underline">
+        <Link href="/tiktok-photo-downloader" className="text-black font-bold hover:underline">
           TikTok Photo Downloader
         </Link>{' '}
         for details.
@@ -153,15 +153,15 @@ export default function FAQPage() {
       />
 
       {/* Hero */}
-      <section className="bg-gradient-to-b from-blue-50/50 via-white to-white py-12 sm:py-16 px-4 text-center border-b border-slate-100">
+      <section className="bg-black py-12 sm:py-16 px-4 text-center text-white">
         <div className="max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 text-xs font-bold px-4 py-1.5 rounded-full mb-4 border border-blue-100 shadow-xs">
+          <div className="inline-flex items-center gap-2 bg-slate-900 text-slate-200 text-xs font-bold px-4 py-1.5 rounded-full mb-4 border border-slate-800 shadow-xs">
             💬 Help &amp; Support
           </div>
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight leading-tight">
-            Frequently Asked <span className="text-blue-600">Questions</span>
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-white mb-4 tracking-tight leading-tight">
+            Frequently Asked <span className="text-white underline decoration-slate-600">Questions</span>
           </h1>
-          <p className="text-base sm:text-lg text-slate-600 max-w-xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-300 max-w-xl mx-auto leading-relaxed">
             Everything you need to know about downloading TikTok videos without watermark, extracting MP3 audio, and using SaveFromInternet on any device.
           </p>
         </div>
@@ -217,18 +217,18 @@ export default function FAQPage() {
 
       {/* Bottom CTA Card */}
       <section className="py-12 px-4 max-w-5xl mx-auto mb-12">
-        <div className="bg-gradient-to-r from-[#195fd7] to-[#1e6fe8] rounded-3xl p-8 sm:p-12 text-center text-white shadow-xl shadow-blue-600/20">
-          <h2 className="text-2xl sm:text-4xl font-extrabold mb-3">
-            Ready to Download TikTok Videos?
+        <div className="bg-black rounded-3xl p-8 sm:p-12 text-center text-white shadow-lg">
+          <h2 className="text-2xl sm:text-4xl font-extrabold mb-3 text-white">
+            Ready to Download Videos &amp; Media?
           </h2>
-          <p className="text-blue-100 text-sm sm:text-base max-w-xl mx-auto mb-6">
-            Paste any TikTok link now and download in Full HD MP4 or extract MP3 audio. Free forever, no app required.
+          <p className="text-slate-300 text-sm sm:text-base max-w-xl mx-auto mb-6">
+            Paste any link now and download in Full HD MP4 or extract MP3 audio. Free forever, no app required.
           </p>
           <Link
             href="/"
-            className="inline-block bg-white text-blue-700 font-extrabold px-8 py-4 rounded-2xl text-base sm:text-lg shadow-lg hover:bg-blue-50 hover:scale-105 transition-all active:scale-95 cursor-pointer"
+            className="inline-block bg-white text-black font-extrabold px-8 py-4 rounded-2xl text-base sm:text-lg shadow-md hover:bg-slate-100 hover:scale-105 transition-all active:scale-95 cursor-pointer"
           >
-            Try TikTok Downloader Free
+            Try Downloader Free
           </Link>
         </div>
       </section>

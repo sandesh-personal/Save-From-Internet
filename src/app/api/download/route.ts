@@ -58,7 +58,7 @@ export async function POST(request: NextRequest) {
 
     if (!validateUrl(url)) {
       return NextResponse.json(
-        { success: false, error: 'Invalid TikTok URL' },
+        { success: false, error: 'Invalid URL. Please enter a valid TikTok, Facebook, Instagram, or Twitter (X) link.' },
         { status: 400 }
       )
     }
@@ -66,44 +66,63 @@ export async function POST(request: NextRequest) {
     const downloader = new Downloader()
     const videoData = await downloader.downloadVideo(url)
 
-    if (!videoData || !videoData.downloadUrl) {
+    if (!videoData || (!videoData.downloadUrl && (!videoData.images || videoData.images.length === 0))) {
       return NextResponse.json(
-        { success: false, error: 'Failed to extract video download URL' },
+        { success: false, error: 'Failed to extract media download URL. The post may be private or unavailable.' },
         { status: 500 }
       )
     }
 
+    const platform = videoData.platform || 'video'
+
     // Route video/audio through CF Worker if configured, else fall back to local proxy
     const workerBase = process.env.PROXY_WORKER_URL?.replace(/\/$/, '')
-    const videoProxyUrl = workerBase
-      ? `${workerBase}/video?url=${encodeURIComponent(videoData.downloadUrl)}`
-      : `/api/video?url=${encodeURIComponent(videoData.downloadUrl)}`
+    const audioSourceUrl = videoData.audioUrl
+    const audioParam = audioSourceUrl ? `&audioUrl=${encodeURIComponent(audioSourceUrl)}` : ''
 
-    const audioSourceUrl = videoData.audioUrl || videoData.downloadUrl
-    const audioProxyUrl = workerBase
-      ? `${workerBase}/audio?url=${encodeURIComponent(audioSourceUrl)}`
-      : `/api/audio?url=${encodeURIComponent(audioSourceUrl)}`
+    const videoProxyUrl = videoData.downloadUrl
+      ? workerBase
+        ? `${workerBase}/video?url=${encodeURIComponent(videoData.downloadUrl)}${audioParam}&platform=${platform}`
+        : `/api/video?url=${encodeURIComponent(videoData.downloadUrl)}${audioParam}&platform=${platform}`
+      : ''
+
+    const audioProxyUrl = audioSourceUrl
+      ? workerBase
+        ? `${workerBase}/audio?url=${encodeURIComponent(audioSourceUrl)}`
+        : `/api/audio?url=${encodeURIComponent(audioSourceUrl)}`
+      : undefined
+
+    const mappedQualities = videoData.qualities?.map((q) => ({
+      quality: q.quality,
+      url: workerBase
+        ? `${workerBase}/video?url=${encodeURIComponent(q.url)}${audioParam}&platform=${platform}`
+        : `/api/video?url=${encodeURIComponent(q.url)}${audioParam}&platform=${platform}`,
+    }))
 
     return NextResponse.json({
       success: true,
       downloadUrl: videoProxyUrl,
       audioUrl: audioProxyUrl,
+      qualities: mappedQualities,
+      platform,
       metadata: {
         title: videoData.title,
         author: videoData.author,
         duration: videoData.duration,
         thumbnail: videoData.thumbnail,
+        platform,
+        isPhotoCarousel: videoData.isPhotoCarousel,
         images:
           videoData.images?.map((img) => ({
             ...img,
-            selected: false,
+            selected: true,
           })) || [],
       },
     })
   } catch (error) {
     console.error('Download error:', error instanceof Error ? error.message : error)
     return NextResponse.json(
-      { success: false, error: 'Failed to process video. Please try again.' },
+      { success: false, error: error instanceof Error ? error.message : 'Failed to process media. Please try again.' },
       { status: 500 }
     )
   }

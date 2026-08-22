@@ -22,7 +22,7 @@ export default function RelatedPosts({ category, currentSlug }: Props) {
           <Link
             key={post.slug}
             href={`/blog/${post.slug}`}
-            className="group block bg-white border border-slate-200/90 rounded-2xl overflow-hidden hover:border-blue-300 hover:shadow-md transition-all duration-200"
+            className="group block bg-white border border-slate-200 rounded-2xl overflow-hidden hover:border-black hover:shadow-md transition-all duration-200"
           >
             <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">
               <Image
@@ -34,7 +34,7 @@ export default function RelatedPosts({ category, currentSlug }: Props) {
               />
             </div>
             <div className="p-3.5">
-              <p className="text-sm font-bold text-slate-800 leading-snug line-clamp-2 group-hover:text-blue-600 transition-colors">
+              <p className="text-sm font-bold text-slate-800 leading-snug line-clamp-2 group-hover:text-black transition-colors">
                 {post.title}
               </p>
             </div>

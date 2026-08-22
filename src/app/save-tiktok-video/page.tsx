@@ -46,18 +46,18 @@ export default function SaveTikTokVideoPage() {
   return (
     <div className="bg-white min-h-screen">
       {/* Hero */}
-      <section className="bg-gradient-to-b from-blue-50/50 via-white to-white py-12 sm:py-16 px-4 text-center border-b border-slate-100">
+      <section className="bg-black py-12 sm:py-16 px-4 text-center text-white">
         <div className="max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 text-xs font-bold px-4 py-1.5 rounded-full mb-4 border border-blue-100 shadow-xs">
+          <div className="inline-flex items-center gap-2 bg-slate-900 text-slate-200 text-xs font-bold px-4 py-1.5 rounded-full mb-4 border border-slate-800 shadow-xs">
             Save to Phone or PC · Free
           </div>
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight leading-tight">
-            <span className="text-blue-600">Save</span> TikTok Video
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-white mb-4 tracking-tight leading-tight">
+            <span className="text-white underline decoration-slate-600">Save</span> TikTok Video
           </h1>
-          <p className="text-base sm:text-lg text-slate-600 mb-8 max-w-xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-300 mb-8 max-w-xl mx-auto leading-relaxed">
             Save TikTok videos to your phone or PC in HD without watermark. Free, no app, no sign-up needed.
           </p>
-          <Link href="/" className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-2xl text-base sm:text-lg shadow-lg shadow-blue-500/25 hover:scale-105 transition-all cursor-pointer">
+          <Link href="/" className="inline-block bg-white text-black font-extrabold px-8 py-4 rounded-2xl text-base sm:text-lg shadow-md hover:bg-slate-100 hover:scale-105 transition-all cursor-pointer">
             Save TikTok Video Now
           </Link>
         </div>
@@ -69,7 +69,7 @@ export default function SaveTikTokVideoPage() {
       </div>
 
       {/* Steps */}
-      <section className="bg-slate-50 py-12 sm:py-16 px-4 border-b border-slate-100">
+      <section className="bg-slate-50 py-12 sm:py-16 px-4 border-b border-slate-200">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 text-center mb-10">How to Save a TikTok Video</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -79,7 +79,7 @@ export default function SaveTikTokVideoPage() {
               { n: '3', title: 'Save to Device', desc: 'Click Download — the file saves to your phone or PC with zero watermark.' },
             ].map(({ n, title, desc }) => (
               <div key={n} className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs text-center">
-                <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center text-white font-bold text-xl mx-auto mb-4 shadow-md shadow-blue-500/20">{n}</div>
+                <div className="w-12 h-12 bg-black rounded-2xl flex items-center justify-center text-white font-bold text-xl mx-auto mb-4 shadow-sm">{n}</div>
                 <h3 className="text-slate-900 font-bold text-lg mb-2">{title}</h3>
                 <p className="text-slate-600 text-sm">{desc}</p>
               </div>
@@ -89,9 +89,9 @@ export default function SaveTikTokVideoPage() {
       </section>
 
       {/* Device guides */}
-      <section className="py-12 sm:py-16 px-4 border-b border-slate-100">
+      <section className="py-12 sm:py-16 px-4 border-b border-slate-200">
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-slate-50 rounded-2xl p-6 sm:p-8 border border-slate-100">
+          <div className="bg-slate-50 rounded-2xl p-6 sm:p-8 border border-slate-200">
             <h3 className="text-xl font-bold text-slate-900 mb-5">Saving on iPhone</h3>
             <ol className="space-y-3 text-sm text-slate-700 list-decimal list-inside">
               <li>Open <strong className="text-slate-900">Safari</strong> and go to savefrominternet.com</li>
@@ -100,11 +100,11 @@ export default function SaveTikTokVideoPage() {
               <li><strong className="text-slate-900">Tap and hold</strong> the video when it opens</li>
               <li>Select <strong className="text-slate-900">&quot;Save Video&quot;</strong> — saves to Camera Roll</li>
             </ol>
-            <Link href="/tiktok-video-downloader-iphone" className="inline-block mt-4 text-blue-600 text-sm font-bold hover:underline">
+            <Link href="/tiktok-video-downloader-iphone" className="inline-block mt-4 text-black text-sm font-bold hover:underline">
               Full iPhone guide &rarr;
             </Link>
           </div>
-          <div className="bg-slate-50 rounded-2xl p-6 sm:p-8 border border-slate-100">
+          <div className="bg-slate-50 rounded-2xl p-6 sm:p-8 border border-slate-200">
             <h3 className="text-xl font-bold text-slate-900 mb-5">Saving on Android</h3>
             <ol className="space-y-3 text-sm text-slate-700 list-decimal list-inside">
               <li>Open Chrome and go to savefrominternet.com</li>
@@ -113,7 +113,7 @@ export default function SaveTikTokVideoPage() {
               <li>File downloads automatically</li>
               <li>Find it in <strong className="text-slate-900">Files / Downloads</strong> or Gallery</li>
             </ol>
-            <Link href="/tiktok-video-downloader-android" className="inline-block mt-4 text-blue-600 text-sm font-bold hover:underline">
+            <Link href="/tiktok-video-downloader-android" className="inline-block mt-4 text-black text-sm font-bold hover:underline">
               Full Android guide &rarr;
             </Link>
           </div>
@@ -121,7 +121,7 @@ export default function SaveTikTokVideoPage() {
       </section>
 
       {/* What you can save */}
-      <section className="bg-slate-50 py-12 sm:py-16 px-4 border-b border-slate-100">
+      <section className="bg-slate-50 py-12 sm:py-16 px-4 border-b border-slate-200">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 text-center mb-10">What You Can Save from TikTok</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -131,7 +131,7 @@ export default function SaveTikTokVideoPage() {
               { Icon: PhotoIcon, title: 'Photos', desc: 'Save photo carousels individually or ZIP.' },
             ] as const).map(({ Icon, title, desc }) => (
               <div key={title} className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs text-center">
-                <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <div className="w-12 h-12 bg-black text-white rounded-2xl flex items-center justify-center mx-auto mb-4">
                   <Icon className="w-6 h-6" />
                 </div>
                 <h3 className="text-slate-900 font-bold text-lg mb-2">{title}</h3>
@@ -154,10 +154,10 @@ export default function SaveTikTokVideoPage() {
 
       {/* CTA */}
       <section className="py-12 px-4 max-w-5xl mx-auto mb-12">
-        <div className="bg-gradient-to-r from-[#195fd7] to-[#1e6fe8] rounded-3xl p-8 sm:p-12 text-center text-white shadow-xl shadow-blue-600/20">
-          <h2 className="text-2xl sm:text-4xl font-extrabold mb-3">Save Your TikTok Videos Now</h2>
-          <p className="text-blue-100 text-sm sm:text-base max-w-xl mx-auto mb-6">Free · No watermark · iPhone, Android, and PC</p>
-          <Link href="/" className="inline-block bg-white text-blue-700 font-extrabold px-8 py-4 rounded-2xl text-base sm:text-lg shadow-lg hover:bg-blue-50 hover:scale-105 transition-all active:scale-95 cursor-pointer">
+        <div className="bg-black rounded-3xl p-8 sm:p-12 text-center text-white shadow-lg">
+          <h2 className="text-2xl sm:text-4xl font-extrabold mb-3 text-white">Save Your TikTok Videos Now</h2>
+          <p className="text-slate-300 text-sm sm:text-base max-w-xl mx-auto mb-6">Free · No watermark · iPhone, Android, and PC</p>
+          <Link href="/" className="inline-block bg-white text-black font-extrabold px-8 py-4 rounded-2xl text-base sm:text-lg shadow-md hover:bg-slate-100 hover:scale-105 transition-all active:scale-95 cursor-pointer">
             Save TikTok Video
           </Link>
         </div>

@@ -51,7 +51,7 @@ export default function ProcessingAdModal({ isOpen, isReady, hasError, onClose }
       <div className="bg-white rounded-lg w-full max-w-sm shadow-2xl overflow-hidden">
 
         {/* Header */}
-        <div className="bg-indigo-500 px-5 py-4 text-white text-center">
+        <div className="bg-black px-5 py-4 text-white text-center">
           <div className="flex items-center justify-center gap-2.5">
             {bothDone && !hasError ? (
               <CheckIcon className="w-5 h-5 flex-shrink-0" />
@@ -75,7 +75,7 @@ export default function ProcessingAdModal({ isOpen, isReady, hasError, onClose }
         {/* Progress bar */}
         <div className="h-1 bg-slate-100">
           <div
-            className="h-full bg-blue-600 transition-all duration-1000 ease-linear"
+            className="h-full bg-black transition-all duration-1000 ease-linear"
             style={{ width: `${Math.min(progress, bothDone ? 100 : 95)}%` }}
           />
         </div>
@@ -99,7 +99,7 @@ export default function ProcessingAdModal({ isOpen, isReady, hasError, onClose }
             disabled={!bothDone}
             className={`w-full py-3.5 rounded-xl font-bold text-base transition-all duration-200 flex items-center justify-center gap-2 ${
               bothDone && !hasError
-                ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-500/30 hover:scale-[1.02] active:scale-[0.99] cursor-pointer'
+                ? 'bg-black hover:bg-slate-800 text-white shadow-md hover:scale-[1.02] active:scale-[0.99] cursor-pointer'
                 : bothDone && hasError
                 ? 'bg-slate-200 text-slate-600 cursor-pointer'
                 : 'bg-slate-100 text-slate-400 cursor-not-allowed'

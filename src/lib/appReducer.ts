@@ -5,11 +5,19 @@ export interface ImageData {
   selected: boolean
 }
 
+export interface VideoQualityOption {
+  quality: string
+  url: string
+  resolution?: string
+}
+
 export interface VideoMetadata {
   title: string
   author: string
   duration: number
   thumbnail: string
+  platform?: string
+  isPhotoCarousel?: boolean
   images?: ImageData[]
 }
 
@@ -22,10 +30,12 @@ export interface AppState {
   message: string
   downloadUrl: string
   audioUrl: string
+  qualities: VideoQualityOption[]
+  platform: string
   videoMetadata: VideoMetadata | null
   showPreview: boolean
   showImageGallery: boolean
-  downloadType: 'video' | 'audio'
+  downloadType: 'video' | 'audio' | 'images'
   downloadImagesAsZip: boolean
 }
 
@@ -39,12 +49,15 @@ export type AppAction =
   | { type: 'SET_DOWNLOAD_URL'; payload: string }
   | { type: 'SET_AUDIO_URL'; payload: string }
   | { type: 'SET_VIDEO_METADATA'; payload: VideoMetadata | null }
-  | { type: 'SET_DOWNLOAD_TYPE'; payload: 'video' | 'audio' }
-  | { type: 'SET_DOWNLOAD_IMAGES_AS_ZIP'; payload: boolean }
-  | { type: 'TOGGLE_PREVIEW' }
+  | { type: 'SET_QUALITIES'; payload: VideoQualityOption[] }
+  | { type: 'SET_PLATFORM'; payload: string }
+  | { type: 'SET_SHOW_PREVIEW'; payload: boolean }
   | { type: 'TOGGLE_IMAGE_GALLERY' }
   | { type: 'TOGGLE_IMAGE_SELECTION'; payload: string }
   | { type: 'SELECT_ALL_IMAGES'; payload: boolean }
+  | { type: 'SET_DOWNLOAD_TYPE'; payload: 'video' | 'audio' | 'images' }
+  | { type: 'SET_DOWNLOAD_IMAGES_AS_ZIP'; payload: boolean }
+  | { type: 'RESET_STATE' }
   | { type: 'RESET_DOWNLOAD_STATE' }
   | {
       type: 'SET_DOWNLOAD_SUCCESS'
@@ -52,6 +65,8 @@ export type AppAction =
         downloadUrl: string
         metadata: VideoMetadata
         audioUrl?: string
+        qualities?: VideoQualityOption[]
+        platform?: string
       }
     }
 
@@ -64,6 +79,8 @@ export const initialState: AppState = {
   message: '',
   downloadUrl: '',
   audioUrl: '',
+  qualities: [],
+  platform: '',
   videoMetadata: null,
   showPreview: false,
   showImageGallery: false,
@@ -100,56 +117,67 @@ export function appReducer(state: AppState, action: AppAction): AppState {
     case 'SET_VIDEO_METADATA':
       return { ...state, videoMetadata: action.payload }
 
+    case 'SET_QUALITIES':
+      return { ...state, qualities: action.payload || [] }
+
+    case 'SET_PLATFORM':
+      return { ...state, platform: action.payload }
+
+    case 'SET_SHOW_PREVIEW':
+      return { ...state, showPreview: action.payload }
+
+    case 'TOGGLE_IMAGE_GALLERY':
+      return { ...state, showImageGallery: !state.showImageGallery }
+
+    case 'TOGGLE_IMAGE_SELECTION':
+      if (!state.videoMetadata?.images) return state
+      return {
+        ...state,
+        videoMetadata: {
+          ...state.videoMetadata,
+          images: state.videoMetadata.images.map((img: ImageData) =>
+            img.id === action.payload ? { ...img, selected: !img.selected } : img
+          ),
+        },
+      }
+
+    case 'SELECT_ALL_IMAGES':
+      if (!state.videoMetadata?.images) return state
+      return {
+        ...state,
+        videoMetadata: {
+          ...state.videoMetadata,
+          images: state.videoMetadata.images.map((img: ImageData) => ({
+            ...img,
+            selected: action.payload,
+          })),
+        },
+      }
+
     case 'SET_DOWNLOAD_TYPE':
       return { ...state, downloadType: action.payload }
 
     case 'SET_DOWNLOAD_IMAGES_AS_ZIP':
       return { ...state, downloadImagesAsZip: action.payload }
 
-    case 'TOGGLE_PREVIEW':
-      return { ...state, showPreview: !state.showPreview }
-
-    case 'TOGGLE_IMAGE_GALLERY':
-      return { ...state, showImageGallery: !state.showImageGallery }
-
-    case 'TOGGLE_IMAGE_SELECTION':
-      return {
-        ...state,
-        videoMetadata: state.videoMetadata
-          ? {
-              ...state.videoMetadata,
-              images: state.videoMetadata.images?.map((img) =>
-                img.id === action.payload
-                  ? { ...img, selected: !img.selected }
-                  : img
-              ),
-            }
-          : null,
-      }
-
-    case 'SELECT_ALL_IMAGES':
-      return {
-        ...state,
-        videoMetadata: state.videoMetadata
-          ? {
-              ...state.videoMetadata,
-              images: state.videoMetadata.images?.map((img) => ({
-                ...img,
-                selected: action.payload,
-              })),
-            }
-          : null,
-      }
+    case 'RESET_STATE':
+      return initialState
 
     case 'RESET_DOWNLOAD_STATE':
       return {
         ...state,
+        downloading: false,
+        downloadingAudio: false,
+        downloadingImages: false,
         message: '',
         downloadUrl: '',
         audioUrl: '',
+        qualities: [],
         videoMetadata: null,
         showPreview: false,
         showImageGallery: false,
+        downloadType: 'video',
+        downloadImagesAsZip: false,
       }
 
     case 'SET_DOWNLOAD_SUCCESS':
@@ -158,6 +186,8 @@ export function appReducer(state: AppState, action: AppAction): AppState {
         message: 'Content processed successfully!',
         downloadUrl: action.payload.downloadUrl,
         audioUrl: action.payload.audioUrl || '',
+        qualities: action.payload.qualities || [],
+        platform: action.payload.platform || '',
         videoMetadata: action.payload.metadata,
         showPreview: true,
       }

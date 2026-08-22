@@ -1,7 +1,15 @@
+export type SupportedPlatform = 'tiktok' | 'facebook' | 'instagram' | 'twitter' | 'tiktok-mp3' | 'tiktok-photo' | 'instagram-video' | 'instagram-post'
+
 export interface ImageData {
   id: string
   url: string
   thumbnail: string
+}
+
+export interface VideoQualityOption {
+  quality: string
+  url: string
+  resolution?: string
 }
 
 export interface VideoData {
@@ -16,6 +24,8 @@ export interface VideoData {
   audioUrl?: string
   images?: ImageData[]
   isPhotoCarousel?: boolean
+  platform?: SupportedPlatform
+  qualities?: VideoQualityOption[]
 }
 
 export interface ProcessedVideo {

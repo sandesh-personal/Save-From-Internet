@@ -3,6 +3,9 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   compress: true,
+  turbopack: {
+    root: __dirname,
+  },
   allowedDevOrigins: [
     "192.168.1.97",
     "192.168.1.111",
@@ -46,6 +49,13 @@ const nextConfig = {
       { protocol: "https", hostname: "p16-common-sign.tiktokcdn-eu.com", pathname: "/**" },
       { protocol: "https", hostname: "p19-common-sign.tiktokcdn-us.com", pathname: "/**" },
       { protocol: "https", hostname: "p16-common-sign.tiktokcdn-us.com", pathname: "/**" },
+      // Instagram & Facebook CDN domains
+      { protocol: "https", hostname: "*.fbcdn.net", pathname: "/**" },
+      { protocol: "https", hostname: "*.cdninstagram.com", pathname: "/**" },
+      { protocol: "https", hostname: "*.instagram.com", pathname: "/**" },
+      { protocol: "https", hostname: "*.facebook.com", pathname: "/**" },
+      // Twitter / X CDN domains
+      { protocol: "https", hostname: "*.twimg.com", pathname: "/**" },
     ],
     formats: ["image/avif", "image/webp"],
   },

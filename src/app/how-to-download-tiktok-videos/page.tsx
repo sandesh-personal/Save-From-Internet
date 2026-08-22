@@ -139,15 +139,15 @@ export default function HowToDownloadPage() {
       
       <div className="bg-white min-h-screen">
         {/* Hero */}
-        <section className="bg-gradient-to-b from-blue-50/50 via-white to-white py-12 sm:py-16 px-4 text-center border-b border-slate-100">
+        <section className="bg-black py-12 sm:py-16 px-4 text-center text-white">
           <div className="max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 text-xs font-bold px-4 py-1.5 rounded-full mb-4 border border-blue-100 shadow-xs">
+            <div className="inline-flex items-center gap-2 bg-slate-900 text-slate-200 text-xs font-bold px-4 py-1.5 rounded-full mb-4 border border-slate-800 shadow-xs">
               📖 Step-by-Step Tutorial
             </div>
-            <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight leading-tight">
-              How to Download TikTok Videos <span className="text-blue-600">Without Watermark</span>
+            <h1 className="text-3xl sm:text-5xl font-extrabold text-white mb-4 tracking-tight leading-tight">
+              How to Download TikTok Videos <span className="text-white underline decoration-slate-600">Without Watermark</span>
             </h1>
-            <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
               Learn how to save high-quality TikTok videos, extract MP3 audio, and download photo slideshows to your iPhone, Android, PC, or Mac in 5 simple steps.
             </p>
           </div>
@@ -173,9 +173,9 @@ export default function HowToDownloadPage() {
               {steps.map((step) => (
                 <div
                   key={step.number}
-                  className="flex items-start gap-4 sm:gap-6 bg-white rounded-2xl border border-slate-200/90 p-5 sm:p-7 shadow-xs hover:border-blue-300 transition-all"
+                  className="flex items-start gap-4 sm:gap-6 bg-white rounded-2xl border border-slate-200 p-5 sm:p-7 shadow-xs hover:border-black transition-all"
                 >
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-[#195fd7] to-[#1e6fe8] text-white font-extrabold text-lg sm:text-xl flex items-center justify-center flex-shrink-0 shadow-md shadow-blue-500/20">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-black text-white font-extrabold text-lg sm:text-xl flex items-center justify-center flex-shrink-0 shadow-sm">
                     {step.number}
                   </div>
                   <div className="flex-1">
@@ -208,9 +208,9 @@ export default function HowToDownloadPage() {
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {features.map((feature) => (
-                <div key={feature.title} className="bg-slate-50 rounded-2xl p-5 sm:p-6 border border-slate-100">
+                <div key={feature.title} className="bg-slate-50 rounded-2xl p-5 sm:p-6 border border-slate-200">
                   <h3 className="text-slate-900 font-bold text-base sm:text-lg mb-1.5 flex items-center gap-2">
-                    <span className="text-blue-600">✓</span> {feature.title}
+                    <span className="text-black font-bold">✓</span> {feature.title}
                   </h3>
                   <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
                     {feature.description}
@@ -228,42 +228,42 @@ export default function HowToDownloadPage() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <Link
                 href="/tiktok-video-downloader-iphone"
-                className="block bg-white hover:bg-blue-50/40 rounded-2xl p-5 border border-slate-200 hover:border-blue-300 transition-all shadow-xs group"
+                className="block bg-white hover:bg-slate-50 rounded-2xl p-5 border border-slate-200 hover:border-black transition-all shadow-xs group"
               >
                 <div className="text-2xl mb-2">📱</div>
-                <h3 className="font-bold text-slate-900 group-hover:text-blue-600 text-base mb-1">iPhone &amp; iPad</h3>
+                <h3 className="font-bold text-slate-900 group-hover:text-black text-base mb-1">iPhone &amp; iPad</h3>
                 <p className="text-slate-500 text-xs leading-relaxed">Save directly to Camera Roll using Safari.</p>
               </Link>
               <Link
                 href="/tiktok-video-downloader-android"
-                className="block bg-white hover:bg-blue-50/40 rounded-2xl p-5 border border-slate-200 hover:border-blue-300 transition-all shadow-xs group"
+                className="block bg-white hover:bg-slate-50 rounded-2xl p-5 border border-slate-200 hover:border-black transition-all shadow-xs group"
               >
                 <div className="text-2xl mb-2">🤖</div>
-                <h3 className="font-bold text-slate-900 group-hover:text-blue-600 text-base mb-1">Android Phones</h3>
+                <h3 className="font-bold text-slate-900 group-hover:text-black text-base mb-1">Android Phones</h3>
                 <p className="text-slate-500 text-xs leading-relaxed">Fast Chrome download to Downloads folder.</p>
               </Link>
               <Link
                 href="/tiktok-video-downloader-pc"
-                className="block bg-white hover:bg-blue-50/40 rounded-2xl p-5 border border-slate-200 hover:border-blue-300 transition-all shadow-xs group"
+                className="block bg-white hover:bg-slate-50 rounded-2xl p-5 border border-slate-200 hover:border-black transition-all shadow-xs group"
               >
                 <div className="text-2xl mb-2">💻</div>
-                <h3 className="font-bold text-slate-900 group-hover:text-blue-600 text-base mb-1">PC &amp; Mac</h3>
+                <h3 className="font-bold text-slate-900 group-hover:text-black text-base mb-1">PC &amp; Mac</h3>
                 <p className="text-slate-500 text-xs leading-relaxed">Full HD 1080p MP4 download in any browser.</p>
               </Link>
             </div>
           </div>
 
           {/* Bottom CTA Card */}
-          <div className="bg-gradient-to-r from-[#195fd7] to-[#1e6fe8] rounded-3xl p-8 sm:p-12 text-center text-white shadow-xl shadow-blue-600/20">
-            <h2 className="text-2xl sm:text-4xl font-extrabold mb-3">
+          <div className="bg-black rounded-3xl p-8 sm:p-12 text-center text-white shadow-lg">
+            <h2 className="text-2xl sm:text-4xl font-extrabold mb-3 text-white">
               Ready to Download TikTok Videos?
             </h2>
-            <p className="text-blue-100 text-sm sm:text-base max-w-xl mx-auto mb-6">
+            <p className="text-slate-300 text-sm sm:text-base max-w-xl mx-auto mb-6">
               Start downloading TikTok videos without watermark right now. Free, fast, and easy to use on any device!
             </p>
             <Link 
               href="/"
-              className="inline-block bg-white text-blue-700 font-extrabold px-8 py-4 rounded-2xl text-base sm:text-lg shadow-lg hover:bg-blue-50 hover:scale-105 transition-all active:scale-95 cursor-pointer"
+              className="inline-block bg-white text-black font-extrabold px-8 py-4 rounded-2xl text-base sm:text-lg shadow-md hover:bg-slate-100 hover:scale-105 transition-all active:scale-95 cursor-pointer"
             >
               Download TikTok Videos Now
             </Link>

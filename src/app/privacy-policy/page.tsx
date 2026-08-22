@@ -66,7 +66,7 @@ export default function PrivacyPolicyPage() {
             <h2 className="text-lg font-bold text-slate-900">Contact Us</h2>
             <p className="text-sm text-slate-600">
               If you have any questions or privacy requests, please reach out to our team at{' '}
-              <a href="mailto:support@savefrominternet.com" className="text-blue-600 font-bold hover:underline">
+              <a href="mailto:support@savefrominternet.com" className="text-black font-bold hover:underline">
                 support@savefrominternet.com
               </a>.
             </p>
