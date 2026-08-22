@@ -679,8 +679,8 @@ export default function DownloaderTool({
               </div>
             )}
 
-            {/* 3. Video Quality Options & Download Button (For Video Posts and Reels) */}
-            {(Boolean(state.downloadUrl && (state.downloadUrl.includes('.mp4') || state.downloadUrl.includes('/api/video') || (state.qualities && state.qualities.length > 0))) || (!state.videoMetadata?.images || state.videoMetadata.images.length === 0)) && (
+            {/* 3. Video Quality Options & Download Button (Only for Video Posts & Reels, NEVER for Photo Carousels) */}
+            {(!state.videoMetadata?.images || state.videoMetadata.images.length === 0) && (
               <div className="space-y-3 pt-2">
                 <label className="block text-sm font-bold text-slate-900">
                   {t('labelQuality')}
@@ -733,7 +733,7 @@ export default function DownloaderTool({
               </div>
             )}
 
-            {/* 4. Audio Options Section (Extract MP3 from Instagram Reels, TikTok & Facebook Videos) */}
+            {/* 4. Audio Options Section (Extract MP3 from Videos and Photo Sounds) */}
             {(state.audioUrl || state.downloadUrl) && (
               <div className="space-y-3 pt-4 border-t border-slate-200">
                 <label className="block text-sm font-bold text-slate-900">
@@ -787,8 +787,8 @@ export default function DownloaderTool({
               </div>
             )}
 
-            {/* Photo Carousel Support (Only for pure Photo / Carousel posts) */}
-            {state.videoMetadata?.images && state.videoMetadata.images.length > 0 && (!state.downloadUrl || !state.downloadUrl.includes('.mp4')) && (
+            {/* Photo Carousel Support (Only for Photo Posts and Image Carousels) */}
+            {state.videoMetadata?.images && state.videoMetadata.images.length > 0 && (
               <div className="space-y-4 pt-2">
                 <div className="flex items-center justify-between bg-slate-50 rounded-xl p-3 border border-slate-200">
                   <span className="text-slate-900 text-sm font-bold">
