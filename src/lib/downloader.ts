@@ -43,41 +43,26 @@ export class Downloader {
 
     let result: VideoData | null = null
 
-    // ── Dedicated Platform Handlers ──────────────────────────────────
+    // ── Dedicated Platform Handlers (Primary: yt-dlp) ──────────────────
     switch (platform) {
+      case 'instagram':
+        // Primary: yt-dlp (0 API keys, full 1080p MP4 reels & carousel extraction)
+        result = (await extractViaYtDlp(trimmed, 'instagram')) ?? (await extractInstagram(trimmed)) ?? (await extractViaRapidAPI(trimmed, 'instagram'))
+        break
       case 'tiktok':
         // Primary: yt-dlp (0 API keys, direct CDN stream), Backup: TikWM API
         result = (await extractViaYtDlp(trimmed, 'tiktok')) ?? (await extractTikTok(trimmed))
         break
       case 'facebook':
-        result = (await extractFacebook(trimmed)) ?? (await extractViaYtDlp(trimmed, 'facebook'))
+        // Primary: yt-dlp (HD MP4 progressive stream), Backup: Direct Scraper
+        result = (await extractViaYtDlp(trimmed, 'facebook')) ?? (await extractFacebook(trimmed)) ?? (await extractViaRapidAPI(trimmed, 'facebook'))
         break
-      case 'instagram': {
-        const isReelOrVideo = trimmed.includes('/reel/') || trimmed.includes('/reels/') || trimmed.includes('/tv/')
-        const directResult = await extractInstagram(trimmed)
-        
-        // If it's a Reel/Video and direct extraction didn't find an MP4 video stream:
-        if (isReelOrVideo && directResult && (!directResult.downloadUrl || !directResult.downloadUrl.includes('.mp4')) && (!directResult.qualities || directResult.qualities.length === 0)) {
-          result = (await extractViaYtDlp(trimmed, 'instagram')) ?? (await extractViaRapidAPI(trimmed, 'instagram')) ?? directResult
-          break
-        }
-
-        // If direct extraction found only 1 image on a photo/carousel post, check RapidAPI for full multi-slide carousel
-        if (directResult && directResult.images && directResult.images.length === 1 && (!directResult.downloadUrl || !directResult.downloadUrl.includes('.mp4'))) {
-          const rapidCarousel = await extractViaRapidAPI(trimmed, 'instagram')
-          if (rapidCarousel && rapidCarousel.images && rapidCarousel.images.length > 1) {
-            result = rapidCarousel
-            break
-          }
-        }
-        result = directResult ?? (await extractViaYtDlp(trimmed, 'instagram')) ?? (await extractViaRapidAPI(trimmed, 'instagram'))
-        break
-      }
       case 'twitter':
-        result = (await extractTwitter(trimmed)) ?? (await extractViaYtDlp(trimmed, 'twitter'))
+        // Primary: yt-dlp (HD MP4 video stream), Backup: Direct Scraper
+        result = (await extractViaYtDlp(trimmed, 'twitter')) ?? (await extractTwitter(trimmed)) ?? (await extractViaRapidAPI(trimmed, 'twitter'))
         break
       default:
-        result = await extractTikTok(trimmed)
+        result = (await extractViaYtDlp(trimmed, platform)) ?? (await extractTikTok(trimmed))
         break
     }
 

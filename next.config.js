@@ -137,6 +137,16 @@ const nextConfig = {
         destination: '/tiktok-video-downloader-iphone',
         permanent: true,
       },
+      {
+        source: '/shorts',
+        destination: '/tiktok-video-downloader',
+        permanent: true,
+      },
+      {
+        source: '/shorts/:path*',
+        destination: '/tiktok-video-downloader',
+        permanent: true,
+      },
     ];
   },
 };

@@ -151,15 +151,29 @@ export default function BlogPostLayout({
         {/* Top CTA Banner */}
         <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5 mb-8 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="text-center sm:text-left">
-            <p className="font-bold text-slate-900 text-sm sm:text-base">Download videos &amp; media — 100% free</p>
-            <p className="text-xs text-slate-500 mt-0.5">Videos · MP3 audio · Photo carousels · No watermark · No app · No signup</p>
+            <p className="font-bold text-slate-900 text-sm sm:text-base">Download Free HD Videos &amp; Media</p>
+            <p className="text-xs text-slate-500 mt-0.5">TikTok · Instagram Reels · Facebook · Twitter/X · 100% Free · No Watermark</p>
           </div>
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 bg-black hover:bg-slate-800 text-white font-bold px-6 py-3 rounded-xl text-sm shadow-sm hover:scale-105 transition-all whitespace-nowrap active:scale-95 cursor-pointer"
-          >
-            Download Now
-          </Link>
+          <div className="flex flex-wrap gap-2 justify-center">
+            <Link
+              href={
+                currentSlug.includes('facebook')
+                  ? '/facebook-video-downloader'
+                  : currentSlug.includes('instagram')
+                  ? '/instagram-reel-downloader'
+                  : currentSlug.includes('twitter') || currentSlug.includes('x-video')
+                  ? '/twitter-video-downloader'
+                  : currentSlug.includes('mp3') || currentSlug.includes('audio') || currentSlug.includes('sound')
+                  ? '/tiktok-to-mp3'
+                  : currentSlug.includes('photo') || currentSlug.includes('image') || currentSlug.includes('carousel')
+                  ? '/tiktok-photo-downloader'
+                  : '/tiktok-video-downloader'
+              }
+              className="inline-flex items-center gap-2 bg-black hover:bg-slate-800 text-white font-bold px-5 py-2.5 rounded-xl text-xs sm:text-sm shadow-sm hover:scale-105 transition-all whitespace-nowrap active:scale-95 cursor-pointer"
+            >
+              ⚡ Use Downloader Tool
+            </Link>
+          </div>
         </div>
 
         {/* Blog content */}
@@ -176,20 +190,34 @@ export default function BlogPostLayout({
           />
         </div>
 
-        {/* Bottom CTA */}
+        {/* Bottom CTA with Direct Tool Links */}
         <div className="bg-black rounded-3xl p-8 sm:p-10 text-center mt-10 shadow-lg text-white">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">
-            Download Videos &amp; Media Without Watermark — Free
+            Download Videos, Reels &amp; Audio Without Watermark
           </h2>
           <p className="text-slate-300 mb-6 text-sm sm:text-base max-w-xl mx-auto">
-            Paste any social media link and get an HD video, MP3 audio, or photo ZIP in seconds. No app, no account, no watermark.
+            Paste any link into our free browser tools. Fast HD MP4 downloads, 320kbps MP3 audio extraction, and full-resolution photo carousels.
           </p>
-          <Link
-            href="/"
-            className="inline-block bg-white text-black font-extrabold px-8 py-4 rounded-2xl text-base sm:text-lg shadow-md hover:bg-slate-100 hover:scale-105 transition-all active:scale-95 cursor-pointer"
-          >
-            Download Now
-          </Link>
+          <div className="flex flex-wrap justify-center gap-2.5 max-w-2xl mx-auto">
+            <Link href="/tiktok-video-downloader" className="bg-white text-black font-bold px-4 py-2.5 rounded-xl text-xs sm:text-sm hover:bg-slate-100 transition-all">
+              🎵 TikTok Downloader
+            </Link>
+            <Link href="/instagram-reel-downloader" className="bg-white text-black font-bold px-4 py-2.5 rounded-xl text-xs sm:text-sm hover:bg-slate-100 transition-all">
+              📸 Instagram Reel Downloader
+            </Link>
+            <Link href="/facebook-video-downloader" className="bg-white text-black font-bold px-4 py-2.5 rounded-xl text-xs sm:text-sm hover:bg-slate-100 transition-all">
+              📘 Facebook Video Downloader
+            </Link>
+            <Link href="/twitter-video-downloader" className="bg-white text-black font-bold px-4 py-2.5 rounded-xl text-xs sm:text-sm hover:bg-slate-100 transition-all">
+              🐦 Twitter/X Downloader
+            </Link>
+            <Link href="/tiktok-to-mp3" className="bg-slate-800 text-white border border-slate-700 font-bold px-4 py-2.5 rounded-xl text-xs sm:text-sm hover:bg-slate-700 transition-all">
+              🎧 TikTok to MP3
+            </Link>
+            <Link href="/tiktok-photo-downloader" className="bg-slate-800 text-white border border-slate-700 font-bold px-4 py-2.5 rounded-xl text-xs sm:text-sm hover:bg-slate-700 transition-all">
+              🖼️ TikTok Photos / ZIP
+            </Link>
+          </div>
         </div>
 
         {/* Bottom Ad */}

@@ -7,8 +7,15 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: '*',
-        allow: '/',
-        disallow: ['/api/', '/_next/'],
+        allow: [
+          '/',
+          '/_next/static/',
+          '/_next/image',
+        ],
+        disallow: [
+          '/api/',
+          '/*?*', // Prevent crawl budget waste on filter query parameters like ?cat=
+        ],
       },
     ],
     sitemap: `${siteUrl}/sitemap.xml`,
