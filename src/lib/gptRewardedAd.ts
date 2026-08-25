@@ -23,7 +23,7 @@ class GPTRewardedAdManager {
   private pendingDownloadCallback: DownloadTriggerFn | null = null
   private rewardGranted = false
   private fallbackTimer: NodeJS.Timeout | null = null
-  private adUnitPath = '/21775744923/rewarded_video_download'
+  private adUnitPath = '/ca-pub-8190424610367988/1535278171'
   private fallbackTimeoutMs = 2500
   private initialized = false
 
