@@ -78,28 +78,21 @@ export async function POST(request: NextRequest) {
     // Route video/audio through CF Worker if configured, else fall back to local proxy
     const workerBase = process.env.PROXY_WORKER_URL?.replace(/\/$/, '')
     const audioSourceUrl = videoData.audioUrl
-    const audioParam = audioSourceUrl ? `&audioUrl=${encodeURIComponent(audioSourceUrl)}` : ''
     const isPhoto = Boolean(videoData.images && videoData.images.length > 0 && (!videoData.downloadUrl || !videoData.downloadUrl.includes('.mp4')))
     
     const videoProxyUrl = videoData.downloadUrl && !isPhoto
-      ? workerBase
-        ? `${workerBase}/video?url=${encodeURIComponent(videoData.downloadUrl)}${audioParam}&platform=${platform}`
-        : `/api/video?url=${encodeURIComponent(videoData.downloadUrl)}${audioParam}&platform=${platform}`
+      ? `/api/video?url=${encodeURIComponent(videoData.downloadUrl)}&platform=${platform}`
       : ''
 
     const audioProxyUrl = audioSourceUrl
-      ? workerBase
-        ? `${workerBase}/audio?url=${encodeURIComponent(audioSourceUrl)}`
-        : `/api/audio?url=${encodeURIComponent(audioSourceUrl)}`
+      ? `/api/audio?url=${encodeURIComponent(audioSourceUrl)}&platform=${platform}`
       : undefined
 
     const mappedQualities = isPhoto
       ? undefined
       : videoData.qualities?.map((q) => ({
           quality: q.quality,
-          url: workerBase
-            ? `${workerBase}/video?url=${encodeURIComponent(q.url)}${audioParam}&platform=${platform}`
-            : `/api/video?url=${encodeURIComponent(q.url)}${audioParam}&platform=${platform}`,
+          url: `/api/video?url=${encodeURIComponent(q.url)}&platform=${platform}`,
         }))
 
     return NextResponse.json({

@@ -2,8 +2,6 @@ import { NextRequest, NextResponse } from 'next/server'
 import { spawn } from 'child_process'
 import fs from 'fs'
 
-const PRIMARY_API_KEY = process.env.TIKWM_API_KEY ?? ''
-
 function getFfmpegPath(): string {
   if (process.env.FFMPEG_PATH && fs.existsSync(process.env.FFMPEG_PATH)) {
     return process.env.FFMPEG_PATH
@@ -32,57 +30,28 @@ function isFfmpegExecutable(): boolean {
 
 function isAllowedVideoHost(url: string): boolean {
   try {
-    const { hostname } = new URL(url)
-    if (['www.tikwm.com', 'tikwm.com', 'robotilab.online', 'api.cobalt.tools'].includes(hostname)) return true
-    return (
-      // TikTok
-      hostname.endsWith('.tiktok.com') ||
-      hostname.endsWith('.tiktokv.com') ||
-      hostname.endsWith('.tiktokcdn.com') ||
-      hostname.endsWith('.tiktokcdn-eu.com') ||
-      hostname.endsWith('.tiktokcdn-us.com') ||
-      hostname.endsWith('.muscdn.com') ||
-      hostname.includes('tiktok') ||
-      // Facebook & Meta
-      hostname.endsWith('.fbcdn.net') ||
-      hostname.endsWith('.facebook.com') ||
-      hostname.endsWith('.fbsbx.com') ||
-      hostname.endsWith('.akamaihd.net') ||
-      hostname.includes('fbcdn') ||
-      // Instagram
-      hostname.endsWith('.cdninstagram.com') ||
-      hostname.endsWith('.instagram.com') ||
-      hostname.includes('instagram') ||
-      // Twitter / X
-      hostname.endsWith('.twimg.com') ||
-      hostname.endsWith('.twitter.com') ||
-      hostname.endsWith('.x.com') ||
-      hostname.includes('twimg') ||
-      // Universal CDNs
-      hostname.endsWith('.cloudfront.net') ||
-      hostname.endsWith('.rapidapi.com') ||
-      hostname.endsWith('.rapidapi.net')
-    )
+    const parsed = new URL(url)
+    if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') return false
+    const host = parsed.hostname.toLowerCase()
+    // Block private network SSRF
+    if (
+      host === 'localhost' ||
+      host === '127.0.0.1' ||
+      host === '0.0.0.0' ||
+      host.startsWith('192.168.') ||
+      host.startsWith('10.') ||
+      host.startsWith('172.16.')
+    ) {
+      return false
+    }
+    return true
   } catch {
     return false
   }
 }
 
-function getPlatformHeaders(videoUrl: string, platform?: string): Record<string, string> {
-  return {
-    'User-Agent':
-      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
-    Accept: '*/*',
-    'Accept-Language': 'en-US,en;q=0.9',
-    'Sec-Fetch-Dest': 'video',
-    'Sec-Fetch-Mode': 'no-cors',
-    'Sec-Fetch-Site': 'cross-site',
-  }
-}
-
-function isJsonContentType(response: Response): boolean {
-  const ct = response.headers.get('content-type') || ''
-  return ct.includes('application/json') || ct.includes('text/plain')
+function isAllowedOrigin(origin: string): boolean {
+  return true
 }
 
 function streamProcessedVideo(
@@ -99,16 +68,16 @@ function streamProcessedVideo(
   const filename = `savefrominternet-${platform}-${quality}-${timestamp}.mp4`
 
   const args: string[] = [
-    '-headers',
-    'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36\r\nAccept: */*\r\n',
+    '-user_agent',
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
     '-i',
     videoUrl,
   ]
 
   if (audioUrl) {
     args.push(
-      '-headers',
-      'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36\r\nAccept: */*\r\n',
+      '-user_agent',
+      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
       '-i',
       audioUrl
     )
@@ -137,7 +106,7 @@ function streamProcessedVideo(
     args.push('-c', 'copy')
   }
 
-  args.push('-movflags', 'frag_keyframe+empty_moov', '-f', 'mp4', 'pipe:1')
+  args.push('-movflags', 'frag_keyframe+empty_moov+default_base_moof', '-f', 'mp4', 'pipe:1')
 
   try {
     const ffmpegProc = spawn(ffmpegExe, args)
@@ -174,13 +143,9 @@ function streamProcessedVideo(
 
     return new NextResponse(webStream, { status: 200, headers })
   } catch (err) {
-    console.warn('[FFMPEG] Processing failed, falling back to direct stream:', err)
+    console.warn('[FFMPEG] Processing failed:', err)
     return null
   }
-}
-
-function isAllowedOrigin(origin: string): boolean {
-  return true 
 }
 
 export async function GET(request: NextRequest) {
@@ -216,7 +181,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Video source host not allowed' }, { status: 403 })
     }
 
-    // On Linux VPS: Always use native FFmpeg if available to guarantee 100% download stream
+    // 1. If audio track needs merging or 720p transcoding, run FFmpeg
     if (audioUrl || quality === '720p') {
       const processedResp = streamProcessedVideo(videoUrl, audioUrl, quality, corsOrigin, platform)
       if (processedResp) {
@@ -224,57 +189,53 @@ export async function GET(request: NextRequest) {
       }
     }
 
+    // 2. Direct HTTP stream via Fetch
     const controller = new AbortController()
     const timeout = setTimeout(() => controller.abort(), 45000)
 
-    const fetchHeaders = getPlatformHeaders(videoUrl, platform)
+    const fetchHeaders: Record<string, string> = {
+      'User-Agent':
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+      Accept: '*/*',
+      'Accept-Language': 'en-US,en;q=0.9',
+    }
+
+    if (videoUrl.includes('tikwm.com')) {
+      fetchHeaders['Referer'] = 'https://www.tikwm.com/'
+    } else if (videoUrl.includes('tiktok') || platform === 'tiktok') {
+      fetchHeaders['Referer'] = 'https://www.tiktok.com/'
+    } else if (videoUrl.includes('instagram') || videoUrl.includes('cdninstagram') || platform === 'instagram') {
+      fetchHeaders['Referer'] = 'https://www.instagram.com/'
+    } else if (videoUrl.includes('facebook') || videoUrl.includes('fbcdn') || platform === 'facebook') {
+      fetchHeaders['Referer'] = 'https://www.facebook.com/'
+    } else if (videoUrl.includes('twitter') || videoUrl.includes('twimg') || platform === 'twitter') {
+      fetchHeaders['Referer'] = 'https://twitter.com/'
+    }
 
     const rangeHeader = request.headers.get('range')
     if (rangeHeader) {
       fetchHeaders['Range'] = rangeHeader
     }
 
-    let response: Response
+    let response: Response | null = null
     try {
       response = await fetch(videoUrl, {
         headers: fetchHeaders,
         signal: controller.signal,
         redirect: 'follow',
       })
+    } catch {
+      response = null
     } finally {
       clearTimeout(timeout)
     }
 
-    if (!response.ok) {
-      // Fallback 1: FFmpeg native stream
-      const ffmpegStream = streamProcessedVideo(videoUrl, undefined, quality, corsOrigin, platform)
-      if (ffmpegStream) {
-        return ffmpegStream
-      }
-
-      // Fallback 2: Plain fetch
-      try {
-        const retryResp = await fetch(videoUrl, {
-          headers: {
-            'User-Agent':
-              'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
-            Accept: '*/*',
-          },
-          redirect: 'follow',
-        })
-        if (retryResp.ok && !isJsonContentType(retryResp)) {
-          return streamVideoResponse(retryResp, corsOrigin, platform, quality)
-        }
-      } catch { /* fallback failed */ }
-
-      return NextResponse.json({ error: 'Failed to fetch video stream from source' }, { status: response.status })
+    if (response && response.ok) {
+      return streamVideoResponse(response, corsOrigin, platform, quality)
     }
 
-    if (isJsonContentType(response)) {
-      return NextResponse.json({ error: 'Video source returned an error. Please try again.' }, { status: 502 })
-    }
-
-    return streamVideoResponse(response, corsOrigin, platform, quality)
+    // 3. Fallback: Direct 302 redirect to CDN stream (Browser downloads directly)
+    return NextResponse.redirect(videoUrl, 302)
   } catch (error) {
     console.error('Video proxy error:', error)
     return NextResponse.json({ error: 'Failed to stream video. Please try again.' }, { status: 500 })
@@ -307,7 +268,27 @@ function streamVideoResponse(
   const contentRange = response.headers.get('content-range')
   if (contentRange) headers['Content-Range'] = contentRange
 
-  return new NextResponse(response.body, {
+  const stream = new ReadableStream({
+    async start(controller) {
+      if (!response.body) {
+        controller.close()
+        return
+      }
+      const reader = response.body.getReader()
+      try {
+        while (true) {
+          const { done, value } = await reader.read()
+          if (done) break
+          controller.enqueue(value)
+        }
+        controller.close()
+      } catch (err) {
+        controller.error(err)
+      }
+    },
+  })
+
+  return new NextResponse(stream, {
     status: response.status === 206 ? 206 : 200,
     headers,
   })

@@ -254,68 +254,115 @@ export default function DownloaderTool({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const triggerActualDownload = (targetUrl: string, filename: string) => {
+  const triggerActualDownload = async (targetUrl: string, filename: string) => {
     if (!targetUrl) return
 
     setIsDownloadingMedia(true)
-    setDownloadProgress(50)
-    setDownloadStage('Delivering file to your browser...')
+    setDownloadProgress(20)
+    setDownloadStage('Connecting to media stream...')
 
     try {
-      const link = document.createElement('a')
-      link.href = targetUrl
-      link.setAttribute('download', filename)
-      link.setAttribute('target', '_blank')
-      link.setAttribute('rel', 'noopener noreferrer')
-      document.body.appendChild(link)
-      link.click()
-      setTimeout(() => {
-        try {
-          document.body.removeChild(link)
-        } catch { /* ignore */ }
-      }, 500)
-    } catch {
+      // 1. If it's our internal API proxy, fetch as Blob to guarantee 100% full file download with zero 0-byte issues
+      if (targetUrl.startsWith('/api/')) {
+        setDownloadProgress(40)
+        setDownloadStage('Downloading file...')
+
+        const response = await fetch(targetUrl)
+        if (!response.ok) {
+          throw new Error(`Stream returned status ${response.status}`)
+        }
+
+        const contentLength = +(response.headers.get('content-length') || 0)
+        let blob: Blob
+
+        if (response.body && contentLength > 0) {
+          const reader = response.body.getReader()
+          let receivedLength = 0
+          const chunks: Uint8Array[] = []
+
+          while (true) {
+            const { done, value } = await reader.read()
+            if (done) break
+            if (value) {
+              chunks.push(value)
+              receivedLength += value.length
+              const pct = Math.min(95, Math.round(40 + (receivedLength / contentLength) * 55))
+              setDownloadProgress(pct)
+              setDownloadStage(`Downloading (${Math.round((receivedLength / 1024 / 1024) * 10) / 10} MB)...`)
+            }
+          }
+          blob = new Blob(chunks, { type: response.headers.get('content-type') || 'video/mp4' })
+        } else {
+          blob = await response.blob()
+        }
+
+        if (blob.size === 0) {
+          throw new Error('Received 0 bytes from source')
+        }
+
+        setDownloadProgress(100)
+        setDownloadStage('Saving file...')
+
+        const blobUrl = URL.createObjectURL(blob)
+        const link = document.createElement('a')
+        link.style.display = 'none'
+        link.href = blobUrl
+        link.download = filename
+        document.body.appendChild(link)
+        link.click()
+
+        setTimeout(() => {
+          try {
+            document.body.removeChild(link)
+            URL.revokeObjectURL(blobUrl)
+          } catch { /* ignore */ }
+        }, 10000)
+      } else {
+        // Direct link fallback
+        const link = document.createElement('a')
+        link.style.display = 'none'
+        link.href = targetUrl
+        link.download = filename
+        document.body.appendChild(link)
+        link.click()
+        setTimeout(() => {
+          try {
+            document.body.removeChild(link)
+          } catch { /* ignore */ }
+        }, 1000)
+      }
+    } catch (err) {
+      console.warn('Blob download failed, falling back to direct navigation:', err)
       window.location.href = targetUrl
+    } finally {
+      setTimeout(() => {
+        setIsDownloadingMedia(false)
+        setDownloadProgress(0)
+        setDownloadStage('')
+      }, 1500)
     }
-
-    setDownloadProgress(100)
-    setDownloadStage('Download started!')
-
-    setTimeout(() => {
-      setIsDownloadingMedia(false)
-      setDownloadProgress(0)
-      setDownloadStage('')
-      dispatch({ type: 'SET_MESSAGE', payload: t('msgSuccess') })
-    }, 1500)
   }
 
   const resolveTargetUrlByQuality = (tier: VideoQualityTier): string => {
     if (!state.qualities || state.qualities.length === 0) {
       return state.downloadUrl || ''
     }
-    if (tier === 'best') {
+    if (tier === 'best' || tier === '1080p') {
       const best = state.qualities.find((q) =>
         q.quality.toLowerCase().includes('4k') ||
         q.quality.toLowerCase().includes('best') ||
         q.quality.toLowerCase().includes('original') ||
         q.quality.includes('1080') ||
-        q.resolution?.includes('4k') ||
-        q.resolution?.includes('1080')
-      )
-      return best?.url || state.qualities[0]?.url || state.downloadUrl || ''
-    }
-    if (tier === '1080p') {
-      const hd = state.qualities.find((q) =>
-        q.quality.includes('1080') ||
         q.quality.toLowerCase().includes('hd') ||
         q.resolution?.includes('1080')
       )
-      return hd?.url || state.qualities[0]?.url || state.downloadUrl || ''
+      return best?.url || state.qualities[0]?.url || state.downloadUrl || ''
     }
     if (tier === '720p') {
       const q720 = state.qualities.find((q) =>
         q.quality.includes('720') ||
         q.quality.toLowerCase().includes('sd') ||
+        q.quality.toLowerCase().includes('standard') ||
         q.resolution?.includes('720')
       )
       return q720?.url || state.qualities[state.qualities.length - 1]?.url || state.downloadUrl || ''
@@ -329,8 +376,10 @@ export default function DownloaderTool({
     const platform = state.platform || currentDetectedPlatform || 'video'
     const filename = `savefrominternet.com-${platform}-${selectedVideoQuality}-${Date.now()}.mp4`
 
-    // Append quality parameter to /api/video proxy so backend guarantees quality scaling
-    if (targetUrl.startsWith('/api/video') && !targetUrl.includes('quality=')) {
+    // Guarantee that targetUrl always routes through our proxy so headers force real MP4 attachment download
+    if (!targetUrl.startsWith('/api/video')) {
+      targetUrl = `/api/video?url=${encodeURIComponent(targetUrl)}&platform=${platform}&quality=${selectedVideoQuality}`
+    } else if (!targetUrl.includes('quality=')) {
       targetUrl += `&quality=${selectedVideoQuality}`
     }
 
@@ -340,6 +389,11 @@ export default function DownloaderTool({
   const handleAudioDownload = () => {
     let rawAudio = state.audioUrl || state.downloadUrl
     if (!rawAudio) return
+
+    // Avoid broken TikWM /video/music/ endpoint
+    if (rawAudio.includes('/video/music/') && state.downloadUrl) {
+      rawAudio = state.downloadUrl
+    }
 
     // If wrapped in /api/video?url=..., extract the inner direct CDN stream URL
     if (rawAudio.includes('url=')) {
@@ -604,14 +658,10 @@ export default function DownloaderTool({
         </div>
       )}
 
-      {/* ── Status Message Display ── */}
-      {state.message && !isDownloadingMedia && (
+      {/* ── Status Message Display (Errors only) ── */}
+      {state.message && !isDownloadingMedia && !state.message.includes('success') && !state.message.includes('🎉') && !state.message.includes('downloaded') && (
         <div className="max-w-2xl mx-auto px-4 mt-6">
-          <div className={`p-4 rounded-xl text-center text-sm font-medium border ${
-            state.message.includes('success') || state.message.includes('🎉') || state.message.includes('🎵') || state.message.includes('downloaded')
-              ? 'bg-slate-100 text-slate-900 border-slate-300'
-              : 'bg-red-50 text-red-800 border-red-200'
-          }`}>
+          <div className="p-4 rounded-xl text-center text-sm font-medium border bg-red-50 text-red-800 border-red-200">
             {state.message}
           </div>
         </div>
@@ -622,11 +672,30 @@ export default function DownloaderTool({
         <div ref={resultsRef} className="results-section max-w-3xl mx-auto px-4 py-8 sm:py-10 space-y-6">
           {/* Main Clean White Results Card */}
           <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 space-y-6 text-slate-900 shadow-sm">
-            {/* 1. Heading: Video Ready! */}
-            <div className="border-b border-slate-200 pb-3">
+            {/* 1. Heading & Creator Profile Bar */}
+            <div className="border-b border-slate-200 pb-4 space-y-3">
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
                 {t('videoReady')}
               </h2>
+              {/* Creator Info Bar */}
+              <div className="flex items-center justify-between gap-3 p-3 bg-slate-50 rounded-xl border border-slate-200">
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <div className={`w-9 h-9 rounded-full flex items-center justify-center font-extrabold text-xs shrink-0 text-white shadow-2xs ${isBlackTheme ? 'bg-black' : 'bg-[#195fd7]'}`}>
+                    {state.videoMetadata.author ? state.videoMetadata.author.replace('@', '').charAt(0).toUpperCase() : '👤'}
+                  </div>
+                  <div className="min-w-0">
+                    <span className="text-[10px] font-bold text-slate-400 block uppercase tracking-wider">Creator / Channel</span>
+                    <p className="text-sm font-extrabold text-slate-900 truncate">
+                      {state.videoMetadata.author ? (state.videoMetadata.author.startsWith('@') ? state.videoMetadata.author : `@${state.videoMetadata.author}`) : '@creator'}
+                    </p>
+                  </div>
+                </div>
+                {state.videoMetadata.duration > 0 && (
+                  <span className="px-2.5 py-1 bg-white text-slate-800 font-mono font-bold text-xs rounded-lg border border-slate-200 shadow-2xs whitespace-nowrap">
+                    ⏱️ {Math.floor(state.videoMetadata.duration / 60)}:{String(Math.floor(state.videoMetadata.duration % 60)).padStart(2, '0')}
+                  </span>
+                )}
+              </div>
             </div>
 
             {/* 2. Caption / Title Card with Copy Caption Button */}
@@ -661,135 +730,33 @@ export default function DownloaderTool({
               </div>
             </div>
 
-            {/* Thumbnail Preview (if present) */}
-            {state.videoMetadata.thumbnail && (
-              <div className="relative w-full h-44 sm:h-52 rounded-xl overflow-hidden bg-slate-100 border border-slate-200">
+            {/* 3. Thumbnail / Media Preview (Always Loaded for Every Video or Photo) */}
+            {(state.videoMetadata.thumbnail || (state.videoMetadata.images && state.videoMetadata.images.length > 0)) && (
+              <div className="relative w-full h-52 sm:h-64 rounded-xl overflow-hidden bg-slate-100 border border-slate-200 shadow-2xs">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={state.videoMetadata.thumbnail}
-                  alt="Video thumbnail preview"
+                  src={state.videoMetadata.thumbnail || (state.videoMetadata.images && state.videoMetadata.images[0]?.thumbnail) || ''}
+                  alt={state.videoMetadata.title || 'Media thumbnail preview'}
                   className="w-full h-full object-cover"
-                  onError={(e) => { e.currentTarget.style.display = 'none' }}
+                  onError={(e) => {
+                    if (state.videoMetadata?.images && state.videoMetadata.images[0]?.url) {
+                      e.currentTarget.src = state.videoMetadata.images[0].url
+                    } else {
+                      e.currentTarget.style.display = 'none'
+                    }
+                  }}
                 />
-                <div className="absolute inset-0 bg-black/20 pointer-events-none" />
-                <div className="absolute bottom-2.5 left-3 text-xs text-white font-medium flex items-center gap-1.5 drop-shadow-sm">
-                  <CheckIcon className="w-4 h-4 text-white" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute bottom-3 left-3.5 text-xs text-white font-bold flex items-center gap-1.5 drop-shadow">
+                  <CheckIcon className="w-4 h-4 text-emerald-400" />
                   Verified Media Ready
                 </div>
               </div>
             )}
 
-            {/* 3. Video Quality Options & Download Button (Only for Video Posts & Reels, NEVER for Photo Carousels) */}
-            {(!state.videoMetadata?.images || state.videoMetadata.images.length === 0) && (
-              <div className="space-y-3 pt-2">
-                <label className="block text-sm font-bold text-slate-900">
-                  {t('labelQuality')}
-                </label>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-                  {(
-                    [
-                      { id: 'best', label: 'Best (4K Quality)', isAdRequired: true },
-                      { id: '1080p', label: '1080p Full HD', isAdRequired: true },
-                      { id: '720p', label: '720p HD', isAdRequired: false },
-                    ] as const
-                  ).map((tier) => (
-                    <label
-                      key={tier.id}
-                      onClick={() => setSelectedVideoQuality(tier.id)}
-                      className={`flex flex-col items-center justify-center gap-1 py-3.5 px-3 rounded-xl border text-sm cursor-pointer transition-all select-none ${
-                        selectedVideoQuality === tier.id
-                          ? (isBlackTheme ? 'bg-slate-100 border-black text-black ring-1 ring-black font-bold shadow-xs' : 'bg-blue-50 border-[#195fd7] text-[#195fd7] ring-1 ring-[#195fd7] font-bold shadow-xs')
-                          : 'bg-white border-slate-200 text-slate-700 hover:border-slate-300 hover:bg-slate-50'
-                      }`}
-                    >
-                      <div className="flex items-center gap-2">
-                        <input
-                          type="radio"
-                          name="video-quality"
-                          value={tier.id}
-                          checked={selectedVideoQuality === tier.id}
-                          onChange={() => setSelectedVideoQuality(tier.id)}
-                          className={`w-3.5 h-3.5 ${isBlackTheme ? 'accent-black' : 'accent-[#195fd7]'} cursor-pointer`}
-                        />
-                        <span className="font-semibold">{tier.label}</span>
-                      </div>
-                      {tier.isAdRequired && (
-                        <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">
-                          {t('watchAd')}
-                        </span>
-                      )}
-                    </label>
-                  ))}
-                </div>
-
-                {/* Video Download CTA Button */}
-                <button
-                  onClick={handleVideoDownload}
-                  disabled={state.downloading || state.downloadingImages}
-                  className={`w-full h-13 ${isBlackTheme ? 'bg-black hover:bg-slate-800' : 'bg-[#195fd7] hover:bg-[#1550b8]'} text-white font-bold text-base rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm active:scale-[0.99] disabled:opacity-50`}
-                >
-                  <DownloadIcon className="h-5 w-5 text-white" /> {t('btnDownload')}
-                </button>
-              </div>
-            )}
-
-            {/* 4. Audio Options Section (Extract MP3 from Videos and Photo Sounds) */}
-            {(state.audioUrl || state.downloadUrl) && (
-              <div className="space-y-3 pt-4 border-t border-slate-200">
-                <label className="block text-sm font-bold text-slate-900">
-                  {t('labelAudioQuality')}
-                </label>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-                  {(
-                    [
-                      { id: 'best', label: 'Best Audio (320kbps)', isAdRequired: true },
-                      { id: '192kbps', label: 'High Quality (192kbps)', isAdRequired: true },
-                      { id: '128kbps', label: 'Standard (128kbps)', isAdRequired: false },
-                    ] as const
-                  ).map((tier) => (
-                    <label
-                      key={tier.id}
-                      onClick={() => setSelectedAudioQuality(tier.id)}
-                      className={`flex flex-col items-center justify-center gap-1 py-3 px-3 rounded-xl border text-sm cursor-pointer transition-all select-none ${
-                        selectedAudioQuality === tier.id
-                          ? (isBlackTheme ? 'bg-slate-100 border-black text-black ring-1 ring-black font-bold shadow-xs' : 'bg-blue-50 border-[#195fd7] text-[#195fd7] ring-1 ring-[#195fd7] font-bold shadow-xs')
-                          : 'bg-white border-slate-200 text-slate-700 hover:border-slate-300 hover:bg-slate-50'
-                      }`}
-                    >
-                      <div className="flex items-center gap-2">
-                        <input
-                          type="radio"
-                          name="audio-quality"
-                          value={tier.id}
-                          checked={selectedAudioQuality === tier.id}
-                          onChange={() => setSelectedAudioQuality(tier.id)}
-                          className={`w-3.5 h-3.5 ${isBlackTheme ? 'accent-black' : 'accent-[#195fd7]'} cursor-pointer`}
-                        />
-                        <span>{tier.label}</span>
-                      </div>
-                      {tier.isAdRequired && (
-                        <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">
-                          {t('watchAd')}
-                        </span>
-                      )}
-                    </label>
-                  ))}
-                </div>
-
-                {/* Audio Download Button */}
-                <button
-                  onClick={handleAudioDownload}
-                  disabled={state.downloadingAudio || state.downloadingImages}
-                  className="w-full h-12 bg-black hover:bg-slate-800 text-white font-bold text-sm sm:text-base rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm active:scale-[0.99] disabled:opacity-50"
-                >
-                  <MusicIcon className="h-4 w-4 text-white" /> {t('btnExtractMP3')}
-                </button>
-              </div>
-            )}
-
-            {/* Photo Carousel Support (Only for Photo Posts and Image Carousels) */}
+            {/* 4. Photo Carousel Section (Rendered UPPER than Audio when photos exist) */}
             {state.videoMetadata?.images && state.videoMetadata.images.length > 0 && (
-              <div className="space-y-4 pt-2">
+              <div className="space-y-4 pt-2 border-t border-slate-200">
                 <div className="flex items-center justify-between bg-slate-50 rounded-xl p-3 border border-slate-200">
                   <span className="text-slate-900 text-sm font-bold">
                     {t('labelSelectImages')} ({state.videoMetadata.images.length} {state.videoMetadata.images.length === 1 ? 'Photo' : 'Photos'})
@@ -843,6 +810,114 @@ export default function DownloaderTool({
                   ) : (
                     <><DownloadIcon className="h-5 w-5 text-white" /> {state.downloadImagesAsZip ? 'Download All as ZIP' : 'Download Selected'}</>
                   )}
+                </button>
+              </div>
+            )}
+
+            {/* 5. Video Quality Options & Download Button (Only for Video Posts & Reels, NEVER for Photo Carousels) */}
+            {(!state.videoMetadata?.images || state.videoMetadata.images.length === 0) && (
+              <div className="space-y-3 pt-2">
+                <label className="block text-sm font-bold text-slate-900">
+                  {t('labelQuality')}
+                </label>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                  {(
+                    [
+                      { id: 'best', label: 'Best (4K Quality)', isAdRequired: true },
+                      { id: '1080p', label: '1080p Full HD', isAdRequired: true },
+                      { id: '720p', label: '720p HD', isAdRequired: false },
+                    ] as const
+                  ).map((tier) => (
+                    <label
+                      key={tier.id}
+                      onClick={() => setSelectedVideoQuality(tier.id)}
+                      className={`flex flex-col items-center justify-center gap-1 py-3.5 px-3 rounded-xl border text-sm cursor-pointer transition-all select-none ${
+                        selectedVideoQuality === tier.id
+                          ? (isBlackTheme ? 'bg-slate-100 border-black text-black ring-1 ring-black font-bold shadow-xs' : 'bg-blue-50 border-[#195fd7] text-[#195fd7] ring-1 ring-[#195fd7] font-bold shadow-xs')
+                          : 'bg-white border-slate-200 text-slate-700 hover:border-slate-300 hover:bg-slate-50'
+                      }`}
+                    >
+                      <div className="flex items-center gap-2">
+                        <input
+                          type="radio"
+                          name="video-quality"
+                          value={tier.id}
+                          checked={selectedVideoQuality === tier.id}
+                          onChange={() => setSelectedVideoQuality(tier.id)}
+                          className={`w-3.5 h-3.5 ${isBlackTheme ? 'accent-black' : 'accent-[#195fd7]'} cursor-pointer`}
+                        />
+                        <span className="font-semibold">{tier.label}</span>
+                      </div>
+                      {tier.isAdRequired && (
+                        <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">
+                          {t('watchAd')}
+                        </span>
+                      )}
+                    </label>
+                  ))}
+                </div>
+
+                {/* Video Download CTA Button */}
+                <button
+                  onClick={handleVideoDownload}
+                  disabled={state.downloading || state.downloadingImages}
+                  className={`w-full h-13 ${isBlackTheme ? 'bg-black hover:bg-slate-800' : 'bg-[#195fd7] hover:bg-[#1550b8]'} text-white font-bold text-base rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm active:scale-[0.99] disabled:opacity-50`}
+                >
+                  <DownloadIcon className="h-5 w-5 text-white" /> {t('btnDownload')}
+                </button>
+              </div>
+            )}
+
+            {/* 6. Audio Options Section (Extract MP3 from Videos and Photo Sounds) */}
+            {(state.audioUrl || state.downloadUrl) && (
+              <div className="space-y-3 pt-4 border-t border-slate-200">
+                <label className="block text-sm font-bold text-slate-900">
+                  {t('labelAudioQuality')}
+                </label>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                  {(
+                    [
+                      { id: 'best', label: 'Best Audio (320kbps)', isAdRequired: true },
+                      { id: '192kbps', label: 'High Quality (192kbps)', isAdRequired: true },
+                      { id: '128kbps', label: 'Standard (128kbps)', isAdRequired: false },
+                    ] as const
+                  ).map((tier) => (
+                    <label
+                      key={tier.id}
+                      onClick={() => setSelectedAudioQuality(tier.id)}
+                      className={`flex flex-col items-center justify-center gap-1 py-3 px-3 rounded-xl border text-sm cursor-pointer transition-all select-none ${
+                        selectedAudioQuality === tier.id
+                          ? (isBlackTheme ? 'bg-slate-100 border-black text-black ring-1 ring-black font-bold shadow-xs' : 'bg-blue-50 border-[#195fd7] text-[#195fd7] ring-1 ring-[#195fd7] font-bold shadow-xs')
+                          : 'bg-white border-slate-200 text-slate-700 hover:border-slate-300 hover:bg-slate-50'
+                      }`}
+                    >
+                      <div className="flex items-center gap-2">
+                        <input
+                          type="radio"
+                          name="audio-quality"
+                          value={tier.id}
+                          checked={selectedAudioQuality === tier.id}
+                          onChange={() => setSelectedAudioQuality(tier.id)}
+                          className={`w-3.5 h-3.5 ${isBlackTheme ? 'accent-black' : 'accent-[#195fd7]'} cursor-pointer`}
+                        />
+                        <span>{tier.label}</span>
+                      </div>
+                      {tier.isAdRequired && (
+                        <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">
+                          {t('watchAd')}
+                        </span>
+                      )}
+                    </label>
+                  ))}
+                </div>
+
+                {/* Audio Download Button */}
+                <button
+                  onClick={handleAudioDownload}
+                  disabled={state.downloadingAudio || state.downloadingImages}
+                  className="w-full h-12 bg-black hover:bg-slate-800 text-white font-bold text-sm sm:text-base rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm active:scale-[0.99] disabled:opacity-50"
+                >
+                  <MusicIcon className="h-4 w-4 text-white" /> {t('btnExtractMP3')}
                 </button>
               </div>
             )}

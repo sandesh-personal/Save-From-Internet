@@ -26,6 +26,18 @@ function setMeta(response: NextResponse, pathname: string) {
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
 
+  // Never touch API routes, Next static assets, or public files
+  if (
+    pathname.startsWith('/api/') ||
+    pathname.startsWith('/_next/') ||
+    pathname === '/favicon.ico' ||
+    pathname === '/robots.txt' ||
+    pathname === '/sitemap.xml' ||
+    pathname === '/manifest.json'
+  ) {
+    return NextResponse.next()
+  }
+
   // Cookie-based locale default redirection for supported multilingual paths
   const localeCookie = request.cookies.get('NEXT_LOCALE')?.value
   if (localeCookie && LOCALES.includes(localeCookie) && MULTILINGUAL_PATHS.includes(pathname)) {

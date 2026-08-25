@@ -5,7 +5,8 @@ const PRIMARY_API_KEY = process.env.TIKWM_API_KEY ?? ''
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
 
 export async function extractTikTok(url: string): Promise<VideoData | null> {
-  const videoId = parseVideoId(url) || 'tiktok_video'
+  const resolvedUrl = await resolveShortUrl(url)
+  const videoId = parseVideoId(resolvedUrl) || parseVideoId(url) || 'tiktok_video'
 
   // Method 1: TikWM API
   try {
@@ -18,7 +19,7 @@ export async function extractTikTok(url: string): Promise<VideoData | null> {
         Origin: 'https://www.tikwm.com',
         Referer: 'https://www.tikwm.com/',
       },
-      body: JSON.stringify({ url, count: 12, cursor: 0, web: 1, hd: 1, api_key: PRIMARY_API_KEY }),
+      body: JSON.stringify({ url: resolvedUrl, count: 12, cursor: 0, web: 1, hd: 1, api_key: PRIMARY_API_KEY }),
       signal: AbortSignal.timeout(20000),
     })
 
@@ -31,14 +32,15 @@ export async function extractTikTok(url: string): Promise<VideoData | null> {
         ? data.images.map((img: string, i: number) => ({ id: `${videoId}_img_${i}`, url: img, thumbnail: img }))
         : []
 
-      let downloadUrl: string = data.play || data.hdplay || data.wmplay || ''
+      let downloadUrl: string = data.hdplay || data.play || data.wmplay || ''
       if (downloadUrl.startsWith('/')) downloadUrl = 'https://www.tikwm.com' + downloadUrl
 
       let cover: string = data.cover || ''
       if (cover.startsWith('/')) cover = 'https://www.tikwm.com' + cover
 
-      let audioUrl: string | undefined = data.music || undefined
-      if (audioUrl?.startsWith('/')) audioUrl = 'https://www.tikwm.com' + audioUrl
+      // For TikTok, data.music (/video/music/*.mp3) returns 403 on TikWM CDN.
+      // We always use the valid video stream (downloadUrl) so FFmpeg extracts the crystal-clear audio track without 403 errors.
+      const audioUrl = downloadUrl || (data.music && !data.music.includes('/video/music/') ? data.music : undefined)
 
       return {
         id: videoId,
@@ -46,7 +48,7 @@ export async function extractTikTok(url: string): Promise<VideoData | null> {
         url,
         thumbnail: cover,
         duration: data.duration || 0,
-        author: data.author?.nickname || 'TikTok Creator',
+        author: data.author?.nickname ? `@${data.author.nickname}` : 'TikTok Creator',
         description: data.title || '',
         downloadUrl,
         audioUrl,
@@ -54,8 +56,8 @@ export async function extractTikTok(url: string): Promise<VideoData | null> {
         isPhotoCarousel,
         platform: 'tiktok',
         qualities: [
-          ...(data.hdplay ? [{ quality: 'HD No Watermark', url: data.hdplay.startsWith('/') ? 'https://www.tikwm.com' + data.hdplay : data.hdplay }] : []),
-          ...(data.play ? [{ quality: 'SD No Watermark', url: data.play.startsWith('/') ? 'https://www.tikwm.com' + data.play : data.play }] : []),
+          ...(data.hdplay ? [{ quality: '1080p Full HD (Best)', url: data.hdplay.startsWith('/') ? 'https://www.tikwm.com' + data.hdplay : data.hdplay, resolution: '1080p' }] : []),
+          ...(data.play ? [{ quality: '720p HD', url: data.play.startsWith('/') ? 'https://www.tikwm.com' + data.play : data.play, resolution: '720p' }] : []),
         ],
       }
     }
@@ -98,16 +100,23 @@ export async function extractTikTok(url: string): Promise<VideoData | null> {
 }
 
 async function resolveShortUrl(url: string): Promise<string> {
-  if (!url.includes('vm.tiktok.com') && !url.includes('/t/')) return url
-  try {
-    const res = await fetch(url, {
-      method: 'HEAD',
-      redirect: 'follow',
-      headers: { 'User-Agent': UA },
-      signal: AbortSignal.timeout(10000),
-    })
-    return res.url || url
-  } catch {
-    return url
+  if (
+    url.includes('vt.tiktok.com') ||
+    url.includes('vm.tiktok.com') ||
+    url.includes('t.tiktok.com') ||
+    url.includes('/t/')
+  ) {
+    try {
+      const res = await fetch(url, {
+        method: 'GET',
+        redirect: 'follow',
+        headers: { 'User-Agent': UA },
+        signal: AbortSignal.timeout(10000),
+      })
+      return res.url || url
+    } catch {
+      return url
+    }
   }
+  return url
 }

@@ -49,8 +49,8 @@ export class Downloader {
         result = (await extractViaYtDlp(trimmed, 'instagram')) ?? (await extractInstagram(trimmed))
         break
       case 'tiktok':
-        // Primary: yt-dlp (0 API keys, direct CDN stream), Backup: TikWM API
-        result = (await extractViaYtDlp(trimmed, 'tiktok')) ?? (await extractTikTok(trimmed))
+        // Primary: TikWM API & Web Scraper (Fast watermark-free CDN stream), Backup: yt-dlp
+        result = (await extractTikTok(trimmed)) ?? (await extractViaYtDlp(trimmed, 'tiktok'))
         break
       case 'facebook':
         // Primary: yt-dlp (HD MP4 progressive stream), Backup: Direct Scraper

@@ -30,36 +30,23 @@ function isFfmpegExecutable(): boolean {
 
 function isAllowedAudioHost(url: string): boolean {
   try {
-    const { hostname } = new URL(url)
-    if (['www.tikwm.com', 'tikwm.com', 'robotilab.online'].includes(hostname)) return true
-    return (
-      hostname.endsWith('.tiktok.com') ||
-      hostname.endsWith('.tiktokv.com') ||
-      hostname.endsWith('.tiktokcdn.com') ||
-      hostname.endsWith('.tiktokcdn-eu.com') ||
-      hostname.endsWith('.tiktokcdn-us.com') ||
-      hostname.endsWith('.muscdn.com') ||
-      hostname.includes('tiktok') ||
-      hostname.endsWith('.fbcdn.net') ||
-      hostname.endsWith('.facebook.com') ||
-      hostname.endsWith('.fbsbx.com') ||
-      hostname.includes('fbcdn') ||
-      hostname.endsWith('.cdninstagram.com') ||
-      hostname.endsWith('.instagram.com') ||
-      hostname.includes('instagram') ||
-      hostname.endsWith('.twimg.com') ||
-      hostname.endsWith('.twitter.com') ||
-      hostname.endsWith('.x.com') ||
-      hostname.endsWith('.cloudfront.net')
-    )
+    const parsed = new URL(url)
+    if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') return false
+    const host = parsed.hostname.toLowerCase()
+    if (
+      host === 'localhost' ||
+      host === '127.0.0.1' ||
+      host === '0.0.0.0' ||
+      host.startsWith('192.168.') ||
+      host.startsWith('10.') ||
+      host.startsWith('172.16.')
+    ) {
+      return false
+    }
+    return true
   } catch {
     return false
   }
-}
-
-function isJsonContentType(response: Response): boolean {
-  const ct = response.headers.get('content-type') || ''
-  return ct.includes('application/json') || ct.includes('text/plain')
 }
 
 export async function GET(request: NextRequest) {
@@ -102,9 +89,22 @@ export async function GET(request: NextRequest) {
     if (isFfmpegExecutable()) {
       try {
         const ffmpegExe = getFfmpegPath()
-        const ffmpegProc = spawn(ffmpegExe, [
+        let refererHeader = ''
+        if (audioUrl.includes('tikwm.com')) {
+          refererHeader = 'Referer: https://www.tikwm.com/\r\n'
+        } else if (audioUrl.includes('tiktok') || platform === 'tiktok') {
+          refererHeader = 'Referer: https://www.tiktok.com/\r\n'
+        } else if (audioUrl.includes('instagram') || audioUrl.includes('cdninstagram') || platform === 'instagram') {
+          refererHeader = 'Referer: https://www.instagram.com/\r\n'
+        } else if (audioUrl.includes('facebook') || audioUrl.includes('fbcdn') || platform === 'facebook') {
+          refererHeader = 'Referer: https://www.facebook.com/\r\n'
+        } else if (audioUrl.includes('twitter') || audioUrl.includes('twimg') || platform === 'twitter') {
+          refererHeader = 'Referer: https://twitter.com/\r\n'
+        }
+
+        const ffmpegArgs: string[] = [
           '-headers',
-          'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\r\n',
+          `${refererHeader}User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36\r\n`,
           '-i',
           audioUrl,
           '-vn',
@@ -115,7 +115,9 @@ export async function GET(request: NextRequest) {
           '-f',
           'mp3',
           'pipe:1',
-        ])
+        ]
+
+        const ffmpegProc = spawn(ffmpegExe, ffmpegArgs)
 
         const nodeStream = ffmpegProc.stdout
         const webStream = new ReadableStream({
@@ -152,33 +154,31 @@ export async function GET(request: NextRequest) {
       }
     }
 
+    // Direct stream via fetch
     const controller = new AbortController()
     const timeout = setTimeout(() => controller.abort(), 35000)
 
-    const headers: Record<string, string> = {
+    const fetchHeaders: Record<string, string> = {
       'User-Agent':
-        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
       Accept: '*/*',
     }
 
-    if (audioUrl.includes('tiktok')) {
-      headers['Referer'] = 'https://www.tiktok.com/'
-    } else if (audioUrl.includes('instagram')) {
-      headers['Referer'] = 'https://www.instagram.com/'
-    }
-
-    let response: Response
+    let response: Response | null = null
     try {
-      response = await fetch(audioUrl, { headers, signal: controller.signal, redirect: 'follow' })
+      response = await fetch(audioUrl, { headers: fetchHeaders, signal: controller.signal, redirect: 'follow' })
+    } catch {
+      response = null
     } finally {
       clearTimeout(timeout)
     }
 
-    if (!response.ok || isJsonContentType(response)) {
-      return NextResponse.json({ success: false, error: 'Failed to fetch audio stream' }, { status: 500 })
+    if (response && response.ok) {
+      return buildAudioResponse(response, platform, filename)
     }
 
-    return buildAudioResponse(response, platform, filename)
+    // Fallback: Direct 302 redirect to audio stream
+    return NextResponse.redirect(audioUrl, 302)
   } catch (error) {
     console.error('Audio extraction error:', error instanceof Error ? error.message : 'Unknown')
     return NextResponse.json({ success: false, error: 'Failed to extract audio' }, { status: 500 })
@@ -199,5 +199,9 @@ function buildAudioResponse(response: Response, platform: string = 'audio', file
     'Access-Control-Allow-Origin': '*',
   }
   if (contentLength) headers['Content-Length'] = contentLength
-  return new NextResponse(response.body, { headers })
+
+  return new NextResponse(response.body, {
+    status: 200,
+    headers,
+  })
 }
