@@ -1,25 +1,69 @@
 {
-  "name": "Save From Internet - TikTok Video Downloader",
-  "short_name": "TikTok Downloader",
-  "description": "Download TikTok videos without watermarks in high quality. Fast, free TikTok video downloader for PC, iPhone, Android.",
+  "name": "Save From Internet - Video Downloader",
+  "short_name": "SaveFromInternet",
+  "description": "Download HD videos, reels, photos, and MP3 music from TikTok, Instagram, Facebook, Twitter, and 40+ platforms for free.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#195fd7",
+  "lang": "en",
+  "categories": ["utilities", "productivity", "multimedia"],
   "icons": [
     {
-      "src": "/logo-circle.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
+      "src": "/logo-final.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo-final.png",
+      "sizes": "512x512",
+      "type": "image/png",
       "purpose": "any maskable"
     },
     {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
       "src": "/favicon.ico",
-      "sizes": "32x32",
+      "sizes": "48x48 32x32 16x16",
       "type": "image/x-icon"
     }
   ],
-  "theme_color": "#ff0050",
-  "background_color": "#000000",
-  "display": "standalone",
-  "start_url": "https://www.savefrominternet.com/",
-  "orientation": "portrait",
-  "scope": "/",
-  "lang": "en"
+  "shortcuts": [
+    {
+      "name": "TikTok Downloader",
+      "short_name": "TikTok",
+      "description": "Download TikTok videos without watermark",
+      "url": "/",
+      "icons": [{ "src": "/logo-final.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Instagram Downloader",
+      "short_name": "Instagram",
+      "description": "Download Instagram Reels & Photos",
+      "url": "/instagram-reel-downloader",
+      "icons": [{ "src": "/logo-final.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Facebook Downloader",
+      "short_name": "Facebook",
+      "description": "Download Facebook HD Videos",
+      "url": "/facebook-video-downloader",
+      "icons": [{ "src": "/logo-final.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Twitter / X Downloader",
+      "short_name": "Twitter",
+      "description": "Download Twitter Videos & GIFs",
+      "url": "/twitter-video-downloader",
+      "icons": [{ "src": "/logo-final.png", "sizes": "192x192" }]
+    }
+  ]
 }

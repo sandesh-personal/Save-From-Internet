@@ -8,6 +8,7 @@ import Header from '@/components/layout/Header'
 import StickyFooterAd from '@/components/StickyFooterAd'
 import { GA_TRACKING_ID } from '@/lib/ga'
 import { Providers } from '@/components/Providers'
+import PwaInstallPrompt from '@/components/PwaInstallPrompt'
 
 const inter = Inter({
   variable: '--font-inter',
@@ -114,6 +115,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
           <Footer />
           <StickyFooterAd />
+          <PwaInstallPrompt />
           <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'WebSite',
