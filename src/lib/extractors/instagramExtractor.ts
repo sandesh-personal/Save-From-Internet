@@ -1,6 +1,5 @@
 import { VideoData, ImageData, VideoQualityOption } from '../types'
 import { parseVideoId } from '../validator'
-import { extractViaRapidAPI } from './rapidApiExtractor'
 
 const UA_DESKTOP =
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36'
@@ -14,13 +13,7 @@ const IG_COOKIE = process.env.INSTAGRAM_COOKIE || process.env.IG_COOKIE || ''
 export async function extractInstagram(url: string): Promise<VideoData | null> {
   const shortcode = extractShortcode(url) || parseVideoId(url) || `ig_${Date.now()}`
 
-  // Strategy 1 (Primary for Netlify/Cloud): RapidAPI with rotating residential proxies
-  const rapidResult = await extractViaRapidAPI(url, 'instagram')
-  if (rapidResult && (rapidResult.downloadUrl || (rapidResult.images && rapidResult.images.length > 0))) {
-    return rapidResult
-  }
-
-  // Strategy 2 (Backup): Direct Instagram doc_id GraphQL query (works with optional INSTAGRAM_COOKIE)
+  // Strategy 1: Direct Instagram doc_id GraphQL query (works with optional INSTAGRAM_COOKIE)
   const docIdResult = await tryInstagramDocIdGraphQL(shortcode, url)
   if (docIdResult && (docIdResult.downloadUrl || (docIdResult.images && docIdResult.images.length > 0))) {
     return docIdResult

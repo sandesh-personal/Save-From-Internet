@@ -5,7 +5,6 @@ import { extractFacebook } from './extractors/facebookExtractor'
 import { extractInstagram } from './extractors/instagramExtractor'
 import { extractTwitter } from './extractors/twitterExtractor'
 import { extractViaYtDlp } from './extractors/ytdlpExtractor'
-import { extractViaRapidAPI } from './extractors/rapidApiExtractor'
 
 const CACHE_TTL = 30 * 60 * 1000
 interface CacheEntry {
@@ -43,11 +42,11 @@ export class Downloader {
 
     let result: VideoData | null = null
 
-    // ── Dedicated Platform Handlers (Primary: yt-dlp) ──────────────────
+    // ── Dedicated Platform Handlers (Primary: VPS yt-dlp Engine) ──────
     switch (platform) {
       case 'instagram':
-        // Primary: yt-dlp (0 API keys, full 1080p MP4 reels & carousel extraction)
-        result = (await extractViaYtDlp(trimmed, 'instagram')) ?? (await extractInstagram(trimmed)) ?? (await extractViaRapidAPI(trimmed, 'instagram'))
+        // Primary: yt-dlp (0 API keys, full 1080p MP4 reels & carousel extraction), Backup: Direct GraphQL Scraper
+        result = (await extractViaYtDlp(trimmed, 'instagram')) ?? (await extractInstagram(trimmed))
         break
       case 'tiktok':
         // Primary: yt-dlp (0 API keys, direct CDN stream), Backup: TikWM API
@@ -55,20 +54,19 @@ export class Downloader {
         break
       case 'facebook':
         // Primary: yt-dlp (HD MP4 progressive stream), Backup: Direct Scraper
-        result = (await extractViaYtDlp(trimmed, 'facebook')) ?? (await extractFacebook(trimmed)) ?? (await extractViaRapidAPI(trimmed, 'facebook'))
+        result = (await extractViaYtDlp(trimmed, 'facebook')) ?? (await extractFacebook(trimmed))
         break
       case 'twitter':
         // Primary: yt-dlp (HD MP4 video stream), Backup: Direct Scraper
-        result = (await extractViaYtDlp(trimmed, 'twitter')) ?? (await extractTwitter(trimmed)) ?? (await extractViaRapidAPI(trimmed, 'twitter'))
+        result = (await extractViaYtDlp(trimmed, 'twitter')) ?? (await extractTwitter(trimmed))
         break
       default:
         result = (await extractViaYtDlp(trimmed, platform)) ?? (await extractTikTok(trimmed))
         break
     }
 
-    // ── Universal RapidAPI fallback for non-TikTok platforms ────────
-    if (!result && platform !== 'tiktok') {
-      result = (await extractViaYtDlp(trimmed, platform)) ?? (await extractViaRapidAPI(trimmed, platform))
+    if (!result) {
+      result = await extractViaYtDlp(trimmed, platform)
     }
 
     if (result && (result.downloadUrl || (result.images && result.images.length > 0))) {

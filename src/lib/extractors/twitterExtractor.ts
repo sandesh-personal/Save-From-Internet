@@ -1,5 +1,4 @@
 import { VideoData, ImageData, VideoQualityOption } from '../types'
-import { extractViaRapidAPI } from './rapidApiExtractor'
 
 const UA =
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
@@ -10,7 +9,7 @@ export async function extractTwitter(url: string): Promise<VideoData | null> {
   const tweetId = extractTweetId(normalizedUrl)
   if (!tweetId) return null
 
-  // Strategy 1: FXTwitter / FixTweet API (Fast, Free & Reliable — still working in 2026)
+  // Strategy 1: FXTwitter / FixTweet API (Fast, Free & Reliable)
   const fxResult = await tryFxTwitterApi(tweetId, url)
   if (fxResult) return fxResult
 
@@ -21,10 +20,6 @@ export async function extractTwitter(url: string): Promise<VideoData | null> {
   // Strategy 3: Direct download via d.fxtwitter.com
   const directResult = await tryDirectFxDownload(tweetId, url)
   if (directResult) return directResult
-
-  // Strategy 4: RapidAPI universal fallback
-  const rapidResult = await extractViaRapidAPI(url, 'twitter')
-  if (rapidResult) return rapidResult
 
   return null
 }

@@ -1,6 +1,5 @@
 import { VideoData, VideoQualityOption } from '../types'
 import { parseVideoId } from '../validator'
-import { extractViaRapidAPI } from './rapidApiExtractor'
 
 const UA_FB_BOT =
   'facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)'
@@ -53,10 +52,6 @@ export async function extractFacebook(url: string): Promise<VideoData | null> {
       qualities: [{ quality: 'Standard SD MP4', url: mbasicResult.downloadUrl }],
     }
   }
-
-  // Step 4: RapidAPI universal fallback
-  const rapidResult = await extractViaRapidAPI(url, 'facebook')
-  if (rapidResult) return rapidResult
 
   return null
 }
