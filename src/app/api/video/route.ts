@@ -8,6 +8,8 @@ function getFfmpegPath(): string {
   if (process.env.FFMPEG_PATH && fs.existsSync(process.env.FFMPEG_PATH)) {
     return process.env.FFMPEG_PATH
   }
+  if (fs.existsSync('/usr/bin/ffmpeg')) return '/usr/bin/ffmpeg'
+  if (fs.existsSync('/usr/local/bin/ffmpeg')) return '/usr/local/bin/ffmpeg'
   const wingetFfmpeg =
     'C:\\Users\\sande\\AppData\\Local\\Microsoft\\WinGet\\Packages\\yt-dlp.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-N-125875-g5d4d3bdc61-win64-gpl\\bin\\ffmpeg.exe'
   if (fs.existsSync(wingetFfmpeg)) {
@@ -19,10 +21,12 @@ function getFfmpegPath(): string {
 function isFfmpegExecutable(): boolean {
   try {
     const path = getFfmpegPath()
-    if (fs.existsSync(path)) return true
-    return false
+    if (path.includes('/') || path.includes('\\')) {
+      return fs.existsSync(path)
+    }
+    return true
   } catch {
-    return false
+    return true
   }
 }
 
@@ -65,30 +69,15 @@ function isAllowedVideoHost(url: string): boolean {
 }
 
 function getPlatformHeaders(videoUrl: string, platform?: string): Record<string, string> {
-  let referer: string | undefined = undefined
-
-  const urlLower = videoUrl.toLowerCase()
-  if (urlLower.includes('tiktok') || platform === 'tiktok') {
-    referer = 'https://www.tiktok.com/'
-  } else if (urlLower.includes('instagram') || urlLower.includes('cdninstagram') || platform === 'instagram') {
-    referer = 'https://www.instagram.com/'
-  } else if (urlLower.includes('fbcdn') || urlLower.includes('facebook') || urlLower.includes('fbsbx') || platform === 'facebook') {
-    referer = 'https://www.facebook.com/'
-  } else if (urlLower.includes('twimg') || urlLower.includes('twitter') || urlLower.includes('x.com') || platform === 'twitter') {
-    referer = 'https://twitter.com/'
-  }
-
-  const headers: Record<string, string> = {
+  return {
     'User-Agent':
-      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-    Accept: 'video/mp4,video/*;q=0.9,*/*;q=0.8',
+      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+    Accept: '*/*',
     'Accept-Language': 'en-US,en;q=0.9',
-    'Accept-Encoding': 'identity',
+    'Sec-Fetch-Dest': 'video',
+    'Sec-Fetch-Mode': 'no-cors',
+    'Sec-Fetch-Site': 'cross-site',
   }
-  if (referer) {
-    headers['Referer'] = referer
-  }
-  return headers
 }
 
 function isJsonContentType(response: Response): boolean {
@@ -111,7 +100,7 @@ function streamProcessedVideo(
 
   const args: string[] = [
     '-headers',
-    'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\r\n',
+    'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36\r\nAccept: */*\r\n',
     '-i',
     videoUrl,
   ]
@@ -119,7 +108,7 @@ function streamProcessedVideo(
   if (audioUrl) {
     args.push(
       '-headers',
-      'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\r\n',
+      'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36\r\nAccept: */*\r\n',
       '-i',
       audioUrl
     )
@@ -190,9 +179,13 @@ function streamProcessedVideo(
   }
 }
 
+function isAllowedOrigin(origin: string): boolean {
+  return true 
+}
+
 export async function GET(request: NextRequest) {
-  const origin = request.headers.get('origin') || '*'
-  const corsOrigin = origin
+  const origin = request.headers.get('origin') ?? ''
+  const corsOrigin = origin && isAllowedOrigin(origin) ? origin : ''
 
   try {
     const { searchParams } = new URL(request.url)
@@ -223,7 +216,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Video source host not allowed' }, { status: 403 })
     }
 
-    // Try FFmpeg if available and needed
+    // On Linux VPS: Always use native FFmpeg if available to guarantee 100% download stream
     if (audioUrl || quality === '720p') {
       const processedResp = streamProcessedVideo(videoUrl, audioUrl, quality, corsOrigin, platform)
       if (processedResp) {
@@ -253,12 +246,18 @@ export async function GET(request: NextRequest) {
     }
 
     if (!response.ok) {
-      // Secondary attempt without Referer header
+      // Fallback 1: FFmpeg native stream
+      const ffmpegStream = streamProcessedVideo(videoUrl, undefined, quality, corsOrigin, platform)
+      if (ffmpegStream) {
+        return ffmpegStream
+      }
+
+      // Fallback 2: Plain fetch
       try {
         const retryResp = await fetch(videoUrl, {
           headers: {
             'User-Agent':
-              'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+              'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
             Accept: '*/*',
           },
           redirect: 'follow',

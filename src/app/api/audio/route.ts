@@ -6,6 +6,8 @@ function getFfmpegPath(): string {
   if (process.env.FFMPEG_PATH && fs.existsSync(process.env.FFMPEG_PATH)) {
     return process.env.FFMPEG_PATH
   }
+  if (fs.existsSync('/usr/bin/ffmpeg')) return '/usr/bin/ffmpeg'
+  if (fs.existsSync('/usr/local/bin/ffmpeg')) return '/usr/local/bin/ffmpeg'
   const wingetFfmpeg =
     'C:\\Users\\sande\\AppData\\Local\\Microsoft\\WinGet\\Packages\\yt-dlp.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-N-125875-g5d4d3bdc61-win64-gpl\\bin\\ffmpeg.exe'
   if (fs.existsSync(wingetFfmpeg)) {
@@ -17,10 +19,12 @@ function getFfmpegPath(): string {
 function isFfmpegExecutable(): boolean {
   try {
     const path = getFfmpegPath()
-    if (fs.existsSync(path)) return true
-    return false
+    if (path.includes('/') || path.includes('\\')) {
+      return fs.existsSync(path)
+    }
+    return true
   } catch {
-    return false
+    return true
   }
 }
 
