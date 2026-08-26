@@ -30,9 +30,11 @@ const guidesAndDevices = [
 const resources = [
   { label: 'Blog & Articles (90+)', href: '/blog' },
   { label: 'Frequently Asked Questions', href: '/faq' },
-  { label: 'About SaveFromInternet', href: '/about' },
+  { label: 'Terms of Service', href: '/terms-of-service' },
+  { label: 'DMCA Policy', href: '/dmca' },
   { label: 'Privacy Policy', href: '/privacy-policy' },
-  { label: 'Disclaimer / DMCA', href: '/disclaimer' },
+  { label: 'Contact Us', href: '/contact' },
+  { label: 'About SaveFromInternet', href: '/about' },
 ]
 
 export default function Footer() {
@@ -125,9 +127,11 @@ export default function Footer() {
           <p className="text-slate-500 text-xs text-center sm:text-left">
             &copy; 2026 SaveFromInternet.com. Not affiliated with TikTok, ByteDance, Meta, Instagram, Facebook, or X Corp.
           </p>
-          <div className="flex items-center gap-4 text-xs text-slate-500">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs text-slate-500">
             <Link href="/privacy-policy" className="hover:text-black transition-colors">Privacy</Link>
-            <Link href="/disclaimer" className="hover:text-black transition-colors">Disclaimer / DMCA</Link>
+            <Link href="/terms-of-service" className="hover:text-black transition-colors">Terms</Link>
+            <Link href="/dmca" className="hover:text-black transition-colors">DMCA</Link>
+            <Link href="/contact" className="hover:text-black transition-colors">Contact</Link>
             <Link href="/about" className="hover:text-black transition-colors">About</Link>
           </div>
         </div>

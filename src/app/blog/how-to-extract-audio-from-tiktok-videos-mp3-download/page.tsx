@@ -32,7 +32,7 @@ export default function Page() {
 
       <h2>Why Extract TikTok Audio?</h2>
       <ul>
-        <li><strong>Content creators</strong> — use TikTok sounds in YouTube videos, podcasts, or Instagram Reels (with permission or for sounds you own)</li>
+        <li><strong>Content creators</strong> — use TikTok sounds in Twitter/X videos, podcasts, or Instagram Reels (with permission or for sounds you own)</li>
         <li><strong>Music lovers</strong> — save trending songs before they disappear from TikTok&apos;s sound library</li>
         <li><strong>Ringtones</strong> — turn a viral TikTok sound into your custom ringtone on iPhone or Android</li>
         <li><strong>Offline listening</strong> — save audio for when you have no internet access</li>

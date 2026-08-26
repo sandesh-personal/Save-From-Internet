@@ -128,6 +128,41 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/x-downloader',
+        destination: '/twitter-video-downloader',
+        permanent: true,
+      },
+      {
+        source: '/x-downloader/:path*',
+        destination: '/twitter-video-downloader',
+        permanent: true,
+      },
+      {
+        source: '/blog/youtube-to-mp4-free',
+        destination: '/tiktok-video-downloader',
+        permanent: true,
+      },
+      {
+        source: '/blog/youtube-video-downloader-free',
+        destination: '/tiktok-video-downloader',
+        permanent: true,
+      },
+      {
+        source: '/blog/youtube-shorts-to-mp3-free',
+        destination: '/tiktok-to-mp3',
+        permanent: true,
+      },
+      {
+        source: '/blog/youtube-to-mp3-free',
+        destination: '/tiktok-to-mp3',
+        permanent: true,
+      },
+      {
+        source: '/blog/youtube-shorts-downloader-save-videos-without-watermark',
+        destination: '/tiktok-downloader-without-watermark',
+        permanent: true,
+      },
+      {
         source: '/blog/how-to-download-tiktok-videos-without-watermark-2025',
         destination: '/blog/download-tiktok-videos-without-watermark-2025',
         permanent: true,

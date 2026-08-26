@@ -5,12 +5,12 @@ import BlogPostLayout from '@/components/blog/BlogPostLayout'
 
 export const metadata: Metadata = {
   title: 'How to Download Social Media Videos for Offline Viewing While Traveling (2026) | SaveFromInternet',
-  description: "Flying or heading to a no-wifi zone? Here's how to bulk download TikTok, Instagram, and YouTube videos before you leave. Complete offline travel guide for 2026.",
+  description: "Flying or heading to a no-wifi zone? Here's how to bulk download TikTok, Instagram, and Twitter/X videos before you leave. Complete offline travel guide for 2026.",
   keywords: ['download social media videos offline', 'save videos for offline travel 2026', 'download tiktok videos offline airplane', 'social media offline viewing'],
   alternates: { canonical: 'https://www.savefrominternet.com/blog/download-videos-for-offline-travel' },
   openGraph: {
     title: 'How to Download Social Media Videos for Offline Viewing While Traveling (2026)',
-    description: 'Save TikTok, Instagram, and YouTube videos for offline viewing on flights and travel.',
+    description: 'Save TikTok, Instagram, and Twitter/X videos for offline viewing on flights and travel.',
     url: 'https://www.savefrominternet.com/blog/download-videos-for-offline-travel',
     type: 'article',
     images: ['https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200&h=630&fit=crop&auto=format'],
@@ -21,7 +21,7 @@ export default function Page() {
   return (
     <BlogPostLayout
       title="How to Download Social Media Videos for Offline Viewing While Traveling (2026)"
-      description="Flying or heading to a no-wifi zone? Here's how to bulk download TikTok, Instagram, and YouTube videos before you leave."
+      description="Flying or heading to a no-wifi zone? Here's how to bulk download TikTok, Instagram, and Twitter/X videos before you leave."
       date="2026-04-18T08:00:00.000Z"
       category="how-to"
     >
@@ -31,7 +31,7 @@ export default function Page() {
       <ul>
         <li>✅ TikTok videos you want to watch or save</li>
         <li>✅ Instagram Reels for travel inspiration</li>
-        <li>✅ YouTube tutorials or vlogs relevant to your destination</li>
+        <li>✅ Twitter/X tutorials or vlogs relevant to your destination</li>
         <li>✅ Podcasts or audio content (MP3)</li>
         <li>✅ Maps and navigation data (Google Maps offline areas)</li>
       </ul>
@@ -63,16 +63,16 @@ export default function Page() {
         <li>Videos save to Camera Roll (iPhone) or Gallery (Android)</li>
       </ol>
 
-      <h2>Downloading YouTube for Offline</h2>
-      <p>YouTube has two options:</p>
+      <h2>Downloading Twitter/X for Offline</h2>
+      <p>Twitter/X has two options:</p>
       <ul>
-        <li><strong>YouTube Premium (paid):</strong> Built-in offline downloads within the YouTube app</li>
+        <li><strong>Twitter/X Premium (paid):</strong> Built-in offline downloads within the Twitter/X app</li>
         <li><strong>SaveFromInternet (free):</strong> Download any video as MP4 via our tool — watch in any video player</li>
       </ul>
 
       <Image
         src="/images/step2.jpg"
-        alt="Download YouTube and TikTok videos before traveling for offline entertainment"
+        alt="Download Twitter/X and TikTok videos before traveling for offline entertainment"
         width={800}
         height={400}
         className="rounded-lg my-6"
@@ -99,7 +99,7 @@ export default function Page() {
             <td style={{padding: '10px'}}>40–100 Reels</td>
           </tr>
           <tr style={{borderBottom: '1px solid #e2e8f0'}}>
-            <td style={{padding: '10px'}}>YouTube video (10 min, 1080p)</td>
+            <td style={{padding: '10px'}}>Twitter/X video (10 min, 1080p)</td>
             <td style={{padding: '10px'}}>200–500 MB</td>
             <td style={{padding: '10px'}}>2–5 videos</td>
           </tr>
@@ -121,7 +121,7 @@ export default function Page() {
       <h2>Related Guides</h2>
       <ul>
         <li><Link href="/blog/tiktok-bulk-downloader">Bulk Download TikTok Videos</Link></li>
-        <li><Link href="/blog/youtube-video-downloader-free">YouTube Video Downloader Free</Link></li>
+        <li><Link href="/tiktok-video-downloader">TikTok Video Downloader</Link></li>
         <li><Link href="/blog/how-to-download-tiktok-favorites-offline">Save TikTok Favorites Offline</Link></li>
       </ul>
     </BlogPostLayout>

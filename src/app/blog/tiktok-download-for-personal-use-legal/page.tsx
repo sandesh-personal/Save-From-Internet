@@ -32,7 +32,7 @@ export default function Page() {
       <h2>What Is Clearly Not Legal</h2>
       <p>The following uses of downloaded TikTok videos create genuine legal exposure:</p>
       <ul>
-        <li><strong>Re-uploading to another platform as your own content</strong> — this is copyright infringement. The creator holds copyright to their original video, and uploading it to YouTube or Instagram without their permission violates that right.</li>
+        <li><strong>Re-uploading to another platform as your own content</strong> — this is copyright infringement. The creator holds copyright to their original video, and uploading it to Twitter or Instagram without their permission violates that right.</li>
         <li><strong>Using a downloaded TikTok in a commercial video</strong> — without a license from the creator, using their content in a product, advertisement, or monetized video is infringement.</li>
         <li><strong>Mass redistribution</strong> — distributing downloads at scale (hosting, torrent sharing, etc.) is infringement regardless of commercial intent.</li>
         <li><strong>Claiming the content as your own (passing off)</strong> — this adds fraud/misrepresentation on top of copyright infringement.</li>
@@ -75,7 +75,7 @@ export default function Page() {
           <tr><td>Watch offline on your own device</td><td>✅ Yes (fair use / personal copy)</td><td>Very low</td></tr>
           <tr><td>Save a video you enjoy to watch again</td><td>✅ Yes</td><td>Very low</td></tr>
           <tr><td>Share privately with one friend</td><td>⚠️ Gray area</td><td>Low</td></tr>
-          <tr><td>Repost to YouTube or Instagram</td><td>❌ No (copyright infringement)</td><td>High</td></tr>
+          <tr><td>Repost to Twitter or Instagram</td><td>❌ No (copyright infringement)</td><td>High</td></tr>
           <tr><td>Use in a monetized video project</td><td>❌ No (without license)</td><td>High</td></tr>
           <tr><td>Download your own TikToks</td><td>✅ Absolutely yes</td><td>None</td></tr>
           <tr><td>Archive a video before it's deleted</td><td>✅ Yes (personal archival)</td><td>Very low</td></tr>

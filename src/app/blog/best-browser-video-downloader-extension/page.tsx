@@ -51,7 +51,7 @@ export default function Page() {
       <h3>✅ Recommended Extensions</h3>
 
       <p><strong>1. Video DownloadHelper</strong> (4.1★ · 10M+ users)<br/>
-      The most established extension. Open source, transparent about permissions, actively maintained. Works on most platforms including TikTok, YouTube, and Instagram. No malware detected.</p>
+      The most established extension. Open source, transparent about permissions, actively maintained. Works on most platforms including TikTok, Twitter/X, and Instagram. No malware detected.</p>
 
       <p><strong>2. FetchV</strong> (4.0★ · 500K+ users)<br/>
       Clean, minimal extension. Detects video elements on any page. Permissions are appropriate (active tab only). Works well for embedded videos. Does not track browsing history.</p>

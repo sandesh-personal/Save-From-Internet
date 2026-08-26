@@ -94,14 +94,14 @@ export default function Page() {
       <p>On iPhone: use GarageBand to trim and export as an M4R ringtone. On Android: copy the MP3 to your Ringtones folder and select it in sound settings.</p>
 
       <h3>Can I download the full song if it's only a clip on TikTok?</h3>
-      <p>TikTok only stores the clip portion used in the video — typically 15–60 seconds. For the full song, use Spotify, Apple Music, or YouTube Music.</p>
+      <p>TikTok only stores the clip portion used in the video — typically 15–60 seconds. For the full song, use Spotify, Apple Music, or Twitter/X Music.</p>
 
       <h2>Related Guides</h2>
       <ul>
         <li><Link href="/blog/tiktok-to-mp3-iphone">TikTok to MP3 on iPhone</Link></li>
         <li><Link href="/blog/tiktok-to-mp3-android">TikTok to MP3 on Android</Link></li>
         <li><Link href="/blog/save-tiktok-sound-as-ringtone">Save TikTok Sound as Ringtone</Link></li>
-        <li><Link href="/blog/youtube-to-mp3-free">YouTube to MP3 Converter</Link></li>
+        <li><Link href="/tiktok-to-mp3">TikTok to MP3 Converter</Link></li>
       </ul>
     </BlogPostLayout>
   )

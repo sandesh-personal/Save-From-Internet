@@ -5,7 +5,7 @@ import BlogPostLayout from '@/components/blog/BlogPostLayout'
 
 export const metadata: Metadata = {
   title: 'Best Online Video Downloader That Works on ALL Sites (2026) | SaveFromInternet',
-  description: 'One tool for every platform — TikTok, Instagram, YouTube, Twitter, Reddit, Facebook, LinkedIn, Twitch. The best all-in-one video downloader for 2026.',
+  description: 'One tool for every platform — TikTok, Instagram, Facebook, Twitter, Reddit, Facebook, LinkedIn, Twitch. The best all-in-one video downloader for 2026.',
   keywords: ['online video downloader all sites', 'best online video downloader 2026', 'universal video downloader', 'download video from any website 2026'],
   alternates: { canonical: 'https://www.savefrominternet.com/blog/online-video-downloader-all-sites' },
   openGraph: {
@@ -21,7 +21,7 @@ export default function Page() {
   return (
     <BlogPostLayout
       title="Best Online Video Downloader That Works on ALL Sites (2026)"
-      description="One tool, every platform — TikTok, Instagram, YouTube, Twitter, Reddit, Facebook. The best all-in-one video downloader for 2026."
+      description="One tool, every platform — TikTok, Instagram, Facebook, Twitter, Reddit, Facebook. The best all-in-one video downloader for 2026."
       date="2026-04-17T08:00:00.000Z"
       category="comparison"
     >
@@ -31,7 +31,7 @@ export default function Page() {
       <ul>
         <li>TikTok (videos, carousels, audio)</li>
         <li>Instagram (Reels, posts, Stories)</li>
-        <li>YouTube (videos, Shorts)</li>
+        <li>Twitter/X (videos, Shorts)</li>
         <li>Twitter / X (video tweets)</li>
         <li>Facebook (public videos)</li>
         <li>Reddit (v.redd.it videos with audio)</li>
@@ -65,7 +65,7 @@ export default function Page() {
           {[
             ['TikTok', '✅', '✅', '✅', '1080p'],
             ['Instagram Reels', '✅', '✅', '✅', '1080p'],
-            ['YouTube', '✅', '✅', '—', '1080p+'],
+            ['Twitter/X', '✅', '✅', '—', '1080p+'],
             ['Twitter/X', '✅', '—', '—', '720p'],
             ['Facebook', '✅', '—', '—', '720p'],
             ['Reddit', '✅', '—', '—', '720p'],
@@ -120,7 +120,7 @@ export default function Page() {
 
       <h2>Related Guides</h2>
       <ul>
-        <li><Link href="/blog/youtube-video-downloader-free">YouTube Video Downloader</Link></li>
+        <li><Link href="/tiktok-video-downloader">TikTok Video Downloader</Link></li>
         <li><Link href="/blog/save-instagram-reels-camera-roll">Download Instagram Reels</Link></li>
         <li><Link href="/blog/reddit-video-downloader-with-audio">Reddit Video Downloader</Link></li>
         <li><Link href="/blog/download-twitter-x-videos-2026">Twitter/X Video Downloader</Link></li>

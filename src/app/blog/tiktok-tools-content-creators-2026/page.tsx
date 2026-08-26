@@ -1,4 +1,4 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import BlogPostLayout from '@/components/blog/BlogPostLayout'
@@ -37,7 +37,7 @@ export default function Page() {
       />
 
       <h2>1. SaveFromInternet.com — Download Your Own Content</h2>
-      <p>Every creator should have a backup of their content. Use <a href="https://www.savefrominternet.com">savefrominternet.com</a> to download all your TikToks without watermarks — for repurposing, backups, or cross-posting to Instagram and YouTube Shorts. <strong>Free, no account needed.</strong></p>
+      <p>Every creator should have a backup of their content. Use <a href="https://www.savefrominternet.com">savefrominternet.com</a> to download all your TikToks without watermarks — for repurposing, backups, or cross-posting to Instagram Reels and Facebook. <strong>Free, no account needed.</strong></p>
 
       <h2>2. CapCut — Video Editing</h2>
       <p>TikTok's official sister app. Auto-captions, templates, background removal, AI features. The #1 TikTok editing app used by creators worldwide. Free with optional Pro tier.</p>
@@ -49,7 +49,7 @@ export default function Page() {
       <p>The best all-in-one analytics tool for TikTok creators. Shows follower growth, engagement rates, best posting times, and competitor analysis. Offers free plan for up to 50 social posts/month.</p>
 
       <h2>5. Canva — Thumbnails & Graphics</h2>
-      <p>Create eye-catching TikTok cover images, YouTube thumbnail equivalents, and story graphics. Canva's TikTok templates are pre-sized at 1080×1920px. Free plan is sufficient for most creators.</p>
+      <p>Create eye-catching TikTok cover images, cover graphics, and story graphics. Canva's TikTok templates are pre-sized at 1080×1920px. Free plan is sufficient for most creators.</p>
 
       <Image
         src="/images/step1.jpg"
@@ -69,7 +69,7 @@ export default function Page() {
       <p>AI-powered audio cleanup. Removes background noise, enhances speech clarity. Essential if you record in a non-studio environment.</p>
 
       <h2>9. Linktree — Bio Link Optimization</h2>
-      <p>TikTok only allows one link in bio. Linktree creates a landing page from that link, directing followers to your website, merch, YouTube channel, and more. Free plan works for most creators.</p>
+      <p>TikTok only allows one link in bio. Linktree creates a landing page from that link, directing followers to your website, merch, social channels, and more. Free plan works for most creators.</p>
 
       <h2>10. Google Trends — Content Ideation</h2>
       <p>Free, often overlooked. Search any topic on trends.google.com to see if it's rising or falling in search interest. Create TikToks around rising trends before they peak on social media.</p>

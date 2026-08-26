@@ -83,7 +83,7 @@ export default function Page() {
       <h3>Does downloading a Reel notify the creator?</h3>
       <p>No. Instagram does not send any download notifications to Reel creators.</p>
 
-      <h3>Can I share the downloaded Reel on TikTok or YouTube?</h3>
+      <h3>Can I share the downloaded Reel on TikTok or Twitter/X?</h3>
       <p>Technically yes, but be mindful of copyright. Always credit the original creator. Commercial use or monetization requires explicit permission from the creator.</p>
 
       <h3>The video plays but won't save to Camera Roll — what do I do?</h3>

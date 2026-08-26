@@ -91,7 +91,7 @@ export default function Page() {
 
       <h2>Related Guides</h2>
       <ul>
-        <li><Link href="/blog/youtube-video-downloader-free">YouTube Video Downloader Free</Link></li>
+        <li><Link href="/tiktok-video-downloader">TikTok Video Downloader</Link></li>
         <li><Link href="/blog/reddit-video-downloader-with-audio">Reddit Video Downloader</Link></li>
         <li><Link href="/blog/online-video-downloader-all-sites">Best All-Platform Video Downloader</Link></li>
       </ul>

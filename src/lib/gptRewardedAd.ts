@@ -83,7 +83,11 @@ class GPTRewardedAdManager {
           }
         })
 
-        window.googletag.pubads().enableSingleRequest()
+        if (typeof window.googletag.setConfig === 'function') {
+          window.googletag.setConfig({ singleRequest: true })
+        } else {
+          window.googletag.pubads().enableSingleRequest()
+        }
         window.googletag.enableServices()
         window.googletag.display(this.rewardedSlot)
       }

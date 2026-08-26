@@ -49,7 +49,7 @@ export const categoryLabels: Record<BlogCategory, string> = {
 // Phone/TikTok: 1611162617213-7d7a39e9b1d7 | Smartphone in hand: 1512941937669-90a1b58e7e9c
 // Audio/headphones: 1505740420928-5e560c06d30e | Camera/photos: 1031587-90946 (local)
 // PC/laptop: 1496181133206-80ce9b88a853 | Creator/social: 1611532736597-de2d4265fba3
-// Instagram: 1611605698335-8441a9e95d84 | YouTube: 1611162616475-46b635cb6868
+// Instagram: 1611605698335-8441a9e95d84 | Twitter/X: 1611162616475-46b635cb6868
 // Privacy: 1563013544-824ae1b704d3 | Comparison/speed: 1629654297299-c8506221ca97
 // Cloud/drive: 1558494949-ef010cbdcc31 | Reddit: 1519056080079-61d8888a1b16
 // Gaming/Twitch: 1542751371-adc38448a05e | LinkedIn: 1560472355-536de3962603
@@ -60,7 +60,7 @@ const IMG = {
   laptop:    'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&h=250&fit=crop&auto=format',
   creator:   'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=400&h=250&fit=crop&auto=format',
   instagram: 'https://images.unsplash.com/photo-1611605698335-8441a9e95d84?w=400&h=250&fit=crop&auto=format',
-  youtube:   'https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=400&h=250&fit=crop&auto=format',
+  twitter:   'https://images.unsplash.com/photo-1611605698335-8441a9e95d84?w=400&h=250&fit=crop&auto=format',
   privacy:   'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=250&fit=crop&auto=format',
   speed:     'https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=400&h=250&fit=crop&auto=format',
   cloud:     'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=250&fit=crop&auto=format',
@@ -160,15 +160,6 @@ export const blogPosts: BlogPost[] = [
     datePublished: '2025-11-22T08:00:00.000Z',
     lastModified: '2026-03-15T08:00:00.000Z',
     description: 'Save Instagram Reels without watermark in original HD quality for personal use.',
-    category: 'other-platforms',
-  },
-  {
-    slug: 'youtube-shorts-downloader-save-videos-without-watermark',
-    title: 'YouTube Shorts Downloader — Save Videos Without Watermark (2026 Guide)',
-    image: IMG.youtube,
-    datePublished: '2025-12-08T08:00:00.000Z',
-    lastModified: '2026-04-30T08:00:00.000Z',
-    description: 'Download YouTube Shorts videos without watermark in high resolution. Free online tool.',
     category: 'other-platforms',
   },
   {
@@ -566,15 +557,6 @@ export const blogPosts: BlogPost[] = [
     category: 'other-platforms',
   },
   {
-    slug: 'youtube-shorts-to-mp3-free',
-    title: 'Convert YouTube Shorts to MP3 — Free & Easy Guide (2026)',
-    image: IMG.audio,
-    datePublished: '2026-02-28T08:00:00.000Z',
-    lastModified: '2026-04-11T08:00:00.000Z',
-    description: 'Extract audio from YouTube Shorts as MP3. Free, browser-based, works on iPhone, Android, and PC.',
-    category: 'other-platforms',
-  },
-  {
     slug: 'facebook-video-downloader-hd-2026',
     title: 'Download Facebook Videos in HD — Free Online Tool (2026 Guide)',
     image: IMG.creator,
@@ -687,35 +669,6 @@ export const blogPosts: BlogPost[] = [
     category: 'other-platforms',
   },
 
-  // ── BATCH 2 — YOUTUBE (3 posts) ───────────────────────────────────────────
-  {
-    slug: 'youtube-video-downloader-free',
-    title: 'YouTube Video Downloader Free Online — No Software Needed (2026)',
-    image: IMG.youtube,
-    datePublished: '2026-03-28T08:00:00.000Z',
-    lastModified: '2026-04-20T08:00:00.000Z',
-    description: 'Download any YouTube video for free directly in your browser — no software, no account, no watermark. Works on any device.',
-    category: 'other-platforms',
-  },
-  {
-    slug: 'youtube-to-mp4-free',
-    title: 'YouTube to MP4 Converter Free — Best Online Tools 2026',
-    image: IMG.youtube,
-    datePublished: '2026-03-30T08:00:00.000Z',
-    lastModified: '2026-04-20T08:00:00.000Z',
-    description: 'Convert YouTube videos to MP4 online for free. No software, no limit — we tested the best tools of 2026 so you don\'t have to.',
-    category: 'other-platforms',
-  },
-  {
-    slug: 'youtube-to-mp3-free',
-    title: 'YouTube to MP3 Converter Free — Extract Audio Online 2026',
-    image: IMG.audio,
-    datePublished: '2026-04-02T08:00:00.000Z',
-    lastModified: '2026-04-19T08:00:00.000Z',
-    description: 'Convert any YouTube video to MP3 for free online. High quality audio, no software needed, works on iPhone, Android, and PC.',
-    category: 'audio',
-  },
-
   // ── BATCH 3 — OTHER PLATFORMS — noindexed unsupported platforms excluded ──
 
   // ── BATCH 4 — TIKTOK ADVANCED ────────────────────────────────────────────
@@ -799,7 +752,7 @@ export const blogPosts: BlogPost[] = [
     image: IMG.speed,
     datePublished: '2026-04-20T08:00:00.000Z',
     lastModified: '2026-04-29T08:00:00.000Z',
-    description: 'One tool, every platform — TikTok, Instagram, YouTube, Twitter, Reddit, Facebook. The best all-in-one video downloader for 2026.',
+    description: 'One tool, every platform — TikTok, Instagram, Facebook, Twitter, Reddit, Facebook. The best all-in-one video downloader for 2026.',
     category: 'comparison',
   },
   {
@@ -824,7 +777,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: 'repurpose-tiktok-content',
-    title: 'How to Repurpose TikTok Content for Instagram, YouTube & More (2026)',
+    title: 'How to Repurpose TikTok Content for Instagram, Facebook & More (2026)',
     image: IMG.creator,
     datePublished: '2026-04-17T08:00:00.000Z',
     lastModified: '2026-04-27T08:00:00.000Z',
@@ -837,7 +790,7 @@ export const blogPosts: BlogPost[] = [
     image: IMG.phone,
     datePublished: '2026-04-19T08:00:00.000Z',
     lastModified: '2026-04-26T08:00:00.000Z',
-    description: 'Flying or heading to a no-wifi zone? Here\'s how to bulk download TikTok, Instagram, and YouTube videos before you leave.',
+    description: 'Flying or heading to a no-wifi zone? Here\'s how to bulk download TikTok, Instagram, and Twitter/X videos before you leave.',
     category: 'how-to',
   },
   {
@@ -875,7 +828,7 @@ export const blogPosts: BlogPost[] = [
     image: IMG.speed,
     datePublished: '2026-04-25T08:00:00.000Z',
     lastModified: '2026-04-28T08:00:00.000Z',
-    description: 'Remove watermarks when downloading from TikTok, Instagram, Facebook, YouTube, and more. The best tools of 2026 compared.',
+    description: 'Remove watermarks when downloading from TikTok, Instagram, Facebook, Twitter/X, and more. The best tools of 2026 compared.',
     category: 'no-watermark',
   },
   {

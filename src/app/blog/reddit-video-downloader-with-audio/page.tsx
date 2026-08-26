@@ -78,7 +78,7 @@ export default function Page() {
       <h2>What Types of Reddit Posts Can You Download?</h2>
       <ul>
         <li>✅ v.redd.it hosted videos (native Reddit videos)</li>
-        <li>✅ YouTube links embedded in Reddit posts</li>
+        <li>✅ Twitter/X links embedded in Reddit posts</li>
         <li>✅ Imgur video links</li>
         <li>❌ Videos where the creator set "Download Disabled" (these are rare)</li>
         <li>❌ Subscription-only content (Reddit Premium subreddits)</li>

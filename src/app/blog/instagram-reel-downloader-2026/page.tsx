@@ -56,7 +56,7 @@ export default function Page() {
       <div className="tip-box">💡 Instagram Reels use the same download flow as TikTok videos on SaveFromInternet — paste the URL, click download, done.</div>
       <h2>Related Guides</h2>
       <ul>
-        <li><Link href="/blog/youtube-shorts-to-mp3-free">Download YouTube Shorts as MP3</Link></li>
+        <li><Link href="/tiktok-to-mp3">Extract MP3 Audio</Link></li>
         <li><Link href="/blog/facebook-video-downloader-hd-2026">Download Facebook Videos in HD</Link></li>
         <li><Link href="/blog/download-twitter-x-videos-2026">Download Twitter/X Videos</Link></li>
       </ul>

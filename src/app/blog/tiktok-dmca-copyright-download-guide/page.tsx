@@ -21,13 +21,13 @@ export default function Page() {
       <p>The critical legal distinction:</p>
       <ul>
         <li><strong>Personal download</strong> — downloading a video to watch offline on your own device. Generally treated as fair use. Not the target of DMCA enforcement.</li>
-        <li><strong>Redistribution</strong> — uploading someone else's TikTok to YouTube, Instagram, or any other platform. This is copyright infringement and subject to DMCA takedown.</li>
+        <li><strong>Redistribution</strong> — uploading someone else's TikTok to Twitter/X, Instagram, or any other platform. This is copyright infringement and subject to DMCA takedown.</li>
       </ul>
       <h2>How TikTok Handles DMCA Claims</h2>
       <p>TikTok responds to DMCA takedown notices by removing content that is alleged to infringe copyright. Creators can file DMCA claims when:</p>
       <ul>
         <li>Their video is reuploaded to TikTok without permission</li>
-        <li>Their video is reuploaded to another platform (YouTube, Instagram, etc.)</li>
+        <li>Their video is reuploaded to another platform (Twitter/X, Instagram, etc.)</li>
         <li>Their video is used in a commercial product without licensing</li>
       </ul>
       <p>TikTok also sends copyright strikes for music used in videos — the music publisher, not the video creator, holds copyright to the audio track.</p>
@@ -39,7 +39,7 @@ export default function Page() {
         <tbody>
           <tr><td>Download to watch offline personally</td><td>Negligible</td></tr>
           <tr><td>Share download link with a friend</td><td>Low</td></tr>
-          <tr><td>Reupload to YouTube/Instagram</td><td>High — likely DMCA strike</td></tr>
+          <tr><td>Reupload to Twitter/X/Instagram</td><td>High — likely DMCA strike</td></tr>
           <tr><td>Use in your own commercial video</td><td>High — copyright infringement</td></tr>
           <tr><td>Download your own TikTok videos</td><td>Zero — you own the copyright</td></tr>
         </tbody>

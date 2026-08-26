@@ -162,7 +162,7 @@ export default function Page() {
         <li><Link href="/blog/how-to-download-instagram-reels-without-watermark">Download Instagram Reels Without Watermark</Link></li>
         <li><Link href="/blog/how-to-download-facebook-videos-complete-guide">Download Facebook Videos</Link></li>
         <li><Link href="/blog/download-tiktok-videos-without-watermark-2025">Download TikTok Videos Without Watermark</Link></li>
-        <li><Link href="/blog/youtube-shorts-downloader-save-videos-without-watermark">Download YouTube Shorts Without Watermark</Link></li>
+        <li><Link href="/instagram-reel-downloader">Instagram Reels Downloader</Link></li>
       </ul>
     </BlogPostLayout>
   )

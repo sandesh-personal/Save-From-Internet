@@ -82,7 +82,7 @@ export default function Page() {
       <ul>
         <li><Link href="/blog/download-tiktok-videos-without-watermark-2025">Full Guide: Download TikTok Without Watermark</Link></li>
         <li><Link href="/blog/tiktok-download-for-personal-use-legal">Is Downloading TikTok Videos Legal?</Link></li>
-        <li><Link href="/blog/repurpose-tiktok-content">Repurpose TikTok Content for Instagram & YouTube</Link></li>
+        <li><Link href="/blog/repurpose-tiktok-content">Repurpose TikTok Content for Instagram & Twitter/X</Link></li>
         <li><Link href="/blog/remove-tiktok-watermark-free">3 Free Methods to Remove the TikTok Watermark</Link></li>
       </ul>
     </BlogPostLayout>

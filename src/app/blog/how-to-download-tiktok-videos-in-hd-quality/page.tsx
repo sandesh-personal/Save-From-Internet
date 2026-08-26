@@ -145,7 +145,7 @@ export default function Page() {
       <h3>Why is my downloaded TikTok video blurry after download?</h3>
       <p>The original TikTok video was likely uploaded in low resolution. TikTok also compresses videos during upload — not all videos are in true HD, even if they look fine in the TikTok app due to adaptive streaming.</p>
       <h3>Does TikTok compress videos more than other platforms?</h3>
-      <p>Yes. TikTok applies significant compression — especially on older posts. Instagram Reels and YouTube Shorts often retain better quality because their compression pipelines are less aggressive.</p>
+      <p>Yes. TikTok applies significant compression — especially on older posts. Instagram Reels and Facebook Reels often retain better quality because their compression pipelines are less aggressive.</p>
       <h3>Can I download 4K TikTok videos?</h3>
       <p>TikTok does not currently offer 4K streaming or storage — the maximum quality is 1080p. SaveFromInternet downloads the highest available quality, which is 1080p when that quality exists.</p>
       <h3>Is there a way to download TikTok videos faster?</h3>

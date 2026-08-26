@@ -7,7 +7,7 @@ const execAsync = promisify(exec)
 
 /**
  * Extract media using yt-dlp (Primary VPS / Local Engine)
- * Supports Instagram, TikTok, Facebook, Twitter/X, YouTube, and 1,800+ other platforms with 0 API keys.
+ * Supports Instagram, TikTok, Facebook, Twitter/X, and 1,800+ other platforms with 0 API keys.
  */
 export async function extractViaYtDlp(url: string, platform: SupportedPlatform): Promise<VideoData | null> {
   const remoteServiceUrl = process.env.YTDLP_SERVICE_URL?.replace(/\/$/, '')

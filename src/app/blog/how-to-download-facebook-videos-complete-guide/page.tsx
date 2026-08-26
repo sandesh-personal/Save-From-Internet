@@ -117,7 +117,7 @@ export default function Page() {
         <li><Link href="/blog/facebook-video-downloader-hd-2026">Facebook Video Downloader HD 2026</Link></li>
         <li><Link href="/blog/download-tiktok-videos-without-watermark-2025">Download TikTok Without Watermark</Link></li>
         <li><Link href="/blog/how-to-download-instagram-reels-without-watermark">Download Instagram Reels</Link></li>
-        <li><Link href="/blog/youtube-video-downloader-free">Download YouTube Videos Free</Link></li>
+        <li><Link href="/tiktok-video-downloader">TikTok Video Downloader</Link></li>
       </ul>
     </BlogPostLayout>
   )
