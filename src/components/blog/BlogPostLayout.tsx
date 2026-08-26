@@ -4,7 +4,7 @@ import BackToTopButton from './BackToTopButton'
 import GoogleAdSense from '@/components/GoogleAdSense'
 import MidArticleAd from './MidArticleAd'
 import RelatedPosts from './RelatedPosts'
-import { type BlogCategory, categoryLabels } from '@/app/blog/blogData'
+import { type BlogCategory, categoryLabels, blogPosts } from '@/app/blog/blogData'
 
 interface HowToStep {
   title: string
@@ -35,8 +35,17 @@ export default function BlogPostLayout({
   children,
 }: Props) {
   const label = categoryLabels[category] ?? category
-  const url = currentSlug
-    ? `https://www.savefrominternet.com/blog/${currentSlug}`
+  const resolvedSlug =
+    currentSlug ||
+    blogPosts.find(
+      (p) =>
+        p.title.toLowerCase().trim().startsWith(title.toLowerCase().trim().slice(0, 25)) ||
+        p.description.toLowerCase().trim().startsWith(description.toLowerCase().trim().slice(0, 25))
+    )?.slug ||
+    ''
+
+  const url = resolvedSlug
+    ? `https://www.savefrominternet.com/blog/${resolvedSlug}`
     : 'https://www.savefrominternet.com/blog'
 
   const howToSchema = howToSteps?.length

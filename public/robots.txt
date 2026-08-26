@@ -1,7 +1,10 @@
 User-agent: *
 Allow: /
+Allow: /_next/static/
+Allow: /_next/image
 Disallow: /api/
-Disallow: /_next/
+Disallow: /*?*
+Disallow: /*?cat=*
 
 Sitemap: https://www.savefrominternet.com/sitemap.xml
 Host: https://www.savefrominternet.com
