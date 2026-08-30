@@ -80,8 +80,7 @@ export function proxy(request: NextRequest) {
 
   // Redirect any subdomain (e.g. insta.savefrominternet.com) to www
   if (host.endsWith(BASE_DOMAIN) && host !== WWW_HOST && host !== BASE_DOMAIN) {
-    const url = request.nextUrl.clone()
-    url.hostname = WWW_HOST
+    const url = new URL(`https://${WWW_HOST}${request.nextUrl.pathname}${request.nextUrl.search}`)
     return NextResponse.redirect(url, 301)
   }
 
@@ -89,9 +88,11 @@ export function proxy(request: NextRequest) {
   const needsWww = host !== WWW_HOST
 
   if (needsHttps || needsWww) {
-    const url = request.nextUrl.clone()
-    url.protocol = 'https'
-    url.hostname = WWW_HOST
+    // Built from scratch rather than request.nextUrl.clone() + mutation:
+    // self-hosted behind Nginx, nextUrl reflects the app's internal bind
+    // port (3000), and changing only .hostname leaves that stale port in
+    // the serialized redirect URL (https://www.host.com:3000/...).
+    const url = new URL(`https://${WWW_HOST}${request.nextUrl.pathname}${request.nextUrl.search}`)
     return NextResponse.redirect(url, 301)
   }
 
