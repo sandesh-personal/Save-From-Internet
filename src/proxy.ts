@@ -23,7 +23,7 @@ function setMeta(response: NextResponse, pathname: string) {
   response.headers.set('x-locale', LOCALES.includes(segment) ? segment : 'en')
 }
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname
 
   // Never touch API routes, Next static assets, or public files
