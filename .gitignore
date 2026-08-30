@@ -42,3 +42,7 @@ next-env.d.ts
 
 # agents / ide artifacts
 .agents
+
+# python (server/ytdlp_server.py)
+__pycache__/
+*.pyc

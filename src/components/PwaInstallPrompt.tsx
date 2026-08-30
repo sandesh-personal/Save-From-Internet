@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>
@@ -115,8 +116,10 @@ export default function PwaInstallPrompt() {
         <div className="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:max-w-md z-50 animate-in fade-in slide-in-from-bottom-5 duration-300">
           <div className="bg-slate-900 text-white rounded-2xl p-4 shadow-2xl border border-slate-700 flex items-center justify-between gap-3.5 backdrop-blur-md bg-opacity-95">
             <div className="flex items-center gap-3 min-w-0">
-              <img
+              <Image
                 src="/logo-final.png"
+                width={360}
+                height={360}
                 alt="SaveFromInternet Icon"
                 className="w-10 h-10 rounded-xl object-contain bg-white p-1 shrink-0 shadow-xs"
               />
@@ -159,7 +162,7 @@ export default function PwaInstallPrompt() {
           <div className="bg-white text-slate-900 rounded-2xl max-w-sm w-full p-6 shadow-2xl space-y-4 border border-slate-200 animate-in fade-in zoom-in-95 duration-200">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2.5">
-                <img src="/logo-final.png" alt="App Logo" className="w-8 h-8 rounded-lg object-contain" />
+                <Image src="/logo-final.png" width={360} height={360} alt="App Logo" className="w-8 h-8 rounded-lg object-contain" />
                 <h3 className="font-bold text-base text-slate-900">Install on iPhone / iPad</h3>
               </div>
               <button

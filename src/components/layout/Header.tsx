@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import LanguageSwitcher from '@/components/LanguageSwitcher'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -60,10 +61,10 @@ export default function Header() {
             onClick={closeAll}
             aria-label="Save From Internet Home"
           >
-            <img
+            <Image
               src="/logo-final.png"
-              width="44"
-              height="44"
+              width={360}
+              height={360}
               alt=""
               aria-hidden="true"
               className="h-9 sm:h-11 w-auto object-contain"

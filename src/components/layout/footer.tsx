@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { useLanguage } from '@/contexts/LanguageContext'
 
@@ -51,10 +52,10 @@ export default function Footer() {
               className="flex items-center gap-2.5 mb-4 select-none"
               aria-label="Save From Internet Home"
             >
-              <img
+              <Image
                 src="/logo-final.png"
-                width="32"
-                height="32"
+                width={360}
+                height={360}
                 alt=""
                 aria-hidden="true"
                 className="h-8 w-auto object-contain"
