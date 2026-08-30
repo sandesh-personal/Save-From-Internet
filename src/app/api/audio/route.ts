@@ -1,18 +1,23 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { spawn } from 'child_process'
 import fs from 'fs'
+import { isAllowedMediaHost } from '../../../lib/mediaHostAllowlist'
+import { checkRateLimit, getClientIp } from '../../../lib/rateLimit'
+
+const RL_LIMIT = 20
+const RL_WINDOW = 60_000
 
 function getFfmpegPath(): string {
-  if (process.env.FFMPEG_PATH && fs.existsSync(process.env.FFMPEG_PATH)) {
+  // These check for an externally-installed system binary, never a project
+  // asset. The turbopackIgnore comment is the documented fix for Turbopack's
+  // "whole project traced unintentionally" NFT warning, but it doesn't
+  // currently suppress it for fs.existsSync (vercel/next.js#95125) — left in
+  // since it's harmless and will start working once that's fixed upstream.
+  if (process.env.FFMPEG_PATH && fs.existsSync(/* turbopackIgnore: true */ process.env.FFMPEG_PATH)) {
     return process.env.FFMPEG_PATH
   }
   if (fs.existsSync('/usr/bin/ffmpeg')) return '/usr/bin/ffmpeg'
   if (fs.existsSync('/usr/local/bin/ffmpeg')) return '/usr/local/bin/ffmpeg'
-  const wingetFfmpeg =
-    'C:\\Users\\sande\\AppData\\Local\\Microsoft\\WinGet\\Packages\\yt-dlp.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-N-125875-g5d4d3bdc61-win64-gpl\\bin\\ffmpeg.exe'
-  if (fs.existsSync(wingetFfmpeg)) {
-    return wingetFfmpeg
-  }
   return 'ffmpeg'
 }
 
@@ -20,36 +25,24 @@ function isFfmpegExecutable(): boolean {
   try {
     const path = getFfmpegPath()
     if (path.includes('/') || path.includes('\\')) {
-      return fs.existsSync(path)
+      return fs.existsSync(/* turbopackIgnore: true */ path)
     }
     return true
   } catch {
     return true
-  }
-}
-
-function isAllowedAudioHost(url: string): boolean {
-  try {
-    const parsed = new URL(url)
-    if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') return false
-    const host = parsed.hostname.toLowerCase()
-    if (
-      host === 'localhost' ||
-      host === '127.0.0.1' ||
-      host === '0.0.0.0' ||
-      host.startsWith('192.168.') ||
-      host.startsWith('10.') ||
-      host.startsWith('172.16.')
-    ) {
-      return false
-    }
-    return true
-  } catch {
-    return false
   }
 }
 
 export async function GET(request: NextRequest) {
+  const ip = getClientIp(request)
+  const rl = checkRateLimit(`audio:${ip}`, RL_LIMIT, RL_WINDOW)
+  if (!rl.ok) {
+    return NextResponse.json(
+      { success: false, error: 'Too many requests. Please wait a moment and try again.' },
+      { status: 429, headers: { 'Retry-After': String(rl.retryAfter) } }
+    )
+  }
+
   try {
     const { searchParams } = new URL(request.url)
     const rawAudioUrl = searchParams.get('url')
@@ -77,7 +70,7 @@ export async function GET(request: NextRequest) {
       } catch { /* ignore */ }
     }
 
-    if (!isAllowedAudioHost(audioUrl)) {
+    if (!isAllowedMediaHost(audioUrl)) {
       return NextResponse.json({ success: false, error: 'Audio source host not allowed' }, { status: 403 })
     }
 
