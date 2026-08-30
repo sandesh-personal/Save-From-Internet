@@ -9,6 +9,7 @@ Run locally or on a VPS:
     python server/ytdlp_server.py
 """
 
+import os
 import sys
 import json
 import subprocess
@@ -134,6 +135,11 @@ def extract():
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    port = 5000
-    print(f"[*] Starting yt-dlp microservice on port {port}...")
-    app.run(host='0.0.0.0', port=port, threaded=True)
+    port = int(os.environ.get('PORT', 5000))
+    # Loopback-only by default: this endpoint has no auth and accepts any URL,
+    # so it should only ever be reached by the Next.js app on the same host,
+    # not the public internet. Set HOST=0.0.0.0 only if something external
+    # genuinely needs to reach it, and put a firewall/auth in front of it.
+    host = os.environ.get('HOST', '127.0.0.1')
+    print(f"[*] Starting yt-dlp microservice on {host}:{port}...")
+    app.run(host=host, port=port, threaded=True)
