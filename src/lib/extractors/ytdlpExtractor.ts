@@ -100,9 +100,17 @@ function parseYtDlpJson(json: any, originalUrl: string, platform: SupportedPlatf
     (f) => f.url && (f.ext === 'm4a' || f.ext === 'mp3' || f.acodec !== 'none') && f.vcodec === 'none'
   )
 
+  const bestHeight = (list: { height?: number }[]): number =>
+    list.reduce((max, f) => Math.max(max, f.height || 0), 0)
+
+  // Facebook (and some other sites) often only expose SD quality in the
+  // combined "progressive" stream, while true HD/4K is video-only and paired
+  // with a separate audio-only track. Prefer whichever pool actually has the
+  // higher resolution instead of always favoring "progressive".
+  const useVideoOnly = bestHeight(videoFormats) > bestHeight(progressiveMp4s)
   const qualities: VideoQualityOption[] = []
-  const pool = progressiveMp4s.length > 0 ? progressiveMp4s : videoFormats
-  
+  const pool = useVideoOnly ? videoFormats : (progressiveMp4s.length > 0 ? progressiveMp4s : videoFormats)
+
   // Sort descending by height / resolution / bitrate
   pool.sort((a, b) => (b.height || b.tbr || 0) - (a.height || a.tbr || 0))
 
@@ -114,6 +122,7 @@ function parseYtDlpJson(json: any, originalUrl: string, platform: SupportedPlatf
         quality: label,
         url: f.url,
         resolution: f.height ? `${f.height}p` : undefined,
+        needsAudioMerge: useVideoOnly,
       })
     }
   }

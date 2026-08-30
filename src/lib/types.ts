@@ -10,6 +10,7 @@ export interface VideoQualityOption {
   quality: string
   url: string
   resolution?: string
+  needsAudioMerge?: boolean
 }
 
 export interface VideoData {

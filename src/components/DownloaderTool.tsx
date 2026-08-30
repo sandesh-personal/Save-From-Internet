@@ -245,13 +245,28 @@ export default function DownloaderTool({
     }
   }, [state.url, state.downloadType, currentDetectedPlatform, t])
 
-  // Auto-fill and auto-submit when ?url= query param is present
+  // Pre-fill (but never auto-submit) when ?url= query param is present, e.g.
+  // from the cross-platform redirect below. Auto-submitting here meant that
+  // if a mobile browser restored this exact URL on relaunch, the same video
+  // would silently reprocess without the user asking for it.
   useEffect(() => {
     const paramUrl = searchParams.get('url')
     if (!paramUrl) return
     dispatch({ type: 'SET_URL', payload: paramUrl })
-    handleProcess(paramUrl)
   // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  // If the browser restores this page from the back-forward cache (e.g.
+  // reopening the app/tab after it was backgrounded), start fresh instead of
+  // showing whatever was processed last time.
+  useEffect(() => {
+    const handlePageShow = (event: PageTransitionEvent) => {
+      if (event.persisted) {
+        dispatch({ type: 'RESET_STATE' })
+      }
+    }
+    window.addEventListener('pageshow', handlePageShow)
+    return () => window.removeEventListener('pageshow', handlePageShow)
   }, [])
 
   const triggerActualDownload = async (targetUrl: string, filename: string) => {
@@ -343,9 +358,9 @@ export default function DownloaderTool({
     }
   }
 
-  const resolveTargetUrlByQuality = (tier: VideoQualityTier): string => {
+  const resolveQualityByTier = (tier: VideoQualityTier): VideoQualityOption | undefined => {
     if (!state.qualities || state.qualities.length === 0) {
-      return state.downloadUrl || ''
+      return undefined
     }
     if (tier === 'best' || tier === '1080p') {
       const best = state.qualities.find((q) =>
@@ -356,7 +371,7 @@ export default function DownloaderTool({
         q.quality.toLowerCase().includes('hd') ||
         q.resolution?.includes('1080')
       )
-      return best?.url || state.qualities[0]?.url || state.downloadUrl || ''
+      return best || state.qualities[0]
     }
     if (tier === '720p') {
       const q720 = state.qualities.find((q) =>
@@ -365,13 +380,14 @@ export default function DownloaderTool({
         q.quality.toLowerCase().includes('standard') ||
         q.resolution?.includes('720')
       )
-      return q720?.url || state.qualities[state.qualities.length - 1]?.url || state.downloadUrl || ''
+      return q720 || state.qualities[state.qualities.length - 1]
     }
-    return state.downloadUrl || ''
+    return undefined
   }
 
   const handleVideoDownload = () => {
-    let targetUrl = resolveTargetUrlByQuality(selectedVideoQuality)
+    const matched = resolveQualityByTier(selectedVideoQuality)
+    let targetUrl = matched?.url || state.downloadUrl || ''
     if (!targetUrl) return
     const platform = state.platform || currentDetectedPlatform || 'video'
     const filename = `savefrominternet.com-${platform}-${selectedVideoQuality}-${Date.now()}.mp4`
@@ -379,6 +395,12 @@ export default function DownloaderTool({
     // Guarantee that targetUrl always routes through our proxy so headers force real MP4 attachment download
     if (!targetUrl.startsWith('/api/video')) {
       targetUrl = `/api/video?url=${encodeURIComponent(targetUrl)}&platform=${platform}&quality=${selectedVideoQuality}`
+      // Some platforms (e.g. Facebook) only expose HD/4K as a video-only
+      // stream with a separate audio track — merge them via the proxy's
+      // FFmpeg pipeline so the downloaded file actually has sound.
+      if (matched?.needsAudioMerge && state.audioUrl) {
+        targetUrl += `&audioUrl=${encodeURIComponent(state.audioUrl)}`
+      }
     } else if (!targetUrl.includes('quality=')) {
       targetUrl += `&quality=${selectedVideoQuality}`
     }

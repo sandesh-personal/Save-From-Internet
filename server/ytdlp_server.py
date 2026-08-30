@@ -71,7 +71,17 @@ def extract():
             and f.get('vcodec') == 'none'
         ]
 
-        pool = progressive if progressive else video_only
+        def best_height(flist):
+            heights = [f.get('height') or 0 for f in flist]
+            return max(heights) if heights else 0
+
+        # Facebook (and some other sites) often only expose SD quality in the
+        # combined "progressive" stream, while true HD/4K is video-only and
+        # paired with a separate audio-only DASH track. Prefer whichever pool
+        # actually has the higher resolution instead of always favoring
+        # "progressive" just because it has embedded audio.
+        use_video_only = best_height(video_only) > best_height(progressive)
+        pool = video_only if use_video_only else (progressive if progressive else video_only)
         pool.sort(key=lambda x: (x.get('height') or x.get('tbr') or 0), reverse=True)
 
         qualities = []
@@ -83,6 +93,7 @@ def extract():
                     'quality': label,
                     'url': f.get('url'),
                     'resolution': f"{f.get('height')}p" if f.get('height') else '1080p',
+                    'needsAudioMerge': use_video_only,
                 })
 
         download_url = qualities[0]['url'] if qualities else info.get('url', '')
